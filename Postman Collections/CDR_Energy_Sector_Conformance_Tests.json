@@ -1707,6 +1707,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "9f9d7d7f-dd41-4653-ab06-29b9da3494c0",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -1736,8 +1737,7 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "9f9d7d7f-dd41-4653-ab06-29b9da3494c0"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -1765,7 +1765,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -3223,70 +3223,70 @@
 	],
 	"variable": [
 		{
-			"id": "99857027-3606-4497-843c-2579e6f002ad",
+			"id": "0626317b-97f6-479c-a0c2-bb7a893e5c0e",
 			"key": "primaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "81d7b755-0c46-4ee6-bb5f-afa6bab01adb",
+			"id": "078286f5-52fb-4ec2-9be7-ac57fe6fb8da",
 			"key": "secondaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "ad48f7a0-6242-44de-bfb6-262a786a11f7",
+			"id": "58b68b3e-ceb0-4699-98f5-db32a88d5e0e",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "8494bba3-b065-4377-b9ce-b20d45f306e7",
+			"id": "0702d26f-99dd-44e5-9e9f-87cef1aa1d2e",
 			"key": "GlobalEnergySchema",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "6c400ddf-fd8d-4295-a62c-084f8ceb1e36",
+			"id": "d803c759-1b02-4e58-9461-10ff76e60431",
 			"key": "cdsClientHeader",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "295a47e2-21ce-4aa6-bb3c-c70427d120f8",
+			"id": "9133a2ca-2adc-4899-9b4d-47a1ae199a33",
 			"key": "accessToken",
 			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9.",
 			"type": "string"
 		},
 		{
-			"id": "a8da3fd5-982e-4b27-8d22-45ef0e04bab9",
+			"id": "f3df2edc-fcb5-4d80-a5fe-91eed5e93a36",
 			"key": "testAccountId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "9f174549-cb3e-43b1-9ef6-9a981573c878",
+			"id": "48fdb23d-65bc-48d2-8782-db4c14cbf919",
 			"key": "testPlanId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "d5ec5b2e-220a-4cc1-96bd-c4d7525ff2c0",
+			"id": "554f000d-d137-4ee4-81d3-5ce381c19720",
 			"key": "pageSize",
 			"value": "2",
 			"type": "string"
 		},
 		{
-			"id": "57b26c67-380a-4259-ba12-cedda3778f12",
+			"id": "1390e93a-96bb-473c-94ec-a20a0f6df3a9",
 			"key": "servicePointId",
 			"value": "SP12345",
 			"type": "string"
 		},
 		{
-			"id": "7e7719d4-248c-4c9a-a551-d397136052e2",
+			"id": "8a11d573-a694-4a33-8085-0b4983417c4f",
 			"key": "updatedSinceDate",
 			"value": "2010-05-30T06:23:54.270Z",
 			"type": "string"
 		},
 		{
-			"id": "fbc9e329-ea6e-4af2-a04c-7c42a7aebc07",
+			"id": "55cebd10-6ab1-46f0-bed4-48693813bc4c",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		}
