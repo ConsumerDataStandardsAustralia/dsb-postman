@@ -3001,7 +3001,32 @@
 					"id": "bf395ae8-fe78-44f8-8da8-ce18f57fca33"
 				}
 			],
-			"id": "1a911f0e-6450-46a6-b892-3f6fb85208dc"
+			"id": "1a911f0e-6450-46a6-b892-3f6fb85208dc",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a7757f02-a68d-4029-be12-ae5aae29bb3d",
+						"type": "text/javascript",
+						"exec": [
+							"var moment = require('moment');",
+							"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";",
+							"var fapiDate = moment().format(dateFormat);",
+							"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cde7853-b02f-4e0e-8ac5-e7493ffc06b7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
 		}
 	],
 	"auth": {
@@ -3198,64 +3223,64 @@
 	],
 	"variable": [
 		{
-			"id": "aafa8d67-d16c-4473-8633-39adede673d6",
+			"id": "7c4d9428-c952-490c-8c0a-b895d4b917b9",
 			"key": "primaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "08fb8cd8-9434-4829-94e6-4705c331c9e4",
+			"id": "b4ba31dd-3789-4984-90be-e370dca40eee",
 			"key": "secondaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "aa4ea89e-414b-4e7b-b3c0-096c1706cf57",
+			"id": "80bb4353-049f-4aea-aa83-c601db07a8be",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "2ff3dcc1-2ac5-4915-82a9-40d29ad8e454",
+			"id": "f8b4b186-5fb0-4129-adc0-1e9ea7bd9d4c",
 			"key": "GlobalEnergySchema",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "d2cb0cd8-91d6-4e8e-9174-9a9247f0fe30",
+			"id": "b7c09f01-ff02-4b39-93d4-29e29ea92cb8",
 			"key": "cdsClientHeader",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "3efca856-c9d6-4ac6-9225-71088ca83ce9",
+			"id": "29c52e6b-424c-4d2d-82e2-a425c9341bae",
 			"key": "accessToken",
 			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9.",
 			"type": "string"
 		},
 		{
-			"id": "19f9c9fd-76c8-4410-9ae8-3ed5a694239a",
+			"id": "55013c90-9e29-40c2-beb4-8970de6c40ed",
 			"key": "testAccountId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "275a6783-5e16-4392-8ecd-41d039019d96",
+			"id": "3b0938b8-75d3-43f6-a2c1-2ab6c3322eb7",
 			"key": "testPlanId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "6d894321-3102-418d-8fe3-8e355f35917c",
+			"id": "17a4f00e-e909-409e-b287-22acbf9c7722",
 			"key": "pageSize",
 			"value": "2",
 			"type": "string"
 		},
 		{
-			"id": "85210394-4d4a-4531-85df-868bdd07a24e",
+			"id": "feffd728-a6a0-432e-b8f0-ce575f1c1bd2",
 			"key": "servicePointId",
 			"value": "SP12345",
 			"type": "string"
 		},
 		{
-			"id": "31fcc3d3-4407-4688-b6ba-91a15c5e88c5",
+			"id": "69627ed0-590b-402e-944e-a5539410f0ee",
 			"key": "updatedSinceDate",
 			"value": "2010-05-30T06:23:54.270Z",
 			"type": "string"
