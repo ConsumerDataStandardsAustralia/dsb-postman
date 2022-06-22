@@ -1911,6 +1911,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "9fd52dfb-be17-437f-bed1-2faca2df8c75",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -1940,8 +1941,7 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "9fd52dfb-be17-437f-bed1-2faca2df8c75"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -1970,7 +1970,7 @@
 											{
 												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls.",
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}"
+												"value": "{{x-fapi-auth-date}}"
 											},
 											{
 												"description": "The customer's original IP address if the customer is currently logged in to the data recipient. The presence of this header indicates that the API is being called in a customer present context. Not to be included for unauthenticated calls.",
@@ -3223,70 +3223,70 @@
 	],
 	"variable": [
 		{
-			"id": "574443f3-c0dd-499e-9185-25edf21bb9c7",
+			"id": "b3c60def-be56-4e99-b225-e4f2cd155dc0",
 			"key": "primaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "d4c6172d-7df0-4aa4-a1ee-206522e439c2",
+			"id": "6e368028-ff06-43ab-bf7c-e81eabc163c0",
 			"key": "secondaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "ed0c9d09-7550-438e-bb74-50dd1ead354f",
+			"id": "d0330a2f-794a-4f8b-9ba2-7aa988425e99",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "82bb418a-4df8-41c4-873f-30fac461f0ba",
+			"id": "a1d7e61f-5024-4565-af62-c133d88a9b74",
 			"key": "GlobalEnergySchema",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "8cfc2de8-70b6-43a3-ac08-22d689eb5d71",
+			"id": "647905d8-4217-4e98-b0dd-7ac63bd06a46",
 			"key": "cdsClientHeader",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "d86ed782-37ef-4641-9288-091bea53a0e7",
+			"id": "9ac15e60-2fd7-497b-9231-5455dc679af5",
 			"key": "accessToken",
 			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9.",
 			"type": "string"
 		},
 		{
-			"id": "a21621d9-262c-4065-af45-23612e257143",
+			"id": "0c1fadde-f477-4bf3-853e-73f12d4f90ce",
 			"key": "testAccountId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "c1cc4b94-e069-4a48-8fa4-92acdd9e62a4",
+			"id": "d9819538-d747-4b77-85f2-8ae4830e7d53",
 			"key": "testPlanId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "8789f02f-4c26-4974-a5fd-e755d7c48ef1",
+			"id": "5c959e67-deef-4aaf-8176-2462256103b8",
 			"key": "pageSize",
 			"value": "2",
 			"type": "string"
 		},
 		{
-			"id": "ac760a1b-2676-44c3-8e0d-973d047bf8b2",
+			"id": "85da3b51-dd1e-41d3-95b1-22ad85f59ab3",
 			"key": "servicePointId",
 			"value": "SP12345",
 			"type": "string"
 		},
 		{
-			"id": "724963e0-95a4-48de-af10-a10199a9482d",
+			"id": "9f42fbe0-4a51-453d-8fe9-c0cc024192cd",
 			"key": "updatedSinceDate",
 			"value": "2010-05-30T06:23:54.270Z",
 			"type": "string"
 		},
 		{
-			"id": "53996326-d1f4-4af7-923e-f7543ceb32b3",
+			"id": "8ece2187-ed5b-4485-b824-d4003cc33b2e",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		}
