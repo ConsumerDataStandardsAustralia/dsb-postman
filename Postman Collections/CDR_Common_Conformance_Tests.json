@@ -433,7 +433,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "17a585ce-a670-490c-a703-2acefd40ba4f",
+				"id": "2f89e68e-7889-4622-b1e3-d2470deae0f1",
 				"type": "text/javascript",
 				"exec": [
 					"",
@@ -597,7 +597,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "41e9473c-3cbf-45b1-ba89-8dae309c98b3",
+				"id": "2e58993b-8f27-44b0-a33c-1b5bb5efb3d6",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -607,127 +607,107 @@
 	],
 	"variable": [
 		{
-			"id": "64354428-58fb-4297-8beb-dc1bf0f0c961",
+			"id": "72d19599-3429-48a0-a1c6-1203fb801677",
 			"key": "interactionId",
 			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
 		},
 		{
-			"id": "8b06edf7-4197-4d32-8800-aadd8c28c403",
+			"id": "beceb124-ec2c-4ddc-bb10-14dabb061fd5",
 			"key": "cdsClientHeader",
 			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
 		},
 		{
-			"id": "faddaa86-14cc-498a-99da-a4a6e41b2cfc",
+			"id": "0f768826-26e3-4aca-94eb-dbcb49001c5b",
 			"key": "invalidId",
 			"value": "xxxINVALIDxxx"
 		},
 		{
-			"id": "d218d5e0-994f-4ec0-9983-3a078eb6ade4",
+			"id": "e7171f7b-a491-4168-870e-d3b0d55cef92",
 			"key": "effective",
 			"value": ""
 		},
 		{
-			"id": "240fa341-33c4-438c-a2de-f6a7dffcc52a",
+			"id": "59ca6c4d-3377-4aba-a4b5-f26b901dd095",
 			"key": "pageArray",
 			"value": ""
 		},
 		{
-			"id": "112d2d94-d548-4fca-9371-f9409d2addf4",
+			"id": "ea4fd3b6-d51e-4d88-91a0-2e15814b63b5",
 			"key": "baseUrl",
 			"value": ""
 		},
 		{
-			"id": "7141d0bc-067a-4d6c-bca4-54ba386c61e1",
+			"id": "95ad3e87-4683-4a63-9288-7d0e96b143ea",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "a79b0266-1f8e-46dc-947f-db1bad7577df",
+			"id": "0427e803-ea8e-41bd-b898-bae6effa6cc3",
 			"key": "x-v",
 			"value": ""
 		},
 		{
-			"id": "20c370e8-8b6a-42a7-b317-bf1ddc7051f4",
+			"id": "15ac418f-3409-4b93-8723-edd488fd7337",
 			"key": "x-min-v",
 			"value": ""
 		},
 		{
-			"id": "36d6a26a-5879-40af-adbe-7a7c5581381e",
+			"id": "acaee70b-114c-45bc-806e-f8220bb8e433",
 			"key": "accessToken",
 			"value": ""
 		},
 		{
-			"id": "4338ee18-0518-4123-9e9b-e20c5dbfc6a5",
+			"id": "fdb76460-5ce8-49ed-ab87-914bd46e6cca",
 			"key": "testAccountId1",
 			"value": ""
 		},
 		{
-			"id": "44c3ff6f-26b2-4311-ad0b-71ca32894d54",
+			"id": "09f31df5-8dfc-4121-a9ae-ffd2b1907ce9",
 			"key": "collectionVariables",
 			"value": ""
 		},
 		{
-			"id": "bf7f7f4a-dec3-42cf-8174-f19b6a3d9688",
+			"id": "a178e64b-5d91-4aff-9dab-ded6266b13b2",
 			"key": "intitalised",
 			"value": ""
 		},
 		{
-			"id": "18fd5e4f-8080-4cfb-8545-da194f141696",
+			"id": "d32d8088-eca7-4eb7-861f-309da8ffdab1",
 			"key": "pageSize",
 			"value": ""
 		},
 		{
-			"id": "738d6a0f-07c6-4f6b-b7d6-e9e8ca6682b6",
+			"id": "d229ab7a-f157-4e94-8496-d9ddd5b9ebca",
 			"key": "ResponseCommonCustomerDetailV2",
 			"value": ""
 		},
 		{
-			"id": "7f7eaacd-3145-4c83-ad4e-089c41e53586",
+			"id": "4830c62a-34cf-4a52-abeb-ecdacc1ea2ea",
 			"key": "ResponseCommonCustomer",
 			"value": ""
 		},
 		{
-			"id": "363e2660-e03f-4f8b-8868-db750caea1d6",
+			"id": "1b38b6e4-e896-4d4d-b072-e50a181c3602",
 			"key": "ResponseDiscoveryOutagesList",
 			"value": ""
 		},
 		{
-			"id": "db387d79-555a-406d-92f1-2a535bb3c5f3",
+			"id": "90ca8238-91b4-44de-b144-e137a90a53d0",
 			"key": "ResponseCommonDiscoveryStatus",
 			"value": ""
 		},
 		{
-			"id": "07b00c67-fb39-4d6b-8948-715dccc307f1",
+			"id": "e4180632-b459-4a90-9d93-4fb4156c5716",
 			"key": "ResponseErrorListV2",
 			"value": ""
 		},
 		{
-			"id": "ad2774e0-b2ea-4154-9de6-1149290819aa",
+			"id": "5cbe3cef-5578-4787-af87-2602ab7ad7d0",
 			"key": "ResponseBankingProductByIdV4",
 			"value": ""
 		},
 		{
-			"id": "847d8f08-0d77-468b-87b3-a9ab10936eeb",
-			"key": "unauthenticatedCommonUrl",
-			"value": "http://sandbox-lb-940383736.ap-southeast-2.elb.amazonaws.com/cds-au/v1"
-		},
-		{
-			"id": "a857e708-112f-4144-8b42-86568d8bb7f3",
-			"key": "authenticatedCommonUrl",
-			"value": ""
-		},
-		{
-			"id": "321ca760-79f7-41e1-a087-fd035b899b3d",
-			"key": "unauthenticatedResourceUrl",
-			"value": ""
-		},
-		{
-			"id": "c50dd0fb-434a-4061-a0d2-a0be4fccf4bc",
-			"key": "authenticatedResourceUrl",
-			"value": ""
-		},
-		{
-			"id": "ff174438-bb42-4d03-8309-0446f0894811",
+			"id": "5311bf19-c911-4afb-98a3-51efac420381",
 			"key": "GlobalCommonSchema",
 			"value": ""
 		}
