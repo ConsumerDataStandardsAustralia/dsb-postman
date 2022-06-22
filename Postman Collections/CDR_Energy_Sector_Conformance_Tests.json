@@ -3223,70 +3223,70 @@
 	],
 	"variable": [
 		{
-			"id": "458c526e-d60a-465f-8a40-3169caa72d8e",
+			"id": "5419efb1-5c5f-4072-8eb5-b7ce67413cf9",
 			"key": "primaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "59a0fc27-6076-42ab-b331-e85f19ae9d29",
+			"id": "09184b85-c1d8-401f-b75d-90c652ce3c65",
 			"key": "secondaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "6402f456-4942-4e74-bd7f-4f6c0cfb0d60",
+			"id": "0f4f15b2-e463-49cc-b6d8-a1e77810bbaa",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "e506e895-873b-44ea-8032-4e40340f501a",
+			"id": "20d86b2d-8dbc-4c44-9a6d-dd3e2cad17f0",
 			"key": "GlobalEnergySchema",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "24f38fe6-8dc5-44a2-b6f5-febf33e2e4bb",
+			"id": "a094a0a0-1bbb-4a2a-b6a4-45bf1c47eef7",
 			"key": "cdsClientHeader",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "151be5d1-39a7-427a-b9ae-884f47a97e07",
+			"id": "ae4be4f3-d42b-4a47-9820-cbb2da7f6bc2",
 			"key": "accessToken",
 			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9.",
 			"type": "string"
 		},
 		{
-			"id": "a72b3a37-a8a3-45d3-b4a0-006e7dc7397f",
+			"id": "50a297f5-c8c8-4405-904c-6b55bf820caa",
 			"key": "testAccountId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "64c89244-8493-4c38-8ad4-d25424998b19",
+			"id": "66bba330-7a33-4baf-9627-3d6223953bbf",
 			"key": "testPlanId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "aee64d44-3942-4698-bd7d-e3a7eff469ac",
+			"id": "b284a118-4ea5-4d3d-9656-135d59bc6dd2",
 			"key": "pageSize",
 			"value": "2",
 			"type": "string"
 		},
 		{
-			"id": "61aca696-7671-480d-bc89-98c227840c7a",
+			"id": "7ce68d0d-84f9-4304-b26d-74efa47a2961",
 			"key": "servicePointId",
 			"value": "SP12345",
 			"type": "string"
 		},
 		{
-			"id": "9c54e5d9-8ee7-410c-9694-f20f800a2438",
+			"id": "9a4165c4-5ee6-4000-9c07-1e3804ed9b09",
 			"key": "updatedSinceDate",
 			"value": "2010-05-30T06:23:54.270Z",
 			"type": "string"
 		},
 		{
-			"id": "07b5447d-7d9e-4f9b-affc-c0c389a72eef",
+			"id": "631ce4da-fa71-4af4-8a2f-7cb905cec2fd",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		}
