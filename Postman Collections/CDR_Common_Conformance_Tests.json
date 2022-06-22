@@ -77,7 +77,7 @@
 											}
 										}
 									],
-									"_postman_id": "1871e6e2-9078-466b-9787-c8da58f818cb",
+									"id": "1871e6e2-9078-466b-9787-c8da58f818cb",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -180,7 +180,7 @@
 											}
 										}
 									],
-									"_postman_id": "9ba847ab-da54-4751-a274-4418a5b8823a",
+									"id": "9ba847ab-da54-4751-a274-4418a5b8823a",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -236,12 +236,10 @@
 									"response": []
 								}
 							],
-							"_postman_id": "ee267d44-60f3-4d69-a0e9-a7a88870629d",
-							"_postman_isSubFolder": true
+							"id": "ee267d44-60f3-4d69-a0e9-a7a88870629d"
 						}
 					],
-					"_postman_id": "7dbc623b-09b6-4275-bdbe-17bd31d11705",
-					"_postman_isSubFolder": true
+					"id": "7dbc623b-09b6-4275-bdbe-17bd31d11705"
 				},
 				{
 					"name": "discovery",
@@ -297,7 +295,7 @@
 									}
 								}
 							],
-							"_postman_id": "15334900-9410-4d45-8fd6-400c3a8addea",
+							"id": "15334900-9410-4d45-8fd6-400c3a8addea",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -378,7 +376,7 @@
 									}
 								}
 							],
-							"_postman_id": "ae46e8c2-ae1e-4ad0-80a9-8ad039add19f",
+							"id": "ae46e8c2-ae1e-4ad0-80a9-8ad039add19f",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -410,16 +408,15 @@
 							"response": []
 						}
 					],
-					"_postman_id": "0e4c2812-5e8a-4d02-bdf7-2e441365b7b0",
-					"_postman_isSubFolder": true
+					"id": "0e4c2812-5e8a-4d02-bdf7-2e441365b7b0"
 				}
 			],
-			"_postman_id": "c8d13a2d-35a5-4fae-9bb5-c7e9b5672fcc"
+			"id": "c8d13a2d-35a5-4fae-9bb5-c7e9b5672fcc"
 		},
 		{
 			"name": "Specialised Tests",
 			"item": [],
-			"_postman_id": "34ec4b84-fc06-4b18-8929-ae1229b11fdf"
+			"id": "34ec4b84-fc06-4b18-8929-ae1229b11fdf"
 		}
 	],
 	"auth": {
@@ -606,154 +603,129 @@
 	],
 	"variable": [
 		{
-			"id": "657d5f91-6716-4686-8e7c-632b612b2c37",
+			"id": "51098a4a-3c4f-4b81-adb3-d42d70dbc292",
 			"key": "interactionId",
-			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4",
-			"type": "string"
+			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
 		},
 		{
-			"id": "7ad23dcb-e812-4ee9-968a-c009b44dac74",
+			"id": "92507317-c8d2-46d7-bd16-5d6a2af2bb29",
 			"key": "cdsClientHeader",
-			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA==",
-			"type": "string"
+			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
 		},
 		{
-			"id": "d3b9b7b8-2815-4e65-a5b7-b8f084700f95",
+			"id": "3de2ea19-b0f0-4677-88e0-f20025c11115",
 			"key": "invalidId",
-			"value": "xxxINVALIDxxx",
-			"type": "string"
+			"value": "xxxINVALIDxxx"
 		},
 		{
-			"id": "c81c3d81-0fdb-4feb-8a31-c812da538665",
+			"id": "b1539d0b-92eb-4f2e-a19a-297003fb65cf",
 			"key": "effective",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "80bd078d-05be-416c-a798-9ad4ddc83ff7",
+			"id": "3c908d3f-77e0-4003-8947-d46148d8c328",
 			"key": "pageArray",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "49c28dbc-48de-4e6c-9cd7-71b1fa902fba",
+			"id": "22bf6cf9-4c50-4b4b-a4d7-c3b3600487bf",
 			"key": "baseUrl",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "a9f2e52d-51bf-49f5-9b1c-fc9e98c1a98a",
+			"id": "ec45ade0-509d-4f2b-acd3-751a25d779c8",
 			"key": "version",
-			"value": "1.17.0",
-			"type": "string"
+			"value": "1.17.0"
 		},
 		{
-			"id": "2c9ae485-3003-466d-b416-99f6fa0a5358",
+			"id": "c4254614-e9ea-42ab-8d1b-8ced76afb6f6",
 			"key": "x-v",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "d8572673-fc7c-4da7-af93-6665ed5ad559",
+			"id": "64f3f195-de4a-4be7-bff0-c8f7e777a2b1",
 			"key": "x-min-v",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "86ca2532-8823-4f64-b419-85e706d90284",
+			"id": "3e0f4ce6-75ae-4d81-91a0-a1ef819fba51",
 			"key": "accessToken",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "af0630be-48b1-468f-984b-0bd3592ae2dc",
+			"id": "ecf17c30-6484-4646-8f7d-dd797737adec",
 			"key": "testAccountId1",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "4964a87c-ecca-4adc-b9b1-62c182e948c1",
+			"id": "8888f041-7852-45a0-95cb-736defc3f97f",
 			"key": "collectionVariables",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "debfcc6a-8b8d-4203-84e9-eb02e049ee15",
+			"id": "e712a059-3b07-48ce-8665-3e638e9a889d",
 			"key": "intitalised",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "9e03cf40-cb0c-4a6f-a18a-45685b70363b",
+			"id": "ede60eb8-52cc-4344-9767-e399f58901c9",
 			"key": "pageSize",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "0ee000b6-dbdd-433a-9658-c64d39241b42",
+			"id": "ab86490c-62e8-4c06-a24c-65eef1c7e51c",
 			"key": "ResponseCommonCustomerDetailV2",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "b77a8c6b-fb5f-4fca-b521-6d061456acbd",
+			"id": "e03bdc2c-c9df-4d67-a7e5-b885ff469378",
 			"key": "ResponseCommonCustomer",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "0f6ee6e4-5138-4093-94ac-e6129ecacb41",
+			"id": "d909371f-10f3-440c-a845-a44b90b0af06",
 			"key": "ResponseDiscoveryOutagesList",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "011f112e-46d7-4b85-9388-21ce6e1951e1",
+			"id": "badd0b92-0929-40be-a09a-a32523c6273b",
 			"key": "ResponseCommonDiscoveryStatus",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "efa8d77f-a2bf-4078-9320-b19562e1f867",
+			"id": "b4a25809-bfd1-4a17-978b-6360a44e33f7",
 			"key": "ResponseErrorListV2",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "5f0e3e88-2e9f-4b6e-a034-1237562a3a17",
+			"id": "a77ebf9a-62b0-45e4-8b00-222c1ee34015",
 			"key": "ResponseBankingProductByIdV4",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "f02790fe-08d2-4748-92cb-88253d013bf5",
+			"id": "dbf040a6-4a31-43d4-a6ae-aac5a26c3230",
 			"key": "unauthenticatedCommonUrl",
-			"value": "http://sandbox-lb-940383736.ap-southeast-2.elb.amazonaws.com/cds-au/v1",
-			"type": "string"
+			"value": "http://sandbox-lb-940383736.ap-southeast-2.elb.amazonaws.com/cds-au/v1"
 		},
 		{
-			"id": "862d7785-6641-4d5b-ad50-eb51586f66b2",
+			"id": "c9f67de3-aef3-49c0-97bb-fad2d054276b",
 			"key": "authenticatedCommonUrl",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "0073b3e9-2d60-4a81-92b4-2d7757b07063",
+			"id": "7841834c-43b5-4e99-b442-35a560801ed6",
 			"key": "unauthenticatedResourceUrl",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "c0283957-cc68-49a7-8c1f-9b1ab5389617",
+			"id": "cf85b544-18bf-4688-bfd7-7c47c2a57db1",
 			"key": "authenticatedResourceUrl",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "ffeec523-4971-4958-89b0-ef5a78c50942",
+			"id": "89c30113-accc-435a-a70c-63c959665705",
 			"key": "GlobalCommonSchema",
-			"value": "",
-			"type": "string"
+			"value": ""
 		}
 	]
 }
