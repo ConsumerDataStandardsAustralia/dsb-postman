@@ -135,7 +135,7 @@
 											"script": {
 												"id": "d521560a-ea76-4b13-a5bb-3492c6a177de",
 												"exec": [
-													"\r",
+													"if (pm.response.status != 401) {\r",
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
 													"        try { jsonData = pm.response.json(); } catch(e) {}\r",
@@ -170,7 +170,7 @@
 													"            };\r",
 													"            pm.expect(valid).to.be.true; \r",
 													"        });\r",
-													"\r",
+													"}\r",
 													"\r",
 													"\r",
 													"\r",
@@ -605,127 +605,127 @@
 	],
 	"variable": [
 		{
-			"id": "01b14b82-3a26-4fa9-9671-ed25ca26d30b",
+			"id": "cd3b4320-c2da-4b47-964c-fcda2471a6a5",
 			"key": "interactionId",
 			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
 		},
 		{
-			"id": "d6e2705b-c54c-412a-a19a-8913cbba8450",
+			"id": "d6416138-ee11-421b-8dbc-a0f2487504d0",
 			"key": "cdsClientHeader",
 			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
 		},
 		{
-			"id": "395daaf1-38cc-4008-b5e4-5e0cff77dfa3",
+			"id": "3b7abd86-9e4f-4b2a-b831-1c7d206ac391",
 			"key": "invalidId",
 			"value": "xxxINVALIDxxx"
 		},
 		{
-			"id": "46409978-1191-4538-aa05-bfc3dbd60058",
+			"id": "96bc60ff-530b-43dd-bb87-4e54942fd5c1",
 			"key": "effective",
 			"value": ""
 		},
 		{
-			"id": "d727d11d-95cb-4152-aade-7a80f0b0633f",
+			"id": "3359b619-67ca-4255-ba52-124e732d3874",
 			"key": "pageArray",
 			"value": ""
 		},
 		{
-			"id": "3be53e57-4613-4184-9d86-57b013053d0d",
+			"id": "a789fc42-ef62-418b-96a0-5a6b46063526",
 			"key": "baseUrl",
 			"value": ""
 		},
 		{
-			"id": "e3aa0023-07d9-4b55-8780-dbefb0a6c634",
+			"id": "16a65fed-c816-4426-8874-db09fcee930c",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "61c29d2b-d00e-4755-aece-82cc5dca67e4",
+			"id": "16f23292-96a4-4ab3-9941-c63860257e48",
 			"key": "x-v",
 			"value": ""
 		},
 		{
-			"id": "0706343f-1716-4c59-8801-94aa38223697",
+			"id": "0821503e-6ecb-4af2-b24a-f9c054e7ae5a",
 			"key": "x-min-v",
 			"value": ""
 		},
 		{
-			"id": "279bcfa2-a8b6-440b-99da-01aeec3dbce9",
+			"id": "3079a6ce-98d8-4b88-a693-741aedd62eed",
 			"key": "accessToken",
 			"value": ""
 		},
 		{
-			"id": "9f0d62f8-f235-4380-9ff8-f50a7fe6525a",
+			"id": "438da5b3-03cb-4371-9aae-0344339fb642",
 			"key": "testAccountId1",
 			"value": ""
 		},
 		{
-			"id": "a10276b9-bd57-4955-b451-55927498e7f7",
+			"id": "8c97e5e5-52a6-4bb6-a273-e30a4d75d95a",
 			"key": "collectionVariables",
 			"value": ""
 		},
 		{
-			"id": "ac11b8fa-6a1d-4cc8-bc2f-a07a9706fa16",
+			"id": "ad6661d1-b22b-4841-8851-34431992ed49",
 			"key": "intitalised",
 			"value": ""
 		},
 		{
-			"id": "c1cf2682-523d-4dde-91cd-c3b1efb1d846",
+			"id": "89cdf4b2-820d-4512-bc64-204c9f62efa1",
 			"key": "pageSize",
 			"value": ""
 		},
 		{
-			"id": "c13928a5-c2b5-468a-a95e-d5ff84489d95",
+			"id": "a720c511-999d-4487-b8d8-7eead5084a3a",
 			"key": "ResponseCommonCustomerDetailV2",
 			"value": ""
 		},
 		{
-			"id": "ca0f4fcf-a3be-4bf9-9973-1700d570cb04",
+			"id": "26fb4e2c-1c33-4aca-a6ab-7a1611cfd8c7",
 			"key": "ResponseCommonCustomer",
 			"value": ""
 		},
 		{
-			"id": "072a7092-c252-45cf-82e9-e6e5d80c6ec8",
+			"id": "5b8c5505-daf0-4457-9595-3e6d8e772b9e",
 			"key": "ResponseDiscoveryOutagesList",
 			"value": ""
 		},
 		{
-			"id": "adc2caf4-e05e-4f27-a254-7a1d84f6e9f2",
+			"id": "afb1730f-deb4-4c84-8996-b6997492667f",
 			"key": "ResponseCommonDiscoveryStatus",
 			"value": ""
 		},
 		{
-			"id": "77a9f7f7-c95d-476b-9af9-d215d74ebbd3",
+			"id": "c1d0a8d2-0eeb-4c6e-a8cd-0b510153f602",
 			"key": "ResponseErrorListV2",
 			"value": ""
 		},
 		{
-			"id": "b0777fdc-b6ca-4801-bca8-b0b701ad29e6",
+			"id": "57a9c331-5933-41f5-8188-2474aea0e1ae",
 			"key": "ResponseBankingProductByIdV4",
 			"value": ""
 		},
 		{
-			"id": "87ccdcb7-1855-49b8-a5f8-d3ffdff8a6ca",
+			"id": "c0ae81e0-ae5b-4270-91ec-4903e4c82b8c",
 			"key": "unauthenticatedCommonUrl",
 			"value": "http://sandbox-lb-940383736.ap-southeast-2.elb.amazonaws.com/cds-au/v1"
 		},
 		{
-			"id": "98d242a1-978d-4d45-816a-e97c22a7b8ad",
+			"id": "bd36f760-d058-419a-bf9b-9d6fe5522ff2",
 			"key": "authenticatedCommonUrl",
 			"value": ""
 		},
 		{
-			"id": "bd14d904-680d-4ff6-a812-472dbf8a47f7",
+			"id": "673c3392-d70a-4fbb-b912-e1058e7a412d",
 			"key": "unauthenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "ca72c3c9-00e5-436f-8077-9e6c2d8a0bb3",
+			"id": "3539c925-f19b-46a1-b905-ecac2302ef49",
 			"key": "authenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "566cc411-c462-46f5-a2ac-f6864fade13b",
+			"id": "8cc79d0e-417b-4341-b038-c230f2f37819",
 			"key": "GlobalCommonSchema",
 			"value": ""
 		}
