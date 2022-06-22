@@ -607,127 +607,127 @@
 	],
 	"variable": [
 		{
-			"id": "4847dddb-a302-49ae-a2c7-ae82e42bd5c1",
+			"id": "64354428-58fb-4297-8beb-dc1bf0f0c961",
 			"key": "interactionId",
 			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
 		},
 		{
-			"id": "46e111be-1ef5-4a22-8cd9-035f02bab6b1",
+			"id": "8b06edf7-4197-4d32-8800-aadd8c28c403",
 			"key": "cdsClientHeader",
 			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
 		},
 		{
-			"id": "e3f185b2-b43b-41cc-9c87-ba0400e46692",
+			"id": "faddaa86-14cc-498a-99da-a4a6e41b2cfc",
 			"key": "invalidId",
 			"value": "xxxINVALIDxxx"
 		},
 		{
-			"id": "72edf5b6-0807-4a7c-a953-85d76d2abe8d",
+			"id": "d218d5e0-994f-4ec0-9983-3a078eb6ade4",
 			"key": "effective",
 			"value": ""
 		},
 		{
-			"id": "a21884f9-0e3c-4233-84d9-d147bcbe8e5d",
+			"id": "240fa341-33c4-438c-a2de-f6a7dffcc52a",
 			"key": "pageArray",
 			"value": ""
 		},
 		{
-			"id": "acb15d13-bc8e-4d26-a42d-14eeddff5eb2",
+			"id": "112d2d94-d548-4fca-9371-f9409d2addf4",
 			"key": "baseUrl",
 			"value": ""
 		},
 		{
-			"id": "62857998-6f2c-4a96-b457-7fdafddd9309",
+			"id": "7141d0bc-067a-4d6c-bca4-54ba386c61e1",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "9923e655-4370-43ff-a3e9-208a530bf712",
+			"id": "a79b0266-1f8e-46dc-947f-db1bad7577df",
 			"key": "x-v",
 			"value": ""
 		},
 		{
-			"id": "8ab47c84-b9a9-4636-97de-3e7c5aa8758d",
+			"id": "20c370e8-8b6a-42a7-b317-bf1ddc7051f4",
 			"key": "x-min-v",
 			"value": ""
 		},
 		{
-			"id": "2027ac2f-776c-483d-9557-ecb459b83943",
+			"id": "36d6a26a-5879-40af-adbe-7a7c5581381e",
 			"key": "accessToken",
 			"value": ""
 		},
 		{
-			"id": "6aabe395-bed7-4b55-b08c-0cff511df1db",
+			"id": "4338ee18-0518-4123-9e9b-e20c5dbfc6a5",
 			"key": "testAccountId1",
 			"value": ""
 		},
 		{
-			"id": "21748bff-e736-4b07-b31d-e46f63bad934",
+			"id": "44c3ff6f-26b2-4311-ad0b-71ca32894d54",
 			"key": "collectionVariables",
 			"value": ""
 		},
 		{
-			"id": "245f408b-61ad-41a5-939c-8ac790c98cf6",
+			"id": "bf7f7f4a-dec3-42cf-8174-f19b6a3d9688",
 			"key": "intitalised",
 			"value": ""
 		},
 		{
-			"id": "d7af8a15-2ba9-44a7-9dda-ede74357e93f",
+			"id": "18fd5e4f-8080-4cfb-8545-da194f141696",
 			"key": "pageSize",
 			"value": ""
 		},
 		{
-			"id": "cb2661c3-31f2-4b4a-9dd7-cd86f2692624",
+			"id": "738d6a0f-07c6-4f6b-b7d6-e9e8ca6682b6",
 			"key": "ResponseCommonCustomerDetailV2",
 			"value": ""
 		},
 		{
-			"id": "03770f5c-b5bb-432e-bc02-2dab43ed87cc",
+			"id": "7f7eaacd-3145-4c83-ad4e-089c41e53586",
 			"key": "ResponseCommonCustomer",
 			"value": ""
 		},
 		{
-			"id": "93f49166-31bd-4c13-8932-f991e4c8ffb9",
+			"id": "363e2660-e03f-4f8b-8868-db750caea1d6",
 			"key": "ResponseDiscoveryOutagesList",
 			"value": ""
 		},
 		{
-			"id": "1c33bd6b-d29e-43ad-8db5-7bd2b53aa6fd",
+			"id": "db387d79-555a-406d-92f1-2a535bb3c5f3",
 			"key": "ResponseCommonDiscoveryStatus",
 			"value": ""
 		},
 		{
-			"id": "64a61e2e-f936-4c18-821a-6da4a50d1959",
+			"id": "07b00c67-fb39-4d6b-8948-715dccc307f1",
 			"key": "ResponseErrorListV2",
 			"value": ""
 		},
 		{
-			"id": "299e0a20-5d0e-4a24-b5ef-4008177736b1",
+			"id": "ad2774e0-b2ea-4154-9de6-1149290819aa",
 			"key": "ResponseBankingProductByIdV4",
 			"value": ""
 		},
 		{
-			"id": "9418cd09-e8ce-4c20-a1d2-be3e63bb3cf6",
+			"id": "847d8f08-0d77-468b-87b3-a9ab10936eeb",
 			"key": "unauthenticatedCommonUrl",
 			"value": "http://sandbox-lb-940383736.ap-southeast-2.elb.amazonaws.com/cds-au/v1"
 		},
 		{
-			"id": "7fefbe8f-c783-4fcf-b8fe-ec9882dd7cf5",
+			"id": "a857e708-112f-4144-8b42-86568d8bb7f3",
 			"key": "authenticatedCommonUrl",
 			"value": ""
 		},
 		{
-			"id": "4666df73-4054-48ca-a1cb-5bb52f1f96bf",
+			"id": "321ca760-79f7-41e1-a087-fd035b899b3d",
 			"key": "unauthenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "b8f1776c-4a1a-483f-8203-873b932c44bb",
+			"id": "c50dd0fb-434a-4061-a0d2-a0be4fccf4bc",
 			"key": "authenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "37f94520-a484-4705-aee2-bb8e523a14e0",
+			"id": "ff174438-bb42-4d03-8309-0446f0894811",
 			"key": "GlobalCommonSchema",
 			"value": ""
 		}
