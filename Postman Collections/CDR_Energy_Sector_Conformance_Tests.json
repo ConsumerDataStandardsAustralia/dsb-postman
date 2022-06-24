@@ -3064,6 +3064,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
+				"id": "9be61e76-af44-48a8-8617-a1015c9cd0ef",
 				"type": "text/javascript",
 				"exec": [
 					"",
@@ -3078,7 +3079,6 @@
 					"",
 					"if (pm.iterationData.get(\"secondaryDataHolderUrl\") != undefined)",
 					"    pm.collectionVariables.set(\"secondaryDataHolderUrl\", pm.iterationData.get(\"secondaryDataHolderUrl\"));",
-					"",
 					"",
 					"if (pm.iterationData.get(\"version\") != undefined)",
 					"    pm.collectionVariables.set(\"version\", pm.iterationData.get(\"version\"));    ",
@@ -3131,12 +3131,12 @@
 					"                                timeCurrent.getMonth(),",
 					"                                timeCurrent.getDate(), 0, 0, 0);",
 					"",
-					"    postman.setEnvironmentVariable(\"timeCurrent\", timeCurrent.toISOString());",
-					"    postman.setEnvironmentVariable(\"timeTenMinutesAgo\", timeCurrent.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateToday\", dateToday.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateYesterday\", dateYesterday.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateTomorrow\", dateTomorrow.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateLastYear\", dateLastYear.toISOString());",
+					"    // postman.setEnvironmentVariable(\"timeCurrent\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"timeTenMinutesAgo\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateToday\", dateToday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateYesterday\", dateYesterday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateTomorrow\", dateTomorrow.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateLastYear\", dateLastYear.toISOString());",
 					"",
 					"",
 					"    // setting the base url for schema files",
@@ -3231,87 +3231,86 @@
 					"};",
 					"",
 					""
-				],
-				"id": "63da0e83-465d-4729-b58f-1cfc8799812d"
+				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
+				"id": "f45e11b1-e7de-4787-acda-2bac5ace3d35",
 				"type": "text/javascript",
 				"exec": [
 					""
-				],
-				"id": "8dc84e71-85c0-41db-a201-aa5e8282e479"
+				]
 			}
 		}
 	],
 	"variable": [
 		{
-			"id": "ebf408d6-ec36-4539-aeed-f531ab4d0f51",
+			"id": "9802d70c-9569-41e2-b555-454b15a292b7",
 			"key": "primaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "fa84f70d-f0f5-4ec5-8152-d47bec623ad0",
+			"id": "3d8ef0fc-4423-413c-a101-7f22c00cef5b",
 			"key": "secondaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "e0f82e84-5355-4cb2-b7eb-0bd513df1c87",
+			"id": "e93b3e2e-27d3-46b4-8ab8-ade856ac0a8b",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "1443a385-d0d9-4282-b4c3-1a494e7ed030",
+			"id": "a85e63a5-d7f6-4598-98c0-69e2e81792fe",
 			"key": "GlobalEnergySchema",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "c8875669-4ae4-470a-a095-ac7cd01290b7",
+			"id": "72eafada-aeeb-4c45-bab3-72a0cefc5fcd",
 			"key": "cdsClientHeader",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "850c822b-87d1-42fb-8812-dc617e96f2a0",
+			"id": "d65bf3f0-6b32-4646-8564-38c8d4f86abc",
 			"key": "accessToken",
 			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9.",
 			"type": "string"
 		},
 		{
-			"id": "7efc54c8-b338-4ffa-ba6b-28a7b04a7437",
+			"id": "66d3779d-8cc5-46b3-84fd-1b4b95dd2711",
 			"key": "testAccountId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "d4eb4307-cecb-4039-84cd-38a84c6c6427",
+			"id": "784107d2-7dee-457f-9ea8-0b39e978f872",
 			"key": "testPlanId1",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "7132f88f-54e7-4443-976a-7801ec2d46eb",
+			"id": "be7f3da8-d36d-4b77-82a2-63cfcb39e80f",
 			"key": "pageSize",
 			"value": "2",
 			"type": "string"
 		},
 		{
-			"id": "175cc5f9-5f78-4a20-81b3-9baccca6354f",
+			"id": "32a5915b-071d-4bfb-ba3a-6075035c1ea0",
 			"key": "servicePointId",
 			"value": "SP12345",
 			"type": "string"
 		},
 		{
-			"id": "d60a8a8a-16b8-45e2-bdd6-27fd7abd10c2",
+			"id": "79556187-d9f5-4dcb-8bb8-40e266362b92",
 			"key": "updatedSinceDate",
 			"value": "2010-05-30T06:23:54.270Z",
 			"type": "string"
 		},
 		{
-			"id": "77361b55-3e9e-42fc-b843-edc103dc8838",
+			"id": "2e5fdfa7-ade9-4ff9-b591-e874ed2d48cf",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		}
