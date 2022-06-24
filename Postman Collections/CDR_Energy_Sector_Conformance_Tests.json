@@ -2871,7 +2871,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\",\n            \"{{accountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3247,51 +3247,51 @@
 	],
 	"variable": [
 		{
-			"id": "a2201873-91d9-4b7b-8017-54cc648e37b7",
+			"id": "21a0ace0-c973-4576-be81-85951ae24015",
 			"key": "primaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "0703841a-fb3b-4acf-a7a1-66ced14472e5",
+			"id": "ab810fc4-30ed-44f8-b285-e20f57b97d59",
 			"key": "secondaryDataHolderUrl",
 			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
 		},
 		{
-			"id": "71016bfb-eccf-444c-8ba5-a105ca470f53",
+			"id": "225330dc-1112-49b8-ad41-b8d1c1b76a2f",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "2d79395c-60a4-4b9a-afad-87236f3e7947",
+			"id": "b133585e-a60c-42fc-a657-7a8ebe16ade6",
 			"key": "accessToken",
 			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9.",
 			"type": "string"
 		},
 		{
-			"id": "414a8d31-f635-4c3b-8e90-bdd1b57bff85",
+			"id": "1928c338-b1d0-4c72-ae4c-22721bfb841c",
 			"key": "pageSize",
 			"value": "2",
 			"type": "string"
 		},
 		{
-			"id": "e79f2f43-4ca2-4aa6-a8b3-f30c35bd32f2",
+			"id": "be8f88ba-0e06-4d8d-8f98-34f7c0faccd7",
 			"key": "servicePointId",
 			"value": "SP12345",
 			"type": "string"
 		},
 		{
-			"id": "e0e44cc6-f1fb-4d34-a6ac-b6df637fb19c",
+			"id": "12071480-ba88-4bab-b633-668ea7a94ec2",
 			"key": "updatedSinceDate",
 			"value": "2010-05-30T06:23:54.270Z",
 			"type": "string"
 		},
 		{
-			"id": "fcdc886e-ada3-4452-8626-602081709f32",
+			"id": "db918962-d8e4-45f0-b245-2d76b1f38ee9",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "e5cf47f2-2a25-40bd-835a-afd561069ed7",
+			"id": "d22ff425-6a99-48ef-a203-005a9299c08a",
 			"key": "GlobalEnergySchema",
 			"value": ""
 		}
