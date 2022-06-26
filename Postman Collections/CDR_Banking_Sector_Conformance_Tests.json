@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "aca01619-c1b2-472d-89f3-0415b29dba0f",
 		"name": "CDR Banking Sector Conformance Tests",
-		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.11.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n*   Get Accounts\n*   Get Bulk Balances\n*   Get Balances For Specific Accounts\n*   Get Account Balance\n*   Get Account Details\n*   Get Transactions For Account\n*   Get Transaction Detail\n*   Get Direct Debits For Accounts\n*   Get Bulk Direct Debits\n*   Get Direct Debits For Specific Accounts\n*   Get Scheduled Payments For Accounts\n*   Get Scheduled Payments Bulk\n*   Get Scheduled Payments For Specific Accounts\n*   Get Payees\n*   Get Payee Details\n*   Get Products\n*   Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n*   CDR API end points not listed above\n*   Negative scenarios that are not specifically addressed in the standards for individual end points\n*   Non-functional requirements\n*   Information Security Profile and associated end points\n*   MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [cdr-data61@csiro.au](mailto:cdr-data61@csiro.au)\n\n}",
+		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.17.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n*   Get Accounts\n*   Get Bulk Balances\n*   Get Balances For Specific Accounts\n*   Get Account Balance\n*   Get Account Details\n*   Get Transactions For Account\n*   Get Transaction Detail\n*   Get Direct Debits For Accounts\n*   Get Bulk Direct Debits\n*   Get Direct Debits For Specific Accounts\n*   Get Scheduled Payments For Accounts\n*   Get Scheduled Payments Bulk\n*   Get Scheduled Payments For Specific Accounts\n*   Get Payees\n*   Get Payee Details\n*   Get Products\n*   Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n*   CDR API end points not listed above\n*   Negative scenarios that are not specifically addressed in the standards for individual end points\n*   Non-functional requirements\n*   Information Security Profile and associated end points\n*   MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [cdr-data61@csiro.au](mailto:cdr-data61@csiro.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -7177,298 +7177,298 @@
 	],
 	"variable": [
 		{
-			"id": "5b5ab7cb-b7d9-47f5-bd17-f834828b5fed",
+			"id": "07dd0468-620b-40f4-86a9-78820c1470dd",
 			"key": "interactionId",
 			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
 		},
 		{
-			"id": "816452d1-6639-47e3-8e36-481428b6bf80",
+			"id": "b52a0038-0e1d-4eb1-8818-415c317b9166",
 			"key": "cdsClientHeader",
 			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
 		},
 		{
-			"id": "88ba99e9-c461-49b1-ae18-5b36299cca4f",
+			"id": "a9ad3da6-df85-4040-a020-e2a39ac5d6af",
 			"key": "invalidId",
 			"value": "xxxINVALIDxxx"
 		},
 		{
-			"id": "0452ebb6-3164-4787-a48e-4841abcea39f",
+			"id": "7f18edee-7ea0-4bfe-91f0-602c18b72115",
 			"key": "effective",
 			"value": ""
 		},
 		{
-			"id": "d4cd3f20-cd19-48de-8b83-e0c5c3fcfc2d",
+			"id": "d93a42b2-b26b-416b-b506-c15a6f78bccd",
 			"key": "totalDirectDebitPages",
 			"value": ""
 		},
 		{
-			"id": "a3f651fc-456f-4105-98c2-b8efd7aed398",
+			"id": "ca127ad8-edcb-4552-b135-ff11e491d065",
 			"key": "pageArray",
 			"value": ""
 		},
 		{
-			"id": "a0c5c654-1a25-454b-8e4b-9b602d3c2fef",
+			"id": "5f5029d8-6fcc-49f6-859d-0817fb754758",
 			"key": "totalBulkBalancePages",
 			"value": ""
 		},
 		{
-			"id": "102d5980-4192-4592-9136-280f8bb9244e",
+			"id": "e185ca6d-c728-498f-8844-ac50128dda96",
 			"key": "totalTransactionPages",
 			"value": ""
 		},
 		{
-			"id": "832e80eb-0537-4696-9854-133f4f95f4f2",
+			"id": "8559858f-6a64-42f8-af05-7b7ac80f1346",
 			"key": "totalScheduledPaymentsPages",
 			"value": ""
 		},
 		{
-			"id": "98b3a755-46aa-4bc6-87f3-d45e063c2445",
+			"id": "f5deb3e2-9906-484f-bef8-b8311ed177d2",
 			"key": "totalAccountsPages",
 			"value": ""
 		},
 		{
-			"id": "55a42292-e697-4865-ad64-5652a9d6bb0e",
+			"id": "35ea509d-0df2-444d-a0a3-3e88ef77dbc2",
 			"key": "totalPayeePages",
 			"value": ""
 		},
 		{
-			"id": "9ad28316-ba4d-4de3-b6bb-18ac4bee1db6",
+			"id": "c4fd8243-c6ea-446d-9de3-e33e399ae7fb",
 			"key": "productCategory",
 			"value": ""
 		},
 		{
-			"id": "2231dae7-2a62-4ac2-881d-fe0ae2a05c4d",
+			"id": "3e370036-fbd7-4014-a6ca-466583f61cfb",
 			"key": "totalProductPages",
 			"value": ""
 		},
 		{
-			"id": "3ad7d23f-d248-420a-addb-9e67c31e6351",
+			"id": "329ef736-f0c4-4f8d-a0e2-611e9fac26ce",
 			"key": "baseUrl",
 			"value": ""
 		},
 		{
-			"id": "c9a5d207-775d-4981-9d8d-1e475364658b",
+			"id": "d114df14-28be-4b4f-8b7a-5626aafd66fc",
 			"key": "x-v",
 			"value": ""
 		},
 		{
-			"id": "937dc57b-a43d-44d5-a6d1-9477225dd459",
+			"id": "1d75639a-21c6-4a15-8bb8-46f5ba17a418",
 			"key": "x-min-v",
 			"value": ""
 		},
 		{
-			"id": "7a4e91e7-8122-4a63-aec6-3af30b720c46",
+			"id": "249a9753-5e16-40fc-b75c-dbe5c4c28936",
 			"key": "accessToken",
 			"value": ""
 		},
 		{
-			"id": "657ef0e1-cc4e-42b4-b760-61344aa781cf",
+			"id": "4132a3d5-1f0b-4ed3-8884-734bfd13012a",
 			"key": "testAccountId1",
 			"value": ""
 		},
 		{
-			"id": "e9180f81-03cf-4879-a21d-890537f421da",
+			"id": "7ed0d4bc-3fa8-499e-9c4f-0cd34abb0db3",
 			"key": "testAccountId2",
 			"value": ""
 		},
 		{
-			"id": "83e97db9-8c67-43f3-b5e0-75b3534df043",
+			"id": "f987cf1f-db79-4ff9-9715-1571b5c1e240",
 			"key": "testProductId",
 			"value": ""
 		},
 		{
-			"id": "5c9bc4e8-4113-4c1e-bd27-f729a0601bcb",
+			"id": "da24dc21-23ca-4b94-90f5-dff34350610c",
 			"key": "testPayeeId",
 			"value": ""
 		},
 		{
-			"id": "1d6ca3cc-ed34-4157-8cfc-9724628caba0",
+			"id": "9b2fee9f-d071-4217-a6f5-323d8afe4a0e",
 			"key": "testTransactionId",
 			"value": ""
 		},
 		{
-			"id": "66e04e69-5059-4eb1-a366-6ece95499492",
+			"id": "84b86af3-944d-4e12-894f-dd1c2b4532c6",
 			"key": "pageSizeBulkDirectDebits",
 			"value": ""
 		},
 		{
-			"id": "e9b2254e-0347-473d-b58f-9a8ee50b2eb5",
+			"id": "310b47de-5e13-4420-a8a2-be5edd785b04",
 			"key": "pageSizeBulkBalances",
 			"value": ""
 		},
 		{
-			"id": "9abb9865-90a5-4066-b451-e1d68187e445",
+			"id": "0471811e-4372-478b-bde8-a0674d2cdd5c",
 			"key": "pageSizeTransactions",
 			"value": ""
 		},
 		{
-			"id": "594cd841-dbce-48a4-ac08-4c979df25f84",
+			"id": "96ce16c9-4aaf-4f2f-95c5-4413f8567958",
 			"key": "pageSizeAccounts",
 			"value": ""
 		},
 		{
-			"id": "26896b6e-44d3-44c4-9bdc-ea80c90f1718",
+			"id": "4bd705c4-833f-49f1-a0aa-628ab819427f",
 			"key": "pageSizePayees",
 			"value": ""
 		},
 		{
-			"id": "2bc00af2-16c4-45ee-84c8-45479a30a325",
+			"id": "15013666-329e-4b45-9dcd-24f2b351c5a3",
 			"key": "pageSizeScheduledPayments",
 			"value": ""
 		},
 		{
-			"id": "79d333a5-eb45-4ce8-9893-cbfbcfb08245",
+			"id": "3450d887-5d1b-405c-bcd6-2d4b4d41e305",
 			"key": "pageSizeProducts",
 			"value": ""
 		},
 		{
-			"id": "a6d6988b-39cf-49dc-81c1-b0bf52d15cfc",
+			"id": "bc63e68c-e570-413d-b732-0cc2b63b9949",
 			"key": "collectionVariables",
 			"value": ""
 		},
 		{
-			"id": "36b85748-5a59-49f2-bf66-75f7b1f97674",
+			"id": "b77d06ce-1b57-41cc-9523-fa300b877447",
 			"key": "intitalised",
 			"value": ""
 		},
 		{
-			"id": "12557db9-9c16-46a4-9197-e390bb46ee55",
+			"id": "ca72755f-a797-42db-995e-afd7a698acc7",
 			"key": "pageSize",
 			"value": ""
 		},
 		{
-			"id": "e4017e9d-6f0f-4f8c-9dc9-248fc712adcc",
+			"id": "e3237cb8-1ae0-485d-990c-7dc720ded04b",
 			"key": "BankingBalance",
 			"value": ""
 		},
 		{
-			"id": "9c6c7612-bcb2-4905-bba0-21fa05d276b5",
+			"id": "93dc24e3-a5e7-4dbd-8c26-333abaced23a",
 			"key": "ResponseBankingAccountsBalanceList",
 			"value": ""
 		},
 		{
-			"id": "2978fd08-328b-4b32-a58a-2d31b806dca2",
+			"id": "76aff35e-a2bb-4f97-a368-cdc100ba6b32",
 			"key": "ResponseBankingTransactionList",
 			"value": ""
 		},
 		{
-			"id": "ad1770c9-83a7-4b08-a366-614864a3290c",
+			"id": "1da89054-06db-4fb9-9fbb-acca07ee66f9",
 			"key": "ResponseBankingAccountList",
 			"value": ""
 		},
 		{
-			"id": "cf971d87-5354-4ab8-a6f7-daf0b59e0c92",
+			"id": "cd7edac2-8406-41a4-ae5f-87ea135551e4",
 			"key": "ResponseBankingAccountsBalanceById",
 			"value": ""
 		},
 		{
-			"id": "5fa25333-521b-4724-8b0a-2051577c927a",
+			"id": "9bfe3660-93f9-429b-a02f-e41aefac143d",
 			"key": "ResponseCommonCustomerDetailV2",
 			"value": ""
 		},
 		{
-			"id": "581554e8-303b-490c-8de3-360daeb4bb2b",
+			"id": "de94766b-beb5-43fc-b1a3-dd92b2b8f35c",
 			"key": "ResponseBankingDirectDebitAuthorisationList",
 			"value": ""
 		},
 		{
-			"id": "f283d7ce-dd6a-41b1-b545-bfa9047a28cf",
+			"id": "5aed554b-2c2a-4c65-b35d-25856c5d38e3",
 			"key": "ResponseBankingPayeeListV2",
 			"value": ""
 		},
 		{
-			"id": "1a0d0230-6493-4c24-ba8e-d1a89c473b51",
+			"id": "8558b5b1-6f2c-414b-b471-8c1f669b2d19",
 			"key": "ResponseBankingAccountByIdV2",
 			"value": ""
 		},
 		{
-			"id": "9185fb2d-6cb8-4d07-b005-5a4e97d23314",
+			"id": "9782631d-a85f-4cbb-a1e4-a5093b3ee376",
 			"key": "ResponseBankingScheduledPaymentsList",
 			"value": ""
 		},
 		{
-			"id": "3b5294a6-5e56-4ea3-b094-bd56ecfead97",
+			"id": "f5f155a3-c7f8-4f21-8cdc-b889a72207ee",
 			"key": "ResponseBankingProductListV2",
 			"value": ""
 		},
 		{
-			"id": "3f4bedf2-029b-4342-9a9e-89804d0a54f6",
+			"id": "237c6268-bc64-4e84-ab8b-4a147e3bd731",
 			"key": "ResponseBankingPayeeByIdV2",
 			"value": ""
 		},
 		{
-			"id": "ea2c1f26-b7ad-46b9-8095-5ea319171884",
+			"id": "372d2c41-2e47-4972-8763-af03c171a225",
 			"key": "ResponseBankingTransactionById",
 			"value": ""
 		},
 		{
-			"id": "b22c84fe-7370-49c2-86c9-542d0f96d9cf",
+			"id": "c9bcc62b-b97f-4f7f-a1af-8292883a293f",
 			"key": "ResponseCommonCustomer",
 			"value": ""
 		},
 		{
-			"id": "b568733b-eea2-401b-81bb-de1c7060f81d",
+			"id": "179ab686-61d9-4006-84b6-06e51dc5a7cc",
 			"key": "ResponseDiscoveryOutagesList",
 			"value": ""
 		},
 		{
-			"id": "59e0cc11-d8f0-4b14-822d-dd1ec1186c15",
+			"id": "8ecf7bfe-c090-4d12-b585-aeb41d9a6131",
 			"key": "ResponseCommonDiscoveryStatus",
 			"value": ""
 		},
 		{
-			"id": "9ca88626-a127-4070-b33b-37bd78f89003",
+			"id": "d9e7fbd1-65dd-42ff-abe1-f79ff2d55080",
 			"key": "ResponseErrorListV2",
 			"value": ""
 		},
 		{
-			"id": "71b9d237-d4a3-4ece-8a22-ca0dc60f634f",
+			"id": "a2bc0d34-f561-4266-ae6e-3866269cd077",
 			"key": "ResponseBankingProductByIdV4",
 			"value": ""
 		},
 		{
-			"id": "4f3dae2d-3cf3-4782-acca-89464f6d3f3a",
+			"id": "74ab4ef0-7509-47df-97ea-198517111229",
 			"key": "GlobalSchema",
 			"value": ""
 		},
 		{
-			"id": "6fa88c17-0d54-4681-a030-8066793b8e45",
+			"id": "6e25f7a2-3e07-4a42-b051-9d8adc6ead9a",
 			"key": "unauthenticatedCommonUrl",
 			"value": ""
 		},
 		{
-			"id": "5ef924e8-9db4-4c4c-a5c5-7ab930e24f0c",
+			"id": "df69cf7a-2001-4883-bc0f-10aad081fc2d",
 			"key": "authenticatedCommonUrl",
 			"value": ""
 		},
 		{
-			"id": "4cd112d1-58e0-42d3-ba84-7f550612c6a2",
+			"id": "a2f098fd-29ff-4e3c-919d-4d28939ffd1c",
 			"key": "unauthenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "a32c407a-1b0f-4726-9355-42ac57c37bd0",
+			"id": "d71a8fc3-1161-4175-b6cc-286d7b4246c7",
 			"key": "authenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "a89d1886-fe7a-49c8-8395-88e709f5e1f7",
+			"id": "3d5381b2-c786-4754-aa40-cb7ef9d798bf",
 			"key": "GlobalBankingSchema",
 			"value": ""
 		},
 		{
-			"id": "23d57558-5917-448a-ba6a-0872cd5a2964",
+			"id": "7755ae7d-1aab-4551-9967-2b05231aa456",
 			"key": "GlobalCommonSchema",
 			"value": ""
 		},
 		{
-			"id": "e2720446-be2a-40e6-baa7-e21f71f7a790",
+			"id": "3e8f2217-029a-47bc-82fb-9e5c6b200691",
 			"key": "version",
 			"value": "1.17.0",
 			"type": "string"
 		},
 		{
-			"id": "414d9c8f-a98a-41d0-a695-291359f19b3c",
+			"id": "64923d7a-4254-4c8f-81fa-ed0d1d610395",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		}
