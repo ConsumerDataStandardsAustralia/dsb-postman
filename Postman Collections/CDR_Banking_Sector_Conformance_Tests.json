@@ -24,6 +24,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "e31e95ed-a547-438b-a037-f6a22c74374c",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 															"{\r",
@@ -42,11 +43,12 @@
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-															"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-															"            pm.expect(responseXv).gte(checkValue);\r",
+															"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+															"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+															"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+															"            pm.response.to.have.status(200);\r",
+															"            pm.expect(responseVersion).not.null;\r",
+															"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -118,13 +120,13 @@
 															"}\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "e31e95ed-a547-438b-a037-f6a22c74374c"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "a693b442-2f81-44ed-bb6f-3f475c0ad7b9",
 														"exec": [
 															"// First page is always 1\r",
 															"pm.variables.set(\"currentPage\", 1);\r",
@@ -132,10 +134,13 @@
 															"var pageSize = pm.variables.get(\"pageSizeBulkDirectDebits\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
 															"    pm.variables.set(\"pageSize\", pageSize);\r",
-															"}"
+															"}\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "a693b442-2f81-44ed-bb6f-3f475c0ad7b9"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -166,7 +171,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text",
 														"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
 													},
@@ -237,6 +242,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "8f63033f-6224-4be2-8197-cde52b88a0db",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 															"{\r",
@@ -262,11 +268,12 @@
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-															"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-															"            pm.expect(responseXv).gte(checkValue);\r",
+															"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+															"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+															"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+															"            pm.response.to.have.status(200);\r",
+															"            pm.expect(responseVersion).not.null;\r",
+															"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -336,13 +343,13 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "8f63033f-6224-4be2-8197-cde52b88a0db"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "54c1ef58-7c90-4095-8ff8-c8e59e299b7f",
 														"exec": [
 															"var pageSize = pm.variables.get(\"pageSizeBulkDirectDebits\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
@@ -362,10 +369,14 @@
 															"    pm.variables.set(\"currentPage\", currentPage);\r",
 															"}\r",
 															"pm.variables.set(\"pageArray\", pageArray);\r",
+															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "54c1ef58-7c90-4095-8ff8-c8e59e299b7f"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -396,7 +407,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text",
 														"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
 													},
@@ -466,6 +477,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "e3d12452-56f6-4637-b950-cb8cc24091a1",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 															"{\r",
@@ -485,11 +497,12 @@
 															"\r",
 															"\r",
 															"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-															"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-															"            pm.expect(responseXv).gte(checkValue);\r",
+															"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+															"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+															"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+															"            pm.response.to.have.status(200);\r",
+															"            pm.expect(responseVersion).not.null;\r",
+															"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -552,22 +565,26 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "e3d12452-56f6-4637-b950-cb8cc24091a1"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "9abb41b0-9256-4cc8-99fa-8c59add9a901",
 														"exec": [
 															"pm.variables.set(\"currentPage\", 1);\r",
 															"var pageSize = pm.variables.get(\"pageSizeBulkDirectDebits\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
 															"    pm.variables.set(\"pageSize\", pageSize);\r",
-															"}"
+															"}\r",
+															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "9abb41b0-9256-4cc8-99fa-8c59add9a901"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -595,7 +612,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -648,6 +665,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "20a23a79-b86e-4b4c-a2da-04e3a8b25cdc",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 															"{\r",
@@ -675,11 +693,12 @@
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-															"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-															"            pm.expect(responseXv).gte(checkValue);\r",
+															"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+															"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+															"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+															"            pm.response.to.have.status(200);\r",
+															"            pm.expect(responseVersion).not.null;\r",
+															"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -750,13 +769,13 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "20a23a79-b86e-4b4c-a2da-04e3a8b25cdc"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "f5d0cfb6-0cb3-4ae4-b303-3cc93ab47bda",
 														"exec": [
 															"\r",
 															"var pageSize = pm.variables.get(\"pageSizeBulkDirectDebits\");\r",
@@ -776,10 +795,14 @@
 															"if (currentPage == null) {pm.variables.set(\"currentPage\", 1)} else {\r",
 															"    pm.variables.set(\"currentPage\", currentPage);\r",
 															"}\r",
-															"pm.variables.set(\"pageArray\", pageArray);"
+															"pm.variables.set(\"pageArray\", pageArray);\r",
+															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "f5d0cfb6-0cb3-4ae4-b303-3cc93ab47bda"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -807,7 +830,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -866,6 +889,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "19363c39-d136-4bac-b9ee-279f396178ac",
 														"exec": [
 															"",
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
@@ -882,14 +906,6 @@
 															"",
 															"        pm.test(\"Content-Type header specifies json\", function () {",
 															"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
-															"        });",
-															"",
-															"        pm.test(\"x-v header is present and has correct value\", function () {",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-															"            var checkValue = Math.min(requestXv, requestMinXv);",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-															"            pm.expect(responseXv).gte(checkValue);",
 															"        });",
 															"",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
@@ -963,22 +979,25 @@
 															"",
 															""
 														],
-														"type": "text/javascript",
-														"id": "19363c39-d136-4bac-b9ee-279f396178ac"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "e0c81fcf-0b2d-4d1c-904b-cfd6402a2d1e",
 														"exec": [
 															"pm.variables.set(\"currentPage\", 1);\r",
 															"var pageSize = pm.variables.get(\"pageSizeBulkBalances\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
 															"    pm.variables.set(\"pageSize\", pageSize);\r",
-															"}"
+															"}\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "e0c81fcf-0b2d-4d1c-904b-cfd6402a2d1e"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -1006,7 +1025,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -1056,6 +1075,7 @@
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "572d3d85-25d0-4b0e-a1e1-817c1ecc5ade",
 														"exec": [
 															"var pageSize = pm.variables.get(\"pageSizeBulkBalances\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
@@ -1077,15 +1097,19 @@
 															"}\r",
 															"pm.collectionVariables.set(\"pageArray\", pageArray);\r",
 															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "572d3d85-25d0-4b0e-a1e1-817c1ecc5ade"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "test",
 													"script": {
+														"id": "cc961137-ed21-40a8-a97a-86124eaa9be1",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 															"{",
@@ -1111,13 +1135,6 @@
 															"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
 															"        });",
 															"",
-															"        pm.test(\"x-v header is present and has correct value\", function () {",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-															"            var checkValue = Math.min(requestXv, requestMinXv);",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-															"            pm.expect(responseXv).gte(checkValue);",
-															"        });",
 															"",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
 															"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
@@ -1186,8 +1203,7 @@
 															"",
 															""
 														],
-														"type": "text/javascript",
-														"id": "cc961137-ed21-40a8-a97a-86124eaa9be1"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -1215,7 +1231,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -1264,17 +1280,21 @@
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "b09e3414-8450-4c37-8db1-fe41c1d64d4b",
 														"exec": [
-															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "b09e3414-8450-4c37-8db1-fe41c1d64d4b"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "test",
 													"script": {
+														"id": "5ce6b01e-6187-499d-b6d7-6d1627fbc5b4",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 															"{",
@@ -1292,13 +1312,7 @@
 															"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
 															"        });",
 															"",
-															"        pm.test(\"x-v header is present and has correct value\", function () {",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-															"            var checkValue = Math.min(requestXv, requestMinXv);",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-															"            pm.expect(responseXv).gte(checkValue);",
-															"        });",
+															"",
 															"",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
 															"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
@@ -1366,8 +1380,7 @@
 															"",
 															""
 														],
-														"type": "text/javascript",
-														"id": "5ce6b01e-6187-499d-b6d7-6d1627fbc5b4"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -1395,7 +1408,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -1428,6 +1441,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "3ca4305a-6eb2-4dad-823e-38326df0a133",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 															"{",
@@ -1446,13 +1460,6 @@
 															"                    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
 															"                });",
 															"",
-															"                pm.test(\"x-v header is present and has correct value\", function () {",
-															"                    var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-															"                    var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-															"                    var checkValue = Math.min(requestXv, requestMinXv);",
-															"                    var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-															"                    pm.expect(responseXv).gte(checkValue);",
-															"                });",
 															"",
 															"                pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
 															"                    pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
@@ -1522,22 +1529,26 @@
 															"",
 															""
 														],
-														"type": "text/javascript",
-														"id": "3ca4305a-6eb2-4dad-823e-38326df0a133"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "8591d874-5c44-4d14-9f97-2eba3e51db52",
 														"exec": [
 															"pm.variables.set(\"currentPage\", 1);\r",
 															"var pageSize = pm.variables.get(\"pageSizeBulkBalances\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
 															"    pm.variables.set(\"pageSize\", pageSize);\r",
-															"}"
+															"}\r",
+															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "8591d874-5c44-4d14-9f97-2eba3e51db52"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -1565,7 +1576,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -1620,6 +1631,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "929f6046-36ad-44c5-9f15-e8a1a788e97f",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 															"{",
@@ -1645,13 +1657,6 @@
 															"                    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
 															"                });",
 															"",
-															"                pm.test(\"x-v header is present and has correct value\", function () {",
-															"                    var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-															"                    var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-															"                    var checkValue = Math.min(requestXv, requestMinXv);",
-															"                    var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-															"                    pm.expect(responseXv).gte(checkValue);",
-															"                });",
 															"",
 															"                pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
 															"                    pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
@@ -1725,13 +1730,13 @@
 															"",
 															""
 														],
-														"type": "text/javascript",
-														"id": "929f6046-36ad-44c5-9f15-e8a1a788e97f"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "58841460-7ef1-452e-870a-db41335b56e1",
 														"exec": [
 															"var pageSize = pm.variables.get(\"pageSizeBulkBalances\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
@@ -1750,10 +1755,14 @@
 															"if (currentPage == null) {pm.variables.set(\"currentPage\", 1)} else {\r",
 															"    pm.variables.set(\"currentPage\", currentPage);\r",
 															"}\r",
-															"pm.collectionVariables.set(\"pageArray\", pageArray);"
+															"pm.collectionVariables.set(\"pageArray\", pageArray);\r",
+															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "58841460-7ef1-452e-870a-db41335b56e1"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -1781,7 +1790,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -1831,133 +1840,26 @@
 											"response": []
 										},
 										{
-											"name": "Get Balances For Specific Accounts - Invalid account ID",
-											"event": [
-												{
-													"listen": "test",
-													"script": {
-														"exec": [
-															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
-															"{",
-															"        // Parse the response body",
-															"        try { jsonData = pm.response.json(); } catch(e) {}",
-															"",
-															"",
-															"        // HTTP Response and headers",
-															"        pm.test(\"Status code is 422\", function () {",
-															"            pm.response.to.have.status(422);",
-															"        });",
-															"",
-															"        pm.test(\"Content-Type header specifies json\", function () {",
-															"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
-															"        });",
-															"",
-															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
-															"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
-															"        });",
-															"",
-															"        // Check the specific error response value",
-															"        pm.test(\"Error list should contain correct information\", function () {",
-															"            console.log(\"Returned data is \" + JSON.stringify(jsonData));",
-															"            pm.expect(jsonData.errors[0].code).to.equal(\"urn:au-cds:error:cds-banking:Authorisation/UnavailableBankingAccount\")",
-															"            pm.expect(jsonData.errors[0].title).to.equal(\"Unavailable Banking Account\");",
-															"            pm.expect(jsonData.errors[0].detail).to.equal(pm.variables.get(\"invalidId\"));",
-															"        });",
-															"",
-															"",
-															"        // Schema payload check",
-															"        pm.test('Response payload conforms to standards schema', function() {",
-															"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData)",
-															"            if (!valid){",
-															"            ajv.errors.forEach(element => {",
-															"                console.log(JSON.stringify(element));",
-															"                });",
-															"            };",
-															"            pm.expect(valid).to.be.true; ",
-															"        });     ",
-															"} else {",
-															"\tconsole.error(\"Minimum variable set not defined for test: baseUrl, cdsClientHeader, accessToken\");",
-															"}",
-															"",
-															"",
-															"",
-															"",
-															""
-														],
-														"type": "text/javascript",
-														"id": "64f09891-c2e2-420b-907d-943b0118bde4"
-													}
-												}
-											],
-											"id": "95b1eb94-19ec-45ff-98c3-cb5e2bc70e76",
-											"protocolProfileBehavior": {
-												"disableBodyPruning": true
-											},
-											"request": {
-												"method": "POST",
-												"header": [
-													{
-														"key": "x-v",
-														"value": "1",
-														"type": "text"
-													},
-													{
-														"key": "x-min-v",
-														"value": "1",
-														"type": "text"
-													},
-													{
-														"key": "x-fapi-interaction-id",
-														"value": "{{interactionId}}",
-														"type": "text"
-													},
-													{
-														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
-														"type": "text"
-													},
-													{
-														"key": "x-fapi-customer-ip-address",
-														"value": "127.0.0.1",
-														"type": "text"
-													},
-													{
-														"key": "x-cds-client-headers",
-														"value": "{{cdsClientHeader}}",
-														"type": "text"
-													},
-													{
-														"key": "Content-Type",
-														"value": "application/json",
-														"type": "text"
-													}
-												],
-												"body": {
-													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{invalidId}}\"\n        ]\n    },\n    \"meta\": {}\n}"
-												},
-												"url": "{{authenticatedResourceUrl}}/banking/accounts/balances",
-												"description": "Obtain balances for a specified list of accounts"
-											},
-											"response": []
-										},
-										{
 											"name": "Get Balance For Account",
 											"event": [
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "337678a6-cbd3-42aa-8251-4648ccba3674",
 														"exec": [
-															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "337678a6-cbd3-42aa-8251-4648ccba3674"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "test",
 													"script": {
+														"id": "5fee199f-680f-468f-b7b7-4ad48d127491",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 															"{",
@@ -1974,14 +1876,6 @@
 															"",
 															"                pm.test(\"Content-Type header specifies json\", function () {",
 															"                    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
-															"                });",
-															"",
-															"                pm.test(\"x-v header is present and has correct value\", function () {",
-															"                    var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-															"                    var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-															"                    var checkValue = Math.min(requestXv, requestMinXv);",
-															"                    var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-															"                    pm.expect(responseXv).gte(checkValue);",
 															"                });",
 															"",
 															"                pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
@@ -2010,8 +1904,7 @@
 															"",
 															""
 														],
-														"type": "text/javascript",
-														"id": "5fee199f-680f-468f-b7b7-4ad48d127491"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -2039,7 +1932,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -2085,7 +1978,36 @@
 											"response": []
 										}
 									],
-									"id": "d86e89ae-21d3-4e63-a62f-e5df97a21b5d"
+									"id": "d86e89ae-21d3-4e63-a62f-e5df97a21b5d",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4923cb9a-3a6d-48da-9ee9-c679add14e77",
+												"type": "text/javascript",
+												"exec": [
+													""
+												]
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "c8e25260-5f29-4c1a-b4c8-7b7bbfbd795a",
+												"type": "text/javascript",
+												"exec": [
+													"        pm.test(\"x-v header is present and has correct value\", function () {",
+													"            var responseVersion = pm.request.headers.get(\"x-v\");",
+													"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+													"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+													"            pm.response.to.have.status(200);",
+													"            pm.expect(responseVersion).not.null;",
+													"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
+													"        });"
+												]
+											}
+										}
+									]
 								},
 								{
 									"name": "{account Id}",
@@ -2099,6 +2021,7 @@
 														{
 															"listen": "test",
 															"script": {
+																"id": "1f32a1a9-1940-4818-ab4c-8fcdd73cf993",
 																"exec": [
 																	"",
 																	"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
@@ -2116,14 +2039,6 @@
 																	"",
 																	"                pm.test(\"Content-Type header specifies json\", function () {",
 																	"                    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
-																	"                });",
-																	"",
-																	"                pm.test(\"x-v header is present and has correct value\", function () {",
-																	"                    var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-																	"                    var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-																	"                    var checkValue = Math.min(requestXv, requestMinXv);",
-																	"                    var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-																	"                    pm.expect(responseXv).gte(checkValue);",
 																	"                });",
 																	"",
 																	"                pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
@@ -2197,13 +2112,13 @@
 																	"",
 																	""
 																],
-																"type": "text/javascript",
-																"id": "1f32a1a9-1940-4818-ab4c-8fcdd73cf993"
+																"type": "text/javascript"
 															}
 														},
 														{
 															"listen": "prerequest",
 															"script": {
+																"id": "ada49ff0-391b-48ab-910d-7dea4e3c80a2",
 																"exec": [
 																	"pm.variables.set(\"currentPage\", 1);\r",
 																	"var pageSize = pm.variables.get(\"pageSizeAccounts\");\r",
@@ -2212,8 +2127,7 @@
 																	"}\r",
 																	""
 																],
-																"type": "text/javascript",
-																"id": "ada49ff0-391b-48ab-910d-7dea4e3c80a2"
+																"type": "text/javascript"
 															}
 														}
 													],
@@ -2241,7 +2155,7 @@
 															},
 															{
 																"key": "x-fapi-auth-date",
-																"value": "{{timeTenMinutesAgo}}",
+																"value": "{{x-fapi-auth-date}}",
 																"type": "text"
 															},
 															{
@@ -2302,6 +2216,7 @@
 														{
 															"listen": "test",
 															"script": {
+																"id": "d85bed6b-feb3-4bf1-891b-fe1dd7bc0439",
 																"exec": [
 																	"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 																	"{",
@@ -2328,13 +2243,6 @@
 																	"                    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
 																	"                });",
 																	"",
-																	"                pm.test(\"x-v header is present and has correct value\", function () {",
-																	"                    var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-																	"                    var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-																	"                    var checkValue = Math.min(requestXv, requestMinXv);",
-																	"                    var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-																	"                    pm.expect(responseXv).gte(checkValue);",
-																	"                });",
 																	"",
 																	"                pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
 																	"                    pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
@@ -2406,13 +2314,13 @@
 																	"",
 																	""
 																],
-																"type": "text/javascript",
-																"id": "d85bed6b-feb3-4bf1-891b-fe1dd7bc0439"
+																"type": "text/javascript"
 															}
 														},
 														{
 															"listen": "prerequest",
 															"script": {
+																"id": "68309717-ff46-4735-aaa8-5920f51b6c42",
 																"exec": [
 																	"\r",
 																	"var pageSize = pm.variables.get(\"pageSizeTransactions\");\r",
@@ -2434,8 +2342,7 @@
 																	"}\r",
 																	"pm.variables.set(\"pageArray\", pageArray);"
 																],
-																"type": "text/javascript",
-																"id": "68309717-ff46-4735-aaa8-5920f51b6c42"
+																"type": "text/javascript"
 															}
 														}
 													],
@@ -2463,7 +2370,7 @@
 															},
 															{
 																"key": "x-fapi-auth-date",
-																"value": "{{timeTenMinutesAgo}}",
+																"value": "{{x-fapi-auth-date}}",
 																"type": "text"
 															},
 															{
@@ -2522,6 +2429,7 @@
 														{
 															"listen": "test",
 															"script": {
+																"id": "4df845f8-570a-462b-92dd-6ffd4dae71b1",
 																"exec": [
 																	"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true) {",
 																	"    if (pm.variables.get(\"testTransactionId\") != \"\" || pm.variables.get(\"testAccountId1\") != \"\") {",
@@ -2536,14 +2444,6 @@
 																	"",
 																	"        pm.test(\"Content-Type header specifies json\", function () {",
 																	"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
-																	"        });",
-																	"",
-																	"        pm.test(\"x-v header is present and has correct value\", function () {",
-																	"            var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-																	"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-																	"            var checkValue = Math.min(requestXv, requestMinXv);",
-																	"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-																	"            pm.expect(responseXv).gte(checkValue);",
 																	"        });",
 																	"",
 																	"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
@@ -2575,8 +2475,7 @@
 																	"",
 																	""
 																],
-																"type": "text/javascript",
-																"id": "4df845f8-570a-462b-92dd-6ffd4dae71b1"
+																"type": "text/javascript"
 															}
 														}
 													],
@@ -2604,7 +2503,7 @@
 															},
 															{
 																"key": "x-fapi-auth-date",
-																"value": "{{timeTenMinutesAgo}}",
+																"value": "{{x-fapi-auth-date}}",
 																"type": "text"
 															},
 															{
@@ -2750,7 +2649,36 @@
 													]
 												}
 											],
-											"id": "f1694ff0-e985-4da8-bb20-9e3a09ee7f10"
+											"id": "f1694ff0-e985-4da8-bb20-9e3a09ee7f10",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"id": "7747c942-a022-45cc-81b6-b21d199b0f54",
+														"type": "text/javascript",
+														"exec": [
+															""
+														]
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"id": "cb6d0157-7236-4881-81b6-dec606760007",
+														"type": "text/javascript",
+														"exec": [
+															"        pm.test(\"x-v header is present and has correct value\", function () {",
+															"            var responseVersion = pm.request.headers.get(\"x-v\");",
+															"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+															"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+															"            pm.response.to.have.status(200);",
+															"            pm.expect(responseVersion).not.null;",
+															"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
+															"        });"
+														]
+													}
+												}
+											]
 										},
 										{
 											"name": "Get Direct Debits For Account - First page",
@@ -2897,7 +2825,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -3205,7 +3133,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -3493,7 +3421,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -3797,7 +3725,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -3947,6 +3875,136 @@
 									"id": "fbc200f0-dcb7-468e-b2f1-8cff3421d0d6"
 								},
 								{
+									"name": "balances-negative-tests",
+									"item": [
+										{
+											"name": "Get Balances For Specific Accounts - Invalid account ID",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"id": "64f09891-c2e2-420b-907d-943b0118bde4",
+														"exec": [
+															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
+															"{",
+															"        // Parse the response body",
+															"        try { jsonData = pm.response.json(); } catch(e) {}",
+															"",
+															"",
+															"        // HTTP Response and headers",
+															"        pm.test(\"Status code is 422\", function () {",
+															"            pm.response.to.have.status(422);",
+															"        });",
+															"",
+															"        pm.test(\"Content-Type header specifies json\", function () {",
+															"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+															"        });",
+															"",
+															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+															"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
+															"        });",
+															"",
+															"        // Check the specific error response value",
+															"        pm.test(\"Error list should contain correct information\", function () {",
+															"            console.log(\"Returned data is \" + JSON.stringify(jsonData));",
+															"            pm.expect(jsonData.errors[0].code).to.equal(\"urn:au-cds:error:cds-banking:Authorisation/UnavailableBankingAccount\")",
+															"            pm.expect(jsonData.errors[0].title).to.equal(\"Unavailable Banking Account\");",
+															"            pm.expect(jsonData.errors[0].detail).to.equal(pm.variables.get(\"invalidId\"));",
+															"        });",
+															"",
+															"",
+															"        // Schema payload check",
+															"        pm.test('Response payload conforms to standards schema', function() {",
+															"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData)",
+															"            if (!valid){",
+															"            ajv.errors.forEach(element => {",
+															"                console.log(JSON.stringify(element));",
+															"                });",
+															"            };",
+															"            pm.expect(valid).to.be.true; ",
+															"        });     ",
+															"} else {",
+															"\tconsole.error(\"Minimum variable set not defined for test: baseUrl, cdsClientHeader, accessToken\");",
+															"}",
+															"",
+															"",
+															"",
+															"",
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"id": "c89ac009-5d04-411a-b7bf-de01d0463e40",
+														"exec": [
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"id": "95b1eb94-19ec-45ff-98c3-cb5e2bc70e76",
+											"protocolProfileBehavior": {
+												"disableBodyPruning": true
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "x-v",
+														"value": "1",
+														"type": "text"
+													},
+													{
+														"key": "x-min-v",
+														"value": "1",
+														"type": "text"
+													},
+													{
+														"key": "x-fapi-interaction-id",
+														"value": "{{interactionId}}",
+														"type": "text"
+													},
+													{
+														"key": "x-fapi-auth-date",
+														"value": "{{x-fapi-auth-date}}",
+														"type": "text"
+													},
+													{
+														"key": "x-fapi-customer-ip-address",
+														"value": "127.0.0.1",
+														"type": "text"
+													},
+													{
+														"key": "x-cds-client-headers",
+														"value": "{{cdsClientHeader}}",
+														"type": "text"
+													},
+													{
+														"key": "Content-Type",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{invalidId}}\"\n        ]\n    },\n    \"meta\": {}\n}"
+												},
+												"url": "{{authenticatedResourceUrl}}/banking/accounts/balances",
+												"description": "Obtain balances for a specified list of accounts"
+											},
+											"response": []
+										}
+									],
+									"id": "d0fb405e-4b03-47e0-aa82-07600c55e69e"
+								},
+								{
 									"name": "Get Accounts - First page",
 									"event": [
 										{
@@ -3970,11 +4028,12 @@
 													"        });",
 													"",
 													"        pm.test(\"x-v header is present and has correct value\", function () {",
-													"            var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-													"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-													"            var checkValue = Math.min(requestXv, requestMinXv);",
-													"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-													"            pm.expect(responseXv).gte(checkValue);",
+													"            var responseVersion = pm.request.headers.get(\"x-v\");",
+													"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+													"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+													"            pm.response.to.have.status(200);",
+													"            pm.expect(responseVersion).not.null;",
+													"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
 													"        });",
 													"",
 													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
@@ -4152,6 +4211,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "c487499e-a4e4-4908-a2b5-b907f35671ac",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 													"{",
@@ -4178,11 +4238,12 @@
 													"        });",
 													"",
 													"        pm.test(\"x-v header is present and has correct value\", function () {",
-													"            var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-													"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-													"            var checkValue = Math.min(requestXv, requestMinXv);",
-													"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-													"            pm.expect(responseXv).gte(checkValue);",
+													"            var responseVersion = pm.request.headers.get(\"x-v\");",
+													"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+													"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+													"            pm.response.to.have.status(200);",
+													"            pm.expect(responseVersion).not.null;",
+													"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
 													"        });",
 													"",
 													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
@@ -4250,13 +4311,13 @@
 													"",
 													""
 												],
-												"type": "text/javascript",
-												"id": "c487499e-a4e4-4908-a2b5-b907f35671ac"
+												"type": "text/javascript"
 											}
 										},
 										{
 											"listen": "prerequest",
 											"script": {
+												"id": "d6342bc6-deeb-41f5-8467-d720ef89a3c0",
 												"exec": [
 													"var pageSize = pm.variables.get(\"pageSizeAccounts\");\r",
 													"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
@@ -4267,6 +4328,11 @@
 													"var totalPages = pm.variables.get(\"totalAccountsPages\");\r",
 													"// pageArray is an array of consequtive numbers\r",
 													"var pageArray = pm.variables.get(\"pageArray\");\r",
+													"\r",
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 													"\r",
 													"if(!pageArray || pageArray.length == 0) {\r",
 													"    for(var i = 1; i <= totalPages; i++)\r",
@@ -4281,8 +4347,7 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "d6342bc6-deeb-41f5-8467-d720ef89a3c0"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -4310,7 +4375,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -4365,17 +4430,21 @@
 										{
 											"listen": "prerequest",
 											"script": {
+												"id": "5ab087ca-aaef-46f0-b4b2-483a4aeb9598",
 												"exec": [
-													"\r",
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "5ab087ca-aaef-46f0-b4b2-483a4aeb9598"
+												"type": "text/javascript"
 											}
 										},
 										{
 											"listen": "test",
 											"script": {
+												"id": "23e28779-8d75-42bd-8ef4-2fb7e2b319d1",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 													"{",
@@ -4396,11 +4465,12 @@
 													"                });",
 													"",
 													"                pm.test(\"x-v header is present and has correct value\", function () {",
-													"                    var requestXv = parseInt(pm.variables.get(\"x-v\"));",
-													"                    var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));",
-													"                    var checkValue = Math.min(requestXv, requestMinXv);",
-													"                    var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
-													"                    pm.expect(responseXv).gte(checkValue);",
+													"                    var responseVersion = pm.request.headers.get(\"x-v\");",
+													"                    var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+													"                    var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+													"                    pm.response.to.have.status(200);",
+													"                    pm.expect(responseVersion).not.null;",
+													"                    pm.expect(responseXvIsPositiveInteger).to.be.true;",
 													"                });",
 													"",
 													"                pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
@@ -4430,8 +4500,7 @@
 													"",
 													""
 												],
-												"type": "text/javascript",
-												"id": "23e28779-8d75-42bd-8ef4-2fb7e2b319d1"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -4462,7 +4531,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text",
 												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
 											},
@@ -4516,17 +4585,21 @@
 										{
 											"listen": "prerequest",
 											"script": {
+												"id": "aaab20f9-72d0-42fd-b459-26810a5173e5",
 												"exec": [
-													"\r",
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "aaab20f9-72d0-42fd-b459-26810a5173e5"
+												"type": "text/javascript"
 											}
 										},
 										{
 											"listen": "test",
 											"script": {
+												"id": "5da47c6d-838b-4e21-86c0-eb06c19bd975",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 													"{",
@@ -4562,8 +4635,7 @@
 													"",
 													""
 												],
-												"type": "text/javascript",
-												"id": "5da47c6d-838b-4e21-86c0-eb06c19bd975"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -4594,7 +4666,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text",
 												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
 											},
@@ -4648,6 +4720,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "bb8fda0c-37b0-49f9-a3b2-f5855a266a48",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)",
 													"{",
@@ -4690,13 +4763,13 @@
 													"",
 													""
 												],
-												"type": "text/javascript",
-												"id": "bb8fda0c-37b0-49f9-a3b2-f5855a266a48"
+												"type": "text/javascript"
 											}
 										},
 										{
 											"listen": "prerequest",
 											"script": {
+												"id": "63554381-a8cd-4a80-841e-f50577b242bd",
 												"exec": [
 													"var pageSize = pm.variables.get(\"pageSizeAccounts\");\r",
 													"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
@@ -4704,14 +4777,16 @@
 													"}\r",
 													"\r",
 													"// The totalAccountsPages is set in the previous \"******** - First page\" request\r",
-													"var totalPages = pm.variables.get(\"totalAccountsPages\");\r",
-													"//let currentPage = totalPages + 1;\r",
 													"let currentPage = 99999;\r",
-													"pm.variables.set(\"currentPage\", currentPage)\r",
+													"pm.variables.set(\"currentPage\", currentPage);\r",
+													"\r",
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "63554381-a8cd-4a80-841e-f50577b242bd"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -4739,7 +4814,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -4803,6 +4878,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "e7569449-1f19-479b-bfcd-3d9a9e474879",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 															"{\r",
@@ -4820,11 +4896,12 @@
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-															"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-															"            pm.expect(responseXv).gte(checkValue);\r",
+															"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+															"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+															"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+															"            pm.response.to.have.status(200);\r",
+															"            pm.expect(responseVersion).not.null;\r",
+															"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-v header is present is integer\", function () {\r",
@@ -4901,22 +4978,25 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "e7569449-1f19-479b-bfcd-3d9a9e474879"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "de5ed20a-f284-41ef-b6e9-6ca6090a24a3",
 														"exec": [
 															"pm.variables.set(\"currentPage\", 1);\r",
 															"var pageSize = pm.variables.get(\"pageSizeScheduledPayments\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
 															"    pm.variables.set(\"pageSize\", pageSize);\r",
-															"}"
+															"}\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "de5ed20a-f284-41ef-b6e9-6ca6090a24a3"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -4944,7 +5024,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -5011,6 +5091,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "5fabaea4-7636-4d7f-9cf6-c128dd234f6b",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 															"{\r",
@@ -5038,11 +5119,12 @@
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-															"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-															"            pm.expect(responseXv).gte(checkValue);\r",
+															"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+															"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+															"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+															"            pm.response.to.have.status(200);\r",
+															"            pm.expect(responseVersion).not.null;\r",
+															"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -5116,13 +5198,13 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "5fabaea4-7636-4d7f-9cf6-c128dd234f6b"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "7097f97d-a44b-4a85-82a8-0aa18c09bf90",
 														"exec": [
 															"var pageSize = pm.variables.get(\"pageSizeScheduledPayments\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
@@ -5141,10 +5223,14 @@
 															"    pm.variables.set(\"currentPage\", currentPage);\r",
 															"}\r",
 															"\r",
-															"pm.variables.set(\"pageArray\", pageArray);"
+															"pm.variables.set(\"pageArray\", pageArray);\r",
+															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "7097f97d-a44b-4a85-82a8-0aa18c09bf90"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -5172,7 +5258,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -5239,6 +5325,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "77073f9d-1172-4ce0-855b-dfc9f5cc65d0",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 															"{\r",
@@ -5257,11 +5344,12 @@
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-															"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-															"            pm.expect(responseXv).gte(checkValue);\r",
+															"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+															"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+															"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+															"            pm.response.to.have.status(200);\r",
+															"            pm.expect(responseVersion).not.null;\r",
+															"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -5335,22 +5423,26 @@
 															"}\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "77073f9d-1172-4ce0-855b-dfc9f5cc65d0"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "a5b786bd-a031-468c-bdb5-7d5d472f11ea",
 														"exec": [
 															"pm.variables.set(\"currentPage\", 1);\r",
 															"var pageSize = pm.variables.get(\"pageSizeScheduledPayments\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
 															"    pm.variables.set(\"pageSize\", pageSize);\r",
-															"}"
+															"}\r",
+															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "a5b786bd-a031-468c-bdb5-7d5d472f11ea"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -5378,7 +5470,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -5434,6 +5526,7 @@
 												{
 													"listen": "test",
 													"script": {
+														"id": "2f0ca56e-4c54-4af3-817c-556a2ae18f5d",
 														"exec": [
 															"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 															"{\r",
@@ -5460,11 +5553,12 @@
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-															"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-															"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-															"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-															"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-															"            pm.expect(responseXv).gte(checkValue);\r",
+															"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+															"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+															"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+															"            pm.response.to.have.status(200);\r",
+															"            pm.expect(responseVersion).not.null;\r",
+															"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 															"        });\r",
 															"\r",
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -5537,13 +5631,13 @@
 															"}\r",
 															""
 														],
-														"type": "text/javascript",
-														"id": "2f0ca56e-4c54-4af3-817c-556a2ae18f5d"
+														"type": "text/javascript"
 													}
 												},
 												{
 													"listen": "prerequest",
 													"script": {
+														"id": "219e73c5-b98b-4963-bc4c-b3590c85f073",
 														"exec": [
 															"var pageSize = pm.variables.get(\"pageSizeScheduledPayments\");\r",
 															"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
@@ -5563,10 +5657,14 @@
 															"pm.variables.set(\"currentPage\", currentPage);\r",
 															"}\r",
 															"pm.variables.set(\"currentPage\", currentPage);\r",
-															"pm.variables.set(\"pageArray\", pageArray);"
+															"pm.variables.set(\"pageArray\", pageArray);\r",
+															"\r",
+															"var moment = require('moment');\r",
+															"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+															"var fapiDate = moment().format(dateFormat);\r",
+															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript",
-														"id": "219e73c5-b98b-4963-bc4c-b3590c85f073"
+														"type": "text/javascript"
 													}
 												}
 											],
@@ -5594,7 +5692,7 @@
 													},
 													{
 														"key": "x-fapi-auth-date",
-														"value": "{{timeTenMinutesAgo}}",
+														"value": "{{x-fapi-auth-date}}",
 														"type": "text"
 													},
 													{
@@ -5659,6 +5757,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "9b059c4b-e3be-4129-ad10-b2010f094122",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 													"{\r",
@@ -5676,11 +5775,12 @@
 													"        });\r",
 													"\r",
 													"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-													"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-													"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-													"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-													"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-													"            pm.expect(responseXv).gte(checkValue);\r",
+													"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+													"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+													"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+													"            pm.response.to.have.status(200);\r",
+													"            pm.expect(responseVersion).not.null;\r",
+													"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 													"        });\r",
 													"\r",
 													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -5749,23 +5849,26 @@
 													"}\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "9b059c4b-e3be-4129-ad10-b2010f094122"
+												"type": "text/javascript"
 											}
 										},
 										{
 											"listen": "prerequest",
 											"script": {
+												"id": "a759496c-0b8f-4ddc-a393-727cf5ff6ec9",
 												"exec": [
 													"pm.variables.set(\"currentPage\", 1);\r",
 													"var pageSize = pm.variables.get(\"pageSizePayees\");\r",
 													"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
 													"    pm.variables.set(\"pageSize\", pageSize);\r",
 													"}\r",
-													""
+													"\r",
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript",
-												"id": "a759496c-0b8f-4ddc-a393-727cf5ff6ec9"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -5796,7 +5899,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text",
 												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
 											},
@@ -5856,6 +5959,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "e7375d01-b78e-4047-aec3-3db81eb0ea3f",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 													"{\r",
@@ -5883,11 +5987,12 @@
 													"        });\r",
 													"\r",
 													"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-													"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-													"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-													"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-													"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-													"            pm.expect(responseXv).gte(checkValue);\r",
+													"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+													"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+													"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+													"            pm.response.to.have.status(200);\r",
+													"            pm.expect(responseVersion).not.null;\r",
+													"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 													"        });\r",
 													"\r",
 													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -5957,13 +6062,13 @@
 													"}\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "e7375d01-b78e-4047-aec3-3db81eb0ea3f"
+												"type": "text/javascript"
 											}
 										},
 										{
 											"listen": "prerequest",
 											"script": {
+												"id": "b1f8f932-ebda-4a45-92a0-dc9487a7a413",
 												"exec": [
 													"var pageSize = pm.variables.get(\"pageSizePayees\");\r",
 													"if (pageSize == undefined) {pm.variables.set(\"pageSize\", 25);} else {\r",
@@ -5982,10 +6087,14 @@
 													"if (currentPage == null) {pm.variables.set(\"currentPage\", 1)} else {\r",
 													"pm.variables.set(\"currentPage\", currentPage);\r",
 													"}\r",
-													"pm.variables.set(\"pageArray\", pageArray);"
+													"pm.variables.set(\"pageArray\", pageArray);\r",
+													"\r",
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript",
-												"id": "b1f8f932-ebda-4a45-92a0-dc9487a7a413"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -6016,7 +6125,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text",
 												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
 											},
@@ -6076,6 +6185,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "e84c8f93-61c4-420d-934e-c593e1a42b84",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 													"{\r",
@@ -6095,11 +6205,12 @@
 													"                });\r",
 													"\r",
 													"                pm.test(\"x-v header is present and has correct value\", function () {\r",
-													"                    var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-													"                    var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-													"                    var checkValue = Math.min(requestXv, requestMinXv);\r",
-													"                    var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-													"                    pm.expect(responseXv).gte(checkValue);\r",
+													"                    var responseVersion = pm.request.headers.get(\"x-v\");\r",
+													"                    var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+													"                    var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+													"                    pm.response.to.have.status(200);\r",
+													"                    pm.expect(responseVersion).not.null;\r",
+													"                    pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 													"                });\r",
 													"\r",
 													"                pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
@@ -6124,8 +6235,20 @@
 													"}\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "e84c8f93-61c4-420d-934e-c593e1a42b84"
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "0e303e50-961b-4298-8029-54b4a4b8e3db",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -6156,7 +6279,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text",
 												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
 											},
@@ -6208,6 +6331,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "e7b02782-1874-4cde-8c96-d2f995ba5d9c",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true && utils.accessTokenProvided() == true && utils.clientHeaderProvided() == true)\r",
 													"{\r",
@@ -6233,8 +6357,20 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "e7b02782-1874-4cde-8c96-d2f995ba5d9c"
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "26429ddd-7c1d-46eb-ac4d-f49e94c5e659",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -6265,7 +6401,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text",
 												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
 											},
@@ -6342,11 +6478,12 @@
 													"        });\r",
 													"\r",
 													"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-													"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-													"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-													"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-													"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-													"            pm.expect(responseXv).gte(checkValue);\r",
+													"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+													"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+													"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+													"            pm.response.to.have.status(200);\r",
+													"            pm.expect(responseVersion).not.null;\r",
+													"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 													"        });\r",
 													"\r",
 													"\r",
@@ -6502,6 +6639,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "ffe403f1-d073-4734-8fa5-9cd4ddeb7dab",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true)\r",
 													"{\r",
@@ -6528,11 +6666,12 @@
 													"        });\r",
 													"\r",
 													"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-													"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-													"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-													"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-													"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-													"            pm.expect(responseXv).gte(checkValue);\r",
+													"            var responseVersion = pm.request.headers.get(\"x-v\");\r",
+													"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+													"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+													"            pm.response.to.have.status(200);\r",
+													"            pm.expect(responseVersion).not.null;\r",
+													"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 													"        });\r",
 													"\r",
 													"\r",
@@ -6604,13 +6743,13 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "ffe403f1-d073-4734-8fa5-9cd4ddeb7dab"
+												"type": "text/javascript"
 											}
 										},
 										{
 											"listen": "prerequest",
 											"script": {
+												"id": "3ac48231-daec-4b8a-a6a9-318b2578f2a8",
 												"exec": [
 													"// var pageSize = pm.variables.get(\"pageSizeProducts\");\r",
 													"// if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
@@ -6664,8 +6803,7 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "3ac48231-daec-4b8a-a6a9-318b2578f2a8"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -6732,6 +6870,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "c43130bc-558a-49cc-b3bf-f4ba6fa4e86f",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true)\r",
 													"{\r",
@@ -6751,11 +6890,12 @@
 													"                });\r",
 													"\r",
 													"                pm.test(\"x-v header is present and has correct value\", function () {\r",
-													"                    var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-													"                    var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-													"                    var checkValue = Math.min(requestXv, requestMinXv);\r",
-													"                    var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-													"                    pm.expect(responseXv).gte(checkValue);\r",
+													"                    var responseVersion = pm.request.headers.get(\"x-v\");\r",
+													"                    var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+													"                    var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+													"                    pm.response.to.have.status(200);\r",
+													"                    pm.expect(responseVersion).not.null;\r",
+													"                    pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
 													"                });\r",
 													"\r",
 													"        // Schema payload check\r",
@@ -6774,8 +6914,7 @@
 													"}\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "c43130bc-558a-49cc-b3bf-f4ba6fa4e86f"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -6832,6 +6971,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "e33dd918-d9a1-4a9e-8c2e-a3d6752ef85c",
 												"exec": [
 													"if (utils.minimumVariablesProvided() == true)\r",
 													"{\r",
@@ -6848,13 +6988,6 @@
 													"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
 													"        });\r",
 													"\r",
-													"        pm.test(\"x-v header is present and has correct value\", function () {\r",
-													"            var requestXv = parseInt(pm.variables.get(\"x-v\"));\r",
-													"            var requestMinXv = parseInt(pm.variables.get(\"x-min-v\"));\r",
-													"            var checkValue = Math.min(requestXv, requestMinXv);\r",
-													"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
-													"            pm.expect(responseXv).gte(checkValue);\r",
-													"        });\r",
 													"\r",
 													"} else {\r",
 													"\tconsole.error(\"Minimum variable set not defined for test: baseUrl\");\r",
@@ -6865,8 +6998,7 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "e33dd918-d9a1-4a9e-8c2e-a3d6752ef85c"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -6967,6 +7099,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
+				"id": "3ec0f130-cd98-45c9-b979-1f0c5748c31b",
 				"type": "text/javascript",
 				"exec": [
 					"",
@@ -6982,19 +7115,12 @@
 					"",
 					"if (pm.iterationData.get(\"authenticatedCommonUrl\") != undefined)",
 					"    pm.collectionVariables.set(\"authenticatedCommonUrl\", pm.iterationData.get(\"authenticatedCommonUrl\"));",
-					"",
 					"if (pm.iterationData.get(\"unauthenticatedCommonUrl\") != undefined)",
 					"    pm.collectionVariables.set(\"unauthenticatedCommonUrl\", pm.iterationData.get(\"unauthenticatedCommonUrl\"));",
-					"",
 					"",
 					"if (pm.iterationData.get(\"version\") != undefined)",
 					"    pm.collectionVariables.set(\"version\", pm.iterationData.get(\"version\"));    ",
 					"",
-					"if (pm.iterationData.get(\"x-v\") != undefined)",
-					"    pm.collectionVariables.set(\"x-v\", pm.iterationData.get(\"x-v\"));",
-					"",
-					"if (pm.iterationData.get(\"x-min-v\") != undefined)",
-					"    pm.collectionVariables.set(\"x-min-v\", pm.iterationData.get(\"x-min-v\"));",
 					"",
 					"if (pm.iterationData.get(\"accessToken\") != undefined)",
 					"    pm.collectionVariables.set(\"accessToken\", pm.iterationData.get(\"accessToken\"));",
@@ -7070,12 +7196,12 @@
 					"                                timeCurrent.getMonth(),",
 					"                                timeCurrent.getDate(), 0, 0, 0);",
 					"",
-					"    postman.setEnvironmentVariable(\"timeCurrent\", timeCurrent.toISOString());",
-					"    postman.setEnvironmentVariable(\"timeTenMinutesAgo\", timeCurrent.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateToday\", dateToday.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateYesterday\", dateYesterday.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateTomorrow\", dateTomorrow.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateLastYear\", dateTomorrow.toISOString());",
+					"    // postman.setEnvironmentVariable(\"timeCurrent\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"timeTenMinutesAgo\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateToday\", dateToday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateYesterday\", dateYesterday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateTomorrow\", dateTomorrow.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateLastYear\", dateTomorrow.toISOString());",
 					"",
 					"",
 					"    // setting the base url for schema files",
@@ -7140,7 +7266,7 @@
 					"        if (currPage == totalPages ){ return 3}",
 					"    },",
 					"    minimumVariablesProvided: function ( ) {",
-					"        if (pm.variables.get(\"baseUrl\") != \"\" && pm.variables.get(\"x-v\") != \"\")",
+					"        if (pm.variables.get(\"authenticatedResourceUrl\") != \"\" && pm.variables.get(\"unauthenticatedResourceUrl\") != \"\")",
 					"            return true;",
 					"        else",
 					"            return false;",
@@ -7160,315 +7286,314 @@
 					"};",
 					"",
 					""
-				],
-				"id": "b9ee8cfd-cc4d-405c-8aed-38861fe7d932"
+				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
+				"id": "de4b7cb1-e683-4fee-a730-4972b5bb2eb5",
 				"type": "text/javascript",
 				"exec": [
 					""
-				],
-				"id": "cd6553af-08cf-4346-801c-57a7394d103c"
+				]
 			}
 		}
 	],
 	"variable": [
 		{
-			"id": "e594a845-d4cb-4c38-b516-0fb616498d80",
+			"id": "94106ed7-b2f3-4938-ab3b-eaa4b3134d35",
 			"key": "interactionId",
 			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
 		},
 		{
-			"id": "fca7d078-3681-43e3-874c-c00e95e287dd",
+			"id": "97021414-7889-43db-9fbd-4bd32e504f24",
 			"key": "cdsClientHeader",
 			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
 		},
 		{
-			"id": "10ae3207-6c87-4777-87ca-b35418d5c79d",
+			"id": "d442f5a7-6a2c-41cc-a51f-750ccea33a76",
 			"key": "invalidId",
 			"value": "xxxINVALIDxxx"
 		},
 		{
-			"id": "387ad128-27cd-4c31-a8ef-9bb8d1ac6bf9",
+			"id": "6fb5245d-69b1-4785-9207-1fc391445866",
 			"key": "effective",
 			"value": ""
 		},
 		{
-			"id": "81fadff5-14af-4b22-99a2-8f20eb7e3fd7",
+			"id": "756d7935-fdc2-4cbf-9881-08baf7559b55",
 			"key": "totalDirectDebitPages",
 			"value": ""
 		},
 		{
-			"id": "46bdb457-aea2-496a-8e73-53e736b69f35",
+			"id": "1faa9a9b-9f1d-4a6f-bcc7-e4123824441d",
 			"key": "pageArray",
 			"value": ""
 		},
 		{
-			"id": "36628b32-0e47-48b9-8cb4-fe62206a2411",
+			"id": "3f3fd010-27f4-4022-9a99-6930602d8df4",
 			"key": "totalBulkBalancePages",
 			"value": ""
 		},
 		{
-			"id": "4563c87c-ee36-4d5e-b651-6ca5aca6b7c3",
+			"id": "c638ac9f-10ca-45b2-b863-4072840a30eb",
 			"key": "totalTransactionPages",
 			"value": ""
 		},
 		{
-			"id": "e333beb4-39eb-4371-8faf-eaee5f28f0b1",
+			"id": "b789b532-227f-4ce2-86b7-65e6b3ce14e7",
 			"key": "totalScheduledPaymentsPages",
 			"value": ""
 		},
 		{
-			"id": "d3b95575-e0a5-4c9f-b44a-fc437e6edb57",
+			"id": "72df28a4-e3b8-43de-9580-720ef6b16e69",
 			"key": "totalAccountsPages",
 			"value": ""
 		},
 		{
-			"id": "e6042cda-7186-4724-8617-d05890e207e6",
+			"id": "ec6be581-529a-4874-8c18-792dcb5d6094",
 			"key": "totalPayeePages",
 			"value": ""
 		},
 		{
-			"id": "a4bee2b5-4578-40aa-b05a-2ed7da4923d4",
+			"id": "f25b4f52-7f49-4672-9446-d1d0872b108b",
 			"key": "productCategory",
 			"value": ""
 		},
 		{
-			"id": "eb7f6cc7-3079-4dff-8a84-0c0a3cb5a915",
+			"id": "cc760e72-394b-4011-a6af-fb227dcb28a4",
 			"key": "totalProductPages",
 			"value": ""
 		},
 		{
-			"id": "e7583588-c880-482e-87ff-792256276cb0",
+			"id": "e00d212c-920d-47aa-a594-20dbe33e4506",
 			"key": "baseUrl",
 			"value": ""
 		},
 		{
-			"id": "f86b4bc6-1f65-4171-a573-bdcc23df73a9",
+			"id": "dba58fe8-913a-43a5-8b5a-62c823a67009",
 			"key": "x-v",
 			"value": ""
 		},
 		{
-			"id": "5943714d-c150-4669-98dc-876ea1ce85fd",
+			"id": "a28c5264-7d10-4566-b37b-a7d964ea495b",
 			"key": "x-min-v",
 			"value": ""
 		},
 		{
-			"id": "c5fbd68b-30d0-48bd-b98a-301fa3d641cd",
+			"id": "432a56e6-44d2-4109-8f16-4c2803c71eea",
 			"key": "accessToken",
 			"value": ""
 		},
 		{
-			"id": "230d97c8-1df5-4e1f-8d56-26787fa967c0",
+			"id": "1edc378b-fe74-4e15-a99d-7376da23d6fd",
 			"key": "testAccountId1",
 			"value": ""
 		},
 		{
-			"id": "a6dc92af-836e-44d5-b66e-7d6a158c5f93",
+			"id": "30882eaa-5380-4267-bb3d-4f947b13b1f0",
 			"key": "testAccountId2",
 			"value": ""
 		},
 		{
-			"id": "2778b9a6-7a2f-46f1-860f-921de8b0aedc",
+			"id": "281a5ae0-2340-420a-908c-792c768824b5",
 			"key": "testProductId",
 			"value": ""
 		},
 		{
-			"id": "9dce25b6-7a8d-41ce-bab3-4f2185b7ba14",
+			"id": "93386e03-fe28-48b6-ad37-666b6526ef74",
 			"key": "testPayeeId",
 			"value": ""
 		},
 		{
-			"id": "56c6d7ca-30df-4565-8548-f5854859e8a7",
+			"id": "8ba8eb71-bc12-4d7d-a21f-5fc992635f2f",
 			"key": "testTransactionId",
 			"value": ""
 		},
 		{
-			"id": "71572b2b-0bce-4545-b195-3b3e7bfe0a09",
+			"id": "8796e94b-e608-42f1-9594-39f1d44bffde",
 			"key": "pageSizeBulkDirectDebits",
 			"value": ""
 		},
 		{
-			"id": "0544c86a-e983-4063-a4f3-e05a04abff35",
+			"id": "a4a40a6f-5e08-43f3-8517-15479cdbb8d0",
 			"key": "pageSizeBulkBalances",
 			"value": ""
 		},
 		{
-			"id": "c0c9e6a6-4fcb-49f4-9897-76455c529eb4",
+			"id": "e1bcaf29-9759-4adc-bc7e-8338fd26bd11",
 			"key": "pageSizeTransactions",
 			"value": ""
 		},
 		{
-			"id": "437c2f85-6226-4e87-a8a5-6d4ea9f8ce90",
+			"id": "3350583b-ffb7-4434-8ad8-11aca3ea1d5b",
 			"key": "pageSizeAccounts",
 			"value": ""
 		},
 		{
-			"id": "d7c2c5f2-cc1f-4443-8b2b-3fc6692327c9",
+			"id": "740f05f1-6b2f-4f45-93ed-95c412641b18",
 			"key": "pageSizePayees",
 			"value": ""
 		},
 		{
-			"id": "f4654f5b-4b06-4434-a919-8b82b39a041f",
+			"id": "5f982f03-6a6c-4332-86b3-df6f50995913",
 			"key": "pageSizeScheduledPayments",
 			"value": ""
 		},
 		{
-			"id": "8ee91e7e-b39c-4bbc-a1a7-03d9bd282f5b",
+			"id": "21253e07-c5c1-4ab3-ab9d-c72d46a2669a",
 			"key": "pageSizeProducts",
 			"value": ""
 		},
 		{
-			"id": "78b36b13-83cc-4159-904c-23e3c184955a",
+			"id": "acf90240-1edc-4477-b85b-d5ea31a65781",
 			"key": "collectionVariables",
 			"value": ""
 		},
 		{
-			"id": "b1fc05f0-f511-41db-b02c-d51649e1589a",
+			"id": "aab56c9b-dad1-40a1-9b4c-71d9e1f90c24",
 			"key": "intitalised",
 			"value": ""
 		},
 		{
-			"id": "b01dada5-e94c-4acc-8723-96ba6eba7ddb",
+			"id": "640a7b71-491a-4519-afe5-42b13711eea9",
 			"key": "pageSize",
 			"value": ""
 		},
 		{
-			"id": "3556fe59-0802-43bd-a317-97bc0c1ea165",
+			"id": "ce6df977-2705-47f4-8265-56161ae49ee3",
 			"key": "BankingBalance",
 			"value": ""
 		},
 		{
-			"id": "aa4fdbf0-2817-4317-8015-00f0816b541a",
+			"id": "12c20102-f0a2-4eae-a0ce-908422759eff",
 			"key": "ResponseBankingAccountsBalanceList",
 			"value": ""
 		},
 		{
-			"id": "18f6d99f-4370-4611-9adf-ca5775e66c53",
+			"id": "039ed136-6332-455c-8831-8feef3badd44",
 			"key": "ResponseBankingTransactionList",
 			"value": ""
 		},
 		{
-			"id": "75655ed5-18b0-4cdd-b53a-042d5ef42b3d",
+			"id": "4dca70ff-feeb-4a86-9b69-b08c7563e725",
 			"key": "ResponseBankingAccountList",
 			"value": ""
 		},
 		{
-			"id": "a5d98878-758f-427f-9c16-d2c631f1538a",
+			"id": "2504d996-a964-490f-a0d5-aad81d8536be",
 			"key": "ResponseBankingAccountsBalanceById",
 			"value": ""
 		},
 		{
-			"id": "05892968-aa45-4219-b955-89b2e9e32015",
+			"id": "a3aa5108-4af7-46c4-9153-b57283396f24",
 			"key": "ResponseCommonCustomerDetailV2",
 			"value": ""
 		},
 		{
-			"id": "0e97a5fb-ef0f-4a5b-bb17-047c6db02bcd",
+			"id": "e0cd50c9-44b7-4b41-a040-fa1cafbe2c97",
 			"key": "ResponseBankingDirectDebitAuthorisationList",
 			"value": ""
 		},
 		{
-			"id": "eb8faa1c-71de-4924-84c2-968359ebaf7d",
+			"id": "ec71c890-448a-43f5-859b-7d28f06fd7ff",
 			"key": "ResponseBankingPayeeListV2",
 			"value": ""
 		},
 		{
-			"id": "e3b5e586-ed00-4350-955a-88a3fdb787ef",
+			"id": "58514634-ee29-42a7-8934-cc1c8b60c2e4",
 			"key": "ResponseBankingAccountByIdV2",
 			"value": ""
 		},
 		{
-			"id": "85730e0d-6bd8-4a0f-a5d0-9ad76a8ad0b7",
+			"id": "22c2bc1b-5d25-4eac-917e-296790031243",
 			"key": "ResponseBankingScheduledPaymentsList",
 			"value": ""
 		},
 		{
-			"id": "4b32376e-c2b7-46d7-afa9-4d9bdb07baa0",
+			"id": "0da82c76-d083-42ea-becd-beb4a2729c64",
 			"key": "ResponseBankingProductListV2",
 			"value": ""
 		},
 		{
-			"id": "107d52d7-9e25-4399-a391-7306edd2117e",
+			"id": "fe1a2a64-3402-4328-8e67-ef00203c995a",
 			"key": "ResponseBankingPayeeByIdV2",
 			"value": ""
 		},
 		{
-			"id": "9c28bf00-a144-42d1-91ca-57861b2cb100",
+			"id": "4064c318-7904-4815-9c99-a47bcedd15ad",
 			"key": "ResponseBankingTransactionById",
 			"value": ""
 		},
 		{
-			"id": "b40dbbfd-d67d-4590-8c35-5fce8b91b7c4",
+			"id": "9608831c-dd31-489a-a3b0-07450b5c0d7f",
 			"key": "ResponseCommonCustomer",
 			"value": ""
 		},
 		{
-			"id": "af078bdf-1bf9-4216-991a-800972e8ef1b",
+			"id": "850c9e38-4ce0-4907-9349-fc59d4ff19dc",
 			"key": "ResponseDiscoveryOutagesList",
 			"value": ""
 		},
 		{
-			"id": "32087625-536a-4d80-9d49-0f2f0aebcde9",
+			"id": "eca29164-1cf0-45c2-ac61-aa1bb6bbb27e",
 			"key": "ResponseCommonDiscoveryStatus",
 			"value": ""
 		},
 		{
-			"id": "694693c6-a060-4af0-81f8-7b7a813f8e4d",
+			"id": "34feb27f-66dd-4c00-b250-23bf66168c5e",
 			"key": "ResponseErrorListV2",
 			"value": ""
 		},
 		{
-			"id": "3ed68d93-c6e8-42b9-aa56-48e4ba3dd47a",
+			"id": "14b10a07-2c7c-4ab4-b1e1-23e90983985a",
 			"key": "ResponseBankingProductByIdV4",
 			"value": ""
 		},
 		{
-			"id": "6551c1fd-c436-4279-b384-e6b499a0b216",
+			"id": "43864c7b-aa9d-4bbb-aa11-1d7d03c4d9f7",
 			"key": "GlobalSchema",
 			"value": ""
 		},
 		{
-			"id": "92cf95ab-665a-490b-ad7b-a2dc88986e86",
+			"id": "1a53dcd2-c6c4-4523-a8f4-0d7371bbeb57",
 			"key": "unauthenticatedCommonUrl",
 			"value": ""
 		},
 		{
-			"id": "690c773d-3da9-44c5-afcb-f8b365045e9b",
+			"id": "332deffa-86a8-4639-abc0-1b4a9bc58a95",
 			"key": "authenticatedCommonUrl",
 			"value": ""
 		},
 		{
-			"id": "9f99dc55-de82-41cb-a459-8f0b8295bc9c",
+			"id": "8afe5d2f-2926-4175-bc99-587cdc8d20d0",
 			"key": "unauthenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "67cba449-64c6-4dd8-8f82-b4dcd3076e97",
+			"id": "807d679b-3c84-457b-b3a4-b090f68c51cc",
 			"key": "authenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "1a148e6c-4413-42db-9d3f-b0aa8f1f993f",
+			"id": "130b4a1c-632d-4329-bfb7-633f9fe4b1c9",
 			"key": "GlobalBankingSchema",
 			"value": ""
 		},
 		{
-			"id": "434e4cbe-caa4-4d36-98e7-41303d66ddc5",
+			"id": "28deab5e-fd13-4ae8-bd75-c09e4e4f588b",
 			"key": "GlobalCommonSchema",
 			"value": ""
 		},
 		{
-			"id": "0c0bd3c5-51fd-4c7e-b59a-ec398eef24e8",
+			"id": "6cc6fb83-7b28-40dd-873a-51e0bcd8bf27",
 			"key": "version",
 			"value": "1.17.0",
 			"type": "string"
 		},
 		{
-			"id": "5c6bbe4c-15e5-4e21-ba34-79b93bf2e9dc",
+			"id": "e9017d1a-7e1e-445e-9839-30cf3e2ddf9e",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		}
