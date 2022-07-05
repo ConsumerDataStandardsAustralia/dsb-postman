@@ -16,7 +16,7 @@
 							"item": [
 								{
 									"name": "Get Data Recipient Software Statement Assertion (SSA)",
-									"_postman_id": "5bd8ba6d-36ac-45cf-a8b9-f658c276a298",
+									"id": "5bd8ba6d-36ac-45cf-a8b9-f658c276a298",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -44,258 +44,6 @@
 										"description": "Get a Software Statement Assertion (SSA) for a Data Recipient software product on the CDR Register to be used for Dynamic Client Registration with a Data Holder Brand."
 									},
 									"response": [
-										{
-											"id": "27355e49-6d42-4a90-bdfc-a3e5476197ae",
-											"name": "Invalid Bearer Token",
-											"originalRequest": {
-												"method": "GET",
-												"header": [
-													{
-														"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
-														"key": "Authorization Endpoint (Register)",
-														"value": "consequat sunt"
-													},
-													{
-														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-														"key": "x-v",
-														"value": "consequat sunt"
-													}
-												],
-												"url": {
-													"raw": "{{baseUrl}}/:industry/data-recipients/brands/:dataRecipientBrandId/software-products/:softwareProductId/ssa",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														":industry",
-														"data-recipients",
-														"brands",
-														":dataRecipientBrandId",
-														"software-products",
-														":softwareProductId",
-														"ssa"
-													],
-													"variable": [
-														{
-															"key": "industry",
-															"value": "banking",
-															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
-														},
-														{
-															"key": "dataRecipientBrandId",
-															"value": "consequat sunt",
-															"description": "(Required) Unique id for the Accredited Data Recipient Brand that the Software Product is associated with in the CDR Register"
-														},
-														{
-															"key": "softwareProductId",
-															"value": "consequat sunt",
-															"description": "(Required) Unique id for the Accredited Data Recipient Software Product in the CDR Register"
-														}
-													]
-												}
-											},
-											"status": "Unauthorized",
-											"code": 401,
-											"_postman_previewlanguage": "text",
-											"header": [
-												{
-													"key": "Content-Type",
-													"value": "text/plain"
-												}
-											],
-											"cookie": [],
-											"responseTime": null,
-											"body": ""
-										},
-										{
-											"id": "4ed37b0c-81b9-406e-9f4b-07a108718bd6",
-											"name": "Invalid x-v header</br>Invalid Accept header",
-											"originalRequest": {
-												"method": "GET",
-												"header": [
-													{
-														"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
-														"key": "Authorization Endpoint (Register)",
-														"value": "consequat sunt"
-													},
-													{
-														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-														"key": "x-v",
-														"value": "consequat sunt"
-													}
-												],
-												"url": {
-													"raw": "{{baseUrl}}/:industry/data-recipients/brands/:dataRecipientBrandId/software-products/:softwareProductId/ssa",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														":industry",
-														"data-recipients",
-														"brands",
-														":dataRecipientBrandId",
-														"software-products",
-														":softwareProductId",
-														"ssa"
-													],
-													"variable": [
-														{
-															"key": "industry",
-															"value": "banking",
-															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
-														},
-														{
-															"key": "dataRecipientBrandId",
-															"value": "consequat sunt",
-															"description": "(Required) Unique id for the Accredited Data Recipient Brand that the Software Product is associated with in the CDR Register"
-														},
-														{
-															"key": "softwareProductId",
-															"value": "consequat sunt",
-															"description": "(Required) Unique id for the Accredited Data Recipient Software Product in the CDR Register"
-														}
-													]
-												}
-											},
-											"status": "Not Acceptable",
-											"code": 406,
-											"_postman_previewlanguage": "text",
-											"header": [
-												{
-													"key": "Content-Type",
-													"value": "text/plain"
-												}
-											],
-											"cookie": [],
-											"responseTime": null,
-											"body": ""
-										},
-										{
-											"id": "57f74544-e670-4479-9d97-445c9e008d33",
-											"name": "Invalid industry path parameter</br>Invalid SoftwareProductId",
-											"originalRequest": {
-												"method": "GET",
-												"header": [
-													{
-														"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
-														"key": "Authorization Endpoint (Register)",
-														"value": "consequat sunt"
-													},
-													{
-														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-														"key": "x-v",
-														"value": "consequat sunt"
-													}
-												],
-												"url": {
-													"raw": "{{baseUrl}}/:industry/data-recipients/brands/:dataRecipientBrandId/software-products/:softwareProductId/ssa",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														":industry",
-														"data-recipients",
-														"brands",
-														":dataRecipientBrandId",
-														"software-products",
-														":softwareProductId",
-														"ssa"
-													],
-													"variable": [
-														{
-															"key": "industry",
-															"value": "banking",
-															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
-														},
-														{
-															"key": "dataRecipientBrandId",
-															"value": "consequat sunt",
-															"description": "(Required) Unique id for the Accredited Data Recipient Brand that the Software Product is associated with in the CDR Register"
-														},
-														{
-															"key": "softwareProductId",
-															"value": "consequat sunt",
-															"description": "(Required) Unique id for the Accredited Data Recipient Software Product in the CDR Register"
-														}
-													]
-												}
-											},
-											"status": "Bad Request",
-											"code": 400,
-											"_postman_previewlanguage": "json",
-											"header": [
-												{
-													"key": "Content-Type",
-													"value": "application/json"
-												}
-											],
-											"cookie": [],
-											"responseTime": null,
-											"body": "{\n \"errors\": [\n  {\n   \"code\": \"laborum laboris non eiusmod\",\n   \"detail\": \"aliquip\",\n   \"title\": \"ex culpa dolor quis reprehen\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"esse\",\n   \"detail\": \"deserunt id\",\n   \"title\": \"su\",\n   \"meta\": {}\n  }\n ]\n}"
-										},
-										{
-											"id": "cb247d8e-7570-4614-aa6a-4d015c46af3b",
-											"name": "Invalid BrandId",
-											"originalRequest": {
-												"method": "GET",
-												"header": [
-													{
-														"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
-														"key": "Authorization Endpoint (Register)",
-														"value": "consequat sunt"
-													},
-													{
-														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-														"key": "x-v",
-														"value": "consequat sunt"
-													}
-												],
-												"url": {
-													"raw": "{{baseUrl}}/:industry/data-recipients/brands/:dataRecipientBrandId/software-products/:softwareProductId/ssa",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														":industry",
-														"data-recipients",
-														"brands",
-														":dataRecipientBrandId",
-														"software-products",
-														":softwareProductId",
-														"ssa"
-													],
-													"variable": [
-														{
-															"key": "industry",
-															"value": "banking",
-															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
-														},
-														{
-															"key": "dataRecipientBrandId",
-															"value": "consequat sunt",
-															"description": "(Required) Unique id for the Accredited Data Recipient Brand that the Software Product is associated with in the CDR Register"
-														},
-														{
-															"key": "softwareProductId",
-															"value": "consequat sunt",
-															"description": "(Required) Unique id for the Accredited Data Recipient Software Product in the CDR Register"
-														}
-													]
-												}
-											},
-											"status": "Forbidden",
-											"code": 403,
-											"_postman_previewlanguage": "json",
-											"header": [
-												{
-													"key": "Content-Type",
-													"value": "application/json"
-												}
-											],
-											"cookie": [],
-											"responseTime": null,
-											"body": "{\n \"errors\": [\n  {\n   \"code\": \"laborum laboris non eiusmod\",\n   \"detail\": \"aliquip\",\n   \"title\": \"ex culpa dolor quis reprehen\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"esse\",\n   \"detail\": \"deserunt id\",\n   \"title\": \"su\",\n   \"meta\": {}\n  }\n ]\n}"
-										},
 										{
 											"id": "cb33da4f-ba4d-4cb6-9a38-6c3a6b6ed44d",
 											"name": "Success",
@@ -362,6 +110,258 @@
 											"cookie": [],
 											"responseTime": null,
 											"body": "\"consequat sunt\""
+										},
+										{
+											"id": "57f74544-e670-4479-9d97-445c9e008d33",
+											"name": "Invalid industry path parameter</br>Invalid SoftwareProductId",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
+														"key": "Authorization Endpoint (Register)",
+														"value": "consequat sunt"
+													},
+													{
+														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+														"key": "x-v",
+														"value": "consequat sunt"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/:industry/data-recipients/brands/:dataRecipientBrandId/software-products/:softwareProductId/ssa",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														":industry",
+														"data-recipients",
+														"brands",
+														":dataRecipientBrandId",
+														"software-products",
+														":softwareProductId",
+														"ssa"
+													],
+													"variable": [
+														{
+															"key": "industry",
+															"value": "banking",
+															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
+														},
+														{
+															"key": "dataRecipientBrandId",
+															"value": "consequat sunt",
+															"description": "(Required) Unique id for the Accredited Data Recipient Brand that the Software Product is associated with in the CDR Register"
+														},
+														{
+															"key": "softwareProductId",
+															"value": "consequat sunt",
+															"description": "(Required) Unique id for the Accredited Data Recipient Software Product in the CDR Register"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n \"errors\": [\n  {\n   \"code\": \"laborum laboris non eiusmod\",\n   \"detail\": \"aliquip\",\n   \"title\": \"ex culpa dolor quis reprehen\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"esse\",\n   \"detail\": \"deserunt id\",\n   \"title\": \"su\",\n   \"meta\": {}\n  }\n ]\n}"
+										},
+										{
+											"id": "27355e49-6d42-4a90-bdfc-a3e5476197ae",
+											"name": "Invalid Bearer Token",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
+														"key": "Authorization Endpoint (Register)",
+														"value": "consequat sunt"
+													},
+													{
+														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+														"key": "x-v",
+														"value": "consequat sunt"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/:industry/data-recipients/brands/:dataRecipientBrandId/software-products/:softwareProductId/ssa",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														":industry",
+														"data-recipients",
+														"brands",
+														":dataRecipientBrandId",
+														"software-products",
+														":softwareProductId",
+														"ssa"
+													],
+													"variable": [
+														{
+															"key": "industry",
+															"value": "banking",
+															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
+														},
+														{
+															"key": "dataRecipientBrandId",
+															"value": "consequat sunt",
+															"description": "(Required) Unique id for the Accredited Data Recipient Brand that the Software Product is associated with in the CDR Register"
+														},
+														{
+															"key": "softwareProductId",
+															"value": "consequat sunt",
+															"description": "(Required) Unique id for the Accredited Data Recipient Software Product in the CDR Register"
+														}
+													]
+												}
+											},
+											"status": "Unauthorized",
+											"code": 401,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": ""
+										},
+										{
+											"id": "cb247d8e-7570-4614-aa6a-4d015c46af3b",
+											"name": "Invalid BrandId",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
+														"key": "Authorization Endpoint (Register)",
+														"value": "consequat sunt"
+													},
+													{
+														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+														"key": "x-v",
+														"value": "consequat sunt"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/:industry/data-recipients/brands/:dataRecipientBrandId/software-products/:softwareProductId/ssa",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														":industry",
+														"data-recipients",
+														"brands",
+														":dataRecipientBrandId",
+														"software-products",
+														":softwareProductId",
+														"ssa"
+													],
+													"variable": [
+														{
+															"key": "industry",
+															"value": "banking",
+															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
+														},
+														{
+															"key": "dataRecipientBrandId",
+															"value": "consequat sunt",
+															"description": "(Required) Unique id for the Accredited Data Recipient Brand that the Software Product is associated with in the CDR Register"
+														},
+														{
+															"key": "softwareProductId",
+															"value": "consequat sunt",
+															"description": "(Required) Unique id for the Accredited Data Recipient Software Product in the CDR Register"
+														}
+													]
+												}
+											},
+											"status": "Forbidden",
+											"code": 403,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": "{\n \"errors\": [\n  {\n   \"code\": \"laborum laboris non eiusmod\",\n   \"detail\": \"aliquip\",\n   \"title\": \"ex culpa dolor quis reprehen\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"esse\",\n   \"detail\": \"deserunt id\",\n   \"title\": \"su\",\n   \"meta\": {}\n  }\n ]\n}"
+										},
+										{
+											"id": "4ed37b0c-81b9-406e-9f4b-07a108718bd6",
+											"name": "Invalid x-v header</br>Invalid Accept header",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
+														"key": "Authorization Endpoint (Register)",
+														"value": "consequat sunt"
+													},
+													{
+														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+														"key": "x-v",
+														"value": "consequat sunt"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/:industry/data-recipients/brands/:dataRecipientBrandId/software-products/:softwareProductId/ssa",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														":industry",
+														"data-recipients",
+														"brands",
+														":dataRecipientBrandId",
+														"software-products",
+														":softwareProductId",
+														"ssa"
+													],
+													"variable": [
+														{
+															"key": "industry",
+															"value": "banking",
+															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
+														},
+														{
+															"key": "dataRecipientBrandId",
+															"value": "consequat sunt",
+															"description": "(Required) Unique id for the Accredited Data Recipient Brand that the Software Product is associated with in the CDR Register"
+														},
+														{
+															"key": "softwareProductId",
+															"value": "consequat sunt",
+															"description": "(Required) Unique id for the Accredited Data Recipient Software Product in the CDR Register"
+														}
+													]
+												}
+											},
+											"status": "Not Acceptable",
+											"code": 406,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": ""
 										},
 										{
 											"id": "d60c9ee5-0e24-4083-8cd0-d87d27af26a0",
@@ -479,7 +479,7 @@
 											}
 										}
 									],
-									"_postman_id": "aedf75b9-62f0-4abb-a365-b281a2de9e2e",
+									"id": "aedf75b9-62f0-4abb-a365-b281a2de9e2e",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -496,52 +496,6 @@
 										"description": "Endpoint used by participants to discover the statuses for software products from the CDR Register."
 									},
 									"response": [
-										{
-											"id": "5c96b311-9757-4bea-bda5-34617f4d68d5",
-											"name": "Invalid x-v header</br>Invalid Accept header",
-											"originalRequest": {
-												"method": "GET",
-												"header": [
-													{
-														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-														"key": "x-v",
-														"value": "consequat sunt"
-													}
-												],
-												"url": {
-													"raw": "{{baseUrl}}/:industry/data-recipients/brands/software-products/status",
-													"host": [
-														"{{baseUrl}}"
-													],
-													"path": [
-														":industry",
-														"data-recipients",
-														"brands",
-														"software-products",
-														"status"
-													],
-													"variable": [
-														{
-															"key": "industry",
-															"value": "banking",
-															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
-														}
-													]
-												}
-											},
-											"status": "Not Acceptable",
-											"code": 406,
-											"_postman_previewlanguage": "text",
-											"header": [
-												{
-													"key": "Content-Type",
-													"value": "text/plain"
-												}
-											],
-											"cookie": [],
-											"responseTime": null,
-											"body": ""
-										},
 										{
 											"id": "922a637d-0883-404a-9c44-4fddf75c8bcb",
 											"name": "Success",
@@ -638,12 +592,57 @@
 											"cookie": [],
 											"responseTime": null,
 											"body": "{\n \"errors\": [\n  {\n   \"code\": \"laborum laboris non eiusmod\",\n   \"detail\": \"aliquip\",\n   \"title\": \"ex culpa dolor quis reprehen\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"esse\",\n   \"detail\": \"deserunt id\",\n   \"title\": \"su\",\n   \"meta\": {}\n  }\n ]\n}"
+										},
+										{
+											"id": "5c96b311-9757-4bea-bda5-34617f4d68d5",
+											"name": "Invalid x-v header</br>Invalid Accept header",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+														"key": "x-v",
+														"value": "consequat sunt"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/:industry/data-recipients/brands/software-products/status",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														":industry",
+														"data-recipients",
+														"brands",
+														"software-products",
+														"status"
+													],
+													"variable": [
+														{
+															"key": "industry",
+															"value": "banking",
+															"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
+														}
+													]
+												}
+											},
+											"status": "Not Acceptable",
+											"code": 406,
+											"_postman_previewlanguage": "text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "text/plain"
+												}
+											],
+											"cookie": [],
+											"responseTime": null,
+											"body": ""
 										}
 									]
 								}
 							],
-							"_postman_id": "f25ec0f3-fc9b-4028-b83d-49f5755a932c",
-							"_postman_isSubFolder": true
+							"id": "f25ec0f3-fc9b-4028-b83d-49f5755a932c"
 						},
 						{
 							"name": "Get Data Recipients",
@@ -691,7 +690,7 @@
 									}
 								}
 							],
-							"_postman_id": "081b718a-bdff-4940-ac4a-a2ea95582da7",
+							"id": "081b718a-bdff-4940-ac4a-a2ea95582da7",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -708,6 +707,54 @@
 								"description": "Endpoint used by participants to discover data recipients and associated brands and software products, available in the CDR ecosystem."
 							},
 							"response": [
+								{
+									"id": "e9861b05-6d27-4de1-acf0-d5008f761191",
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+												"key": "x-v",
+												"value": "consequat sunt"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/:industry/data-recipients",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												":industry",
+												"data-recipients"
+											],
+											"variable": [
+												{
+													"key": "industry",
+													"value": "banking",
+													"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "x-v",
+											"value": "consequat sunt",
+											"description": "The version of the API end point that the CDR Register has responded with."
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n \"data\": [\n  {\n   \"accreditationNumber\": \"ex ad dolor dolore pariatur\",\n   \"industry\": \"banking\",\n   \"lastUpdated\": \"1994-12-13T01:14:39.987Z\",\n   \"legalEntityId\": \"incididun\",\n   \"legalEntityName\": \"labore in magna\",\n   \"logoUri\": \"amet esse dolore ut\",\n   \"status\": \"SUSPENDED\",\n   \"dataRecipientBrands\": [\n    {\n     \"brandName\": \"dolor consectetur\",\n     \"dataRecipientBrandId\": \"magna\",\n     \"logoUri\": \"quis est in ut fugiat\",\n     \"status\": \"REMOVED\",\n     \"softwareProducts\": [\n      {\n       \"logoUri\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductName\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductDescription\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       }\n      }\n     ]\n    },\n    {\n     \"brandName\": \"aute dolor incididunt\",\n     \"dataRecipientBrandId\": \"dolor nisi\",\n     \"logoUri\": \"est veniam\",\n     \"status\": \"INACTIVE\",\n     \"softwareProducts\": [\n      {\n       \"logoUri\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductName\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductDescription\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       }\n      }\n     ]\n    }\n   ]\n  },\n  {\n   \"accreditationNumber\": \"in eu\",\n   \"industry\": \"banking\",\n   \"lastUpdated\": \"1956-08-31T03:05:23.045Z\",\n   \"legalEntityId\": \"veniam laboris dolor cillum\",\n   \"legalEntityName\": \"cillum velit ad commodo\",\n   \"logoUri\": \"enim in ad\",\n   \"status\": \"SUSPENDED\",\n   \"dataRecipientBrands\": [\n    {\n     \"brandName\": \"dolor nostrud\",\n     \"dataRecipientBrandId\": \"aliquip Excepteur Duis fugiat\",\n     \"logoUri\": \"dolore sit et nisi aliqua\",\n     \"status\": \"INACTIVE\",\n     \"softwareProducts\": [\n      {\n       \"logoUri\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductName\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductDescription\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       }\n      }\n     ]\n    },\n    {\n     \"brandName\": \"commodo\",\n     \"dataRecipientBrandId\": \"culpa in et Duis\",\n     \"logoUri\": \"deserunt est\",\n     \"status\": \"INACTIVE\",\n     \"softwareProducts\": [\n      {\n       \"logoUri\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductName\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductDescription\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       }\n      }\n     ]\n    }\n   ]\n  }\n ]\n}"
+								},
 								{
 									"id": "68c8ad1b-188f-4c3e-88b7-d9483b2a7583",
 									"name": "Bad Request</br>Invalid industry path parameter",
@@ -793,54 +840,6 @@
 									"cookie": [],
 									"responseTime": null,
 									"body": ""
-								},
-								{
-									"id": "e9861b05-6d27-4de1-acf0-d5008f761191",
-									"name": "Success",
-									"originalRequest": {
-										"method": "GET",
-										"header": [
-											{
-												"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-												"key": "x-v",
-												"value": "consequat sunt"
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/:industry/data-recipients",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												":industry",
-												"data-recipients"
-											],
-											"variable": [
-												{
-													"key": "industry",
-													"value": "banking",
-													"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
-												}
-											]
-										}
-									},
-									"status": "OK",
-									"code": 200,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "x-v",
-											"value": "consequat sunt",
-											"description": "The version of the API end point that the CDR Register has responded with."
-										},
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n \"data\": [\n  {\n   \"accreditationNumber\": \"ex ad dolor dolore pariatur\",\n   \"industry\": \"banking\",\n   \"lastUpdated\": \"1994-12-13T01:14:39.987Z\",\n   \"legalEntityId\": \"incididun\",\n   \"legalEntityName\": \"labore in magna\",\n   \"logoUri\": \"amet esse dolore ut\",\n   \"status\": \"SUSPENDED\",\n   \"dataRecipientBrands\": [\n    {\n     \"brandName\": \"dolor consectetur\",\n     \"dataRecipientBrandId\": \"magna\",\n     \"logoUri\": \"quis est in ut fugiat\",\n     \"status\": \"REMOVED\",\n     \"softwareProducts\": [\n      {\n       \"logoUri\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductName\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductDescription\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       }\n      }\n     ]\n    },\n    {\n     \"brandName\": \"aute dolor incididunt\",\n     \"dataRecipientBrandId\": \"dolor nisi\",\n     \"logoUri\": \"est veniam\",\n     \"status\": \"INACTIVE\",\n     \"softwareProducts\": [\n      {\n       \"logoUri\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductName\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductDescription\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       }\n      }\n     ]\n    }\n   ]\n  },\n  {\n   \"accreditationNumber\": \"in eu\",\n   \"industry\": \"banking\",\n   \"lastUpdated\": \"1956-08-31T03:05:23.045Z\",\n   \"legalEntityId\": \"veniam laboris dolor cillum\",\n   \"legalEntityName\": \"cillum velit ad commodo\",\n   \"logoUri\": \"enim in ad\",\n   \"status\": \"SUSPENDED\",\n   \"dataRecipientBrands\": [\n    {\n     \"brandName\": \"dolor nostrud\",\n     \"dataRecipientBrandId\": \"aliquip Excepteur Duis fugiat\",\n     \"logoUri\": \"dolore sit et nisi aliqua\",\n     \"status\": \"INACTIVE\",\n     \"softwareProducts\": [\n      {\n       \"logoUri\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductName\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductDescription\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       }\n      }\n     ]\n    },\n    {\n     \"brandName\": \"commodo\",\n     \"dataRecipientBrandId\": \"culpa in et Duis\",\n     \"logoUri\": \"deserunt est\",\n     \"status\": \"INACTIVE\",\n     \"softwareProducts\": [\n      {\n       \"logoUri\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductId\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductName\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"status\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       },\n       \"softwareProductDescription\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n       }\n      }\n     ]\n    }\n   ]\n  }\n ]\n}"
 								}
 							]
 						},
@@ -890,7 +889,7 @@
 									}
 								}
 							],
-							"_postman_id": "ca014770-7cfc-47ff-b3d7-831b4989e17e",
+							"id": "ca014770-7cfc-47ff-b3d7-831b4989e17e",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -907,50 +906,6 @@
 								"description": "Endpoint used by participants to discover the statuses for Data Recipients from the CDR Register."
 							},
 							"response": [
-								{
-									"id": "32a43e86-79f2-4953-aec8-99461ac7841e",
-									"name": "Bad Request</br>Invalid industry path parameter",
-									"originalRequest": {
-										"method": "GET",
-										"header": [
-											{
-												"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-												"key": "x-v",
-												"value": "consequat sunt"
-											}
-										],
-										"url": {
-											"raw": "{{baseUrl}}/:industry/data-recipients/status",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												":industry",
-												"data-recipients",
-												"status"
-											],
-											"variable": [
-												{
-													"key": "industry",
-													"value": "banking",
-													"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
-												}
-											]
-										}
-									},
-									"status": "Bad Request",
-									"code": 400,
-									"_postman_previewlanguage": "json",
-									"header": [
-										{
-											"key": "Content-Type",
-											"value": "application/json"
-										}
-									],
-									"cookie": [],
-									"responseTime": null,
-									"body": "{\n \"errors\": [\n  {\n   \"code\": \"laborum laboris non eiusmod\",\n   \"detail\": \"aliquip\",\n   \"title\": \"ex culpa dolor quis reprehen\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"esse\",\n   \"detail\": \"deserunt id\",\n   \"title\": \"su\",\n   \"meta\": {}\n  }\n ]\n}"
-								},
 								{
 									"id": "49d92649-d893-422c-9463-c1330a140687",
 									"name": "Success",
@@ -1001,6 +956,50 @@
 									"body": "{\n \"dataRecipients\": [\n  {\n   \"dataRecipientId\": \"veniam qui commodo\",\n   \"dataRecipientStatus\": \"ACTIVE\"\n  },\n  {\n   \"dataRecipientId\": \"ex sed ea\",\n   \"dataRecipientStatus\": \"ACTIVE\"\n  }\n ]\n}"
 								},
 								{
+									"id": "32a43e86-79f2-4953-aec8-99461ac7841e",
+									"name": "Bad Request</br>Invalid industry path parameter",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+												"key": "x-v",
+												"value": "consequat sunt"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/:industry/data-recipients/status",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												":industry",
+												"data-recipients",
+												"status"
+											],
+											"variable": [
+												{
+													"key": "industry",
+													"value": "banking",
+													"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"responseTime": null,
+									"body": "{\n \"errors\": [\n  {\n   \"code\": \"laborum laboris non eiusmod\",\n   \"detail\": \"aliquip\",\n   \"title\": \"ex culpa dolor quis reprehen\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"esse\",\n   \"detail\": \"deserunt id\",\n   \"title\": \"su\",\n   \"meta\": {}\n  }\n ]\n}"
+								},
+								{
 									"id": "7ab673f3-8071-46bd-a5b3-ac24c52b2bc4",
 									"name": "Invalid x-v header</br>Invalid Accept header",
 									"originalRequest": {
@@ -1047,12 +1046,11 @@
 							]
 						}
 					],
-					"_postman_id": "aa0ea6d4-c199-4293-9e68-bb02755de2af",
-					"_postman_isSubFolder": true
+					"id": "aa0ea6d4-c199-4293-9e68-bb02755de2af"
 				},
 				{
 					"name": "Get Data Holder Brands",
-					"_postman_id": "2a04e54e-8111-42f8-8c8e-c1da4017a096",
+					"id": "2a04e54e-8111-42f8-8c8e-c1da4017a096",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1207,69 +1205,6 @@
 							"body": "{\n \"errors\": [\n  {\n   \"code\": \"quis do mollit ipsum\",\n   \"detail\": \"ut velit\",\n   \"title\": \"consequat dolor adipisicing pariatu\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"Ut mollit proident cillum\",\n   \"detail\": \"exercitation\",\n   \"title\": \"aliquip magna eiusmod\",\n   \"meta\": {}\n  }\n ]\n}"
 						},
 						{
-							"id": "45431975-f2b7-4b48-99d9-65c998693765",
-							"name": "Invalid x-v header</br>Invalid Accept header",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
-										"key": "Authorization Endpoint (Register)",
-										"value": "consequat sunt"
-									},
-									{
-										"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-										"key": "x-v",
-										"value": "consequat sunt"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/:industry/data-holders/brands?updated-since=1953-08-22T03:39:37.293Z&page=11120411&page-size=11120411",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										":industry",
-										"data-holders",
-										"brands"
-									],
-									"query": [
-										{
-											"key": "updated-since",
-											"value": "1953-08-22T03:39:37.293Z"
-										},
-										{
-											"key": "page",
-											"value": "11120411"
-										},
-										{
-											"key": "page-size",
-											"value": "11120411"
-										}
-									],
-									"variable": [
-										{
-											"key": "industry",
-											"value": "banking",
-											"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
-										}
-									]
-								}
-							},
-							"status": "Not Acceptable",
-							"code": 406,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"responseTime": null,
-							"body": ""
-						},
-						{
 							"id": "9c36f642-5a71-4ed3-9176-05d451a823dc",
 							"name": "Invalid Bearer Token",
 							"originalRequest": {
@@ -1331,129 +1266,9 @@
 							"cookie": [],
 							"responseTime": null,
 							"body": ""
-						}
-					]
-				},
-				{
-					"name": "Get Data Holder Brands - InvalidAuth",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"if (utils.minimumVariablesProvided() == true )\r",
-									"{\r",
-									"        // Parse the response body\r",
-									"        var jsonData;\r",
-									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
-									"\r",
-									"        // HTTP Response and headers\r",
-									"        pm.test(\"Status code is 401\", function () {\r",
-									"            pm.response.to.have.status(401);\r",
-									"        });      \r",
-									"} else {\r",
-									"\tconsole.error(\"Minimum variable set not defined for test.\");\r",
-									"}"
-								],
-								"type": "text/javascript",
-								"id": "5b90e195-8d6b-463c-a7f6-dbd207d38995"
-							}
-						}
-					],
-					"_postman_id": "decd1a6a-809f-4d9f-956d-0c6349fbe68a",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "invalidtoken"
-							}
-						},
-						"method": "GET",
-						"header": [
-							{
-								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
-								"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
-								"key": "Authorization",
-								"value": "Bearer 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"
-							},
-							{
-								"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-								"key": "x-v",
-								"value": "1"
-							}
-						],
-						"url": "{{baseUrlAuthenticated}}/{{industry}}/data-holders/brands",
-						"description": "Allows Data Recipients to discover data holder brands available in the CDR ecosystem."
-					},
-					"response": [
-						{
-							"id": "5572b56c-6488-4f6d-be2c-d361ec61625e",
-							"name": "Bad Request</br>Invalid industry path parameter",
-							"originalRequest": {
-								"method": "GET",
-								"header": [
-									{
-										"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
-										"key": "Authorization Endpoint (Register)",
-										"value": "consequat sunt"
-									},
-									{
-										"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
-										"key": "x-v",
-										"value": "consequat sunt"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/:industry/data-holders/brands?updated-since=1953-08-22T03:39:37.293Z&page=11120411&page-size=11120411",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										":industry",
-										"data-holders",
-										"brands"
-									],
-									"query": [
-										{
-											"key": "updated-since",
-											"value": "1953-08-22T03:39:37.293Z"
-										},
-										{
-											"key": "page",
-											"value": "11120411"
-										},
-										{
-											"key": "page-size",
-											"value": "11120411"
-										}
-									],
-									"variable": [
-										{
-											"key": "industry",
-											"value": "banking",
-											"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"responseTime": null,
-							"body": "{\n \"errors\": [\n  {\n   \"code\": \"quis do mollit ipsum\",\n   \"detail\": \"ut velit\",\n   \"title\": \"consequat dolor adipisicing pariatu\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"Ut mollit proident cillum\",\n   \"detail\": \"exercitation\",\n   \"title\": \"aliquip magna eiusmod\",\n   \"meta\": {}\n  }\n ]\n}"
 						},
 						{
-							"id": "61cd1800-603a-427f-84e4-7b13ba62d062",
+							"id": "45431975-f2b7-4b48-99d9-65c998693765",
 							"name": "Invalid x-v header</br>Invalid Accept header",
 							"originalRequest": {
 								"method": "GET",
@@ -1514,7 +1329,64 @@
 							"cookie": [],
 							"responseTime": null,
 							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Get Data Holder Brands - InvalidAuth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (utils.minimumVariablesProvided() == true )\r",
+									"{\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"        // HTTP Response and headers\r",
+									"        pm.test(\"Status code is 401\", function () {\r",
+									"            pm.response.to.have.status(401);\r",
+									"        });      \r",
+									"} else {\r",
+									"\tconsole.error(\"Minimum variable set not defined for test.\");\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"id": "5b90e195-8d6b-463c-a7f6-dbd207d38995"
+							}
+						}
+					],
+					"id": "decd1a6a-809f-4d9f-956d-0c6349fbe68a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "invalidtoken"
+							}
 						},
+						"method": "GET",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
+								"key": "Authorization",
+								"value": "Bearer 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"
+							},
+							{
+								"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+								"key": "x-v",
+								"value": "1"
+							}
+						],
+						"url": "{{baseUrlAuthenticated}}/{{industry}}/data-holders/brands",
+						"description": "Allows Data Recipients to discover data holder brands available in the CDR ecosystem."
+					},
+					"response": [
 						{
 							"id": "63404d5b-0540-4f70-8b82-c87c71dbc546",
 							"name": "Success",
@@ -1584,6 +1456,69 @@
 							"body": "{\n \"data\": [\n  {\n   \"authDetails\": [\n    {\n     \"jwksEndpoint\": \"ad Excepteu\",\n     \"registerUType\": \"SIGNED-JWT\"\n    },\n    {\n     \"jwksEndpoint\": \"elit sint aute reprehenderit\",\n     \"registerUType\": \"SIGNED-JWT\"\n    }\n   ],\n   \"brandName\": \"sed fugiat\",\n   \"dataHolderBrandId\": \"qui nulla mollit\",\n   \"endpointDetail\": {\n    \"infosecBaseUri\": \"non ea in ipsum\",\n    \"publicBaseUri\": \"culpa officia\",\n    \"resourceBaseUri\": \"do cillum Excepteur\",\n    \"version\": \"ut in\",\n    \"websiteUri\": \"aute ea a\",\n    \"extensionBaseUri\": \"Duis sunt\"\n   },\n   \"industry\": \"banking\",\n   \"lastUpdated\": \"1983-10-12T06:58:28.944Z\",\n   \"legalEntity\": {\n    \"legalEntityId\": \"nisi anim consequat in\",\n    \"legalEntityName\": \"conse\",\n    \"logoUri\": \"sint commodo quis culpa\",\n    \"registrationNumber\": \"laborum officia dolore\",\n    \"registrationDate\": \"1953-12-18\",\n    \"registeredCountry\": \"ad Excepteur sit\",\n    \"abn\": \"velit voluptate ipsum sunt\",\n    \"acn\": \"magna velit eiusmod labore\",\n    \"arbn\": \"dolore esse tempor\",\n    \"industryCode\": \"laborum anim aute consequat\",\n    \"organisationType\": \"TRUST\"\n   },\n   \"logoUri\": \"irure Ut incididunt mollit\",\n   \"status\": \"REMOVED\"\n  },\n  {\n   \"authDetails\": [\n    {\n     \"jwksEndpoint\": \"occaecat\",\n     \"registerUType\": \"SIGNED-JWT\"\n    },\n    {\n     \"jwksEndpoint\": \"anim in aliqua\",\n     \"registerUType\": \"SIGNED-JWT\"\n    }\n   ],\n   \"brandName\": \"eu mollit\",\n   \"dataHolderBrandId\": \"cillum quis veniam\",\n   \"endpointDetail\": {\n    \"infosecBaseUri\": \"nisi aliqua\",\n    \"publicBaseUri\": \"officia laborum\",\n    \"resourceBaseUri\": \"quis commodo dolore nostrud dolor\",\n    \"version\": \"et velit eu\",\n    \"websiteUri\": \"\",\n    \"extensionBaseUri\": \"f\"\n   },\n   \"industry\": \"banking\",\n   \"lastUpdated\": \"1991-06-09T06:39:37.742Z\",\n   \"legalEntity\": {\n    \"legalEntityId\": \"pariatur dolor deserunt est\",\n    \"legalEntityName\": \"culpa esse dolore id\",\n    \"logoUri\": \"mollit consequat ea cillum\",\n    \"registrationNumber\": \"commodo\",\n    \"registrationDate\": \"1942-08-17\",\n    \"registeredCountry\": \"nulla veniam adipisicing ipsum\",\n    \"abn\": \"\",\n    \"acn\": \"minim esse\",\n    \"arbn\": \"amet ut Excepteur\",\n    \"industryCode\": \"elit anim occaecat\",\n    \"organisationType\": \"OTHER\"\n   },\n   \"logoUri\": \"Duis ullamco\",\n   \"status\": \"REMOVED\"\n  }\n ],\n \"links\": {\n  \"self\": \"Duis\",\n  \"first\": \"tempor nostrud\",\n  \"last\": \"reprehenderit\",\n  \"next\": \"proident officia\",\n  \"prev\": \"id aute mollit\"\n },\n \"meta\": {\n  \"totalPages\": 25938973,\n  \"totalRecords\": 19939526\n }\n}"
 						},
 						{
+							"id": "5572b56c-6488-4f6d-be2c-d361ec61625e",
+							"name": "Bad Request</br>Invalid industry path parameter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
+										"key": "Authorization Endpoint (Register)",
+										"value": "consequat sunt"
+									},
+									{
+										"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+										"key": "x-v",
+										"value": "consequat sunt"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/:industry/data-holders/brands?updated-since=1953-08-22T03:39:37.293Z&page=11120411&page-size=11120411",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										":industry",
+										"data-holders",
+										"brands"
+									],
+									"query": [
+										{
+											"key": "updated-since",
+											"value": "1953-08-22T03:39:37.293Z"
+										},
+										{
+											"key": "page",
+											"value": "11120411"
+										},
+										{
+											"key": "page-size",
+											"value": "11120411"
+										}
+									],
+									"variable": [
+										{
+											"key": "industry",
+											"value": "banking",
+											"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n \"errors\": [\n  {\n   \"code\": \"quis do mollit ipsum\",\n   \"detail\": \"ut velit\",\n   \"title\": \"consequat dolor adipisicing pariatu\",\n   \"meta\": {}\n  },\n  {\n   \"code\": \"Ut mollit proident cillum\",\n   \"detail\": \"exercitation\",\n   \"title\": \"aliquip magna eiusmod\",\n   \"meta\": {}\n  }\n ]\n}"
+						},
+						{
 							"id": "ec3effc8-8741-4047-a288-464fd796c3c5",
 							"name": "Invalid Bearer Token",
 							"originalRequest": {
@@ -1645,11 +1580,74 @@
 							"cookie": [],
 							"responseTime": null,
 							"body": ""
+						},
+						{
+							"id": "61cd1800-603a-427f-84e4-7b13ba62d062",
+							"name": "Invalid x-v header</br>Invalid Accept header",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "(Required) An Authorisation Token as per [RFC6750](https://tools.ietf.org/html/rfc6750).",
+										"key": "Authorization Endpoint (Register)",
+										"value": "consequat sunt"
+									},
+									{
+										"description": "The version of the API end point requested by the client. Must be set to a positive integer.",
+										"key": "x-v",
+										"value": "consequat sunt"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/:industry/data-holders/brands?updated-since=1953-08-22T03:39:37.293Z&page=11120411&page-size=11120411",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										":industry",
+										"data-holders",
+										"brands"
+									],
+									"query": [
+										{
+											"key": "updated-since",
+											"value": "1953-08-22T03:39:37.293Z"
+										},
+										{
+											"key": "page",
+											"value": "11120411"
+										},
+										{
+											"key": "page-size",
+											"value": "11120411"
+										}
+									],
+									"variable": [
+										{
+											"key": "industry",
+											"value": "banking",
+											"description": "(Required) The industry the participant is retrieving data for (Banking, etc)"
+										}
+									]
+								}
+							},
+							"status": "Not Acceptable",
+							"code": 406,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": ""
 						}
 					]
 				}
 			],
-			"_postman_id": "228b65a0-0feb-42be-b44c-6ab5ec124a3d"
+			"id": "228b65a0-0feb-42be-b44c-6ab5ec124a3d"
 		},
 		{
 			"name": "Get OpenId Provider Config",
@@ -1688,7 +1686,7 @@
 					}
 				}
 			],
-			"_postman_id": "bdd6fcc4-de6f-49a5-a989-2c5f1596a844",
+			"id": "bdd6fcc4-de6f-49a5-a989-2c5f1596a844",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1759,7 +1757,7 @@
 					}
 				}
 			],
-			"_postman_id": "a2c89354-c4d8-438a-9638-fc2f337bbab3",
+			"id": "a2c89354-c4d8-438a-9638-fc2f337bbab3",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1929,73 +1927,62 @@
 	],
 	"variable": [
 		{
-			"id": "03ab320c-bb8f-4685-8820-4ad92911c9ce",
+			"id": "f6441113-ead6-4de0-bc90-233929946510",
 			"key": "baseUrlUnAuthenticated",
-			"value": "https://api.cdr.gov.au/cdr-register/v1",
-			"type": "string"
+			"value": "https://api.cdr.gov.au/cdr-register/v1"
 		},
 		{
-			"id": "81fc85f7-574b-4f14-8444-34149231897f",
+			"id": "9c7f828c-aba7-4c5c-96f8-72f0e5a7ddf9",
 			"key": "baseUrlAuthenticated",
-			"value": "https://api.cdr.gov.au/cdr-register/v1",
-			"type": "string"
+			"value": "https://api.cdr.gov.au/cdr-register/v1"
 		},
 		{
-			"id": "65924675-b4ac-4ac0-a88c-84eebbd97adc",
+			"id": "8ea788c4-9dc0-4899-8421-43075d302b84",
 			"key": "openidUrl",
-			"value": "https://api.cdr.gov.au/idp",
-			"type": "string"
+			"value": "https://api.cdr.gov.au/idp"
 		},
 		{
-			"id": "68dc14b3-395c-405a-90d1-ce89ef41bdcc",
+			"id": "6ccfb6c3-34fb-4c61-b474-1e427aa76c9d",
 			"key": "dataRecipientBrandId",
-			"value": "F3F0C40B-9DF8-491A-AF1D-81CB9AB5F021",
-			"type": "string"
+			"value": "F3F0C40B-9DF8-491A-AF1D-81CB9AB5F021"
 		},
 		{
-			"id": "2aaacfee-6ef1-4cbd-82cd-1f019b1bee03",
+			"id": "0dd1be97-8aff-45fa-b07e-8ab363f92924",
 			"key": "softwareProductId",
-			"value": "6F7A1B8E-8799-48A8-9011-E3920391F713",
-			"type": "string"
+			"value": "6F7A1B8E-8799-48A8-9011-E3920391F713"
 		},
 		{
-			"id": "9ee941b7-074b-4cf0-a1cf-4dd1eb14a380",
+			"id": "64b38d1f-c887-4a81-bb7c-6979ea63bbc6",
 			"key": "industry",
-			"value": "banking",
-			"type": "string"
+			"value": "banking"
 		},
 		{
-			"id": "539a3ddb-b104-47a4-8a37-7c9b0ff1d30a",
+			"id": "034a23a2-61b5-4e4e-9a04-316453b5d29a",
 			"key": "x-v",
-			"value": "1",
-			"type": "string"
+			"value": "1"
 		},
 		{
-			"id": "36ebfa95-ce53-4acc-8ffb-2a90fc89debe",
+			"id": "8c11522e-1409-4d33-baa6-06f57b605b0d",
 			"key": "accessToken",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "bbf4fa8a-f08a-4645-8db7-b68597006e0c",
+			"id": "05ca9a9b-1dbb-4957-93c3-72dd6a756664",
 			"key": "GlobaRegisterSchema",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "87075f90-d120-4731-873e-7a7528808552",
+			"id": "0725f071-3fd0-4f95-bf14-7a966e08519c",
 			"key": "GlobalCommonSchema",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "5fd7d220-493b-426c-ac58-ed28fb01e566",
+			"id": "fe7b86e7-5d4d-4a6f-a42c-ac1313297019",
 			"key": "version",
-			"value": "1.17.0",
-			"type": "string"
+			"value": "1.17.0"
 		},
 		{
-			"id": "77bad179-595c-45e2-9090-a3dfb46771b0",
+			"id": "81f50572-0bf3-4576-a496-a90d43d814b5",
 			"key": "access_token",
 			"value": "eyJhbGciOiJQUzI1NiIsImtpZCI6IlgwRHo0VEhBSTF4TDBwcmR3SlZXSXFZVGhSc1JTSkZORTVxamhGZjJjM1UiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiI2RjdBMUI4RS04Nzk5LTQ4QTgtOTAxMS1FMzkyMDM5MUY3MTMiLCJqdGkiOiJhNjAwZmRlMC0zMDg0LTRiYWItYTlmYi0zODU1ZWU4NjQwZmQiLCJhdWQiOiJodHRwczovL21vY2stcmVnaXN0ZXI6NzAwMS9pZHAvY29ubmVjdC90b2tlbiIsImV4cCI6MTY1Njk4Mzc1MSwiaXNzIjoiNkY3QTFCOEUtODc5OS00OEE4LTkwMTEtRTM5MjAzOTFGNzEzIiwiaWF0IjoxNjU2OTgzMTUxLCJuYmYiOjE2NTY5ODMxNTF9.gz8lz-KMlKz3AP3o4xinoqYK74wkSFXSqZTpr2EdWIR2ZiBPvOyOOTM-wxbWKrAkXj4cXZlVBB0s_bxDsXKNJZjHrDLiXIo1qVjEIrbx7NipwuThV8q_qZGPjFO2hWA7QFYgXiSnQFUoEun7Sw6S9zUTVCjriTlmmmvpJjfZfIifvzqnb3EJZJh-ZegsDQ18uWU3sSfgFxZew-BT0AkqbE1QDEl3LCqx22TlWfxE6K4d48hnXIXzD-ol3Da7wMMJvzGlyRNGvQ2Dxk_XL7ROQwgwLDqaeo_dH7O42rtrfHg569aA2Z_TRtoORBtOhx8-0ZKT317MfgYtD80DLbvLzQ",
 			"type": "string"
