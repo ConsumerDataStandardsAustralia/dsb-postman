@@ -1738,7 +1738,7 @@
 							"                console.log(JSON.stringify(element));\r",
 							"                });\r",
 							"            };\r",
-							"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;e; \r",
+							"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 							"        });           \r",
 							"} else {\r",
 							"\tconsole.error(\"Minimum variable set not defined for test.\");\r",
@@ -1758,7 +1758,7 @@
 				},
 				"method": "GET",
 				"header": [],
-				"url": "{{baseUrlAdmin}}/idp/jwks",
+				"url": "{{baseUrlUnAuthenticated}}/jwks",
 				"description": "JWKS endpoint containing the public keys used by the CDR Register to validate the signature of issued SSAs and authenticate outbound calls to participants in the CDR."
 			},
 			"response": [
@@ -1920,62 +1920,62 @@
 	],
 	"variable": [
 		{
-			"id": "f221c36c-c3ec-42c9-b77b-daf1b2229333",
+			"id": "d594890d-a4a4-4abe-b3ab-b06d6bd4adf3",
 			"key": "baseUrlUnAuthenticated",
 			"value": "https://api.cdr.gov.au/cdr-register/v1"
 		},
 		{
-			"id": "5e91bad7-a5ab-4c45-a4ac-bb48ef40c6d9",
+			"id": "0084450e-5ae7-4513-9a6b-8d29011ac584",
 			"key": "baseUrlAuthenticated",
 			"value": "https://api.cdr.gov.au/cdr-register/v1"
 		},
 		{
-			"id": "23507735-4561-4f72-9bac-6aa4c57da44e",
+			"id": "e3d79f7a-3ea8-479b-90a6-7570b25ef02e",
 			"key": "openidUrl",
 			"value": "https://api.cdr.gov.au/idp"
 		},
 		{
-			"id": "a5b89374-99ec-415a-b636-7fa69b0c50bc",
+			"id": "9acf9529-eb5d-43df-8f08-73d297f8d747",
 			"key": "dataRecipientBrandId",
 			"value": "F3F0C40B-9DF8-491A-AF1D-81CB9AB5F021"
 		},
 		{
-			"id": "d989c31d-b366-4cc7-82e4-da7ab0961fc0",
+			"id": "834894cb-6d60-434c-a01d-41b76a3c1ef8",
 			"key": "softwareProductId",
 			"value": "6F7A1B8E-8799-48A8-9011-E3920391F713"
 		},
 		{
-			"id": "98244f1d-f1a3-42dd-86db-7a4123044f24",
+			"id": "5d540368-819f-4c62-81ab-d73ece47df77",
 			"key": "industry",
 			"value": "banking"
 		},
 		{
-			"id": "7ef37722-467d-48e1-b0fb-79f1971eab06",
+			"id": "1ad90879-b386-4b1c-a22c-70769105d439",
 			"key": "x-v",
 			"value": "1"
 		},
 		{
-			"id": "2490b45c-ca27-4745-9649-623b2d9af778",
+			"id": "298b9d0f-e590-4e2b-b187-bfe47e2bd25b",
 			"key": "accessToken",
 			"value": ""
 		},
 		{
-			"id": "60f1d832-3234-4a3c-bcf9-3bcb6737a801",
+			"id": "303328b3-403c-4ca5-8546-ec43ad1237e9",
 			"key": "GlobaRegisterSchema",
 			"value": ""
 		},
 		{
-			"id": "d754e8e5-c3c2-48ac-962d-34cc15819778",
+			"id": "e27cacc2-ad0d-442a-b6f6-db504d9ca5d9",
 			"key": "GlobalCommonSchema",
 			"value": ""
 		},
 		{
-			"id": "613c7083-f836-40d5-8a45-158e22812576",
+			"id": "f03f01af-3c5b-4181-8c4b-368c4b834016",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "b1f36a41-53d8-4745-a225-1bdc6feb921c",
+			"id": "c629c004-bf93-4a70-94c1-9daff76ff14b",
 			"key": "access_token",
 			"value": "eyJhbGciOiJQUzI1NiIsImtpZCI6IlgwRHo0VEhBSTF4TDBwcmR3SlZXSXFZVGhSc1JTSkZORTVxamhGZjJjM1UiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiI2RjdBMUI4RS04Nzk5LTQ4QTgtOTAxMS1FMzkyMDM5MUY3MTMiLCJqdGkiOiJhNjAwZmRlMC0zMDg0LTRiYWItYTlmYi0zODU1ZWU4NjQwZmQiLCJhdWQiOiJodHRwczovL21vY2stcmVnaXN0ZXI6NzAwMS9pZHAvY29ubmVjdC90b2tlbiIsImV4cCI6MTY1Njk4Mzc1MSwiaXNzIjoiNkY3QTFCOEUtODc5OS00OEE4LTkwMTEtRTM5MjAzOTFGNzEzIiwiaWF0IjoxNjU2OTgzMTUxLCJuYmYiOjE2NTY5ODMxNTF9.gz8lz-KMlKz3AP3o4xinoqYK74wkSFXSqZTpr2EdWIR2ZiBPvOyOOTM-wxbWKrAkXj4cXZlVBB0s_bxDsXKNJZjHrDLiXIo1qVjEIrbx7NipwuThV8q_qZGPjFO2hWA7QFYgXiSnQFUoEun7Sw6S9zUTVCjriTlmmmvpJjfZfIifvzqnb3EJZJh-ZegsDQ18uWU3sSfgFxZew-BT0AkqbE1QDEl3LCqx22TlWfxE6K4d48hnXIXzD-ol3Da7wMMJvzGlyRNGvQ2Dxk_XL7ROQwgwLDqaeo_dH7O42rtrfHg569aA2Z_TRtoORBtOhx8-0ZKT317MfgYtD80DLbvLzQ",
 			"type": "string"
