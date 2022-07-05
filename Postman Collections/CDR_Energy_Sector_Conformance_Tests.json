@@ -15,6 +15,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "34b3dc38-88e0-439b-8c43-0601705f5358",
 								"exec": [
 									"\r",
 									"// Parse the response body\r",
@@ -43,13 +44,12 @@
 									"        console.log(JSON.stringify(element));\r",
 									"        });\r",
 									"    };\r",
-									"    pm.expect(valid).to.be.true; \r",
+									"    pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 									"});   \r",
 									"\r",
 									""
 								],
-								"type": "text/javascript",
-								"id": "34b3dc38-88e0-439b-8c43-0601705f5358"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -275,6 +275,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "8ee619f5-0c45-4555-a94d-31eeef27a408",
 								"exec": [
 									"",
 									"        // Parse the response body",
@@ -301,12 +302,11 @@
 									"                console.log(JSON.stringify(element));",
 									"                });",
 									"            };",
-									"            pm.expect(valid).to.be.true; ",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true; ",
 									"        });    ",
 									""
 								],
-								"type": "text/javascript",
-								"id": "8ee619f5-0c45-4555-a94d-31eeef27a408"
+								"type": "text/javascript"
 							}
 						}
 					],
@@ -402,9 +402,23 @@
 													"                console.log(JSON.stringify(element));",
 													"                });",
 													"            };",
-													"            pm.expect(valid).to.be.true; ",
+													"           // pm.expect(valid).to.be.true; ",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
 													"        });    ",
 													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "df518edd-d57f-4f65-b304-f8dee0dab866",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript"
 											}
@@ -478,6 +492,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "fdb45f6f-d110-4b2d-a0f9-bf2ddb1801af",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -503,12 +518,24 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "fdb45f6f-d110-4b2d-a0f9-bf2ddb1801af"
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "b03558d8-bf38-4078-8d6e-6d90552ace6e",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -536,7 +563,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -593,6 +620,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "2583442e-6ec2-4b70-81d4-6e1b3e1bd0f7",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -618,12 +646,11 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "2583442e-6ec2-4b70-81d4-6e1b3e1bd0f7"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -651,7 +678,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -702,6 +729,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "ea93bf60-9c93-420d-a65a-fd7b9416a020",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -727,12 +755,24 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "ea93bf60-9c93-420d-a65a-fd7b9416a020"
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "f46b10f6-0f66-4c53-84cd-4fc48d0d509b",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -760,7 +800,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -808,6 +848,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "f0779429-ae69-4706-ba63-220af7ff5628",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -833,12 +874,24 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "f0779429-ae69-4706-ba63-220af7ff5628"
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "9336c05b-33da-4318-8dbf-e2828d7f623c",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -866,7 +919,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -992,7 +1045,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -1098,7 +1151,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -1163,6 +1216,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"id": "71882444-7350-43c0-acde-68159f33943b",
 										"exec": [
 											"",
 											"        // Parse the response body",
@@ -1223,14 +1277,26 @@
 											"                console.log(JSON.stringify(element));",
 											"                });",
 											"            };",
-											"            pm.expect(valid).to.be.true; ",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
 											"        });  ",
 											"",
 											"  ",
 											""
 										],
-										"type": "text/javascript",
-										"id": "71882444-7350-43c0-acde-68159f33943b"
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7883fca6-3002-487d-8da9-a47f705e7934",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -1248,9 +1314,8 @@
 									},
 									{
 										"key": "x-fapi-auth-date",
-										"value": "{{timeTenMinutesAgo}}",
-										"type": "text",
-										"disabled": true
+										"value": "{{x-fapi-auth-date}}",
+										"type": "text"
 									},
 									{
 										"key": "x-fapi-customer-ip-address",
@@ -1260,7 +1325,8 @@
 									{
 										"key": "x-fapi-interaction-id",
 										"value": "{{x-fapi-interaction-id}}",
-										"type": "text"
+										"type": "text",
+										"disabled": true
 									},
 									{
 										"key": "x-cds-client-headers",
@@ -1284,6 +1350,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"id": "cc8ee125-2d54-45a8-b02b-a650a1a389d3",
 										"exec": [
 											"",
 											"        // Parse the response body",
@@ -1311,8 +1378,8 @@
 											"                console.log(JSON.stringify(element));",
 											"                });",
 											"            };",
-											"            pm.expect(valid).to.be.true; ",
-											"            pm.expect(jsonData.errors?.code).equals(\"urn:au-cds:error:cds-all:Field/Invalid\")       ",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+											"            pm.expect(jsonData.errors?.code, JSON.stringify(ajv.errors)).equals(\"urn:au-cds:error:cds-all:Field/Invalid\")       ",
 											"",
 											"        });",
 											"",
@@ -1329,8 +1396,20 @@
 											"  ",
 											""
 										],
-										"type": "text/javascript",
-										"id": "cc8ee125-2d54-45a8-b02b-a650a1a389d3"
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e1f57b35-675b-449b-a600-d8ce18635b21",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -1348,9 +1427,8 @@
 									},
 									{
 										"key": "x-fapi-auth-date",
-										"value": "{{timeTenMinutesAgo}}",
-										"type": "text",
-										"disabled": true
+										"value": "{{x-fapi-auth-date}}",
+										"type": "text"
 									},
 									{
 										"key": "x-fapi-customer-ip-address",
@@ -1384,6 +1462,7 @@
 								{
 									"listen": "test",
 									"script": {
+										"id": "b604355c-9b5f-4b9a-9c0f-4261b284e3d7",
 										"exec": [
 											"\r",
 											"        // Parse the response body\r",
@@ -1409,12 +1488,24 @@
 											"                console.log(JSON.stringify(element));\r",
 											"                });\r",
 											"            };\r",
-											"            pm.expect(valid).to.be.true; \r",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 											"        });    \r",
 											""
 										],
-										"type": "text/javascript",
-										"id": "b604355c-9b5f-4b9a-9c0f-4261b284e3d7"
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "a1b39816-6e89-4c2c-98ee-12cb921223e9",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+										],
+										"type": "text/javascript"
 									}
 								}
 							],
@@ -1442,7 +1533,7 @@
 									},
 									{
 										"key": "x-fapi-auth-date",
-										"value": "{{timeTenMinutesAgo}}",
+										"value": "{{x-fapi-auth-date}}",
 										"type": "text"
 									},
 									{
@@ -1529,6 +1620,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "3eca71e7-7252-40e7-b278-c1eb41c5ece8",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -1554,12 +1646,11 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "3eca71e7-7252-40e7-b278-c1eb41c5ece8"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -1587,7 +1678,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -1656,7 +1747,7 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
 												],
@@ -1758,9 +1849,22 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;; \r",
 													"        });    \r",
 													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7e8a4936-934a-4036-9824-d58e75191d59",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript"
 											}
@@ -1860,9 +1964,22 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "2eac1081-1ec9-4d8f-a54e-2cbe65d833f2",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript"
 											}
@@ -1962,9 +2079,22 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true; \r",
 													"        });    \r",
 													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "b906c92c-b39f-4b32-bc1d-02c27f331f04",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript"
 											}
@@ -2060,6 +2190,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "1d014cab-4941-4603-83c1-ebb2aa19f7df",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -2085,12 +2216,24 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "1d014cab-4941-4603-83c1-ebb2aa19f7df"
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "86edbf49-6333-4797-96ad-f51475c15f4e",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -2118,7 +2261,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -2216,9 +2359,22 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "3b38ee24-0827-4391-9b12-8e0f6cb34397",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript"
 											}
@@ -2321,9 +2477,22 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "be04dfbf-10a2-4cd8-8025-b4263eb8380d",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript"
 											}
@@ -2446,9 +2615,22 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "47b53845-7a9f-4610-b432-875def4be2a3",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript"
 											}
@@ -2561,9 +2743,22 @@
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7615fe68-aa5c-4221-bc27-339b30d25349",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript"
 											}
@@ -2614,7 +2809,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\",\n            \"{{accountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2729,7 +2924,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text"
 											},
 											{
@@ -2786,6 +2981,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "465618a7-8ce1-44bf-a875-cb089ba93440",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -2815,8 +3011,7 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"id": "465618a7-8ce1-44bf-a875-cb089ba93440"
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -2847,7 +3042,7 @@
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{timeTenMinutesAgo}}",
+												"value": "{{x-fapi-auth-date}}",
 												"type": "text",
 												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
 											},
@@ -2871,7 +3066,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\",\n            \"{{accountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2950,9 +3145,22 @@
 											"                console.log(JSON.stringify(element));\r",
 											"                });\r",
 											"            };\r",
-											"            pm.expect(valid).to.be.true; \r",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 											"        });    \r",
 											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "9ffda550-2619-47ba-8924-70d8a46ce0b7",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 										],
 										"type": "text/javascript"
 									}
@@ -3064,11 +3272,13 @@
 		{
 			"listen": "prerequest",
 			"script": {
+				"id": "157da39c-1a2a-4909-865b-e22190e41744",
 				"type": "text/javascript",
 				"exec": [
-					"",
-					"",
-					"",
+					"var moment = require('moment');",
+					"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";",
+					"var fapiDate = moment().format(dateFormat);",
+					"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);",
 					"",
 					"if (pm.iterationData.get(\"unauthenticatedResourceUrl\") != undefined)",
 					"    pm.collectionVariables.set(\"unauthenticatedResourceUrl\", pm.iterationData.get(\"unauthenticatedResourceUrl\"));",
@@ -3078,7 +3288,6 @@
 					"",
 					"if (pm.iterationData.get(\"secondaryDataHolderUrl\") != undefined)",
 					"    pm.collectionVariables.set(\"secondaryDataHolderUrl\", pm.iterationData.get(\"secondaryDataHolderUrl\"));",
-					"",
 					"",
 					"if (pm.iterationData.get(\"version\") != undefined)",
 					"    pm.collectionVariables.set(\"version\", pm.iterationData.get(\"version\"));    ",
@@ -3131,12 +3340,12 @@
 					"                                timeCurrent.getMonth(),",
 					"                                timeCurrent.getDate(), 0, 0, 0);",
 					"",
-					"    postman.setEnvironmentVariable(\"timeCurrent\", timeCurrent.toISOString());",
-					"    postman.setEnvironmentVariable(\"timeTenMinutesAgo\", timeCurrent.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateToday\", dateToday.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateYesterday\", dateYesterday.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateTomorrow\", dateTomorrow.toISOString());",
-					"    postman.setEnvironmentVariable(\"dateLastYear\", dateLastYear.toISOString());",
+					"    // postman.setEnvironmentVariable(\"timeCurrent\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"timeTenMinutesAgo\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateToday\", dateToday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateYesterday\", dateYesterday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateTomorrow\", dateTomorrow.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateLastYear\", dateLastYear.toISOString());",
 					"",
 					"",
 					"    // setting the base url for schema files",
@@ -3231,88 +3440,58 @@
 					"};",
 					"",
 					""
-				],
-				"id": "63da0e83-465d-4729-b58f-1cfc8799812d"
+				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
+				"id": "7e128866-fe9a-4777-9b18-05242f87386e",
 				"type": "text/javascript",
 				"exec": [
 					""
-				],
-				"id": "8dc84e71-85c0-41db-a201-aa5e8282e479"
+				]
 			}
 		}
 	],
 	"variable": [
 		{
-			"id": "d73a9200-38f6-4e2a-bdac-0df2e84ae07e",
-			"key": "primaryDataHolderUrl",
-			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
-		},
-		{
-			"id": "a63f0738-1b7a-4fc6-ba74-12ff3a2bb059",
-			"key": "secondaryDataHolderUrl",
-			"value": "https://886f1638-19cf-4b35-9e05-6ae133dc8ea1.mock.pstmn.io"
-		},
-		{
-			"id": "ae6072c0-a7bd-4c1b-983d-dd8489748ecd",
+			"id": "d5d5ab83-3c58-472f-9437-ae99c2777ac3",
 			"key": "version",
 			"value": "1.17.0"
 		},
 		{
-			"id": "4f2ca570-cff8-4737-8669-1996ae39ac40",
-			"key": "GlobalEnergySchema",
-			"value": "",
-			"type": "string"
-		},
-		{
-			"id": "00ddf06a-a81c-40e2-aef3-111061db1fd5",
-			"key": "cdsClientHeader",
-			"value": "",
-			"type": "string"
-		},
-		{
-			"id": "fdfe7126-ca0e-4122-8d76-e45cb78ef3d1",
+			"id": "56f5e183-dfed-449c-b826-1e884fb81d2e",
 			"key": "accessToken",
 			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9.",
 			"type": "string"
 		},
 		{
-			"id": "e715610f-3f04-469f-bead-cd58197fd0b3",
-			"key": "testAccountId1",
-			"value": "",
-			"type": "string"
-		},
-		{
-			"id": "708f6c6f-12e9-4cb3-b8b4-d7b722e7564b",
-			"key": "testPlanId1",
-			"value": "",
-			"type": "string"
-		},
-		{
-			"id": "2b05784e-e37e-43d4-87d2-c2a842f25b6d",
+			"id": "9333d7a1-57f6-43a8-9b9c-d6ca341c1c02",
 			"key": "pageSize",
 			"value": "2",
 			"type": "string"
 		},
 		{
-			"id": "021008a7-56ab-4a0c-a0a6-f9235582b6cd",
+			"id": "bcd74ada-caca-4e39-a817-596b614cf6f2",
 			"key": "servicePointId",
 			"value": "SP12345",
 			"type": "string"
 		},
 		{
-			"id": "d46434a5-cc64-4586-afb2-b8fe7eb2103b",
+			"id": "b11a8fcf-fcfb-46b8-ac4c-c5924ecd9129",
 			"key": "updatedSinceDate",
 			"value": "2010-05-30T06:23:54.270Z",
 			"type": "string"
 		},
 		{
-			"id": "c0b6c203-0586-412e-9f5f-36edb621c920",
+			"id": "ef40baa5-49ea-4e04-b5fc-2ac0d5aa7c20",
 			"key": "x-fapi-auth-date",
+			"value": ""
+		},
+		{
+			"id": "4280d2ca-c3ac-46d4-8096-bd5c90ec9380",
+			"key": "GlobalEnergySchema",
 			"value": ""
 		}
 	]
