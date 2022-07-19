@@ -482,7 +482,7 @@
 												}
 											]
 										},
-										"description": "Obtain a list of service points owned by the customer that has authorised the current session.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.006) for additional information."
+										"description": "Obtain a list of service points owned by the customer that has authorised the current session.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.006) for additional information."
 									},
 									"response": []
 								},
@@ -610,7 +610,7 @@
 												}
 											]
 										},
-										"description": "Obtain a list of electricity usage data from a particular service point.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.012) for additional information."
+										"description": "Obtain a list of electricity usage data from a particular service point.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.012) for additional information."
 									},
 									"response": []
 								},
@@ -713,7 +713,7 @@
 												}
 											]
 										},
-										"description": "Obtain a list of DER data from a particular service point\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.033) for additional information."
+										"description": "Obtain a list of DER data from a particular service point\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.033) for additional information."
 									},
 									"response": []
 								}
@@ -838,7 +838,7 @@
 												}
 											]
 										},
-										"description": "Obtain usage data for all service points associated with the customer.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.045) for additional information."
+										"description": "Obtain usage data for all service points associated with the customer.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.045) for additional information."
 									},
 									"response": []
 								},
@@ -971,7 +971,7 @@
 												}
 											]
 										},
-										"description": "Obtain the electricity usage data for a specific set of service points.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.023) for additional information."
+										"description": "Obtain the electricity usage data for a specific set of service points.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.023) for additional information."
 									},
 									"response": []
 								}
@@ -1083,7 +1083,7 @@
 												}
 											]
 										},
-										"description": "Obtain DER data for all service points associated with the customer\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.061) for additional information."
+										"description": "Obtain DER data for all service points associated with the customer\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.061) for additional information."
 									},
 									"response": []
 								},
@@ -1203,7 +1203,7 @@
 												}
 											]
 										},
-										"description": "Obtain DER data for a specific set of service points\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.039) for additional information."
+										"description": "Obtain DER data for a specific set of service points\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.039) for additional information."
 									},
 									"response": []
 								}
@@ -1340,7 +1340,7 @@
 									}
 								],
 								"url": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints",
-								"description": "Obtain a list of service points owned by the customer that has authorised the current session\n\nRefer to [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.001)"
+								"description": "Obtain a list of service points owned by the customer that has authorised the current session\n\nRefer to [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.001)"
 							},
 							"response": []
 						},
@@ -1452,7 +1452,7 @@
 									}
 								],
 								"url": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints",
-								"description": "Obtain a list of service points owned by the customer that has authorised the current session\n\nRefer to [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.001)"
+								"description": "Obtain a list of service points owned by the customer that has authorised the current session\n\nRefer to [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.001)"
 							},
 							"response": []
 						},
