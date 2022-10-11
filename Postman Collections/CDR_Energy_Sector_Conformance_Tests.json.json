@@ -1,0 +1,3744 @@
+{
+	"info": {
+		"_postman_id": "fabe6eb7-72ed-4436-be03-c3abe5b86d1a",
+		"name": "CDR Energy Sector Conformance Tests",
+		"description": "# CDR Energy Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.17.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Energy APIs\n\n*   Get Generic Plans\n*   Get Generic Plan Detail\n*   Get Service Point Detail\n*   Get Usage For Service Point\n*   Get DER For Service Point\n*   Get Bulk Usage\n*   Get Usage For Specific Service Points\n*   Get Account Detail\n*   Get Agreed Payment Schedule\n*   Get Concessions\n*   Get Balance For Account\n*   Get Invoices For Account\n*   Get Billing For Account\n*   Get Bulk Balances\n*   Get Balances For Specific Accounts\n*   Get Bulk Invoices\n*   Get Invoices For Specific Account\n*   Get Accounts\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n*   CDR API end points not listed above\n*   Negative scenarios that are not specifically addressed in the standards for individual end points\n*   Non-functional requirements\n*   Information Security Profile and associated end points\n*   MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n|  |  |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [cdr-data61@csiro.au](mailto:cdr-data61@csiro.au)\n\n}",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Unauthenticated",
+			"item": [
+				{
+					"name": "Get Generic Plans v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "34b3dc38-88e0-439b-8c43-0601705f5358",
+								"exec": [
+									"\r",
+									"// Parse the response body\r",
+									"var jsonData;\r",
+									"try {\r",
+									"    jsonData = pm.response.json();\r",
+									"\r",
+									"    }\r",
+									"catch(e) {\r",
+									"    console.log(e);\r",
+									"}\r",
+									"\r",
+									"// HTTP Response and headers\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"// Schema payload check\r",
+									"        // Schema payload check\r",
+									"pm.test('Response payload conforms to standards schema', function() {\r",
+									"    const valid = ajv.validate(\"EnergyPlanListResponse\", jsonData)\r",
+									"    if (!valid){\r",
+									"    ajv.errors.forEach(element => {\r",
+									"        console.log(JSON.stringify(element));\r",
+									"        });\r",
+									"    };\r",
+									"    pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+									"});   \r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "4771d8f9-7eab-40e9-865a-5c871b084cb3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "{{x-fapi-interaction-id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{primaryDataHolderUrl}}/energy/plans?type=ALL&fuelType=ALL&effective=ALL&updated-since={{dateLastYear}}&page=1&page-size={{pageSize}}",
+							"host": [
+								"{{primaryDataHolderUrl}}"
+							],
+							"path": [
+								"energy",
+								"plans"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "ALL",
+									"description": "Used to filter results on the type field.  Any one of the valid values for this field can be supplied plus 'ALL'.  If absent defaults to 'ALL'"
+								},
+								{
+									"key": "fuelType",
+									"value": "ALL",
+									"description": "Used to filter results on the fuelType field.  Any one of the valid values for this field can be supplied plus 'ALL'.  If absent defaults to 'ALL'"
+								},
+								{
+									"key": "effective",
+									"value": "ALL",
+									"description": "Allows for the filtering of plans based on whether the current time is within the period of time defined as effective by the effectiveFrom and effectiveTo fields. Valid values are ‘CURRENT’, ‘FUTURE’ and ‘ALL’. If absent defaults to 'CURRENT'"
+								},
+								{
+									"key": "updated-since",
+									"value": "{{dateLastYear}}",
+									"description": "Only include plans that have been updated after the specified date and time.  If absent defaults to include all plans"
+								},
+								{
+									"key": "brand",
+									"value": "",
+									"description": "Used to filter results on the brand field.  If absent defaults to include all plans",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page of results to request (standard pagination)"
+								},
+								{
+									"key": "page-size",
+									"value": "{{pageSize}}",
+									"description": "Page size to request.  Default is 25 (standard pagination)Size}}"
+								}
+							]
+						},
+						"description": "Obtain a list of energy plans that are currently offered to the market.\n\nNote that the results returned by this end point are expected to be ordered in descending order according to `lastUpdated`."
+					},
+					"response": [
+						{
+							"id": "3268f474-8b5f-4997-afc6-bb5d03688d8c",
+							"name": "Get Generic Plans",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-min-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "Excepteur tem",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{primaryDataHolderUrl}}/energy/plans?type=ALL&fuelType=ALL&effective=CURRENT&updated-since={{updatedSinceDate}}&page=1&page-size={{pageSize}}",
+									"host": [
+										"{{primaryDataHolderUrl}}"
+									],
+									"path": [
+										"energy",
+										"plans"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "ALL",
+											"description": "Used to filter results on the type field.  Any one of the valid values for this field can be supplied plus 'ALL'.  If absent defaults to 'ALL'"
+										},
+										{
+											"key": "fuelType",
+											"value": "ALL",
+											"description": "Used to filter results on the fuelType field.  Any one of the valid values for this field can be supplied plus 'ALL'.  If absent defaults to 'ALL'"
+										},
+										{
+											"key": "effective",
+											"value": "CURRENT",
+											"description": "Allows for the filtering of plans based on whether the current time is within the period of time defined as effective by the effectiveFrom and effectiveTo fields. Valid values are ‘CURRENT’, ‘FUTURE’ and ‘ALL’. If absent defaults to 'CURRENT'"
+										},
+										{
+											"key": "updated-since",
+											"value": "{{updatedSinceDate}}",
+											"description": "Only include plans that have been updated after the specified date and time.  If absent defaults to include all plans"
+										},
+										{
+											"key": "brand",
+											"value": "Excepteur tem",
+											"description": "Used to filter results on the brand field.  If absent defaults to include all plans",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page of results to request (standard pagination)"
+										},
+										{
+											"key": "page-size",
+											"value": "{{pageSize}}",
+											"description": "Page size to request.  Default is 25 (standard pagination)Size}}"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 03:51:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "x-srv-trace",
+									"value": "v=1;t=d9f35cf995ba845b"
+								},
+								{
+									"key": "x-srv-span",
+									"value": "v=1;s=c95cbbf2cb3e9e43"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "120"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "119"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1653969162"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a4-7hO0T/XLq3TuFViTu2ZVQQdIY+A\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"responseTime": null,
+							"body": "{\n    \"tomas\": {\n        \"name\": \"mockRequestNotFoundError\",\n        \"vv\": \"To mock this request add an example response for the mock server to return.\",\n        \"header\": \"You need addde\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Generic Plan Detail v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ee619f5-0c45-4555-a94d-31eeef27a408",
+								"exec": [
+									"",
+									"        // Parse the response body",
+									"        var jsonData;",
+									"        try {",
+									"            jsonData = pm.response.json();",
+									"",
+									"            }",
+									"        catch(e) {",
+									"            console.log(e);",
+									"        }",
+									"",
+									"        // HTTP Response and headers",
+									"        pm.test(\"Status code is 200\", function () {",
+									"            pm.response.to.have.status(200);",
+									"        });",
+									"",
+									"",
+									"        // Schema payload check",
+									"        pm.test('Response payload conforms to standards schema', function() {",
+									"            const valid = ajv.validate(\"EnergyPlanResponse\", jsonData)",
+									"            if (!valid){",
+									"            ajv.errors.forEach(element => {",
+									"                console.log(JSON.stringify(element));",
+									"                });",
+									"            };",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true; ",
+									"        });    ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"_postman_id": "9847ce00-fe81-4041-9a56-fbe1edd987ce",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "{{x-fapi-interaction-id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{primaryDataHolderUrl}}/energy/plans/:planId",
+							"host": [
+								"{{primaryDataHolderUrl}}"
+							],
+							"path": [
+								"energy",
+								"plans",
+								":planId"
+							],
+							"variable": [
+								{
+									"id": "3fb8ae0a-ef17-41b7-8d89-20d3d84e8864",
+									"key": "planId",
+									"value": "{{planId}}",
+									"type": "string"
+								}
+							]
+						},
+						"description": "Obtain detailed information on a single energy plan offered openly to the market"
+					},
+					"response": []
+				}
+			],
+			"_postman_id": "34dc8957-a58e-44da-93f5-1dab23d56bfe"
+		},
+		{
+			"name": "Secondary Dataholder",
+			"item": [
+				{
+					"name": "electricity/servicepoints",
+					"item": [
+						{
+							"name": "{service Point Id}",
+							"item": [
+								{
+									"name": "T.EAR.006 Get Service Point Detail v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9427a10e-3f2b-4a36-87d6-d898a5acb9bb",
+												"exec": [
+													"        // Parse the response body",
+													"        var jsonData;",
+													"        try {",
+													"            jsonData = pm.response.json();",
+													"",
+													"            }",
+													"        catch(e) {",
+													"            console.log(e);",
+													"        }",
+													"",
+													"        // HTTP Response and headers",
+													"        pm.test(\"Status code is 200\", function () {",
+													"            pm.response.to.have.status(200);",
+													"        });",
+													"",
+													"",
+													"        // Schema payload check",
+													"        pm.test('Response payload conforms to standards schema', function() {",
+													"            const valid = ajv.validate(\"EnergyServicePointDetailResponse\", jsonData)",
+													"            if (!valid){",
+													"            ajv.errors.forEach(element => {",
+													"                console.log(JSON.stringify(element));",
+													"                });",
+													"            };",
+													"           // pm.expect(valid).to.be.true; ",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+													"        });    ",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "df518edd-d57f-4f65-b304-f8dee0dab866",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "f9fc2c7c-db2b-444d-9340-a317884f3bdc",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/:servicePointId",
+											"host": [
+												"{{secondaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"electricity",
+												"servicepoints",
+												":servicePointId"
+											],
+											"variable": [
+												{
+													"id": "bf8776f7-ce8f-4dc5-bb85-01b04260b11b",
+													"key": "servicePointId",
+													"value": "{{servicePointId}}",
+													"description": "(Required) ID of the specific service point requested.  This is a tokenised ID previous obtained from the Service Point List Data end point.  Note that it is not a nationalMeteringId.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain a list of service points owned by the customer that has authorised the current session.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.006) for additional information."
+									},
+									"response": []
+								},
+								{
+									"name": "T.EAR.012 Get Usage For Service Point v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "fdb45f6f-d110-4b2d-a0f9-bf2ddb1801af",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyUsageListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "b03558d8-bf38-4078-8d6e-6d90552ace6e",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "8365f6ba-ed9b-4e43-87a1-a54d9d49b8e1",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/:servicePointId/usage?page=1&page-size={{pageSize}}",
+											"host": [
+												"{{secondaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"electricity",
+												"servicepoints",
+												":servicePointId",
+												"usage"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											],
+											"variable": [
+												{
+													"id": "7ec3e667-3874-4fe7-af4a-428b14fcc2c6",
+													"key": "servicePointId",
+													"value": "{{servicePointId}}",
+													"description": "(Required) ID of the specific service point requested.  This is a tokenised ID previous obtained from the Service Point List Data end point.  Note that it is not a nationalMeteringId.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain a list of electricity usage data from a particular service point.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.012) for additional information."
+									},
+									"response": []
+								},
+								{
+									"name": "T.EAR.033 Get DER For Service Point v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "2583442e-6ec2-4b70-81d4-6e1b3e1bd0f7",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyDerDetailResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "c008a5a9-00a7-4144-85a0-6832e23f837a",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/:servicePointId/der",
+											"host": [
+												"{{secondaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"electricity",
+												"servicepoints",
+												":servicePointId",
+												"der"
+											],
+											"variable": [
+												{
+													"id": "40245f28-e12c-4bf0-9919-7e0f3c2d0d65",
+													"key": "servicePointId",
+													"value": "{{servicePointId}}",
+													"description": "(Required) ID of the specific service point requested.  This is a tokenised ID previous obtained from the Service Point List Data end point.  Note that it is not a nationalMeteringId.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain a list of DER data from a particular service point\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.033) for additional information."
+									},
+									"response": []
+								}
+							],
+							"_postman_id": "f34eaa4d-ebee-438f-9483-eeebaeb6a9c8",
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "usage",
+							"item": [
+								{
+									"name": "T.EAR.045 Get Bulk Usage v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "ea93bf60-9c93-420d-a65a-fd7b9416a020",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyUsageListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "f46b10f6-0f66-4c53-84cd-4fc48d0d509b",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "c4624ec7-7ef3-4dbd-b1a1-c1d63a020346",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/usage?page=1&page-size={{pageSize}}",
+											"host": [
+												"{{secondaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"electricity",
+												"servicepoints",
+												"usage"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain usage data for all service points associated with the customer.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.045) for additional information."
+									},
+									"response": []
+								},
+								{
+									"name": "T.EAR.023 Get Usage For Specific Service Points v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "f0779429-ae69-4706-ba63-220af7ff5628",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyUsageListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "9336c05b-33da-4318-8dbf-e2828d7f623c",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "e9c11ed2-1fe4-448b-b474-b233c27d5767",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"data\": {\n        \"servicePointIds\": [\n            \"{{servicePointId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/usage?page=1&page-size={{pageSize}}",
+											"host": [
+												"{{secondaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"electricity",
+												"servicepoints",
+												"usage"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain the electricity usage data for a specific set of service points.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.023) for additional information."
+									},
+									"response": []
+								}
+							],
+							"_postman_id": "fdcd0e51-6a9e-4756-a586-0aa2f454bca1",
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "der",
+							"item": [
+								{
+									"name": "T.EAR.061 Get Bulk DER",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyDerListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid).to.be.true; \r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript",
+												"id": "872529aa-4fcc-4213-b36f-c1698abc65ed"
+											}
+										}
+									],
+									"_postman_id": "64d1d414-760e-46af-b30e-f1f53ca42eea",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/der?page=1&page-size={{pageSize}}",
+											"host": [
+												"{{secondaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"electricity",
+												"servicepoints",
+												"der"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain DER data for all service points associated with the customer\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.061) for additional information."
+									},
+									"response": []
+								},
+								{
+									"name": "T.EAR.039 Get DER For Specific Service Points",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyDerListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid).to.be.true; \r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript",
+												"id": "230f357b-b475-488e-bdc1-1335e094dc94"
+											}
+										}
+									],
+									"_postman_id": "d2944f14-6768-4948-be37-60d53eb7db06",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"data\": {\n        \"servicePointIds\": [\n            \"{{servicePointId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/der?page=1&page-size={{pageSize}}",
+											"host": [
+												"{{secondaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"electricity",
+												"servicepoints",
+												"der"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain DER data for a specific set of service points\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.039) for additional information."
+									},
+									"response": []
+								}
+							],
+							"_postman_id": "16b68b4b-5911-4ce0-90b2-b02c94614c48",
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "T.EAR.001 Get Service Points v1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "71882444-7350-43c0-acde-68159f33943b",
+										"exec": [
+											"",
+											"        // Parse the response body",
+											"        var jsonData;",
+											"        try {",
+											"            jsonData = pm.response.json();",
+											"",
+											"            }",
+											"        catch(e) {",
+											"            console.log(e);",
+											"        }",
+											" ",
+											"        ",
+											"        var requestVersion = pm.request.headers.get(\"x-v\");",
+											"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
+											"",
+											"        var requestMinVersion = pm.request.headers.get(\"x-min-v\");",
+											"        var requestMinVersionNumber = Number(pm.request.headers.get(\"x-min-v\"));",
+											"",
+											"        var requestXvIsPositiveInteger = Number.isSafeInteger(requestVersionNumber);",
+											"        var requestMinXvIsPositiveInteger = Number.isSafeInteger(requestMinVersionNumber);",
+											"",
+											"        ((requestVersion != null && requestXvIsPositiveInteger == true) ? pm.test : pm.test.skip)(\"A.CVN.001: Validate version - valid version number [x-v]\", function () {",
+											"            var responseVersion = pm.request.headers.get(\"x-v\");",
+											"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+											"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+											"            pm.response.to.have.status(200);",
+											"            pm.expect(responseVersion).not.null;",
+											"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
+											"        });",
+											"",
+											"        ((requestMinVersion != null && requestMinXvIsPositiveInteger == true) ? pm.test : pm.test.skip)(\"A.CVM.001: Validate version - <x-min-v> is provided\", function () {",
+											"            var responseVersion = pm.request.headers.get(\"x-v\");",
+											"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+											"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+											"            pm.response.to.have.status(200);",
+											"            pm.expect(responseVersion).not.null;",
+											"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
+											"            pm.expect(responseVersionNumber).gte(requestMinVersionNumber);",
+											"",
+											"        });",
+											"",
+											"        var requestXFapi = pm.request.headers.get(\"x-fapi-interaction-id\");",
+											"        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"A.CFI.001: Validate FAPI Interaction ID - included in request\", function () {",
+											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
+											"            pm.expect(responseXFapi).equals(requestXFapi);",
+											"        });",
+											"",
+											"        ((requestXFapi == null) ? pm.test : pm.test.skip)(\"A.CFI.002: Validate FAPI Interaction ID - not in request\", function () {",
+											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
+											"            pm.expect(responseXFapi).not.null;",
+											"        });",
+											"",
+											"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('A.EAR.004: Validate schema - EnergyServicePointListReponse', function() {",
+											"            const valid = ajv.validate(\"EnergyServicePointListResponse\", jsonData)",
+											"            if (!valid){",
+											"            ajv.errors.forEach(element => {",
+											"                console.log(JSON.stringify(element));",
+											"                });",
+											"            };",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+											"        });  ",
+											"",
+											"  ",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7883fca6-3002-487d-8da9-a47f705e7934",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"_postman_id": "a8d4f7d2-e72e-4eb1-9d83-28ea616a2c62",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{accessToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-min-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "{{x-fapi-auth-date}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "{{x-fapi-customer-ip-address}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{x-fapi-interaction-id}}",
+										"type": "text"
+									},
+									{
+										"key": "x-cds-client-headers",
+										"value": "{{cdsClientHeader}}",
+										"type": "text"
+									},
+									{
+										"key": "x-v",
+										"value": "1",
+										"type": "text"
+									}
+								],
+								"url": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints",
+								"description": "Obtain a list of service points owned by the customer that has authorised the current session\n\nRefer to [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/latest/#testcase-t.ear.001)"
+							},
+							"response": []
+						},
+						{
+							"name": "T.EAR.109 Get Service Points  invalid version value",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "cc8ee125-2d54-45a8-b02b-a650a1a389d3",
+										"exec": [
+											"",
+											"        // Parse the response body",
+											"        var jsonData;",
+											"        try {",
+											"            jsonData = pm.response.json();",
+											"",
+											"            }",
+											"        catch(e) {",
+											"            console.log(e);",
+											"        }",
+											"",
+											"        ",
+											"        ",
+											"        var requestVersion = pm.request.headers.get(\"x-v\");",
+											"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
+											"        var requestXvIsValidInteger = Number.isSafeInteger(requestVersionNumber) && requestVersionNumber >= 0 && requestVersionNumber < 1001;",
+											"",
+											"",
+											"        ((requestVersion != null && (requestXvIsValidInteger == false)) ? pm.test : pm.test.skip)(\"A.CVN.002: Validate version - invalid version value [x-v]\", function () {",
+											"            pm.response.to.have.status(400);",
+											"            const valid = ajv.validate(\"ErrorListResponse\", jsonData)",
+											"            if (!valid){",
+											"            ajv.errors.forEach(element => {",
+											"                console.log(JSON.stringify(element));",
+											"                });",
+											"            };",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+											"            pm.expect(jsonData.errors?.code, JSON.stringify(ajv.errors)).equals(\"urn:au-cds:error:cds-all:Field/Invalid\")       ",
+											"",
+											"        });",
+											"",
+											"        var requestXFapi = pm.request.headers.get(\"x-fapi-interaction-id\");",
+											"        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"A.CFI.001: Validate FAPI Interaction ID - included in request\", function () {",
+											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
+											"            pm.expect(responseXFapi).equals(requestXFapi);",
+											"        });",
+											"",
+											"        ((requestXFapi == null) ? pm.test : pm.test.skip)(\"A.CFI.002: Validate FAPI Interaction ID - not in request\", function () {",
+											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
+											"            pm.expect(responseXFapi).not.null;",
+											"        });",
+											"  ",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e1f57b35-675b-449b-a600-d8ce18635b21",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"_postman_id": "c881aa2f-f154-47eb-9a7f-1117bf168a47",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-min-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "{{x-fapi-auth-date}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "{{x-fapi-customer-ip-address}}",
+										"type": "text"
+									},
+									{
+										"key": "x-cds-client-headers",
+										"value": "{{cdsClientHeader}}",
+										"type": "text"
+									},
+									{
+										"key": "x-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{x-fapi-interaction-id}}",
+										"type": "text"
+									}
+								],
+								"url": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints",
+								"description": "Obtain a list of service points owned by the customer that has authorised the current session\n\nRefer to [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.001)"
+							},
+							"response": []
+						},
+						{
+							"name": "T.EAR.002 Get Service Points v1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b604355c-9b5f-4b9a-9c0f-4261b284e3d7",
+										"exec": [
+											"\r",
+											"        // Parse the response body\r",
+											"        var jsonData;\r",
+											"        try {\r",
+											"            jsonData = pm.response.json();\r",
+											"\r",
+											"            }\r",
+											"        catch(e) {\r",
+											"            console.log(e);\r",
+											"        }\r",
+											"\r",
+											"        // HTTP Response and headers\r",
+											"        pm.test(\"Status code is 200\", function () {\r",
+											"            pm.response.to.have.status(200);\r",
+											"        });\r",
+											"\r",
+											"        // Schema payload check\r",
+											"        ((pm.response.code == 200) ? pm.test : pm.test.skip), pm.test('A.EAR.004 Response payload conforms to standards schema', function() {\r",
+											"            const valid = ajv.validate(\"EnergyServicePointListResponse\", jsonData)\r",
+											"            if (!valid){\r",
+											"            ajv.errors.forEach(element => {\r",
+											"                console.log(JSON.stringify(element));\r",
+											"                });\r",
+											"            };\r",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+											"        });    \r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "a1b39816-6e89-4c2c-98ee-12cb921223e9",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"_postman_id": "da80090e-bab5-430a-b8b2-d1b62515ce19",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-min-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{x-fapi-interaction-id}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "{{x-fapi-auth-date}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "{{x-fapi-customer-ip-address}}",
+										"type": "text"
+									},
+									{
+										"key": "x-cds-client-headers",
+										"value": "{{cdsClientHeader}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints?page=1&page-size={{pageSize}}",
+									"host": [
+										"{{secondaryDataHolderUrl}}"
+									],
+									"path": [
+										"energy",
+										"electricity",
+										"servicepoints"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page of results to request (standard pagination)"
+										},
+										{
+											"key": "page-size",
+											"value": "{{pageSize}}",
+											"description": "Page size to request.  Default is 25 (standard pagination)"
+										}
+									]
+								},
+								"description": "Obtain a list of service points owned by the customer that has authorised the current session"
+							},
+							"response": []
+						}
+					],
+					"_postman_id": "8609c4d9-a7db-4c13-aba0-260ea181d421",
+					"_postman_isSubFolder": true
+				}
+			],
+			"_postman_id": "75e16e44-b614-4929-b86a-8bcdf46529b3",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "fb2dbae3-ea30-42ed-abfe-ca299ca30267",
+						"type": "text/javascript",
+						"exec": [
+							"var moment = require('moment');",
+							"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";",
+							"var fapiDate = moment().format(dateFormat);",
+							"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "b180097f-0dd7-46f4-9d28-bb1f957d270c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Primary Dataholder",
+			"item": [
+				{
+					"name": "accounts",
+					"item": [
+						{
+							"name": "{account Id}",
+							"item": [
+								{
+									"name": "Get Account Detail v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3eca71e7-7252-40e7-b278-c1eb41c5ece8",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyAccountDetailResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "812ecd55-27af-4627-8dde-f925dcff0a8c",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId"
+											],
+											"variable": [
+												{
+													"id": "ddd2830d-ac35-402c-aac1-35297b216e37",
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain detailed information for a specific energy account"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Account Detail v2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3eca71e7-7252-40e7-b278-c1eb41c5ece8",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyAccountDetailResponseV2\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "ffb3cbc0-afe7-4f7d-8712-d11914a2f2ac",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "2",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "2",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId"
+											],
+											"variable": [
+												{
+													"id": "ddd2830d-ac35-402c-aac1-35297b216e37",
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain detailed information for a specific energy account"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Agreed Payment Schedule v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "19c55788-5f28-414e-9b31-76921a471234",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyPaymentScheduleResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "c958d0d2-2f62-4d8f-a24f-bf94c7949990",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/payment-schedule",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId",
+												"payment-schedule"
+											],
+											"variable": [
+												{
+													"id": "f8582b54-4289-49c6-af85-e19448e404dd",
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain the agreed payment schedule and details, if any, for a specific energy account"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Concessions v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9f9d7d7f-dd41-4653-ab06-29b9da3494c0",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyConcessionsResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;; \r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7e8a4936-934a-4036-9824-d58e75191d59",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "e8c04fc6-6f6e-445f-b07c-28a728f3ac08",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/concessions",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId",
+												"concessions"
+											],
+											"variable": [
+												{
+													"id": "26f206b2-7052-4a5b-b751-d59b93fb9f62",
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain the details of any concessions or hardship arrangements applied to a specific energy account"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Balance For Account v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "fb480438-5c63-4d33-9186-d04c220521a1",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyBalanceResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "2eac1081-1ec9-4d8f-a54e-2cbe65d833f2",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "d226ab56-bd88-4f5a-a00e-211a3cc7a758",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/balance",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId",
+												"balance"
+											],
+											"variable": [
+												{
+													"id": "3654c042-33fc-43ec-81e2-68df2bb11edd",
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain the current balance for a specific account"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Invoices For Account v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "9fd52dfb-be17-437f-bed1-2faca2df8c75",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyInvoiceListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true; \r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "b906c92c-b39f-4b32-bc1d-02c27f331f04",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "3d65b9ac-36e6-4e9d-8577-1004b8fbca83",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "(Required) Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)",
+												"key": "x-v",
+												"value": "1"
+											},
+											{
+												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable.",
+												"key": "x-min-v",
+												"value": "1"
+											},
+											{
+												"description": "An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122] UUID value is required to be provided in the response header to track the interaction.",
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}"
+											},
+											{
+												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls.",
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}"
+											},
+											{
+												"description": "The customer's original IP address if the customer is currently logged in to the data recipient. The presence of this header indicates that the API is being called in a customer present context. Not to be included for unauthenticated calls.",
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}"
+											},
+											{
+												"description": "The customer's original standard http headers [Base64](#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the data recipient. Mandatory for customer present calls.  Not required for unattended or unauthenticated calls.",
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/invoices?newest-date={{timeCurrent}}&oldest-date={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId",
+												"invoices"
+											],
+											"query": [
+												{
+													"key": "newest-date",
+													"value": "{{timeCurrent}}",
+													"description": "Constrain the request to records with effective date at or before this date.  If absent defaults to current date.  Format is aligned to DateString common type"
+												},
+												{
+													"key": "oldest-date",
+													"value": "{{dateLastYear}}",
+													"description": "Constrain the request to records with effective date at or after this date. If absent defaults to newest-date minus 24 months days.  Format is aligned to DateString common type"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											],
+											"variable": [
+												{
+													"id": "74f4af8d-2e03-4df3-b4c5-a32bc084403a",
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain the invoices for a specific account"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Billing For Account v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "1d014cab-4941-4603-83c1-ebb2aa19f7df",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyBillingListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "86edbf49-6333-4797-96ad-f51475c15f4e",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "35b010f0-3b21-4ac7-80a3-2db9cfac4b07",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId",
+												"billing"
+											],
+											"query": [
+												{
+													"key": "newest-time",
+													"value": "{{timeCurrent}}",
+													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "oldest-time",
+													"value": "{{dateLastYear}}",
+													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											],
+											"variable": [
+												{
+													"id": "178b8201-1fac-4608-9556-f19fa0021178",
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point.",
+													"type": "string"
+												}
+											]
+										},
+										"description": "Obtain the billing transactions for a specific account"
+									},
+									"response": []
+								}
+							],
+							"_postman_id": "68ea8e3d-31db-426b-8bbc-8f1d19bbf0f0",
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "balances",
+							"item": [
+								{
+									"name": "Get Bulk Balances v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "c6d41146-7730-4982-a572-ea079ab78e5f",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyBalanceListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "3b38ee24-0827-4391-9b12-8e0f6cb34397",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "81e381fe-11be-4275-9976-9c1be8b4ef73",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/balances?page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												"balances"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain the current balance for all accounts"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Balances For Specific Accounts v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "eff70fc9-1817-4cff-869f-d809279aa4b7",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyBalanceListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "be04dfbf-10a2-4cd8-8025-b4263eb8380d",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "7e70bb51-db08-4db4-a81d-86760790b075",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\",\n            \"{{accountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/balances?page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												"balances"
+											],
+											"query": [
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain the current balance for a specified set of accounts"
+									},
+									"response": []
+								}
+							],
+							"_postman_id": "d837933d-8bb7-4f82-b9d1-96425a5d2d04",
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "invoices",
+							"item": [
+								{
+									"name": "Get Bulk Invoices v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "37572351-fbd2-43de-b184-175a52ef9680",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyInvoiceListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "47b53845-7a9f-4610-b432-875def4be2a3",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "50894b9b-2c1f-4c0e-9ca0-ac128ae87c66",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/invoices?newest-date={{timeCurrent}}&oldest-date={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												"invoices"
+											],
+											"query": [
+												{
+													"key": "newest-date",
+													"value": "{{timeCurrent}}",
+													"description": "Constrain the request to records with effective date at or before this date.  If absent defaults to current date.  Format is aligned to DateString common type"
+												},
+												{
+													"key": "oldest-date",
+													"value": "{{dateLastYear}}",
+													"description": "Constrain the request to records with effective date at or after this date. If absent defaults to newest-date minus 24 months days.  Format is aligned to DateString common type"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain the invoices for all accounts"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Invoices For Specific Accounts v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "4ebf2e23-7ef6-4659-804f-4b23b39a468d",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyInvoiceListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7615fe68-aa5c-4221-bc27-339b30d25349",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "1c7bddef-5745-41af-b89e-1476b3eaf2d2",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/invoices?newest-date={{timeCurrent}}&oldest-date={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												"invoices"
+											],
+											"query": [
+												{
+													"key": "newest-date",
+													"value": "{{timeCurrent}}",
+													"description": "Constrain the request to records with effective date at or before this date.  If absent defaults to current date.  Format is aligned to DateString common type"
+												},
+												{
+													"key": "oldest-date",
+													"value": "{{dateLastYear}}",
+													"description": "Constrain the request to records with effective date at or after this date. If absent defaults to newest-date minus 24 months days.  Format is aligned to DateString common type"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain invoices for a specified set of accounts"
+									},
+									"response": []
+								}
+							],
+							"_postman_id": "521d9a42-dfdb-4077-bd77-06f37af22dbb",
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "billing",
+							"item": [
+								{
+									"name": "Get Bulk Billing",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyBillingListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid).to.be.true; \r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript",
+												"id": "4564afab-d23c-46cc-8133-1aea68cc4347"
+											}
+										}
+									],
+									"_postman_id": "9775ee10-d9a4-4619-ac0e-804db5c56df6",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text",
+												"description": "(Required) Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												"billing"
+											],
+											"query": [
+												{
+													"key": "newest-time",
+													"value": "{{timeCurrent}}",
+													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "oldest-time",
+													"value": "{{dateLastYear}}",
+													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain billing transactions for all accounts"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Billing For Specific Accounts",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "465618a7-8ce1-44bf-a875-cb089ba93440",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyBillingListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid).to.be.true; \r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"_postman_id": "88c2c888-b6f6-4ba3-bdf7-2db74892aa4e",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text",
+												"description": "(Required) Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text",
+												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable."
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text",
+												"description": "An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122] UUID value is required to be provided in the response header to track the interaction."
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text",
+												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text",
+												"description": "The customer's original IP address if the customer is currently logged in to the data recipient. The presence of this header indicates that the API is being called in a customer present context. Not to be included for unauthenticated calls."
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text",
+												"description": "The customer's original standard http headers [Base64](#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the data recipient. Mandatory for customer present calls.  Not required for unattended or unauthenticated calls."
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												"billing"
+											],
+											"query": [
+												{
+													"key": "newest-time",
+													"value": "{{timeCurrent}}",
+													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "oldest-time",
+													"value": "{{dateLastYear}}",
+													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain billing for a specified set of accounts"
+									},
+									"response": []
+								}
+							],
+							"_postman_id": "d9819833-9b26-4fd6-bc85-bcca05618699",
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Get Accounts v1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ffd6af22-337e-4a22-ba9b-c043b8087575",
+										"exec": [
+											"        // Parse the response body\r",
+											"        var jsonData;\r",
+											"        try {\r",
+											"            jsonData = pm.response.json();\r",
+											"\r",
+											"            }\r",
+											"        catch(e) {\r",
+											"            console.log(e);\r",
+											"        }\r",
+											"\r",
+											"        // HTTP Response and headers\r",
+											"        pm.test(\"Status code is 200\", function () {\r",
+											"            pm.response.to.have.status(200);\r",
+											"        });\r",
+											"\r",
+											"\r",
+											"        // Schema payload check\r",
+											"        pm.test('Response payload conforms to standards schema', function() {\r",
+											"            const valid = ajv.validate(\"EnergyAccountListResponse\", jsonData)\r",
+											"            if (!valid){\r",
+											"            ajv.errors.forEach(element => {\r",
+											"                console.log(JSON.stringify(element));\r",
+											"                });\r",
+											"            };\r",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+											"        });    \r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "9ffda550-2619-47ba-8924-70d8a46ce0b7",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"_postman_id": "ce90b745-0b53-4b0d-ab20-22a9878b0c14",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-min-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{x-fapi-interaction-id}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "{{x-fapi-auth-date}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "{{x-fapi-customer-ip-address}}",
+										"type": "text"
+									},
+									{
+										"key": "x-cds-client-headers",
+										"value": "{{cdsClientHeader}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{primaryDataHolderUrl}}/energy/accounts?page=1&page-size={{pageSize}}",
+									"host": [
+										"{{primaryDataHolderUrl}}"
+									],
+									"path": [
+										"energy",
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page of results to request (standard pagination)"
+										},
+										{
+											"key": "page-size",
+											"value": "{{pageSize}}",
+											"description": "Page size to request.  Default is 25 (standard pagination)"
+										}
+									]
+								},
+								"description": "Obtain the list of energy accounts available under the authorised consent"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Accounts v2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ffd6af22-337e-4a22-ba9b-c043b8087575",
+										"exec": [
+											"        // Parse the response body\r",
+											"        var jsonData;\r",
+											"        try {\r",
+											"            jsonData = pm.response.json();\r",
+											"\r",
+											"            }\r",
+											"        catch(e) {\r",
+											"            console.log(e);\r",
+											"        }\r",
+											"\r",
+											"        // HTTP Response and headers\r",
+											"        pm.test(\"Status code is 200\", function () {\r",
+											"            pm.response.to.have.status(200);\r",
+											"        });\r",
+											"\r",
+											"\r",
+											"        // Schema payload check\r",
+											"        pm.test('Response payload conforms to standards schema', function() {\r",
+											"            const valid = ajv.validate(\"EnergyAccountListResponseV2\", jsonData)\r",
+											"            if (!valid){\r",
+											"            ajv.errors.forEach(element => {\r",
+											"                console.log(JSON.stringify(element));\r",
+											"                });\r",
+											"            };\r",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+											"        });    \r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "9ffda550-2619-47ba-8924-70d8a46ce0b7",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"_postman_id": "c2f56ae0-1c72-44b1-a696-16f5e6107d51",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-v",
+										"value": "2",
+										"type": "text"
+									},
+									{
+										"key": "x-min-v",
+										"value": "2",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{x-fapi-interaction-id}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "{{x-fapi-auth-date}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "{{x-fapi-customer-ip-address}}",
+										"type": "text"
+									},
+									{
+										"key": "x-cds-client-headers",
+										"value": "{{cdsClientHeader}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{primaryDataHolderUrl}}/energy/accounts?page=1&page-size={{pageSize}}",
+									"host": [
+										"{{primaryDataHolderUrl}}"
+									],
+									"path": [
+										"energy",
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page of results to request (standard pagination)"
+										},
+										{
+											"key": "page-size",
+											"value": "{{pageSize}}",
+											"description": "Page size to request.  Default is 25 (standard pagination)"
+										}
+									]
+								},
+								"description": "Obtain the list of energy accounts available under the authorised consent"
+							},
+							"response": []
+						}
+					],
+					"_postman_id": "bf395ae8-fe78-44f8-8da8-ce18f57fca33",
+					"_postman_isSubFolder": true
+				}
+			],
+			"_postman_id": "1a911f0e-6450-46a6-b892-3f6fb85208dc",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a7757f02-a68d-4029-be12-ae5aae29bb3d",
+						"type": "text/javascript",
+						"exec": [
+							"var moment = require('moment');",
+							"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";",
+							"var fapiDate = moment().format(dateFormat);",
+							"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5cde7853-b02f-4e0e-8ac5-e7493ffc06b7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{accessToken}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "bc0697cd-775e-4a6d-aa0f-1a6f6e73b0ac",
+				"type": "text/javascript",
+				"exec": [
+					"var moment = require('moment');",
+					"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";",
+					"var fapiDate = moment().format(dateFormat);",
+					"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);",
+					"",
+					"if (pm.iterationData.get(\"unauthenticatedResourceUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"unauthenticatedResourceUrl\", pm.iterationData.get(\"unauthenticatedResourceUrl\"));",
+					"",
+					"if (pm.iterationData.get(\"primaryDataHolderUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"primaryDataHolderUrl\", pm.iterationData.get(\"primaryDataHolderUrl\"));",
+					"",
+					"if (pm.iterationData.get(\"secondaryDataHolderUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"secondaryDataHolderUrl\", pm.iterationData.get(\"secondaryDataHolderUrl\"));",
+					"",
+					"if (pm.iterationData.get(\"version\") != undefined)",
+					"    pm.collectionVariables.set(\"version\", pm.iterationData.get(\"version\"));    ",
+					"",
+					"if (pm.iterationData.get(\"accessToken\") != undefined)",
+					"    pm.collectionVariables.set(\"accessToken\", pm.iterationData.get(\"accessToken\"));",
+					"",
+					"if (pm.iterationData.get(\"cdsClientHeader\") != undefined)",
+					"    pm.collectionVariables.set(\"cdsClientHeader\", pm.iterationData.get(\"cdsClientHeader\"));",
+					"",
+					"if (pm.iterationData.get(\"accountId\") != undefined)",
+					"    pm.collectionVariables.set(\"accountId\", pm.iterationData.get(\"accountId\"));",
+					"",
+					"if (pm.iterationData.get(\"planId\") != undefined)",
+					"    pm.collectionVariables.set(\"planId\", pm.iterationData.get(\"planId\")); ",
+					"",
+					"if (pm.iterationData.get(\"servicePointId\") != undefined)",
+					"    pm.collectionVariables.set(\"servicePointId\", pm.iterationData.get(\"servicePointId\")); ",
+					"",
+					"if (pm.iterationData.get(\"pageSize\") != undefined)",
+					"    pm.collectionVariables.set(\"pageSize\", pm.iterationData.get(\"pageSize\"));           ",
+					"",
+					"// Initialise only once",
+					"if (pm.variables.get(\"intitalised\") == 0 || pm.variables.get(\"intitalised\") == null) {",
+					"let Ajv = require('ajv');",
+					"ajv = new Ajv({logger: console});",
+					"",
+					"    pm.variables.set(\"intitalised\",1);",
+					"",
+					"    // Set some time relevant time stamps",
+					"    console.log(\"Pre-request: Setting common variables\")",
+					"    var timeCurrent = new Date();",
+					"",
+					"    var timeTenMinutesAgo = new Date(timeCurrent.getFullYear(),",
+					"                                    timeCurrent.getMonth(),",
+					"                                    timeCurrent.getDate(),",
+					"                                    timeCurrent.getHours(),",
+					"                                    timeCurrent.getMinutes()-10,",
+					"                                    timeCurrent.getSeconds());",
+					"    var dateToday = new Date(timeCurrent.getFullYear(),",
+					"                            timeCurrent.getMonth(),",
+					"                            timeCurrent.getDate(), 0, 0, 0);",
+					"    var dateYesterday = new Date(timeCurrent.getFullYear(),",
+					"                                timeCurrent.getMonth(),",
+					"                                timeCurrent.getDate() - 1, 0, 0, 0);",
+					"    var dateTomorrow = new Date(timeCurrent.getFullYear(),",
+					"                                timeCurrent.getMonth(),",
+					"                                timeCurrent.getDate() + 1, 0, 0, 0);",
+					"    var dateLastYear = new Date(timeCurrent.getFullYear() - 1,",
+					"                                timeCurrent.getMonth(),",
+					"                                timeCurrent.getDate(), 0, 0, 0);",
+					"",
+					"    // postman.setEnvironmentVariable(\"timeCurrent\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"timeTenMinutesAgo\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateToday\", dateToday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateYesterday\", dateYesterday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateTomorrow\", dateTomorrow.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateLastYear\", dateLastYear.toISOString());",
+					"",
+					"",
+					"    // setting the base url for schema files",
+					"    var version = pm.collectionVariables.get(\"version\");",
+					"",
+					"    // setting the base url for schema files",
+					"    var version = pm.collectionVariables.get(\"version\");",
+					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/main/\";",
+					"    //var schemaBaseUrl = \"http://localhost:8080/\";",
+					"",
+					"    var urlEnergySchemaValidationFileDirectory = schemaBaseUrl + version + \"/postman/postman-validation-energy-\" + version + \".json\";",
+					"",
+					"    pm.sendRequest(urlEnergySchemaValidationFileDirectory, (error, responseEnergy) => {",
+					"        console.log(\"Reading schema files for energy....\"); ",
+					"        if (error) {",
+					"            console.log('Getting schema returned: ' + error);",
+					"        } else {",
+					"            ",
+					"            try { ",
+					"                let energySchemaCount = 0;",
+					"                let enrgySchemaAdded = 0;",
+					"                schemaEnergy = responseEnergy.json();",
+					"",
+					"                for (var key in schemaEnergy) {",
+					"                    energySchemaCount++;",
+					"                    if (schemaEnergy.hasOwnProperty(key)) {",
+					"                        schemaEnergy[key].$id = key;",
+					"                        try {",
+					"                            ajv.addSchema(schemaEnergy[key]);",
+					"                            energySchemaCount++;",
+					"                        }",
+					"                        catch(ex){",
+					"                            console.log(\"Exception in \" + key + \" : \" + JSON.stringify(ex));",
+					"                        }",
+					"                        ",
+					"                    }",
+					"                }",
+					"                console.log(\"Energy schema contains \" + energySchemaCount + \" entries\") ;",
+					"                console.log(\"Added \" + energySchemaCount + \" schemas from Energy\"); ",
+					"                pm.collectionVariables.set(\"GlobalEnergySchema\", schemaEnergy);       ",
+					"            } catch(e) {",
+					"                console.log(\"Exception :\" + JSON.stringify(e));",
+					"            }",
+					"             ",
+					"        }",
+					"    }); ",
+					"  }",
+					"",
+					"",
+					"// This is used for pagination to determine if this is the first page, last page, middle page or",
+					"// a single page response",
+					"",
+					"utils = {",
+					"    whichPage: function (currPage, totalPages, totalRecords, pageSize ) {",
+					"        if (pageSize == null) {pageSize = 25};",
+					"        ",
+					"        if (currPage == null) {currPage = 1};",
+					"",
+					"        if (totalPages <= 1 ) return 0;",
+					"",
+					"        if (totalRecords <= pageSize || (totalRecords > pageSize &&  currPage == 1)) return 1;   ",
+					"",
+					"        if (currPage > 1 && currPage < totalPages ){ return 2}",
+					"",
+					"        if (currPage == totalPages ){ return 3}",
+					"    },",
+					"    primaryDataHolderUrlProvided: function ( ) {",
+					"        if (pm.variables.get(\"primaryDataHolderUrl\") != \"\")",
+					"            return true;",
+					"        else",
+					"            return false;",
+					"    },",
+					"",
+					"    secondaryDataHolderUrlProvided: function ( ) {",
+					"        if (pm.variables.get(\"secondaryDataHolderUrlProvided\") != \"\")",
+					"            return true;",
+					"        else",
+					"            return false;",
+					"    },",
+					"    clientHeaderProvided: function ( ) {",
+					"        if (pm.variables.get(\"cdsClientHeader\") != \"\" )",
+					"            return true;",
+					"        else",
+					"            return false;",
+					"    },",
+					"    accessTokenProvided: function ( ) {",
+					"        if (pm.variables.get(\"accessToken\") != \"\")",
+					"            return true;",
+					"        else",
+					"            return false;",
+					"    }",
+					"};",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5c40b3e5-648c-4248-a9b7-c6f4a29cddd0",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "d2bc34d4-aa75-42c9-b36e-5297341682d5",
+			"key": "version",
+			"value": "1.19.0",
+			"type": "string"
+		},
+		{
+			"id": "b9ae62cc-3ed2-4b7c-a233-c46bf90f7830",
+			"key": "accessToken",
+			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9.",
+			"type": "string"
+		},
+		{
+			"id": "57c0e384-a4a2-460a-bbf4-40f9d95c1c64",
+			"key": "pageSize",
+			"value": "2",
+			"type": "string"
+		},
+		{
+			"id": "32a277b9-3149-4009-b410-353185fa3ee6",
+			"key": "servicePointId",
+			"value": "SP12345",
+			"type": "string"
+		},
+		{
+			"id": "d2aa3c2a-7ab4-4f19-af31-0446b2a6d484",
+			"key": "updatedSinceDate",
+			"value": "2010-05-30T06:23:54.270Z",
+			"type": "string"
+		},
+		{
+			"id": "495ad4a1-bff3-4d95-b3e8-6abe47fabea7",
+			"key": "x-fapi-auth-date",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "775dfc12-9b94-4dc8-93b8-3ea438d5b51a",
+			"key": "GlobalEnergySchema",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
