@@ -73,7 +73,10 @@
 											"script": {
 												"id": "15fb7436-0431-4fc4-a917-9780f7573533",
 												"exec": [
-													""
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript"
 											}
@@ -628,112 +631,112 @@
 	],
 	"variable": [
 		{
-			"id": "f5029dd7-b799-41fa-8279-fb1e99cd3c97",
+			"id": "c6d76579-2a8f-43d5-8b4d-c9da09661469",
 			"key": "interactionId",
 			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
 		},
 		{
-			"id": "80e33247-7a2d-454e-b69a-b9532677173b",
+			"id": "cf39ece8-4c5e-4414-a5cc-24f03cfa3c5c",
 			"key": "cdsClientHeader",
 			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
 		},
 		{
-			"id": "b2f890eb-7a31-46f9-a954-8f3b9a6810e2",
+			"id": "ae9dd72a-129c-42f6-b064-f2b004701704",
 			"key": "invalidId",
 			"value": "xxxINVALIDxxx"
 		},
 		{
-			"id": "d34fb886-144d-42bf-8292-a0130f6f9cb3",
+			"id": "e14e5776-b61c-456c-8db5-11abb5797efc",
 			"key": "effective",
 			"value": ""
 		},
 		{
-			"id": "bc688ee7-bcd3-4d4e-9c38-dd93e78dea2d",
+			"id": "98edd40f-fa66-47f0-95b9-8979b091bd5d",
 			"key": "pageArray",
 			"value": ""
 		},
 		{
-			"id": "e05d1632-5a01-474b-a4ae-cc30bf579fd4",
+			"id": "59b0f781-56c4-4eb0-8b63-fa97d1219598",
 			"key": "baseUrl",
 			"value": ""
 		},
 		{
-			"id": "abf61522-ab14-4a1e-bdf6-1950529116a8",
+			"id": "f95e6e55-a200-43eb-9f9e-dcc57abd30a7",
 			"key": "version",
-			"value": "1.17.0"
+			"value": "1.19.0"
 		},
 		{
-			"id": "374fbb42-e9d2-4011-a840-806c3f3a749d",
+			"id": "e4ec8a71-b6c1-41ee-8ee8-0b66bb044bc8",
 			"key": "x-v",
 			"value": ""
 		},
 		{
-			"id": "d77b532b-875f-43ee-98bd-6d22f4c73f5f",
+			"id": "14e04c73-50c3-48e9-9447-19a1b535d393",
 			"key": "x-min-v",
 			"value": ""
 		},
 		{
-			"id": "738e67d9-eedd-4bd7-84cf-af791c100379",
+			"id": "7d411215-bfee-45e6-9f2a-eb14f920c400",
 			"key": "accessToken",
 			"value": ""
 		},
 		{
-			"id": "6c88ac1e-e514-4303-a1c9-758dc658eef4",
+			"id": "37d9eeee-944f-4ee4-a038-c4068394348c",
 			"key": "testAccountId1",
 			"value": ""
 		},
 		{
-			"id": "abced805-77b8-456c-85ee-1908e222de2f",
+			"id": "c82908fc-0481-4118-ba36-946b3747c3bc",
 			"key": "collectionVariables",
 			"value": ""
 		},
 		{
-			"id": "b5bee860-41de-4edb-90ee-7051a8b93f9d",
+			"id": "c0661546-5ffd-4757-8a4d-564a44f5e26b",
 			"key": "intitalised",
 			"value": ""
 		},
 		{
-			"id": "ae01f04f-8e7b-4410-93dd-f3da40a2873a",
+			"id": "a1a34232-09c5-4b90-99d8-d18c3d234526",
 			"key": "pageSize",
 			"value": ""
 		},
 		{
-			"id": "1e12bf2f-a6a4-4c90-b115-ba18bb2d80fe",
+			"id": "a72e0715-0d52-4a66-9cb9-ee2d33d05967",
 			"key": "ResponseCommonCustomerDetailV2",
 			"value": ""
 		},
 		{
-			"id": "89219ed5-fb37-4cf5-8fe1-bac56a97631f",
+			"id": "013d05db-17c3-418e-895b-f7cba5a100b2",
 			"key": "ResponseCommonCustomer",
 			"value": ""
 		},
 		{
-			"id": "5de9f127-77c3-4d2b-a2ed-42a7243adde9",
+			"id": "e2c44c09-21ed-4f08-b007-911e1a5f58fd",
 			"key": "ResponseDiscoveryOutagesList",
 			"value": ""
 		},
 		{
-			"id": "29618ae9-71d2-4614-949e-897c20bf4a89",
+			"id": "4291d9cd-348e-4b5d-8b4d-522d594f246a",
 			"key": "ResponseCommonDiscoveryStatus",
 			"value": ""
 		},
 		{
-			"id": "d5abccac-7d34-49c7-902f-55dedf67b669",
+			"id": "481b7a95-d224-4c83-a869-726dfcea4090",
 			"key": "ResponseErrorListV2",
 			"value": ""
 		},
 		{
-			"id": "1977d679-66dd-4544-aeb3-23b5e3b71e92",
+			"id": "7de1137d-af8a-4177-867c-484bb5574491",
 			"key": "ResponseBankingProductByIdV4",
 			"value": ""
 		},
 		{
-			"id": "375f0ca1-7cec-4937-839e-02eefc61b553",
+			"id": "1d4cfc16-6dc4-47e3-911c-9233a67645eb",
 			"key": "GlobalCommonSchema",
 			"value": ""
 		},
 		{
-			"id": "363701db-8d44-42aa-b9a0-91d65b3e731d",
+			"id": "fe8ed1e9-e104-4cec-b910-1e79294c787e",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		}
