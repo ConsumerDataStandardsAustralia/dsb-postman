@@ -144,7 +144,7 @@
 													}
 												}
 											],
-											"_postman_id": "08d3f29c-a713-432a-a257-bf000fb90a19",
+											"id": "08d3f29c-a713-432a-a257-bf000fb90a19",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -380,7 +380,7 @@
 													}
 												}
 											],
-											"_postman_id": "0385c01c-e076-4bf0-9004-61483cad236b",
+											"id": "0385c01c-e076-4bf0-9004-61483cad236b",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -588,7 +588,7 @@
 													}
 												}
 											],
-											"_postman_id": "7e4196ae-5d5e-4e2d-beda-3c38cc5dbd17",
+											"id": "7e4196ae-5d5e-4e2d-beda-3c38cc5dbd17",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -633,8 +633,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{testAccountId1}}\",\r\n            \"{{testAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}",
-													"options": {}
+													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{testAccountId1}}\",\r\n            \"{{testAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?page={{currentPage}}&page-size={{pageSize}}",
@@ -807,7 +806,7 @@
 													}
 												}
 											],
-											"_postman_id": "5d336f3d-3473-44a9-8875-4c58abd3a039",
+											"id": "5d336f3d-3473-44a9-8875-4c58abd3a039",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -852,8 +851,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{testAccountId1}}\",\r\n            \"{{testAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}",
-													"options": {}
+													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{testAccountId1}}\",\r\n            \"{{testAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?page={{currentPage}}&page-size={{pageSize}}",
@@ -880,8 +878,7 @@
 											"response": []
 										}
 									],
-									"_postman_id": "26f5b4f5-2516-4f09-9235-c6c386290fed",
-									"_postman_isSubFolder": true
+									"id": "26f5b4f5-2516-4f09-9235-c6c386290fed"
 								},
 								{
 									"name": "balances",
@@ -1004,7 +1001,7 @@
 													}
 												}
 											],
-											"_postman_id": "e17dc731-f8a1-4a6d-be52-56882e3f3abe",
+											"id": "e17dc731-f8a1-4a6d-be52-56882e3f3abe",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -1210,7 +1207,7 @@
 													}
 												}
 											],
-											"_postman_id": "b3e5b97a-1ab4-461a-ab38-0c29e9dd4a1b",
+											"id": "b3e5b97a-1ab4-461a-ab38-0c29e9dd4a1b",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -1387,7 +1384,7 @@
 													}
 												}
 											],
-											"_postman_id": "96112746-5a9b-40d8-a357-9fe4af589a88",
+											"id": "96112746-5a9b-40d8-a357-9fe4af589a88",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -1432,8 +1429,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "",
-													"options": {}
+													"raw": ""
 												},
 												"url": "{{authenticatedResourceUrl}}/banking/accounts/balances"
 											},
@@ -1556,7 +1552,7 @@
 													}
 												}
 											],
-											"_postman_id": "5583778d-7aeb-4132-83a8-c3d8e7961620",
+											"id": "5583778d-7aeb-4132-83a8-c3d8e7961620",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -1601,8 +1597,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
-													"options": {}
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page={{currentPage}}&page-size={{pageSize}}",
@@ -1771,7 +1766,7 @@
 													}
 												}
 											],
-											"_postman_id": "d3b576bb-8e1b-44a8-acc6-a5e8c9decc8e",
+											"id": "d3b576bb-8e1b-44a8-acc6-a5e8c9decc8e",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -1816,8 +1811,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
-													"options": {}
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page={{currentPage}}&page-size={{pageSize}}",
@@ -1914,7 +1908,7 @@
 													}
 												}
 											],
-											"_postman_id": "71be55d3-1e50-4f41-8675-f0ed6d38bdfc",
+											"id": "71be55d3-1e50-4f41-8675-f0ed6d38bdfc",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -1959,8 +1953,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "",
-													"options": {}
+													"raw": ""
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/balance",
@@ -1977,8 +1970,7 @@
 														{
 															"id": "f6879592-0645-49c3-a2f7-7c6ffd31acca",
 															"key": "accountId",
-															"value": "{{testAccountId1}}",
-															"type": "string"
+															"value": "{{testAccountId1}}"
 														}
 													]
 												}
@@ -1986,7 +1978,7 @@
 											"response": []
 										}
 									],
-									"_postman_id": "d86e89ae-21d3-4e63-a62f-e5df97a21b5d",
+									"id": "d86e89ae-21d3-4e63-a62f-e5df97a21b5d",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -2015,8 +2007,7 @@
 												]
 											}
 										}
-									],
-									"_postman_isSubFolder": true
+									]
 								},
 								{
 									"name": "{account Id}",
@@ -2140,7 +2131,7 @@
 															}
 														}
 													],
-													"_postman_id": "e1309379-f5ab-4033-9c58-d5e626f45476",
+													"id": "e1309379-f5ab-4033-9c58-d5e626f45476",
 													"protocolProfileBehavior": {
 														"disableBodyPruning": true
 													},
@@ -2211,8 +2202,7 @@
 																	"id": "38342979-6517-48ef-9352-574cc9eda2d5",
 																	"key": "accountId",
 																	"value": "{{testAccountId1}}",
-																	"description": "ID of the account to get transactions for.  Must have previously been returned by one of the account list end points.",
-																	"type": "string"
+																	"description": "ID of the account to get transactions for.  Must have previously been returned by one of the account list end points."
 																}
 															]
 														},
@@ -2356,7 +2346,7 @@
 															}
 														}
 													],
-													"_postman_id": "c1a85f3e-a707-4df6-9def-96860557d12a",
+													"id": "c1a85f3e-a707-4df6-9def-96860557d12a",
 													"protocolProfileBehavior": {
 														"disableBodyPruning": true
 													},
@@ -2425,8 +2415,7 @@
 																	"id": "c9d3d09e-fb35-46e7-8518-083dab8145aa",
 																	"key": "accountId",
 																	"value": "{{testAccountId1}}",
-																	"description": "ID of the account to get transactions for.  Must have previously been returned by one of the account list end points.",
-																	"type": "string"
+																	"description": "ID of the account to get transactions for.  Must have previously been returned by one of the account list end points."
 																}
 															]
 														},
@@ -2490,7 +2479,7 @@
 															}
 														}
 													],
-													"_postman_id": "64e83148-21ff-4561-85ec-eaf749dfcfd1",
+													"id": "64e83148-21ff-4561-85ec-eaf749dfcfd1",
 													"protocolProfileBehavior": {
 														"disableBodyPruning": true
 													},
@@ -2549,14 +2538,12 @@
 																{
 																	"id": "bc9782ea-ab7c-4955-b331-ebd7b6f6a90e",
 																	"key": "accountId",
-																	"value": "{{testTransactionAccountId}}",
-																	"type": "string"
+																	"value": "{{testTransactionAccountId}}"
 																},
 																{
 																	"id": "21b93f07-2769-42fc-815d-52aee4a28dc5",
 																	"key": "transactionId",
-																	"value": "{{testTransactionId}}",
-																	"type": "string"
+																	"value": "{{testTransactionId}}"
 																}
 															]
 														},
@@ -2662,7 +2649,7 @@
 													]
 												}
 											],
-											"_postman_id": "f1694ff0-e985-4da8-bb20-9e3a09ee7f10",
+											"id": "f1694ff0-e985-4da8-bb20-9e3a09ee7f10",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -2691,8 +2678,7 @@
 														]
 													}
 												}
-											],
-											"_postman_isSubFolder": true
+											]
 										},
 										{
 											"name": "Get Direct Debits For Account - First page",
@@ -2815,7 +2801,7 @@
 													}
 												}
 											],
-											"_postman_id": "127a8203-de2c-4b84-a2fd-652104540f97",
+											"id": "127a8203-de2c-4b84-a2fd-652104540f97",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -2886,8 +2872,7 @@
 															"id": "110762f0-ab91-4fe1-9da0-e03af3867c83",
 															"key": "accountId",
 															"value": "{{testAccountId1}}",
-															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points.",
-															"type": "string"
+															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points."
 														}
 													]
 												},
@@ -3124,7 +3109,7 @@
 													}
 												}
 											],
-											"_postman_id": "1e7c2dbe-151b-484d-b1af-ad25888b6d0e",
+											"id": "1e7c2dbe-151b-484d-b1af-ad25888b6d0e",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -3195,8 +3180,7 @@
 															"id": "f7483ffc-a6b4-482c-8abe-4b99ae73f017",
 															"key": "accountId",
 															"value": "{{testAccountId1}}",
-															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points.",
-															"type": "string"
+															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points."
 														}
 													]
 												},
@@ -3413,7 +3397,7 @@
 													}
 												}
 											],
-											"_postman_id": "0500d2f2-8746-4072-a101-60aa71a98a45",
+											"id": "0500d2f2-8746-4072-a101-60aa71a98a45",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -3485,8 +3469,7 @@
 															"id": "5b588dbf-b4ce-435b-88b2-cde2d48226eb",
 															"key": "accountId",
 															"value": "{{testAccountId1}}",
-															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment",
-															"type": "string"
+															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment"
 														}
 													]
 												},
@@ -3718,7 +3701,7 @@
 													}
 												}
 											],
-											"_postman_id": "b3e8e7a3-b779-4122-90fe-670ebeffadbc",
+											"id": "b3e8e7a3-b779-4122-90fe-670ebeffadbc",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -3790,8 +3773,7 @@
 															"id": "3543834c-363a-4c8e-88df-699c7a192a98",
 															"key": "accountId",
 															"value": "{{testAccountId1}}",
-															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment",
-															"type": "string"
+															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment"
 														}
 													]
 												},
@@ -3890,8 +3872,7 @@
 											]
 										}
 									],
-									"_postman_id": "fbc200f0-dcb7-468e-b2f1-8cff3421d0d6",
-									"_postman_isSubFolder": true
+									"id": "fbc200f0-dcb7-468e-b2f1-8cff3421d0d6"
 								},
 								{
 									"name": "balances-negative-tests",
@@ -3968,7 +3949,7 @@
 													}
 												}
 											],
-											"_postman_id": "95b1eb94-19ec-45ff-98c3-cb5e2bc70e76",
+											"id": "95b1eb94-19ec-45ff-98c3-cb5e2bc70e76",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -4013,8 +3994,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{invalidId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
-													"options": {}
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{invalidId}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": "{{authenticatedResourceUrl}}/banking/accounts/balances",
 												"description": "Obtain balances for a specified list of accounts"
@@ -4022,8 +4002,7 @@
 											"response": []
 										}
 									],
-									"_postman_id": "d0fb405e-4b03-47e0-aa82-07600c55e69e",
-									"_postman_isSubFolder": true
+									"id": "d0fb405e-4b03-47e0-aa82-07600c55e69e"
 								},
 								{
 									"name": "Get Accounts - First page",
@@ -4152,7 +4131,7 @@
 											}
 										}
 									],
-									"_postman_id": "ec75ad34-6a6a-48e4-a23c-00bdd222c9ed",
+									"id": "ec75ad34-6a6a-48e4-a23c-00bdd222c9ed",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -4372,7 +4351,7 @@
 											}
 										}
 									],
-									"_postman_id": "c00220eb-5d8e-489e-a0fb-163473e91157",
+									"id": "c00220eb-5d8e-489e-a0fb-163473e91157",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -4525,7 +4504,7 @@
 											}
 										}
 									],
-									"_postman_id": "06fb8061-1ff4-4826-bbaa-51ed6ad6f8d5",
+									"id": "06fb8061-1ff4-4826-bbaa-51ed6ad6f8d5",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -4577,8 +4556,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "",
-											"options": {}
+											"raw": ""
 										},
 										"url": {
 											"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId",
@@ -4594,8 +4572,7 @@
 												{
 													"id": "621392d1-2605-4c58-bfb4-37a820bdd4b7",
 													"key": "accountId",
-													"value": "{{testAccountId1}}",
-													"type": "string"
+													"value": "{{testAccountId1}}"
 												}
 											]
 										}
@@ -4662,7 +4639,7 @@
 											}
 										}
 									],
-									"_postman_id": "c1d288ef-23c0-4b70-82fa-d18a25a530da",
+									"id": "c1d288ef-23c0-4b70-82fa-d18a25a530da",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -4714,8 +4691,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "",
-											"options": {}
+											"raw": ""
 										},
 										"url": {
 											"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId",
@@ -4731,8 +4707,7 @@
 												{
 													"id": "07d91a72-420b-4c28-b251-2e9fa65c588b",
 													"key": "accountId",
-													"value": "{{invalidId}}",
-													"type": "string"
+													"value": "{{invalidId}}"
 												}
 											]
 										}
@@ -4815,7 +4790,7 @@
 											}
 										}
 									],
-									"_postman_id": "2ba771f1-2cad-44d7-817a-bd7e39163979",
+									"id": "2ba771f1-2cad-44d7-817a-bd7e39163979",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -4889,8 +4864,7 @@
 									"response": []
 								}
 							],
-							"_postman_id": "3de75861-242b-4d43-9658-d8a383ad0fb2",
-							"_postman_isSubFolder": true
+							"id": "3de75861-242b-4d43-9658-d8a383ad0fb2"
 						},
 						{
 							"name": "payments",
@@ -5026,7 +5000,7 @@
 													}
 												}
 											],
-											"_postman_id": "1f055761-1644-41c1-8763-5c1b49ca7b66",
+											"id": "1f055761-1644-41c1-8763-5c1b49ca7b66",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -5260,7 +5234,7 @@
 													}
 												}
 											],
-											"_postman_id": "48c7d348-43f7-4100-9b90-231fce9dd80d",
+											"id": "48c7d348-43f7-4100-9b90-231fce9dd80d",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -5472,7 +5446,7 @@
 													}
 												}
 											],
-											"_postman_id": "2001b969-1f3e-4af3-8d0f-9f5c0ec2069a",
+											"id": "2001b969-1f3e-4af3-8d0f-9f5c0ec2069a",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -5517,8 +5491,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
-													"options": {}
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
@@ -5695,7 +5668,7 @@
 													}
 												}
 											],
-											"_postman_id": "c932889f-723e-4d74-8630-2660ff73be95",
+											"id": "c932889f-723e-4d74-8630-2660ff73be95",
 											"protocolProfileBehavior": {
 												"disableBodyPruning": true
 											},
@@ -5740,8 +5713,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
-													"options": {}
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
@@ -5771,12 +5743,10 @@
 											"response": []
 										}
 									],
-									"_postman_id": "fe5843b1-6489-46b3-b11e-8f91144ce8fa",
-									"_postman_isSubFolder": true
+									"id": "fe5843b1-6489-46b3-b11e-8f91144ce8fa"
 								}
 							],
-							"_postman_id": "438444f1-39d3-43a4-9ab7-4fac728e772c",
-							"_postman_isSubFolder": true
+							"id": "438444f1-39d3-43a4-9ab7-4fac728e772c"
 						},
 						{
 							"name": "payees",
@@ -5902,7 +5872,7 @@
 											}
 										}
 									],
-									"_postman_id": "3420d6b8-f353-4294-b52f-babfef178a85",
+									"id": "3420d6b8-f353-4294-b52f-babfef178a85",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -6128,7 +6098,7 @@
 											}
 										}
 									],
-									"_postman_id": "8438fc77-6fbf-457e-90f8-ce6634b171cf",
+									"id": "8438fc77-6fbf-457e-90f8-ce6634b171cf",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -6282,7 +6252,7 @@
 											}
 										}
 									],
-									"_postman_id": "af0deb98-d1c9-4bec-87ed-5a51890e9808",
+									"id": "af0deb98-d1c9-4bec-87ed-5a51890e9808",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -6347,8 +6317,7 @@
 													"id": "d976b7ed-7ad0-40a0-a562-0ee32a1d2012",
 													"key": "payeeId",
 													"value": "{{testPayeeId}}",
-													"description": "The ID used to locate the details of a particular payee",
-													"type": "string"
+													"description": "The ID used to locate the details of a particular payee"
 												}
 											]
 										},
@@ -6405,7 +6374,7 @@
 											}
 										}
 									],
-									"_postman_id": "4bd33d9b-7484-4a75-820e-9048af35110d",
+									"id": "4bd33d9b-7484-4a75-820e-9048af35110d",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -6470,8 +6439,7 @@
 													"id": "ec69a099-e872-4147-81a2-07298f1b7686",
 													"key": "payeeId",
 													"value": "{{invalidId}}",
-													"description": "The ID used to locate the details of a particular payee",
-													"type": "string"
+													"description": "The ID used to locate the details of a particular payee"
 												}
 											]
 										},
@@ -6480,8 +6448,7 @@
 									"response": []
 								}
 							],
-							"_postman_id": "4b51c9b2-190d-40c7-82b2-9b3eacb17aa4",
-							"_postman_isSubFolder": true
+							"id": "4b51c9b2-190d-40c7-82b2-9b3eacb17aa4"
 						},
 						{
 							"name": "products",
@@ -6609,7 +6576,7 @@
 											}
 										}
 									],
-									"_postman_id": "62f28b91-e6f9-46e2-a066-ece044e47085",
+									"id": "62f28b91-e6f9-46e2-a066-ece044e47085",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -6840,7 +6807,7 @@
 											}
 										}
 									],
-									"_postman_id": "0dad6679-5e2b-4d7a-9160-035a1d8ff2f6",
+									"id": "0dad6679-5e2b-4d7a-9160-035a1d8ff2f6",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -6951,7 +6918,7 @@
 											}
 										}
 									],
-									"_postman_id": "02b3e785-16c2-4e68-8e71-ea126c278dd6",
+									"id": "02b3e785-16c2-4e68-8e71-ea126c278dd6",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -6990,8 +6957,7 @@
 												{
 													"id": "e96ad16a-2925-47a7-b1db-bb290043fa0d",
 													"key": "productId",
-													"value": "{{testProductId}}",
-													"type": "string"
+													"value": "{{testProductId}}"
 												}
 											]
 										},
@@ -7036,7 +7002,7 @@
 											}
 										}
 									],
-									"_postman_id": "b0b9c50f-5776-4b04-b8bb-817cc9321613",
+									"id": "b0b9c50f-5776-4b04-b8bb-817cc9321613",
 									"protocolProfileBehavior": {
 										"disableBodyPruning": true
 									},
@@ -7075,8 +7041,7 @@
 												{
 													"id": "dc399ed0-839d-47a3-8a94-0218b46909bb",
 													"key": "productId",
-													"value": "{{invalidId}}",
-													"type": "string"
+													"value": "{{invalidId}}"
 												}
 											]
 										},
@@ -7085,15 +7050,13 @@
 									"response": []
 								}
 							],
-							"_postman_id": "71a4e514-a8c2-441c-be44-87725729a546",
-							"_postman_isSubFolder": true
+							"id": "71a4e514-a8c2-441c-be44-87725729a546"
 						}
 					],
-					"_postman_id": "702d5cf1-7262-473f-8bde-caa508665d4f",
-					"_postman_isSubFolder": true
+					"id": "702d5cf1-7262-473f-8bde-caa508665d4f"
 				}
 			],
-			"_postman_id": "ab08201d-20b3-4986-80f0-72a5a98f7466",
+			"id": "ab08201d-20b3-4986-80f0-72a5a98f7466",
 			"event": [
 				{
 					"listen": "prerequest",
@@ -7123,7 +7086,7 @@
 		{
 			"name": "Specialised Tests",
 			"item": [],
-			"_postman_id": "36ae4ea8-86dc-48b8-b5ee-25f75526c563"
+			"id": "36ae4ea8-86dc-48b8-b5ee-25f75526c563"
 		}
 	],
 	"auth": {
@@ -7339,358 +7302,299 @@
 	],
 	"variable": [
 		{
-			"id": "c7e6cc4a-63e5-4a97-b0b1-d63ca44e58d3",
+			"id": "c9292087-b54e-405d-898c-bc7b37c764fa",
 			"key": "interactionId",
-			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4",
-			"type": "string"
+			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
 		},
 		{
-			"id": "78963072-5721-4bf0-9171-e1ca06368c7d",
+			"id": "0db3433c-c98f-463b-af0a-070c4688baa4",
 			"key": "cdsClientHeader",
-			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA==",
-			"type": "string"
+			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
 		},
 		{
-			"id": "c94447a6-ff8b-4542-b153-30f2125054d5",
+			"id": "04a4ff53-d337-420b-9726-8ef2436251ff",
 			"key": "invalidId",
-			"value": "xxxINVALIDxxx",
-			"type": "string"
+			"value": "xxxINVALIDxxx"
 		},
 		{
-			"id": "236c2800-7cba-4bf2-8901-a2b93992da45",
+			"id": "da8744ec-2f07-41f9-945c-55527c42e422",
 			"key": "effective",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "8e0a9d6b-2a10-4df1-80bc-4bfca4994865",
+			"id": "f6fe31c3-35ec-4cd1-b790-96f2c1c173e8",
 			"key": "totalDirectDebitPages",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "92fe4821-4d54-42e8-848a-483eee87a435",
+			"id": "44c7fd38-7688-4613-961d-e73106877d11",
 			"key": "pageArray",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "5c4aeb74-0de3-48d6-b54a-e79c125e54c5",
+			"id": "3adcd4b6-158e-4715-b830-e5fd056aa95b",
 			"key": "totalBulkBalancePages",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "521cb49c-02e0-40f2-bd88-acd687d972fb",
+			"id": "7a6bdaf5-b838-4f92-8aae-4f50c1636ed5",
 			"key": "totalTransactionPages",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "8b5c2a1c-cb6c-4756-9c9f-1102c3563dfb",
+			"id": "c885e94b-8ef9-4b87-9c05-bcac7df460d1",
 			"key": "totalScheduledPaymentsPages",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "97f936eb-dd62-4e14-9ffe-829facfc9946",
+			"id": "1fbca55f-7d7e-4cdb-97ce-9ed8f4bbc05f",
 			"key": "totalAccountsPages",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "645d4c31-3ddf-4018-9eda-2ea040640543",
+			"id": "dbedba22-cf51-456f-8fb3-11e0321e336f",
 			"key": "totalPayeePages",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "af56d0fa-6693-4202-98a5-fe3f4e852daf",
+			"id": "39e6f854-4de2-43b1-bc33-5be26c57722d",
 			"key": "productCategory",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "033e8c29-c920-4809-9e0f-733dfa162b9d",
+			"id": "fd711bc9-90d6-4864-ad2c-a6a0dd5b500d",
 			"key": "totalProductPages",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "0987c1e2-2445-43d3-a057-cfa739ce87e8",
+			"id": "bc53050f-63d1-4e7c-803a-2c34b4f41db2",
 			"key": "baseUrl",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "7d2ce166-7571-4472-b822-20068bf473f4",
+			"id": "d9ded9d4-2383-4931-b5d4-9e30d7d32f4c",
 			"key": "x-v",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "673891e0-4946-410b-a53a-fedb4d72df93",
+			"id": "2a2ae5a5-4095-438c-ae0d-9b5e4162cf99",
 			"key": "x-min-v",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "b27a2900-e979-448c-987f-e5ebaa5dca1a",
+			"id": "0e3d26c3-ff5d-4960-9b93-d173c5c4a26e",
 			"key": "accessToken",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "f516ce7d-e150-4f77-84cc-106d83198fb9",
+			"id": "f42d89ae-5c42-4953-a041-12db1e8920c6",
 			"key": "testAccountId1",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "afe7f0d8-b2d7-4b65-b205-cefa5880cb00",
+			"id": "fae3678f-4e63-44fc-8d33-46f748be15b8",
 			"key": "testAccountId2",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "f148a939-2065-43b0-af03-17e4d19a8158",
+			"id": "8d0bf00a-fa9a-4232-8ef0-61c8b95f270c",
 			"key": "testProductId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "1085b1df-98fd-490b-b34e-d6e2cb855014",
+			"id": "b090e1f4-2485-49c9-ab2b-f51e646f2002",
 			"key": "testPayeeId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "875e0722-4da1-47d9-b2be-cb24ce458c82",
+			"id": "47789b0a-0679-4b2a-b04c-87778c33fdaf",
 			"key": "testTransactionId",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "e2bbf75f-f175-4c0a-b31b-26aca707c697",
+			"id": "8d9dd7a9-45a4-4617-a7a3-96e8f4140443",
 			"key": "pageSizeBulkDirectDebits",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "921aa7e4-3ba8-42f1-be90-d71ef71ce59d",
+			"id": "22020078-f6c0-45cf-9839-b73926f593dc",
 			"key": "pageSizeBulkBalances",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "4e81dd92-88e4-4f8e-ae2f-f152c05e7e5a",
+			"id": "0c5d3fab-64c9-4459-9c0e-a30de4ac6a4d",
 			"key": "pageSizeTransactions",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "829c4bc3-8241-417b-b333-92187538b911",
+			"id": "391083d6-d046-4e97-9c0e-a038aa94476d",
 			"key": "pageSizeAccounts",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "a144cdc2-aeef-49fb-9942-3c2530659f6c",
+			"id": "82784aa4-adaa-4e0f-ac63-cfa67db1a880",
 			"key": "pageSizePayees",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "adfc473b-11db-43f2-9699-4cf7ac05769e",
+			"id": "b72c40dc-fdc7-4c9e-b320-140527a8060d",
 			"key": "pageSizeScheduledPayments",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "e03321b1-bdd0-46e9-8b2a-7ff34ba74322",
+			"id": "c5082b99-8cef-4e15-9228-b3dd86da7d32",
 			"key": "pageSizeProducts",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "26600e3f-f6f2-4f80-aed3-cafd29912e13",
+			"id": "c94e84c4-5f75-4061-8e78-f88019d6777f",
 			"key": "collectionVariables",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "9fca550c-de78-4b11-b8f8-f7611e67e37a",
+			"id": "964b216b-9143-4df6-a1fa-cf0fbc20cce9",
 			"key": "intitalised",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "24d68cba-d7ef-4ce7-95a0-6df70da17d2b",
+			"id": "af6e148b-de0b-4b22-b248-da9495b36ba8",
 			"key": "pageSize",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "1113c025-836b-4afb-a065-a079d744dcbc",
+			"id": "b5e27849-12ae-46fd-8747-29a0789bc1c4",
 			"key": "BankingBalance",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "e6882ab4-78eb-4fb6-92fe-0b7d7f8a5ec8",
+			"id": "889b6743-b6bd-4cfd-898f-f079a5a036c4",
 			"key": "ResponseBankingAccountsBalanceList",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "3d9dd52e-3a05-4f5e-be42-d3a121286cd8",
+			"id": "656ae715-2c0b-45f8-8ccf-14bd3c14582d",
 			"key": "ResponseBankingTransactionList",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "7072d151-1795-4dfb-972e-5c0301109542",
+			"id": "ecc497a7-96a0-43ef-82eb-dcb539656b23",
 			"key": "ResponseBankingAccountList",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "903c950a-ef09-404b-8efb-df67e0d852a9",
+			"id": "25f4c617-d7c1-4342-8dbd-4e5ce2642e64",
 			"key": "ResponseBankingAccountsBalanceById",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "302efc57-404f-460a-8f97-da5053557b9c",
+			"id": "865cf43e-4ad5-4d86-8b71-2e07ad26ab54",
 			"key": "ResponseCommonCustomerDetailV2",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "1c8ef975-c6d5-454e-af6d-9baa5439d53c",
+			"id": "85e98df9-8ffb-43e0-9e3f-4b629e69b869",
 			"key": "ResponseBankingDirectDebitAuthorisationList",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "ca28a1dc-2df9-40ba-a66b-cf3695f0934e",
+			"id": "c597a139-fc5c-4589-ae9c-eaaf6a936a91",
 			"key": "ResponseBankingPayeeListV2",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "2c79f543-3408-4242-aada-7f5217774534",
+			"id": "9b600666-259b-45db-90db-db637a395de8",
 			"key": "ResponseBankingAccountByIdV2",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "82da6196-33f7-4990-9ef1-deaecd044686",
+			"id": "c6d30745-8edb-4b1f-9e19-d7def5e46542",
 			"key": "ResponseBankingScheduledPaymentsList",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "7b560527-4d72-40dc-8a44-7519abddcdf5",
+			"id": "fb32664e-c43a-49b3-98ea-17eaa5434812",
 			"key": "ResponseBankingProductListV2",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "2e9ea3c5-da53-4f19-83a9-a5cfde97aa22",
+			"id": "e2a68319-3e23-4161-be2d-18ef2a2b4f13",
 			"key": "ResponseBankingPayeeByIdV2",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "331c3eca-a307-43cf-94fb-648e15864b73",
+			"id": "29d9fab2-9c3b-4cc6-87fb-5a8c98daf8e8",
 			"key": "ResponseBankingTransactionById",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "02c0071f-f376-453e-8fd6-c22b2ceee14e",
+			"id": "f930fbfe-97c1-424b-986c-171f70192e02",
 			"key": "ResponseCommonCustomer",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "3c169a06-df34-4600-aacb-44575afb8482",
+			"id": "f2cf81f0-ccdf-4888-ae98-ec7371eb1a61",
 			"key": "ResponseDiscoveryOutagesList",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "dc781b2a-4f82-4e6f-9600-8e46e6124782",
+			"id": "9c1bbef8-91ab-4f43-b28a-d973dbb7b25e",
 			"key": "ResponseCommonDiscoveryStatus",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "d60dd844-1d1f-4919-aab4-9fc8916630f7",
+			"id": "2a9230b5-122a-4659-8a94-9fe51d4f3322",
 			"key": "ResponseErrorListV2",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "b1a6ca76-e5e4-46cf-892a-96cc728af8cd",
+			"id": "3fcb5a4d-9a5a-4474-a4bb-313863b6a546",
 			"key": "ResponseBankingProductByIdV4",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "2720aa91-bdcc-4a7a-a224-a6dbd99efe6a",
+			"id": "5174637a-9120-4c28-9b94-6d562fa7b934",
 			"key": "GlobalSchema",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "c0b16406-36e5-4ccd-aa65-7966a39bab08",
+			"id": "29074296-9bcc-4748-9c85-3331ded2e6b9",
 			"key": "unauthenticatedCommonUrl",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "f1bf7f52-9512-4bfe-86a9-2dcd634fa43f",
+			"id": "644848d3-46b3-4e28-9dbc-cfa2e729b025",
 			"key": "authenticatedCommonUrl",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "2b016fa5-66d8-4499-88a3-65bb0ba7bb65",
+			"id": "0cf5510a-04f9-4808-8dd0-223a9a136758",
 			"key": "unauthenticatedResourceUrl",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "5a7eb6c6-0a94-44c7-aeef-f9ee218cf9ba",
+			"id": "66f67f2c-acee-416a-aae1-74b1f9bc4165",
 			"key": "authenticatedResourceUrl",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "dcc736a2-a879-4055-ad16-de048e3cabef",
+			"id": "55312f1e-8376-48a1-8814-b0ce03d3b8b6",
 			"key": "GlobalBankingSchema",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "733e6706-2a6f-4050-a5be-ee874c23cf4e",
+			"id": "1f4a708a-4013-4948-8b12-ad0d3f834dd6",
 			"key": "GlobalCommonSchema",
-			"value": "",
-			"type": "string"
+			"value": ""
 		},
 		{
-			"id": "f0271031-ad4c-4d53-8059-bfc381ee7ccb",
+			"id": "16c1b861-63a2-4b9f-a075-455895f51924",
 			"key": "version",
-			"value": "1.18.0",
-			"type": "string"
+			"value": "1.19.0"
 		},
 		{
-			"id": "c257131a-ff60-4ce5-a824-1a5841bab6c6",
+			"id": "d7740a83-35fe-4cb0-a08a-e6eaecf3cef7",
 			"key": "x-fapi-auth-date",
-			"value": "",
-			"type": "string"
+			"value": ""
 		}
 	]
 }
