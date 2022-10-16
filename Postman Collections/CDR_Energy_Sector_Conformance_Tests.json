@@ -482,7 +482,7 @@
 												}
 											]
 										},
-										"description": "Obtain a list of service points owned by the customer that has authorised the current session.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.006) for additional information."
+										"description": "Obtain a list of service points owned by the customer that has authorised the current session.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.006) for additional information."
 									},
 									"response": []
 								},
@@ -610,7 +610,7 @@
 												}
 											]
 										},
-										"description": "Obtain a list of electricity usage data from a particular service point.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.012) for additional information."
+										"description": "Obtain a list of electricity usage data from a particular service point.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.012) for additional information."
 									},
 									"response": []
 								},
@@ -713,7 +713,7 @@
 												}
 											]
 										},
-										"description": "Obtain a list of DER data from a particular service point\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.033) for additional information."
+										"description": "Obtain a list of DER data from a particular service point\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.033) for additional information."
 									},
 									"response": []
 								}
@@ -838,7 +838,7 @@
 												}
 											]
 										},
-										"description": "Obtain usage data for all service points associated with the customer.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.045) for additional information."
+										"description": "Obtain usage data for all service points associated with the customer.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.045) for additional information."
 									},
 									"response": []
 								},
@@ -971,7 +971,7 @@
 												}
 											]
 										},
-										"description": "Obtain the electricity usage data for a specific set of service points.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.023) for additional information."
+										"description": "Obtain the electricity usage data for a specific set of service points.\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.023) for additional information."
 									},
 									"response": []
 								}
@@ -1083,7 +1083,7 @@
 												}
 											]
 										},
-										"description": "Obtain DER data for all service points associated with the customer\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.061) for additional information."
+										"description": "Obtain DER data for all service points associated with the customer\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.061) for additional information."
 									},
 									"response": []
 								},
@@ -1203,7 +1203,7 @@
 												}
 											]
 										},
-										"description": "Obtain DER data for a specific set of service points\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.039) for additional information."
+										"description": "Obtain DER data for a specific set of service points\n\nSee [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.039) for additional information."
 									},
 									"response": []
 								}
@@ -1457,7 +1457,7 @@
 									}
 								],
 								"url": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints",
-								"description": "Obtain a list of service points owned by the customer that has authorised the current session\n\nRefer to [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/main/#testcase-t.ear.001)"
+								"description": "Obtain a list of service points owned by the customer that has authorised the current session\n\nRefer to [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/v1.0.1/#testcase-t.ear.001)"
 							},
 							"response": []
 						},
@@ -1674,6 +1674,107 @@
 											{
 												"key": "x-min-v",
 												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId"
+											],
+											"variable": [
+												{
+													"id": "ddd2830d-ac35-402c-aac1-35297b216e37",
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
+												}
+											]
+										},
+										"description": "Obtain detailed information for a specific energy account"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Account Detail v2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "3eca71e7-7252-40e7-b278-c1eb41c5ece8",
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyAccountDetailResponseV2\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "ffb3cbc0-afe7-4f7d-8712-d11914a2f2ac",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "2",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "2",
 												"type": "text"
 											},
 											{
@@ -3234,6 +3335,123 @@
 								"description": "Obtain the list of energy accounts available under the authorised consent"
 							},
 							"response": []
+						},
+						{
+							"name": "Get Accounts v2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ffd6af22-337e-4a22-ba9b-c043b8087575",
+										"exec": [
+											"        // Parse the response body\r",
+											"        var jsonData;\r",
+											"        try {\r",
+											"            jsonData = pm.response.json();\r",
+											"\r",
+											"            }\r",
+											"        catch(e) {\r",
+											"            console.log(e);\r",
+											"        }\r",
+											"\r",
+											"        // HTTP Response and headers\r",
+											"        pm.test(\"Status code is 200\", function () {\r",
+											"            pm.response.to.have.status(200);\r",
+											"        });\r",
+											"\r",
+											"\r",
+											"        // Schema payload check\r",
+											"        pm.test('Response payload conforms to standards schema', function() {\r",
+											"            const valid = ajv.validate(\"EnergyAccountListResponseV2\", jsonData)\r",
+											"            if (!valid){\r",
+											"            ajv.errors.forEach(element => {\r",
+											"                console.log(JSON.stringify(element));\r",
+											"                });\r",
+											"            };\r",
+											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+											"        });    \r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "9ffda550-2619-47ba-8924-70d8a46ce0b7",
+										"exec": [
+											"var moment = require('moment');\r",
+											"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+											"var fapiDate = moment().format(dateFormat);\r",
+											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "c2f56ae0-1c72-44b1-a696-16f5e6107d51",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-v",
+										"value": "2",
+										"type": "text"
+									},
+									{
+										"key": "x-min-v",
+										"value": "2",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "{{x-fapi-interaction-id}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-auth-date",
+										"value": "{{x-fapi-auth-date}}",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-customer-ip-address",
+										"value": "{{x-fapi-customer-ip-address}}",
+										"type": "text"
+									},
+									{
+										"key": "x-cds-client-headers",
+										"value": "{{cdsClientHeader}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{primaryDataHolderUrl}}/energy/accounts?page=1&page-size={{pageSize}}",
+									"host": [
+										"{{primaryDataHolderUrl}}"
+									],
+									"path": [
+										"energy",
+										"accounts"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page of results to request (standard pagination)"
+										},
+										{
+											"key": "page-size",
+											"value": "{{pageSize}}",
+											"description": "Page size to request.  Default is 25 (standard pagination)"
+										}
+									]
+								},
+								"description": "Obtain the list of energy accounts available under the authorised consent"
+							},
+							"response": []
 						}
 					],
 					"id": "bf395ae8-fe78-44f8-8da8-ce18f57fca33"
@@ -3277,7 +3495,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "157da39c-1a2a-4909-865b-e22190e41744",
+				"id": "3f12a518-2e70-43e7-9b4f-fd1c7ce347d1",
 				"type": "text/javascript",
 				"exec": [
 					"var moment = require('moment');",
@@ -3358,8 +3576,8 @@
 					"",
 					"    // setting the base url for schema files",
 					"    var version = pm.collectionVariables.get(\"version\");",
-					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/main/\";",
-					"    //var schemaBaseUrl = \"http://localhost:8080/\";",
+					"   // var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/main/\";",
+					"    var schemaBaseUrl = \"http://localhost:8080/\";",
 					"",
 					"    var urlEnergySchemaValidationFileDirectory = schemaBaseUrl + version + \"/postman/postman-validation-energy-\" + version + \".json\";",
 					"",
@@ -3451,7 +3669,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "7e128866-fe9a-4777-9b18-05242f87386e",
+				"id": "772fc738-7025-41dc-a67f-243b5e806d54",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -3461,41 +3679,37 @@
 	],
 	"variable": [
 		{
-			"id": "084a8915-41da-4766-ba58-2eef9d30f781",
+			"id": "1c79782e-8c29-4853-9ce0-242fcdb22f5b",
 			"key": "version",
-			"value": "1.17.0"
+			"value": "1.19.0"
 		},
 		{
-			"id": "fac1e252-c023-482f-b483-36fba0fcf8ad",
+			"id": "f1f8520c-d19f-4314-bf48-75d1504ec5ab",
 			"key": "accessToken",
-			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9.",
-			"type": "string"
+			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9."
 		},
 		{
-			"id": "1784d0f7-567f-4049-97a8-1571ccaa5aff",
+			"id": "026cf05b-4e40-42e9-a3f6-54a71e274e97",
 			"key": "pageSize",
-			"value": "2",
-			"type": "string"
+			"value": "2"
 		},
 		{
-			"id": "966395b3-5913-467a-a717-b4b1f2784f43",
+			"id": "640cc0e5-f92e-49ad-bc5d-627e3acb5e15",
 			"key": "servicePointId",
-			"value": "SP12345",
-			"type": "string"
+			"value": "SP12345"
 		},
 		{
-			"id": "8920c0fb-8f65-485d-b6f0-7abb4f48c935",
+			"id": "36f1d264-bbff-4f2c-aa6b-c9beeaba434b",
 			"key": "updatedSinceDate",
-			"value": "2010-05-30T06:23:54.270Z",
-			"type": "string"
+			"value": "2010-05-30T06:23:54.270Z"
 		},
 		{
-			"id": "51933c67-326d-4a28-8067-a004532688cf",
+			"id": "4d5ee899-5f34-40f6-a58c-93f504027a1a",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "ace1589e-6231-4d90-9f59-a195c320bbf8",
+			"id": "099dca09-f834-4813-8160-f730cee174f1",
 			"key": "GlobalEnergySchema",
 			"value": ""
 		}
