@@ -3495,7 +3495,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "3cda7c34-dfc8-45ab-92c8-be44806d7789",
+				"id": "d5c0ee7f-0643-4145-847c-4b7d31670a3c",
 				"type": "text/javascript",
 				"exec": [
 					"var moment = require('moment');",
@@ -3577,7 +3577,7 @@
 					"    // setting the base url for schema files",
 					"    //var version = pm.collectionVariables.get(\"version\");",
 					"   var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/main/\";",
-					"    var schemaBaseUrl = \"http://localhost:8080/\";",
+					"    //var schemaBaseUrl = \"http://localhost:8080/\";",
 					"",
 					"    var urlEnergySchemaValidationFileDirectory = schemaBaseUrl + version + \"/postman/postman-validation-energy-\" + version + \".json\";",
 					"",
@@ -3669,7 +3669,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "88648faf-06f8-40c9-8c25-b72ff73d38a6",
+				"id": "b9bdb37a-5f24-4b68-b3a7-83dcf9b2f3c7",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -3679,37 +3679,37 @@
 	],
 	"variable": [
 		{
-			"id": "26593b3f-d5ea-422c-94ab-693e47258f8b",
+			"id": "4bd5f2fa-6d6e-4e06-8aca-a387f850ea7a",
 			"key": "version",
 			"value": "1.19.0"
 		},
 		{
-			"id": "5ecf1cc8-aac4-4a8f-bad4-fb5958aa7c08",
+			"id": "044dc329-4f67-4308-bdca-42f97f83b9e8",
 			"key": "accessToken",
 			"value": "eyJraWQiOiJyc2ExIiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJ1c2VyIiwicmVmcmVzaF90b2tlbl9leHBpcmVzX2F0IjoxODg0ODYzMzU1LCJhenAiOiJjbGllbnQiLCJzY29wZSI6ImJhbms6YWNjb3VudHMuZGV0YWlsOnJlYWQgYmFuazphY2NvdW50cy5iYXNpYzpyZWFkIGFkZHJlc3Mgb3BlbmlkIGNvbW1vbjpjdXN0b21lci5kZXRhaWw6cmVhZCBiYW5rOnRyYW5zYWN0aW9uczpyZWFkIHByb2ZpbGUgY29tbW9uOmN1c3RvbWVyLmJhc2ljOnJlYWQgYmFuazpyZWd1bGFyX3BheW1lbnRzOnJlYWQgYmFuazpwYXllZXM6cmVhZCBlbmVyZ3k6YmlsbGluZzpyZWFkIGVuZXJneTphY2NvdW50cy5jb25jZXNzaW9uczpyZWFkIGVuZXJneTphY2NvdW50cy5iYXNpYzpyZWFkIGVuZXJneTphY2NvdW50cy5kZXRhaWw6cmVhZCBlbmVyZ3k6YWNjb3VudHMucGF5bWVudHNjaGVkdWxlOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LmRlcjpyZWFkIGVuZXJneTplbGVjdHJpY2l0eS5zZXJ2aWNlcG9pbnRzLmJhc2ljOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnNlcnZpY2Vwb2ludHMuZGV0YWlsOnJlYWQgZW5lcmd5OmVsZWN0cmljaXR5LnVzYWdlOnJlYWQgcGhvbmUgb2ZmbGluZV9hY2Nlc3MgZW1haWwiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvY2RzLW9wZW5pZC1jb25uZWN0LXNlcnZlci8iLCJleHAiOjE4ODQ4NTY5NTUsImlhdCI6MTg4NDg1MzM1NSwianRpIjoiODBmNDliMWUtNGUzNS00YzViLWI5YTctOGEwZTg4ZTMzMmFiIn0.Oj6iOrrIWicXz8ZU5Fe_tmX19ee-7Z7YaNOZLYje_9CGVyJ8sW7940dtOuuAIH-TmwZ_mNA8Mb4q_5Mska01sYG7IBNo2vNlvyBF-G50LkIrSwj9eGwxLJ20fqpJ5oSyQ9b320bNJm4TBSXpZPvuuwb8OLiKp5NDCYzcdc1PNTOqczLo8fEEdvkYAF4UQpRKYxfR402vwsCNtDdjRz4rP6Ck-6rpPvy0uNKTOjlIEzadpTEWqzOth1yqPuagEKzq0P6VSeGj-ubFo_pRfMNDo5N497qpdUIC4eVM_r2a3Wmn0mTcZ7zq3P-ZK4njlGJFVX9YSrRZ0MgkBMsBR50wIA\n#refresh.token=eyJhbGciOiJub25lIn0.eyJleHAiOjE1NzkwMTAyODcsImp0aSI6IjM1OWFlN2ZiLThlOWYtNDFmYy04YjY5LTk4NmY2NmE3MDU4OCJ9."
 		},
 		{
-			"id": "0a7efda5-5f9c-45cc-9f16-9d24bcff9480",
+			"id": "36f2db3c-7af4-42f3-a106-cec5db1eb86a",
 			"key": "pageSize",
 			"value": "2"
 		},
 		{
-			"id": "274e0215-727a-42d3-9907-ecca0e97a792",
+			"id": "f5b4a2dd-d4e9-4b53-b1a1-443c5e7b2ce8",
 			"key": "servicePointId",
 			"value": "SP12345"
 		},
 		{
-			"id": "54b5807c-0a1c-49e7-aa88-6a414cd4c8fd",
+			"id": "62b00681-6b84-4a35-9332-f7b1ab108529",
 			"key": "updatedSinceDate",
 			"value": "2010-05-30T06:23:54.270Z"
 		},
 		{
-			"id": "e11df554-295f-40e6-b037-6a9d99840d5e",
+			"id": "2a614d64-c320-4566-9c63-fd9dedab5da4",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "8437f6b0-ecf2-4343-af71-d5293bfc6bed",
+			"id": "a0aaf216-0796-4826-9900-b46bad02e22d",
 			"key": "GlobalEnergySchema",
 			"value": ""
 		}
