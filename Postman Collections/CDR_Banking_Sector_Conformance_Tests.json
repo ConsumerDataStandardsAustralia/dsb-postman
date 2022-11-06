@@ -5247,7 +5247,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "ee39a95d-32b5-4177-af08-cb3647d7247c",
+				"id": "70f5fb6f-9f02-4b1a-bbbf-3e4904b9f09a",
 				"type": "text/javascript",
 				"exec": [
 					"",
@@ -5348,7 +5348,9 @@
 					"    var version = pm.collectionVariables.get(\"version\");",
 					"    // var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/main/\";",
 					"    //var schemaBaseUrl = \"http://localhost:8080/\";",
-					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/gh/issue17/\";",
+					"    // var branch = \"gh/issue17/\";",
+					"    var branch = \"main/\";",
+					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
 					"",
 					"    var urlBankingSchemaValidationFileDirectory = schemaBaseUrl + version + \"/postman/postman-validation-banking-\" + version + \".json\";",
 					"",
@@ -5441,7 +5443,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "46a6c653-7bea-477e-a120-92ebb95a2bba",
+				"id": "4fcd98ce-4edc-4139-b8c6-d40826f5e7ca",
 				"type": "text/javascript",
 				"exec": [
 					"",
@@ -5500,302 +5502,302 @@
 	],
 	"variable": [
 		{
-			"id": "a17f14b7-a8c0-4be0-8841-88b6402f289a",
+			"id": "f5eecb2f-0936-4ea6-9fb6-095a1efd7369",
 			"key": "interactionId",
 			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
 		},
 		{
-			"id": "0089036f-2d17-4d7f-8987-9c907461f994",
+			"id": "3760ae99-1933-4b82-8050-bacee6f7ff39",
 			"key": "cdsClientHeader",
 			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
 		},
 		{
-			"id": "c783ec38-b48a-4560-8638-9d795d55af15",
+			"id": "ded4a039-6f05-46f7-bedd-279967fcac29",
 			"key": "invalidId",
 			"value": "xxxINVALIDxxx"
 		},
 		{
-			"id": "75997602-52af-42d7-85ee-681fc13ce8b7",
+			"id": "c3680b09-9271-426f-a80b-32366b3f1af7",
 			"key": "effective",
 			"value": ""
 		},
 		{
-			"id": "328c497a-c46c-40d7-92a7-d14eb2455460",
+			"id": "ce65a709-4fda-460e-adcf-608cb901e7e5",
 			"key": "totalDirectDebitPages",
 			"value": ""
 		},
 		{
-			"id": "017b174d-845f-4903-bd96-b1ac958a85d3",
+			"id": "417cf79b-ac39-46e4-bd42-fb8aef731d90",
 			"key": "pageArray",
 			"value": ""
 		},
 		{
-			"id": "a7d80747-8908-4204-b6ad-2d4af319e65e",
+			"id": "7220a2cd-3dff-486d-8363-ca9fb3d075d7",
 			"key": "totalBulkBalancePages",
 			"value": ""
 		},
 		{
-			"id": "c87b1c16-3325-4c68-8367-85dc1ee3bd85",
+			"id": "c43c6668-ba16-4ed1-8add-5847bff5f26c",
 			"key": "totalTransactionPages",
 			"value": ""
 		},
 		{
-			"id": "724c0d8d-e56a-4c56-a602-0b539aab47d4",
+			"id": "a6c1a35f-b6dc-4028-b024-9d73dfcdef01",
 			"key": "totalScheduledPaymentsPages",
 			"value": ""
 		},
 		{
-			"id": "65bd1429-ab4e-4f8a-af87-ed5b38f719d8",
+			"id": "5690375d-5999-4d8d-ac7c-0bccbf9d4e1a",
 			"key": "totalAccountsPages",
 			"value": ""
 		},
 		{
-			"id": "5d33cca5-252d-4cb3-b06f-fb97197272aa",
+			"id": "02d58665-1f49-45d9-bf4d-b7d0a9c695fd",
 			"key": "totalPayeePages",
 			"value": ""
 		},
 		{
-			"id": "811a3733-bcc2-4386-8f6f-c21b54eb200c",
+			"id": "2845cb8b-bc59-47d4-b5ac-6495bed17d5c",
 			"key": "productCategory",
 			"value": ""
 		},
 		{
-			"id": "361648e9-411c-4bdd-b260-e4e0bc7564c7",
+			"id": "33d9f3c7-29fe-48a4-83b8-808c3e03fb1d",
 			"key": "totalProductPages",
 			"value": ""
 		},
 		{
-			"id": "cf1a4b5b-2428-48c1-9ce4-435f06a9c83d",
+			"id": "ecff02d3-177e-4477-9fba-28dad108f8bc",
 			"key": "baseUrl",
 			"value": ""
 		},
 		{
-			"id": "c0bc38a1-8e5a-4fd5-bd11-3b180db86ad9",
+			"id": "39e5e42e-d821-4778-94a7-5f392b7ea003",
 			"key": "x-v",
 			"value": ""
 		},
 		{
-			"id": "285f9a14-47b1-4c4b-bb41-3666ad30e211",
+			"id": "71cd0926-bff9-47ed-ba34-75b1152a9245",
 			"key": "x-min-v",
 			"value": ""
 		},
 		{
-			"id": "ebaab71c-97ce-48a0-a5a4-9f74b9d77501",
+			"id": "a7367e20-eaee-4ab7-af45-0e890f735a56",
 			"key": "accessToken",
 			"value": ""
 		},
 		{
-			"id": "f2d1d469-604d-4942-962c-8fe37f943a70",
+			"id": "392608f1-2c5f-43ef-8dbf-94ded43afaf7",
 			"key": "testAccountId1",
 			"value": ""
 		},
 		{
-			"id": "71d8423a-722b-4612-9f57-d44d34f277b5",
+			"id": "75d405f2-2d0f-42a5-906b-aeee30b49661",
 			"key": "testAccountId2",
 			"value": ""
 		},
 		{
-			"id": "1d74b410-da06-434a-adfc-88be774a0692",
+			"id": "417d6b79-e9bc-4210-bfd7-647de89ef2fd",
 			"key": "testProductId",
 			"value": ""
 		},
 		{
-			"id": "bb4a3dda-2386-446e-b92b-a858e8af5e7c",
+			"id": "93cff82d-3870-411f-b2d4-b35b524ef7ad",
 			"key": "testPayeeId",
 			"value": ""
 		},
 		{
-			"id": "87c5ec9d-f0a1-4e83-9855-bcc4b6090ea3",
+			"id": "1ae909af-470e-4c3b-acec-11349d1e31d2",
 			"key": "testTransactionId",
 			"value": ""
 		},
 		{
-			"id": "98c72af7-233b-431b-9f8d-8e76e75ebe12",
+			"id": "a1eb093c-da83-4a85-8c83-3767042db713",
 			"key": "pageSizeBulkDirectDebits",
 			"value": ""
 		},
 		{
-			"id": "21ad3535-ec18-4ea2-9664-86f7fbb9936d",
+			"id": "8c6e9ad3-b8f4-4aae-89e4-aa910c89d85d",
 			"key": "pageSizeBulkBalances",
 			"value": ""
 		},
 		{
-			"id": "7a0f8aaf-3cda-42d6-aa75-04c3a4d9e388",
+			"id": "cd183328-5c9d-4d40-91f6-f3945fd3314a",
 			"key": "pageSizeTransactions",
 			"value": ""
 		},
 		{
-			"id": "7c043178-3485-4c2c-a523-c633b01677ea",
+			"id": "a7e02dfd-e326-42ce-a850-c141f2918996",
 			"key": "pageSizeAccounts",
 			"value": ""
 		},
 		{
-			"id": "06af8189-18dd-4660-af6c-681720db0591",
+			"id": "c3683468-1d3e-403c-b45e-d30ca5e66b76",
 			"key": "pageSizePayees",
 			"value": ""
 		},
 		{
-			"id": "594f1ba9-e5d3-438d-9253-74f28967b5f1",
+			"id": "05bdc60f-74ee-4212-854c-45a7c969dbc0",
 			"key": "pageSizeScheduledPayments",
 			"value": ""
 		},
 		{
-			"id": "cab631ae-c37e-448c-b50b-5d28af49ddd9",
+			"id": "07b37bc0-6432-4fac-88d9-62b4aa839cf0",
 			"key": "pageSizeProducts",
 			"value": ""
 		},
 		{
-			"id": "310b9867-0cca-4ae9-acdd-3eb259bee1db",
+			"id": "8968347a-5f24-44df-b6fc-371150cadfbc",
 			"key": "collectionVariables",
 			"value": ""
 		},
 		{
-			"id": "0883afb8-91b8-42ce-87da-d688012e65b0",
+			"id": "0262580f-4869-42d0-bdef-e9fcbac73d01",
 			"key": "intitalised",
 			"value": ""
 		},
 		{
-			"id": "94dd46a4-0bf3-473e-851b-fb58497f6de7",
+			"id": "331b2d20-a70d-4821-ab93-594c961d0b22",
 			"key": "pageSize",
 			"value": ""
 		},
 		{
-			"id": "b6484b1b-5552-4010-9471-0809fa6f1d74",
+			"id": "0d73bd94-dfed-44a9-a315-1482b8175da5",
 			"key": "BankingBalance",
 			"value": ""
 		},
 		{
-			"id": "de41e558-ab89-4fe0-822e-87b38321fa30",
+			"id": "3cc32211-4a79-4048-b1e0-edac35e2f547",
 			"key": "ResponseBankingAccountsBalanceList",
 			"value": ""
 		},
 		{
-			"id": "e24d11a8-4db4-43d7-8d15-dfaaec1af236",
+			"id": "c4a00fb9-6a99-460e-a226-e4771ea3567d",
 			"key": "ResponseBankingTransactionList",
 			"value": ""
 		},
 		{
-			"id": "e478015b-6eca-4917-81cb-1736043598db",
+			"id": "d1711417-d60d-4125-b86d-d1e443e3c177",
 			"key": "ResponseBankingAccountList",
 			"value": ""
 		},
 		{
-			"id": "d9865d2c-cad2-4475-81e9-d597b042bd0d",
+			"id": "b4fb36a8-a94e-48aa-89c4-2c782e7934d4",
 			"key": "ResponseBankingAccountsBalanceById",
 			"value": ""
 		},
 		{
-			"id": "a50c93d7-c25b-4219-9123-b5ca0e871d08",
+			"id": "4560a38b-bbf4-4ce1-bade-172e34e0cddd",
 			"key": "ResponseCommonCustomerDetailV2",
 			"value": ""
 		},
 		{
-			"id": "98d502fa-7823-47e1-a985-105eb0e26b00",
+			"id": "2a5b7122-d089-4e36-a089-ee9d0876e088",
 			"key": "ResponseBankingDirectDebitAuthorisationList",
 			"value": ""
 		},
 		{
-			"id": "3461553b-95c4-4339-a6b9-9470c92f0521",
+			"id": "94906877-6a83-45ce-be59-eda73975af57",
 			"key": "ResponseBankingPayeeListV2",
 			"value": ""
 		},
 		{
-			"id": "dfcf58e5-a986-4d6f-9cf2-95c9e3bb171b",
+			"id": "50364a69-5b7c-46b5-bc43-d032de583dbc",
 			"key": "ResponseBankingAccountByIdV2",
 			"value": ""
 		},
 		{
-			"id": "20e004c3-f53f-49f4-8d9f-8437228951f2",
+			"id": "a7c1c57c-78dc-4ab2-a40c-b46a46c891ed",
 			"key": "ResponseBankingScheduledPaymentsList",
 			"value": ""
 		},
 		{
-			"id": "78a8e95a-8c28-4cd3-a50d-aa50dd2b690f",
+			"id": "edcdc5ea-6e81-4f93-b80c-5180358ed2e7",
 			"key": "ResponseBankingProductListV2",
 			"value": ""
 		},
 		{
-			"id": "9f99d343-c959-4ab6-ac36-58ef0cbbcd20",
+			"id": "e219ad5f-967a-4c51-9090-712a4ded19a7",
 			"key": "ResponseBankingPayeeByIdV2",
 			"value": ""
 		},
 		{
-			"id": "bd8f08cf-2555-4edb-ba0a-77da25bddf56",
+			"id": "d176a0be-481f-4fcc-a6fe-dd07ee992a6c",
 			"key": "ResponseBankingTransactionById",
 			"value": ""
 		},
 		{
-			"id": "0d5c79b0-aa74-4836-85e9-6f45e0682b96",
+			"id": "5131095e-57bc-438c-bccc-75190649dcb1",
 			"key": "ResponseCommonCustomer",
 			"value": ""
 		},
 		{
-			"id": "b098f33d-3060-4f9f-8cb6-cc2b0bb602cd",
+			"id": "019c0c0e-c530-40b9-8a81-25c8938eb9c9",
 			"key": "ResponseDiscoveryOutagesList",
 			"value": ""
 		},
 		{
-			"id": "4018236d-e4b2-4d0a-a57a-c79c30498cd9",
+			"id": "c23f2c9b-a61e-4388-a72c-5e2a17852568",
 			"key": "ResponseCommonDiscoveryStatus",
 			"value": ""
 		},
 		{
-			"id": "b3436c5d-c616-4516-8e6d-5ea97f18130a",
+			"id": "39f766af-6091-4499-a6ac-adf6bae64699",
 			"key": "ResponseErrorListV2",
 			"value": ""
 		},
 		{
-			"id": "5deef43f-38be-455f-b2da-91e6faa1a62b",
+			"id": "d3dd752b-47cd-47aa-9606-ccc2be6dd322",
 			"key": "ResponseBankingProductByIdV4",
 			"value": ""
 		},
 		{
-			"id": "f361a0ba-67ba-4b9e-8610-9dd5503c0b26",
+			"id": "9f251bb0-b57b-4554-acb9-eebb26da043c",
 			"key": "GlobalSchema",
 			"value": ""
 		},
 		{
-			"id": "bb178322-2e87-462a-a459-e73904a16b46",
+			"id": "6799ffea-cbe2-47df-ba4e-a801bd0c6718",
 			"key": "unauthenticatedCommonUrl",
 			"value": ""
 		},
 		{
-			"id": "9b34d515-8b3f-4be2-9ac9-b7b0bee47bda",
+			"id": "ee4a27d9-1abe-48b6-a8fc-26fd611bec36",
 			"key": "authenticatedCommonUrl",
 			"value": ""
 		},
 		{
-			"id": "c3aed9f0-1111-4000-9db5-0d9ca29c0fc7",
+			"id": "962fc9f6-4457-4100-a2ef-18c9ca92f6aa",
 			"key": "unauthenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "103dc5eb-0f68-4dac-bf87-edb0ed1eeea2",
+			"id": "d533dcb2-1653-43e8-b982-984fc04a7746",
 			"key": "authenticatedResourceUrl",
 			"value": ""
 		},
 		{
-			"id": "2c6c42e3-01c0-45b1-a5b7-29e007dcffa6",
+			"id": "f9d2f8b4-9488-4c81-922e-dc513c561308",
 			"key": "GlobalBankingSchema",
 			"value": ""
 		},
 		{
-			"id": "ecee607b-0dd5-4b24-a176-2f7f4a1157e1",
+			"id": "2e357f70-8d00-4576-a76f-cee45539058c",
 			"key": "GlobalCommonSchema",
 			"value": ""
 		},
 		{
-			"id": "73b16407-bedb-4cc6-8acc-3c2a8d679d65",
+			"id": "1590f975-3381-464f-8c82-ac06c67f3acb",
 			"key": "version",
 			"value": "1.19.0"
 		},
 		{
-			"id": "2659490e-88f9-4aef-8d14-075e77bc4daf",
+			"id": "48e74699-eaa0-4dae-b947-0d8d0e6a2cc1",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "e353549a-5292-4bb6-b199-46fa5e3c8c33",
+			"id": "0b6aab19-340d-4bc5-8f9c-1a54359ea520",
 			"key": "notPaginatedRequests",
 			"value": ""
 		}
