@@ -2,6 +2,7 @@
 
 import syncrequest from 'sync-request'
 import path from 'path'
+import fs from'fs'
 import newman, { NewmanRunOptions, NewmanRunSummary } from 'newman'
 
 const outDir = path.join(__dirname, 'output');
@@ -36,12 +37,19 @@ function removeTrailingSlash(str: string) {
   return str.endsWith('/') ? str.slice(0, -1) : str;
 }
 
+function writeNewmanSummaryData(summary: NewmanRunSummary){
+    let path = `${outDir}/NewmanSummaryReport.json`;
+    fs.writeFileSync(path, JSON.stringify(summary, null, 2));
+}
+
 function RunNewman() {
   // call newman library to create report
   let collectionFile = require(`${collectionDir}/PublicEndpointTestsBanking.postman_collection.json`);
   let options : NewmanRunOptions = {
     collection: collectionFile,
     iterationData: prdEndpoints,
+    // uncomment the line below for testing purposes. This will then only do 3 runs
+    // iterationCount: 3,
     reporters: ['cli','htmlextra'],
     reporter: {
       htmlextra: {
@@ -54,7 +62,7 @@ function RunNewman() {
     if (err) { 
       throw err;
     }
-    console.log('collection run complete!');
+    writeNewmanSummaryData(summary);
     }).on('request', (err, data) => {
       if (err) {
         console.log(err)
