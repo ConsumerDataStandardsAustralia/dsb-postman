@@ -7,7 +7,10 @@ import newman, { NewmanRunOptions, NewmanRunSummary } from 'newman'
 
 const outDir = path.join(__dirname, 'output');
 const collectionDir = path.join(__dirname, 'collections');
-const registrationEndpoint = 'https://api.cdr.gov.au/cdr-register/v1/banking/data-holders/brands/summary';
+
+const sector = "energy";
+//const registrationEndpoint = 'https://api.cdr.gov.au/cdr-register/v1/banking/data-holders/brands/summary';
+const registrationEndpoint = `https://api.cdr.gov.au/cdr-register/v1/${sector}/data-holders/brands/summary`;
 
 // used for the ACCC request
 const options = {
@@ -38,13 +41,14 @@ function removeTrailingSlash(str: string) {
 }
 
 function writeNewmanSummaryData(summary: NewmanRunSummary){
-    let path = `${outDir}/NewmanSummaryReport.json`;
+    let path = `${outDir}/NewmanSummaryReport_${sector}.json`;
     fs.writeFileSync(path, JSON.stringify(summary, null, 2));
 }
 
 function RunNewman() {
   // call newman library to create report
-  let collectionFile = require(`${collectionDir}/PublicEndpointTestsBanking.postman_collection.json`);
+  const upperSector = sector?.charAt(0).toUpperCase() + sector.slice(1);
+  let collectionFile = require(`${collectionDir}/PublicEndpointTests${upperSector}.postman_collection.json`);
   let options : NewmanRunOptions = {
     collection: collectionFile,
     iterationData: prdEndpoints,
@@ -53,7 +57,7 @@ function RunNewman() {
     reporters: ['cli','htmlextra'],
     reporter: {
       htmlextra: {
-         export: `${outDir}/NewmanReport.html`
+         export: `${outDir}/NewmanReport${upperSector}.html`
       }
     }
   }
