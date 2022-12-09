@@ -1,0 +1,1795 @@
+{
+	"info": {
+		"_postman_id": "5989175b-c50e-430e-b343-b2a4b3100940",
+		"name": "PublicEndpointTestsEnergy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8286723"
+	},
+	"item": [
+		{
+			"name": "Negative Tests",
+			"item": [
+				{
+					"name": "Get Generic Plans Invalid Page (out of range)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 1);\r",
+									"\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"\r",
+									"        // no x-min-v is being provided with the request and the reponse x-v is qual to the request x-v, therefore it should return a dataset\r",
+									"        pm.test(\"Response for invalid page should be 422 \", function () {\r",
+									"            pm.response.to.have.status(422);\r",
+									"        });\r",
+									"\r",
+									"        pm.test('Error payload conforms to standards schema', function() {\r",
+									"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);\r",
+									"            if (!valid){\r",
+									"                ajv.errors.forEach(element => {\r",
+									"                    console.log(JSON.stringify(element));\r",
+									"                });\r",
+									"            };\r",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+									"        });  \r",
+									"\r",
+									"        pm.test('Correct error code is being returned', function() {        \r",
+									"            var errMessage= jsonData?.errors[0]?.code;\r",
+									"            var exptectedMessage = \"urn:au-cds:error:cds-all:Field/InvalidPage\"\r",
+									"            pm.expect(errMessage).to.equal(exptectedMessage)\r",
+									"        }); \r",
+									"\r",
+									"\r",
+									"\r",
+									"        \r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"//pm.variables.set(\"currentPage\", 900);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text",
+								"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans?page=850&page-size={{pageSize}}",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"energy",
+								"plans"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "850"
+								},
+								{
+									"key": "page-size",
+									"value": "{{pageSize}}"
+								}
+							]
+						},
+						"description": "This will make a call with pagination information and request page 850 (it is assumed that this value is out of range)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Generic Plans Invalid page-size in query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 1);\r",
+									"\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"\r",
+									"        // no x-min-v is being provided with the request and the reponse x-v is qual to the request x-v, therefore it should return a dataset\r",
+									"        pm.test(\"Response for invalid page size (ie > 999) should be 400 \", function () {\r",
+									"            pm.response.to.have.status(400);\r",
+									"        });\r",
+									"\r",
+									"        pm.test('Error payload conforms to standards schema', function() {\r",
+									"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);\r",
+									"            if (!valid){\r",
+									"                ajv.errors.forEach(element => {\r",
+									"                    console.log(JSON.stringify(element));\r",
+									"                });\r",
+									"            };\r",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+									"        });  \r",
+									"\r",
+									"        pm.test('Correct error code is being returned', function() {        \r",
+									"            var errMessage= jsonData?.errors[0]?.code;\r",
+									"            var exptectedMessage = \"urn:au-cds:error:cds-all:Field/InvalidPageSize\"\r",
+									"            pm.expect(errMessage).to.equal(exptectedMessage)\r",
+									"        });  \r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 900);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text",
+								"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans?page=1&page-size=2000",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"energy",
+								"plans"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page-size",
+									"value": "2000"
+								}
+							]
+						},
+						"description": "This will make a call with pagination information and specify a page size of 2000. The maximum page size allowed as per standard is 999"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Generic Plans Missing x-v",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 1);\r",
+									"\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"\r",
+									"        // no x-min-v is being provided with the request and the reponse x-v is qual to the request x-v, therefore it should return a dataset\r",
+									"        pm.test(\"Response for missing x-v should be 400\", function () {\r",
+									"            pm.response.to.have.status(400);\r",
+									"        });\r",
+									"\r",
+									"\r",
+									"        pm.test('Error payload conforms to standards schema', function() {\r",
+									"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);\r",
+									"            if (!valid){\r",
+									"                ajv.errors.forEach(element => {\r",
+									"                    console.log(JSON.stringify(element));\r",
+									"                });\r",
+									"            };\r",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+									"        });  \r",
+									"\r",
+									"        pm.test('Correct error code is being returned', function() {        \r",
+									"            var errMessage= jsonData?.errors[0]?.code;\r",
+									"            var exptectedMessage = \"urn:au-cds:error:cds-all:Header/Missing\"\r",
+									"            pm.expect(errMessage).to.equal(exptectedMessage)\r",
+									"        }); \r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 900);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"energy",
+								"plans"
+							]
+						},
+						"description": "This will attempt to get product information without providing a value for x-v in the request header."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Generic Plans Invalid x-v",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 1);\r",
+									"\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"\r",
+									"        // no x-min-v is being provided with the request and the reponse x-v is qual to the request x-v, therefore it should return a dataset\r",
+									"        pm.test(\"Response for non-numerical x-v should be 400\", function () {\r",
+									"            pm.response.to.have.status(400);\r",
+									"        });\r",
+									"\r",
+									"        pm.test('Error payload conforms to standards schema', function() {\r",
+									"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);\r",
+									"            if (!valid){\r",
+									"                ajv.errors.forEach(element => {\r",
+									"                    console.log(JSON.stringify(element));\r",
+									"                });\r",
+									"            };\r",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+									"        });  \r",
+									"\r",
+									"        pm.test('Correct error code is being returned', function() {        \r",
+									"            var errMessage= jsonData?.errors[0]?.code;\r",
+									"            var exptectedMessage = \"urn:au-cds:error:cds-all:Header/InvalidVersion\"\r",
+									"            pm.expect(errMessage).to.equal(exptectedMessage)\r",
+									"        }); \r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 900);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "abc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"energy",
+								"plans"
+							]
+						},
+						"description": "This will attempt to get product information with an invalid (alpha) value for x-v in the request header."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Generic Plans - unsupported Version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 1);\r",
+									"\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"\r",
+									"        // no x-min-v is being provided with the request and the reponse x-v is qual to the request x-v, therefore it should return a dataset\r",
+									"        pm.test(\"Response for unsupported version should be 406\", function () {\r",
+									"            pm.response.to.have.status(406);\r",
+									"        });\r",
+									"\r",
+									"        pm.test('Error payload conforms to standards schema', function() {\r",
+									"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);\r",
+									"            if (!valid){\r",
+									"                ajv.errors.forEach(element => {\r",
+									"                    console.log(JSON.stringify(element));\r",
+									"                });\r",
+									"            };\r",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+									"        });  \r",
+									"\r",
+									"        pm.test('Correct error code is being returned', function() {        \r",
+									"            var errMessage= jsonData?.errors[0]?.code;\r",
+									"            var exptectedMessage = \"urn:au-cds:error:cds-all:Header/UnsupportedVersion\";\r",
+									"            pm.expect(errMessage).to.equal(exptectedMessage)\r",
+									"        }); \r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 900);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "100",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"energy",
+								"plans"
+							]
+						},
+						"description": "This will attempt to get product information with an invalid value for x-v in the request header.\n\nOne that is numeric but clearly not supported"
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"        ",
+							"        // var jsonData;",
+							"        // try { jsonData = pm.response.json(); } catch(e) {}",
+							"",
+							"        // var currentPage = pm.variables.get(\"currentPage\");",
+							"        // var currentPageSize = pm.variables.get(\"pageSize\");",
+							"        // var currentTotalPages = jsonData?.meta?.totalPages;",
+							"        // var currentTotalRecords = jsonData?.meta?.totalRecords;",
+							"",
+							"        // ((pm.response.code == 400 || pm.response.code == 422 || pm.response.code == 406) ? pm.test : pm.test.skip)('Error payload conforms to standards schema', function() {",
+							"        //     const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
+							"        //     if (!valid){",
+							"        //     ajv.errors.forEach(element => {",
+							"        //         console.log(JSON.stringify(element));",
+							"        //         });",
+							"        //     };",
+							"",
+							"        //     pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+							"        // }); "
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "With Pagination",
+			"item": [
+				{
+					"name": "Get Generic Plans First Page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"        pm.variables.set(\"currentPage\", 1);\r",
+									"\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"        pm.variables.set(\"totalPages\", Math.max(jsonData?.meta?.totalPages,1));\r",
+									"\r",
+									"        var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+									"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));\r",
+									"        var requestMinVersionNumber = Number(pm.request.headers.get(\"x-min-v\"));\r",
+									"\r",
+									"                // the header indicates this version is supported, ie a dataset should be returned\r",
+									"        pm.test(\"Response x-v is between x-min-v and x-v of request\", function () {\r",
+									"            pm.expect(responseVersionNumber).to.gte(requestMinVersionNumber);\r",
+									"            pm.expect(responseVersionNumber).to.lte(requestVersionNumber);\r",
+									"        });\r",
+									"\r",
+									"        pm.collectionVariables.set(\"totalPages\", Math.max(jsonData?.meta?.totalPages,1));\r",
+									"\r",
+									"        var currentPage = pm.variables.get(\"currentPage\");\r",
+									"        var currentTotalPages = jsonData?.meta?.totalPages;\r",
+									"\r",
+									"\r",
+									"        pm.test(\"Pagination fields have required properties\", function () {\r",
+									"            pm.expect(jsonData.links).to.have.property(\"self\");            \r",
+									"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"prev\");\r",
+									"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"first\");\r",
+									"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"next\");}  \r",
+									"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"last\");} \r",
+									"        });\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text",
+								"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text",
+								"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans?page=1&page-size=5",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"energy",
+								"plans"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page-size",
+									"value": "5"
+								}
+							]
+						},
+						"description": "This will test for pagination fields in the response when the first page is requested"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Generic Plans First Page - No x-min-v",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.variables.set(\"currentPage\", 1);\r",
+									"\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"\r",
+									"        var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+									"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));\r",
+									"\r",
+									"        pm.variables.set(\"totalPages\", Math.max(jsonData?.meta?.totalPages,1));\r",
+									"\r",
+									"        // the header indicates this version is supported\r",
+									"        pm.test(\"Response x-v equals request x-v\", function () {\r",
+									"            pm.expect(responseVersionNumber).to.equal(requestVersionNumber);\r",
+									"        });\r",
+									"\r",
+									"        var currentPage = pm.variables.get(\"currentPage\");\r",
+									"        var currentPageSize = pm.variables.get(\"pageSize\");\r",
+									"        var currentTotalPages = jsonData?.meta?.totalPages;\r",
+									"        var currentTotalRecords = jsonData?.meta?.totalRecords;\r",
+									"\r",
+									"        pm.test(\"Pagination fields have required properties\", function () {\r",
+									"            pm.expect(jsonData.links).to.have.property(\"self\");            \r",
+									"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"prev\");\r",
+									"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"first\");\r",
+									"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"next\");}  \r",
+									"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"last\");} \r",
+									"        });\r",
+									"\r",
+									"        if (pm.variables.get(\"totalPages\") < 2) {\r",
+									"            postman.setNextRequest(\"Get Generic Plans Last Page\")\r",
+									"        }\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text",
+								"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans?page=1&page-size=5",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"energy",
+								"plans"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "page-size",
+									"value": "5"
+								}
+							]
+						},
+						"description": "This will test for pagination fields in the response when the first page is requested.\n\nIn the request no x-min-v is provided. The value for x-v in the response should equal x-v from the request, if the version supported."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Generic Plans Second Page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//pm.variables.set(\"currentPage\", 2);\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"        var currentPage = 2;\r",
+									"        var totalPages = pm.collectionVariables.get(\"totalPages\");\r",
+									"        \r",
+									"        var currentPage = 2;\r",
+									"        var currentTotalPages = jsonData?.meta?.totalPages;\r",
+									"        var currentTotalRecords = jsonData?.meta?.totalRecords;\r",
+									"\r",
+									"\r",
+									"        pm.test(\"Pagination fields have required properties\", function () {\r",
+									"            pm.expect(jsonData.links).to.have.property(\"self\");            \r",
+									"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"prev\");\r",
+									"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"first\");\r",
+									"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"next\");}  \r",
+									"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"last\");} \r",
+									"        });\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var secondPage  = Math.min(2, pm.collectionVariables.get(\"totalPages\"));",
+									"pm.variables.set(\"currentPage\", secondPage);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text",
+								"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text",
+								"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans?page=2&page-size=5",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"energy",
+								"plans"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "page-size",
+									"value": "5"
+								}
+							]
+						},
+						"description": "This will test for pagination fields in the response when a page is requested, which is not the first or the last page.\n\nThis will be skipped if this test is not possible due to limited pages available."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Generic Plans Last Page",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"        // Parse the response body\r",
+									"        var jsonData;\r",
+									"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+									"\r",
+									"        //var currentPage = 2;\r",
+									"        var totalPages = pm.variables.get(\"totalPages\");\r",
+									"        //pm.variables.set(\"currentPage\", totalPages);\r",
+									"\r",
+									"        var currentPage = pm.variables.get(\"currentPage\");\r",
+									"        var currentTotalPages = jsonData?.meta?.totalPages;\r",
+									"\r",
+									"        pm.test(\"Pagination fields have required properties\", function () {\r",
+									"            pm.expect(jsonData.links).to.have.property(\"self\");            \r",
+									"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"prev\");\r",
+									"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"first\");\r",
+									"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"next\");}  \r",
+									"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"last\");} \r",
+									"        });\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var lastPage = Math.max(1, pm.collectionVariables.get(\"totalPages\"));",
+									"",
+									"pm.variables.set(\"currentPage\", lastPage);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text",
+								"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text",
+								"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans?page={{totalPages}}&page-size=5",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"energy",
+								"plans"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "{{totalPages}}"
+								},
+								{
+									"key": "page-size",
+									"value": "5"
+								}
+							]
+						},
+						"description": "This will test for pagination fields in the response when the last page is requested."
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"        ",
+							"                // Parse the response body",
+							"        var jsonData;",
+							"        try { jsonData = pm.response.json(); } catch(e) {}",
+							"",
+							"",
+							"        var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+							"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
+							"        var requestMinVersionNumber = Number(pm.request.headers.get(\"x-min-v\"));",
+							"",
+							"        pm.collectionVariables.set(\"totalPages\", Math.max(jsonData?.meta?.totalPages,1));",
+							"",
+							"        var currentPage = pm.variables.get(\"currentPage\");",
+							"        var currentPageSize = pm.variables.get(\"pageSize\");",
+							"        var currentTotalPages = jsonData?.meta?.totalPages;",
+							"        var currentTotalRecords = jsonData?.meta?.totalRecords;",
+							"",
+							"        // 200 shhould be returned",
+							"        pm.test(\"Response code is valid 200\", function () {",
+							"                //let arr = [200];",
+							"                var returnStatus = pm.response?.code;",
+							"                pm.expect(returnStatus).to.equal(200);",
+							"        });",
+							"",
+							"        // check meta data for pagination information",
+							"        pm.test (\"Pagination fields in meta data are present\", function () {",
+							"            pm.expect(jsonData.meta.totalPages >= 0);",
+							"            pm.expect(jsonData.meta.totalRecords >= 0);",
+							"        });",
+							"",
+							"        // x-v has to be rturned in the header",
+							"        pm.test(\"x-v header is present and has correct value for 200 returns\", function () {",
+							"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+							"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+							"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
+							"        });",
+							"",
+							"        // Schema payload check",
+							"        pm.test('Response payload conforms to standards schema', function() {",
+							"            const valid = ajv.validate(\"ResponseEnergyProductListV2\", jsonData)",
+							"            if (!valid){",
+							"            ajv.errors.forEach(element => {",
+							"                console.log(JSON.stringify(element));",
+							"                });",
+							"            };",
+							"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+							"        });  "
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Discovery",
+			"item": [
+				{
+					"name": "Get Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"                // Parse the response body",
+									"        var jsonData;",
+									"        try { jsonData = pm.response.json(); } catch(e) {}",
+									"",
+									"",
+									"        var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+									"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
+									"        var requestMinVersionNumber = Number(pm.request.headers.get(\"x-min-v\"));",
+									"",
+									"",
+									"        // 200 shhould be returned",
+									"        pm.test(\"Response code is valid 200\", function () {",
+									"                //let arr = [200];",
+									"                var returnStatus = pm.response?.code;",
+									"                pm.expect(returnStatus).to.equal(200);",
+									"        });",
+									"",
+									"        // x-v has to be rturned in the header",
+									"        pm.test(\"x-v header is present and has correct value for 200 returns\", function () {",
+									"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+									"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+									"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
+									"        });",
+									"",
+									"        // Schema payload check",
+									"        pm.test('Response payload conforms to standards schema', function() {",
+									"            const valid = ajv.validate(\"ResponseCommonDiscoveryStatus\", jsonData)",
+									"            if (!valid){",
+									"            ajv.errors.forEach(element => {",
+									"                console.log(JSON.stringify(element));",
+									"                });",
+									"            };",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+									"        }); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text",
+								"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/discovery/status",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"discovery",
+								"status"
+							]
+						},
+						"description": "Obtain a health check status for the implementation"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Status - Invalid x-v",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"        // Parse the response body",
+									"        var jsonData;",
+									"        try { jsonData = pm.response.json(); } catch(e) {}",
+									"",
+									"",
+									"        // no x-min-v is being provided with the request and the reponse x-v is qual to the request x-v, therefore it should return a dataset",
+									"        pm.test(\"Response for non-numerical x-v should be 400\", function () {",
+									"            pm.response.to.have.status(400);",
+									"        });",
+									"",
+									"        pm.test('Error payload conforms to standards schema', function() {",
+									"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);",
+									"            if (!valid){",
+									"                ajv.errors.forEach(element => {",
+									"                    console.log(JSON.stringify(element));",
+									"                });",
+									"            };",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+									"        });  ",
+									"",
+									"        pm.test('Correct error code is being returned', function() {        ",
+									"            var errMessage= jsonData?.errors[0]?.code;",
+									"            var exptectedMessage = \"urn:au-cds:error:cds-all:Header/InvalidVersion\"",
+									"            pm.expect(errMessage).to.equal(exptectedMessage)",
+									"        }); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "abc",
+								"type": "text",
+								"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/discovery/status",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"discovery",
+								"status"
+							]
+						},
+						"description": "Obtain a health check status for the implementation"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Status - Missing x-v",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"        // Parse the response body",
+									"        var jsonData;",
+									"        try { jsonData = pm.response.json(); } catch(e) {}",
+									"",
+									"",
+									"        // no x-min-v is being provided with the request and the reponse x-v is qual to the request x-v, therefore it should return a dataset",
+									"        pm.test(\"Response for missing x-v should be 400\", function () {",
+									"            pm.response.to.have.status(400);",
+									"        });",
+									"",
+									"",
+									"        pm.test('Error payload conforms to standards schema', function() {",
+									"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);",
+									"            if (!valid){",
+									"                ajv.errors.forEach(element => {",
+									"                    console.log(JSON.stringify(element));",
+									"                });",
+									"            };",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+									"        });  ",
+									"",
+									"        pm.test('Correct error code is being returned', function() {        ",
+									"            var errMessage= jsonData?.errors[0]?.code;",
+									"            var exptectedMessage = \"urn:au-cds:error:cds-all:Header/Missing\"",
+									"            pm.expect(errMessage).to.equal(exptectedMessage)",
+									"        }); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/discovery/status",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"discovery",
+								"status"
+							]
+						},
+						"description": "Obtain a health check status for the implementation"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Outages",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"                // Parse the response body",
+									"        var jsonData;",
+									"        try { jsonData = pm.response.json(); } catch(e) {}",
+									"",
+									"",
+									"        var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+									"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
+									"        var requestMinVersionNumber = Number(pm.request.headers.get(\"x-min-v\"));",
+									"",
+									"        // 200 shhould be returned",
+									"        pm.test(\"Response code is valid 200\", function () {",
+									"                //let arr = [200];",
+									"                var returnStatus = pm.response?.code;",
+									"                pm.expect(returnStatus).to.equal(200);",
+									"        });",
+									"",
+									"        // x-v has to be rturned in the header",
+									"        pm.test(\"x-v header is present and has correct value for 200 returns\", function () {",
+									"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+									"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+									"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
+									"        });",
+									"",
+									"        // Schema payload check",
+									"        pm.test('Response payload conforms to standards schema', function() {",
+									"            const valid = ajv.validate(\"ResponseDiscoveryOutagesList\", jsonData)",
+									"            if (!valid){",
+									"            ajv.errors.forEach(element => {",
+									"                console.log(JSON.stringify(element));",
+									"                });",
+									"            };",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+									"        }); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/discovery/outages",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"discovery",
+								"outages"
+							]
+						},
+						"description": "Obtain a list of scheduled outages for the implementation"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Outages - Invalid x-v",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"        // Parse the response body",
+									"        var jsonData;",
+									"        try { jsonData = pm.response.json(); } catch(e) {}",
+									"",
+									"",
+									"        // no x-min-v is being provided with the request and the reponse x-v is qual to the request x-v, therefore it should return a dataset",
+									"        pm.test(\"Response for non-numerical x-v should be 400\", function () {",
+									"            pm.response.to.have.status(400);",
+									"        });",
+									"",
+									"        pm.test('Error payload conforms to standards schema', function() {",
+									"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);",
+									"            if (!valid){",
+									"                ajv.errors.forEach(element => {",
+									"                    console.log(JSON.stringify(element));",
+									"                });",
+									"            };",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+									"        });  ",
+									"",
+									"        pm.test('Correct error code is being returned', function() {        ",
+									"            var errMessage= jsonData?.errors[0]?.code;",
+									"            var exptectedMessage = \"urn:au-cds:error:cds-all:Header/InvalidVersion\"",
+									"            pm.expect(errMessage).to.equal(exptectedMessage)",
+									"        }); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1.4",
+								"type": "text"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/discovery/outages",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"discovery",
+								"outages"
+							]
+						},
+						"description": "Obtain a list of scheduled outages for the implementation"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Outages -Missing x-v",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"        // Parse the response body",
+									"        var jsonData;",
+									"        try { jsonData = pm.response.json(); } catch(e) {}",
+									"",
+									"",
+									"        // no x-min-v is being provided with the request and the reponse x-v is qual to the request x-v, therefore it should return a dataset",
+									"        pm.test(\"Response for missing x-v should be 400\", function () {",
+									"            pm.response.to.have.status(400);",
+									"        });",
+									"",
+									"",
+									"        pm.test('Error payload conforms to standards schema', function() {",
+									"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);",
+									"            if (!valid){",
+									"                ajv.errors.forEach(element => {",
+									"                    console.log(JSON.stringify(element));",
+									"                });",
+									"            };",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+									"        });  ",
+									"",
+									"        pm.test('Correct error code is being returned', function() {        ",
+									"            var errMessage= jsonData?.errors[0]?.code;",
+									"            var exptectedMessage = \"urn:au-cds:error:cds-all:Header/Missing\"",
+									"            pm.expect(errMessage).to.equal(exptectedMessage)",
+									"        }); ",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{publicBaseUri}}/cds-au/v1/discovery/outages",
+							"host": [
+								"{{publicBaseUri}}"
+							],
+							"path": [
+								"cds-au",
+								"v1",
+								"discovery",
+								"outages"
+							]
+						},
+						"description": "Obtain a list of scheduled outages for the implementation"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Generic Plans  No Pagination",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"currentPage\", 1);\r",
+							"\r",
+							"\r",
+							"                // Parse the response body\r",
+							"        var jsonData;\r",
+							"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+							"\r",
+							"\r",
+							"        var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+							"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));\r",
+							"        var requestMinVersionNumber = Number(pm.request.headers.get(\"x-min-v\"));\r",
+							"\r",
+							"        pm.collectionVariables.set(\"totalPages\", Math.max(jsonData?.meta?.totalPages,1));\r",
+							"\r",
+							"        var currentPage = pm.variables.get(\"currentPage\");\r",
+							"        var currentPageSize = pm.variables.get(\"pageSize\");\r",
+							"        var currentTotalPages = jsonData?.meta?.totalPages;\r",
+							"        var currentTotalRecords = jsonData?.meta?.totalRecords;\r",
+							"\r",
+							"        // 200 shhould be returned\r",
+							"        pm.test(\"Response code is valid 200\", function () {\r",
+							"                //let arr = [200];\r",
+							"                var returnStatus = pm.response?.code;\r",
+							"                pm.expect(returnStatus).to.equal(200);\r",
+							"        });\r",
+							"\r",
+							"        // check meta data for pagination information\r",
+							"        pm.test (\"Pagination fields in meta data are present\", function () {\r",
+							"            pm.expect(jsonData.meta.totalPages >= 0);\r",
+							"            pm.expect(jsonData.meta.totalRecords >= 0);\r",
+							"        });\r",
+							"\r",
+							"        // x-v has to be rturned in the header\r",
+							"        pm.test(\"x-v header is present and has correct value for 200 returns\", function () {\r",
+							"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+							"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+							"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
+							"        });\r",
+							"\r",
+							"        pm.test(\"Response x-v is between x-minb-v and x-v of request\", function () {\r",
+							"            pm.expect(responseVersionNumber).to.gte(requestMinVersionNumber);\r",
+							"            pm.expect(responseVersionNumber).to.lte(requestVersionNumber);\r",
+							"        });\r",
+							"        \r",
+							"        // Schema payload check\r",
+							"        pm.test('Response payload conforms to standards schema', function() {\r",
+							"            const valid = ajv.validate(\"EnergyPlanListResponse\", jsonData)\r",
+							"            if (!valid){\r",
+							"            ajv.errors.forEach(element => {\r",
+							"                console.log(JSON.stringify(element));\r",
+							"                });\r",
+							"            };\r",
+							"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+							"        });  "
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"currentPage\", 1);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-v",
+						"value": "200",
+						"type": "text",
+						"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+					},
+					{
+						"key": "x-min-v",
+						"value": "1",
+						"type": "text",
+						"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
+					}
+				],
+				"url": {
+					"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans",
+					"host": [
+						"{{publicBaseUri}}"
+					],
+					"path": [
+						"cds-au",
+						"v1",
+						"energy",
+						"plans"
+					]
+				},
+				"description": "This will call the product endpoint without any pagination information."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Generic Plans No Pagination- No x-min-v",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"currentPage\", 1);\r",
+							"\r",
+							"                // Parse the response body\r",
+							"        var jsonData;\r",
+							"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+							"\r",
+							"\r",
+							"        var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+							"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));\r",
+							"        var requestMinVersionNumber = Number(pm.request.headers.get(\"x-min-v\"));\r",
+							"\r",
+							"        pm.collectionVariables.set(\"totalPages\", Math.max(jsonData?.meta?.totalPages,1));\r",
+							"\r",
+							"        var currentPage = pm.variables.get(\"currentPage\");\r",
+							"        var currentPageSize = pm.variables.get(\"pageSize\");\r",
+							"        var currentTotalPages = jsonData?.meta?.totalPages;\r",
+							"        var currentTotalRecords = jsonData?.meta?.totalRecords;\r",
+							"\r",
+							"        // 200 shhould be returned\r",
+							"        pm.test(\"Response code is valid 200\", function () {\r",
+							"                //let arr = [200];\r",
+							"                var returnStatus = pm.response?.code;\r",
+							"                pm.expect(returnStatus).to.equal(200);\r",
+							"        });\r",
+							"\r",
+							"        // check meta data for pagination information\r",
+							"        pm.test (\"Pagination fields in meta data are present\", function () {\r",
+							"            pm.expect(jsonData.meta.totalPages >= 0);\r",
+							"            pm.expect(jsonData.meta.totalRecords >= 0);\r",
+							"        });\r",
+							"\r",
+							"        // x-v has to be rturned in the header\r",
+							"        pm.test(\"x-v header is present and has correct value for 200 returns\", function () {\r",
+							"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));\r",
+							"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;\r",
+							"            pm.expect(responseXvIsPositiveInteger).to.be.true;\r",
+							"        });\r",
+							"\r",
+							"        // the header indicates this version is supported\r",
+							"        pm.test(\"Response x-v equals request x-v\", function () {\r",
+							"            pm.expect(responseVersionNumber).to.equal(requestVersionNumber);\r",
+							"        });\r",
+							"\r",
+							"        // Schema payload check\r",
+							"        pm.test('Response payload conforms to standards schema', function() {\r",
+							"            const valid = ajv.validate(\"EnergyPlanListResponse\", jsonData)\r",
+							"            if (!valid){\r",
+							"            ajv.errors.forEach(element => {\r",
+							"                console.log(JSON.stringify(element));\r",
+							"                });\r",
+							"            };\r",
+							"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+							"        });  \r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-v",
+						"value": "3",
+						"type": "text",
+						"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+					}
+				],
+				"url": {
+					"raw": "{{publicBaseUri}}/cds-au/v1/energy/plans",
+					"host": [
+						"{{publicBaseUri}}"
+					],
+					"path": [
+						"cds-au",
+						"v1",
+						"energy",
+						"plans"
+					]
+				},
+				"description": "This will call the product endpoint without pagination information, and also provide no value for x-min-v"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"if (pm.iterationData.get(\"url\") != undefined)",
+					"    pm.collectionVariables.set(\"publicBaseUri\", pm.iterationData.get(\"url\"));",
+					"pm.collectionVariables.set(\"page\", 1);   ",
+					"pm.collectionVariables.set(\"pageSize\", 5); ",
+					"",
+					"",
+					"",
+					"// Initialise only once",
+					"if (pm.variables.get(\"intitalised\") == 0 || pm.variables.get(\"intitalised\") == null) {",
+					"",
+					"    let Ajv = require('ajv');",
+					"    ajv = new Ajv({logger: console, allErrors: true, verbose: false});",
+					"    pm.variables.set(\"intitalised\",1);",
+					"",
+					"    // Set some time relevant time stamps",
+					"    console.log(\"Pre-request: Setting common variables\")",
+					"",
+					"    // setting the base url for schema files",
+					"    var version = pm.collectionVariables.get(\"version\");",
+					"    var branch = \"main\";",
+					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch + \"/\" + version;",
+					"    //var schemaBaseUrl = \"http://localhost:8081/\" + version;",
+					"    var urlEnergySchemaValidationFileDirectory = schemaBaseUrl + \"/postman/postman-validation-energy-\" + version + \".json\";",
+					"    var urlCommonSchemaValidationFileDirectory = schemaBaseUrl + \"/postman/postman-validation-common-\" + version + \".json\";",
+					"",
+					"    pm.sendRequest(urlEnergySchemaValidationFileDirectory, (error, responseEnergy) => {",
+					"        console.log(\"Reading schema files for energy....\"); ",
+					"        if (error) {",
+					"            console.log('Getting schema returned: ' + error);",
+					"        } else {",
+					"            ",
+					"            try { ",
+					"                let energySchemaCount = 0;",
+					"                let energySchemaAdded = 0;",
+					"                console.log(\"RESPONSE: \" + responseEnergy.json());",
+					"                let schemaEnergy = responseEnergy.json();",
+					"                for (var key in schemaEnergy) {",
+					"                    energySchemaCount++;",
+					"                    if (schemaEnergy.hasOwnProperty(key)) {",
+					"                        schemaEnergy[key].$id = key;",
+					"                        try {",
+					"                            ajv.addSchema(schemaEnergy[key]);",
+					"                          //  console.log(\"Added \" + JSON.stringify(schemaEnergy[key]));",
+					"                            energySchemaAdded++;",
+					"                        }",
+					"                        catch(ex){",
+					"                            console.log(\"Exception in \" + key + \" : \" + JSON.stringify(ex));",
+					"                        }",
+					"                        ",
+					"                    }",
+					"                }",
+					"                console.log(\"Energy schema contains \" + energySchemaCount + \" entries\") ;",
+					"                console.log(\"Added \" + energySchemaAdded + \" schemas from Energy\"); ",
+					"                pm.collectionVariables.set(\"GlobalEnergySchema\", schemaEnergy);  ",
+					"            } catch(e) {",
+					"                console.log(\"Exception :\" + JSON.stringify(e));",
+					"            }",
+					"                  ",
+					"        }",
+					"    }); ",
+					"",
+					"  ",
+					"    pm.sendRequest(urlCommonSchemaValidationFileDirectory, (error, responseCommon) => {",
+					"        console.log(\"Reading schema files for common....\"); ",
+					"        if (error) {",
+					"            console.log('Getting schema returned: ' + error);",
+					"        } else {",
+					"            ",
+					"            try { ",
+					"                let commonSchemaCount = 0;",
+					"                let commonSchemaAdded = 0;",
+					"                console.log(\"RESPONSE: \" + responseCommon.json());",
+					"                let schemaCommon = responseCommon.json();",
+					"                for (var key in schemaCommon) {",
+					"                    commonSchemaCount++;",
+					"                    if (schemaCommon.hasOwnProperty(key)) {",
+					"                        schemaCommon[key].$id = key;",
+					"                        try {",
+					"                            ajv.addSchema(schemaCommon[key]);",
+					"                            commonSchemaAdded++;",
+					"                        }",
+					"                        catch(ex){",
+					"                            console.log(\"Exception in \" + key + \" : \" + JSON.stringify(ex));",
+					"                        }",
+					"                        ",
+					"                    }",
+					"                }",
+					"                console.log(\"Common schema contains \" + commonSchemaCount + \" entries\") ;",
+					"                console.log(\"Added \" + commonSchemaAdded + \" schemas from Common\"); ",
+					"            } catch(e) {",
+					"                console.log(\"Exception :\" + JSON.stringify(e));",
+					"            }",
+					"                  ",
+					"        }",
+					"    });   ",
+					"    // var urlACCCBRands = \"https://api.cdr.gov.au/cdr-register/v1/energy/data-holders/brands/summary\"",
+					"    // pm.sendRequest({url: urlACCCBRands, header:\"x-v:1\"}, (error, responseAccc) => {",
+					"        ",
+					"    //     let resBody = responseAccc.json();",
+					"    //     let acccEndpoints = resBody.data;",
+					"    //     let prdEndpointsC = [];",
+					"    //     for(var i = 0; i < acccEndpoints.length; i++) {",
+					"    //         var st = JSON.stringify(acccEndpoints[i].publicBaseUri);",
+					"",
+					"    //         prdEndpointsC.push(st)",
+					"    //     }",
+					"    //     pm.globals.set(\"prdEndpoints\", prdEndpointsC);",
+					"    // })",
+					"    ",
+					"  }",
+					"",
+					"",
+					"// This is used for pagination to determine if this is the first page, last page, middle page or",
+					"",
+					"// This is used for pagination to determine if this is the first page, last page, middle page or",
+					"// a single page response",
+					"utils = {",
+					"    whichPage: function (currPage, totalPages, totalRecords, pageSize ) {",
+					"        if (pageSize == null) {pageSize = 25};",
+					"        ",
+					"        if (currPage == null) {currPage = 1};",
+					"",
+					"        if (totalPages <= 1 ) return 0;",
+					"",
+					"        if (totalRecords <= pageSize || (totalRecords > pageSize &&  currPage == 1)) return 1;   ",
+					"",
+					"        if (currPage > 1 && currPage < totalPages ){ return 2}",
+					"",
+					"        if (currPage == totalPages ){ return 3}",
+					"    }",
+					"};",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"",
+					"        // Parse the response body",
+					"        var jsonData;",
+					"        try { jsonData = pm.response.json(); } catch(e) {}",
+					"",
+					"        var currentPage = pm.variables.get(\"currentPage\");",
+					"        var currentPageSize = pm.variables.get(\"pageSize\");",
+					"        var currentTotalPages = jsonData?.meta?.totalPages;",
+					"        var currentTotalRecords = jsonData?.meta?.totalRecords;",
+					"",
+					"",
+					"        var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+					"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
+					"        var requestMinVersionNumber = Number(pm.request.headers.get(\"x-min-v\"));",
+					"",
+					"",
+					"        // pm.test(\"Response code is valid (200, 406, 400, 422\", function() {",
+					"        //         let arr = [200, 406, 400, 422];",
+					"        //         var returnStatus = pm.response.code;",
+					"        //         arr.forEach((x) => {",
+					"        //             pm.expect(returnStatus).to.include(x);",
+					"        //         });",
+					"        // })",
+					"",
+					"                // HTTP Response and headers",
+					"        // pm.test(\"Response code is valid (200, 406, 400, 422\", function () {",
+					"        //         let arr = [200, 406, 400, 422];",
+					"        //         var returnStatus = pm.response.code;",
+					"        //         pm.expect(arr).to.include(returnStatus);",
+					"        // });",
+					"",
+					"        // // HTTP Response and headers",
+					"        // ((pm.response.code == 200) ? pm.test : pm.test.skip)(\"x-v header is present and has correct value for 200 returns\", function () {",
+					"        //     var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+					"        //     var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+					"        //     pm.expect(responseXvIsPositiveInteger).to.be.true;",
+					"        // });",
+					"",
+					"",
+					"",
+					"        // // Schema payload check",
+					"        // ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+					"        //     const valid = ajv.validate(\"ResponseEnergyProductListV2\", jsonData)",
+					"        //     if (!valid){",
+					"        //     ajv.errors.forEach(element => {",
+					"        //         console.log(JSON.stringify(element));",
+					"        //         });",
+					"        //     };",
+					"        //     pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+					"        // });  ",
+					"",
+					"        // ((pm.response.code == 400 || pm.response.code == 422 || pm.response.code == 406) ? pm.test : pm.test.skip)('Error payload conforms to standards schema', function() {",
+					"        //     const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
+					"        //     if (!valid){",
+					"        //     ajv.errors.forEach(element => {",
+					"        //         console.log(JSON.stringify(element));",
+					"        //         });",
+					"        //     };",
+					"",
+					"        //     pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+					"        // });     ",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "publicBaseUri",
+			"value": "https://public.cdr.agl.com.au"
+		},
+		{
+			"key": "pageSize",
+			"value": 5
+		},
+		{
+			"key": "version",
+			"value": "1.20.0"
+		},
+		{
+			"key": "x-v",
+			"value": "200",
+			"type": "string"
+		},
+		{
+			"key": "page",
+			"value": 1
+		},
+		{
+			"key": "totalPages",
+			"value": 1
+		},
+		{
+			"key": "GlobalEnergySchema",
+			"value": ""
+		}
+	]
+}
