@@ -1573,7 +1573,7 @@
 					"",
 					"    // setting the base url for schema files",
 					"    var version = pm.collectionVariables.get(\"version\");",
-					"    var branch = \"gh/issue19\";",
+					"    var branch = \"main\";",
 					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch + \"/\" + version;",
 					"    //var schemaBaseUrl = \"http://localhost:8081/\" + version;",
 					"    var urlBankingSchemaValidationFileDirectory = schemaBaseUrl + \"/postman/postman-validation-banking-\" + version + \".json\";",
