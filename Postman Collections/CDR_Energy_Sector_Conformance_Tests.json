@@ -3489,7 +3489,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "e09d4fbd-77f1-491c-ad6a-95ad133db991",
+				"id": "da0f0f39-047d-45dc-9372-0b3d92e56d9c",
 				"type": "text/javascript",
 				"exec": [
 					"var moment = require('moment');",
@@ -3546,12 +3546,12 @@
 					"    var dateLastYear = new Date(timeCurrent.getFullYear() - 1,",
 					"                                timeCurrent.getMonth(),",
 					"                                timeCurrent.getDate(), 0, 0, 0);",
-					"   // setting the base url for schema files",
+					"",
 					"    // setting the base url for schema files",
 					"    var version = pm.collectionVariables.get(\"version\");",
-					"    //var branch = \"gh/issue19/\";",
-					"    var branch = \"main/\";",
-					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
+					"",
+					"    //var branch = \"main/\";",
+					"    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
 					"",
 					"    //var schemaBaseUrl = \"http://localhost:8080/\";",
 					"",
@@ -3632,7 +3632,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "c57c914b-9b63-4fc3-b7e4-0a61bc61ed5d",
+				"id": "f9f36aee-43b2-4a86-bbde-2ab11717bdb3",
 				"type": "text/javascript",
 				"exec": [
 					"        // Parse the response body",
@@ -3689,22 +3689,22 @@
 	],
 	"variable": [
 		{
-			"id": "892ffcad-a2ff-4933-ae82-66224534ca41",
+			"id": "fdc4a322-330e-4ddc-9690-6395583911e3",
 			"key": "version",
 			"value": "1.22.0"
 		},
 		{
-			"id": "064df320-bf3e-41ae-93a1-ac4a127875ca",
+			"id": "1968e6f7-a5cb-4354-a668-813f892e4509",
 			"key": "pageSize",
 			"value": "2"
 		},
 		{
-			"id": "7352c0d9-add6-41d6-9a92-fa1fa893bb0f",
+			"id": "30302a16-f8ae-4d76-8d4e-2148657de584",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "b7ed31cb-1cba-4fb8-a293-b4e106349ce9",
+			"id": "0231d948-ee01-4072-b997-a84ded657da5",
 			"key": "notPaginatedRequests",
 			"value": ""
 		}
