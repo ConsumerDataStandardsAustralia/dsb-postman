@@ -110,12 +110,6 @@
 									"description": "Only include plans that have been updated after the specified date and time.  If absent defaults to include all plans"
 								},
 								{
-									"key": "brand",
-									"value": "",
-									"description": "Used to filter results on the brand field.  If absent defaults to include all plans",
-									"disabled": true
-								},
-								{
 									"key": "page",
 									"value": "1",
 									"description": "Page of results to request (standard pagination)"
@@ -3689,22 +3683,22 @@
 	],
 	"variable": [
 		{
-			"id": "63157bcf-7807-4f82-bc05-cba2ddc82181",
+			"id": "930529c1-2291-4786-8c02-5c75cdf697eb",
 			"key": "version",
 			"value": "1.22.0"
 		},
 		{
-			"id": "3b886b8f-8bd8-4378-9d29-0e248f1926a1",
+			"id": "3226cc93-690b-48b4-bbdf-916bfcb31529",
 			"key": "pageSize",
 			"value": "2"
 		},
 		{
-			"id": "1db73e9b-549b-494d-a88b-e10d129af9d4",
+			"id": "6bc0d7cc-569b-4c24-9fae-7124878d8fbd",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "0efa2426-ad0a-48b5-8c1e-846675260064",
+			"id": "e08682d5-f51b-4d01-a0d9-908973cdf518",
 			"key": "notPaginatedRequests",
 			"value": ""
 		}
