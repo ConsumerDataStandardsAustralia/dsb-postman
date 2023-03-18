@@ -3489,7 +3489,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "da0f0f39-047d-45dc-9372-0b3d92e56d9c",
+				"id": "c9ad2717-bdc9-4285-b9ef-b1dc14f166eb",
 				"type": "text/javascript",
 				"exec": [
 					"var moment = require('moment');",
@@ -3553,7 +3553,7 @@
 					"    //var branch = \"main/\";",
 					"    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
 					"",
-					"    //var schemaBaseUrl = \"http://localhost:8080/\";",
+					"    var schemaBaseUrl = \"http://localhost:8080/\";",
 					"",
 					"    var urlEnergySchemaValidationFileDirectory = schemaBaseUrl + version + \"/postman/postman-validation-energy-\" + version + \".json\";",
 					"",
@@ -3632,7 +3632,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "f9f36aee-43b2-4a86-bbde-2ab11717bdb3",
+				"id": "2a8f64ea-3590-4fbb-af66-7595b5915955",
 				"type": "text/javascript",
 				"exec": [
 					"        // Parse the response body",
@@ -3689,22 +3689,22 @@
 	],
 	"variable": [
 		{
-			"id": "7d9a5e49-36fa-4387-8afb-bebe917a1d2a",
+			"id": "ec178d29-0c24-47dc-9571-58c832e9e2bf",
 			"key": "version",
 			"value": "1.22.0"
 		},
 		{
-			"id": "30cda55b-8f29-4681-8894-029d0d31bc28",
+			"id": "aaea0809-40ab-4ab9-9372-39e0bdf59d51",
 			"key": "pageSize",
 			"value": "2"
 		},
 		{
-			"id": "eeef4e51-4762-4dfe-b818-0e1b78e1d17c",
+			"id": "ad3f2c93-3fa3-463c-b53a-40273d62ed24",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "3510ead8-d234-4971-8cd3-859907883f77",
+			"id": "9424e3fc-c844-4658-8440-19b47a056fbe",
 			"key": "notPaginatedRequests",
 			"value": ""
 		}
