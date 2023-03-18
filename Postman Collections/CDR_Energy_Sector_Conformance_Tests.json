@@ -3483,7 +3483,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "c9ad2717-bdc9-4285-b9ef-b1dc14f166eb",
+				"id": "a5364330-6ed1-497b-a7f8-3ea788ea3c96",
 				"type": "text/javascript",
 				"exec": [
 					"var moment = require('moment');",
@@ -3544,10 +3544,10 @@
 					"    // setting the base url for schema files",
 					"    var version = pm.collectionVariables.get(\"version\");",
 					"",
-					"    //var branch = \"main/\";",
-					"    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
+					"    var branch = \"main/\";",
+					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
 					"",
-					"    var schemaBaseUrl = \"http://localhost:8080/\";",
+					"    //var schemaBaseUrl = \"http://localhost:8080/\";",
 					"",
 					"    var urlEnergySchemaValidationFileDirectory = schemaBaseUrl + version + \"/postman/postman-validation-energy-\" + version + \".json\";",
 					"",
@@ -3626,7 +3626,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "2a8f64ea-3590-4fbb-af66-7595b5915955",
+				"id": "1ee565db-1a3f-42b2-9931-a7d1cd318c86",
 				"type": "text/javascript",
 				"exec": [
 					"        // Parse the response body",
@@ -3683,22 +3683,22 @@
 	],
 	"variable": [
 		{
-			"id": "fb0afc13-e360-49d8-bbc4-0f22b3b922ea",
+			"id": "fe251f9b-3ca9-4f12-b403-d1dca480f2da",
 			"key": "version",
 			"value": "1.22.0"
 		},
 		{
-			"id": "e35d1333-d1ec-4824-9be6-0b32e696e0d1",
+			"id": "238be656-95db-466a-8de0-5bddb7d495ea",
 			"key": "pageSize",
 			"value": "2"
 		},
 		{
-			"id": "9d29ba78-9611-4b75-b5e6-fd39df8b85e8",
+			"id": "2dc7c165-dd82-4ee9-9d35-46db1697b809",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "02a4e6ee-f041-4b69-bc71-9cb7715a9a64",
+			"id": "2cf98012-9570-4c33-a8b8-94ecca6d8d51",
 			"key": "notPaginatedRequests",
 			"value": ""
 		}
