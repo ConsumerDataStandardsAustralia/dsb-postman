@@ -5247,7 +5247,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "d577165a-155b-47cf-9f15-732ac1557ef2",
+				"id": "db2576fa-d8ab-428b-9386-e1f468f2e261",
 				"type": "text/javascript",
 				"exec": [
 					"",
@@ -5443,7 +5443,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "f2f4efe9-0cb9-4371-8dc8-334fb9a500d3",
+				"id": "f11beee9-64ba-4c08-a06f-caf02a7e31cc",
 				"type": "text/javascript",
 				"exec": [
 					"",
@@ -5502,37 +5502,37 @@
 	],
 	"variable": [
 		{
-			"id": "eb3f0b05-3eae-4f54-ba23-c51b53db8caf",
+			"id": "f5ea7bae-9ea3-4ed4-a441-f679927df900",
 			"key": "version",
 			"value": "1.22.0"
 		},
 		{
-			"id": "6bfcb137-20d5-4aa5-8741-5ffc7a2c1003",
+			"id": "07d77ef6-47f6-47bf-bfb2-76b218f3496e",
 			"key": "notPaginatedRequests",
 			"value": ""
 		},
 		{
-			"id": "ba5428a1-a853-41c4-bfe0-b79eb6dec2c9",
+			"id": "0ecb64d4-025f-4d17-bc91-a9b15e3648f8",
 			"key": "GlobalBankingSchema",
 			"value": ""
 		},
 		{
-			"id": "53708bcd-103e-492e-a4f5-5104c22a9a2e",
+			"id": "63575fee-14a2-48e5-816d-669e510a89ab",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "4cdbf508-04fc-4100-a1b9-4a2564a334ff",
+			"id": "2f8e7e64-9d44-4e36-a335-ca1f6463b7c0",
 			"key": "productCategory",
 			"value": ""
 		},
 		{
-			"id": "fe54da1b-3d06-47f1-ae3b-ab170237badd",
+			"id": "36a81a28-4962-4a09-bdf2-bb429c95b5c2",
 			"key": "effective",
 			"value": ""
 		},
 		{
-			"id": "2408cbfa-cdfa-4576-bcb1-567a08fff297",
+			"id": "a3dea5b7-0e92-4844-8aaa-6304f53fb98d",
 			"key": "pageArray",
 			"value": ""
 		}
