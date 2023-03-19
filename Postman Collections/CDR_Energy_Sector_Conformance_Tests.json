@@ -2628,11 +2628,6 @@
 												"key": "Content-Type",
 												"value": "application/json",
 												"type": "text"
-											},
-											{
-												"key": "userId",
-												"value": "07ff3cb4-fc19-47c8-a1ac-d2fe2fb6da4c",
-												"type": "text"
 											}
 										],
 										"body": {
@@ -3683,22 +3678,22 @@
 	],
 	"variable": [
 		{
-			"id": "5b8a965c-19c3-4bd4-bd71-4b8b04c8e7ff",
+			"id": "2b76325a-67c7-4fc4-8407-c6616f4d7e06",
 			"key": "version",
 			"value": "1.22.0"
 		},
 		{
-			"id": "d30ad0ed-f597-444d-96b3-728cdc05fee4",
+			"id": "3ea7eaa6-ddc6-4bb5-bb45-8837a21302fc",
 			"key": "pageSize",
 			"value": "2"
 		},
 		{
-			"id": "36eee62f-b8a8-4960-ae53-0f1891802406",
+			"id": "f4bac179-3268-4bd5-893b-85c9c63f1e11",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "884fe61d-a418-4f5c-9ea8-97f6dbdd9a7e",
+			"id": "5ec8fada-cf86-4c4e-a4c0-83a5e862985b",
 			"key": "notPaginatedRequests",
 			"value": ""
 		}
