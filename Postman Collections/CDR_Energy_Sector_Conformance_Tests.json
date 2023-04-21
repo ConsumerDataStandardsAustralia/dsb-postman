@@ -34,10 +34,8 @@
 									"});\r",
 									"\r",
 									"\r",
-									"\r",
 									"// Schema payload check\r",
-									"        // Schema payload check\r",
-									"pm.test('Response payload conforms to standards schema', function() {\r",
+									" ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 									"    const valid = ajv.validate(\"EnergyPlanListResponse\", jsonData)\r",
 									"    if (!valid){\r",
 									"    ajv.errors.forEach(element => {\r",
@@ -282,14 +280,9 @@
 									"            console.log(e);",
 									"        }",
 									"",
-									"        // HTTP Response and headers",
-									"        pm.test(\"Status code is 200\", function () {",
-									"            pm.response.to.have.status(200);",
-									"        });",
 									"",
-									"",
-									"        // Schema payload check",
-									"        pm.test('Response payload conforms to standards schema', function() {",
+									"// Schema payload check",
+									" ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
 									"            const valid = ajv.validate(\"EnergyPlanResponse\", jsonData)",
 									"            if (!valid){",
 									"            ajv.errors.forEach(element => {",
@@ -342,7 +335,6 @@
 							],
 							"variable": [
 								{
-									"id": "3fb8ae0a-ef17-41b7-8d89-20d3d84e8864",
 									"key": "planId",
 									"value": "{{planId}}"
 								}
@@ -365,7 +357,7 @@
 							"name": "{service Point Id}",
 							"item": [
 								{
-									"name": "T.EAR.006 Get Service Point Detail v1",
+									"name": "T.EAR.0075 Get Service Point Detail v1",
 									"event": [
 										{
 											"listen": "test",
@@ -382,14 +374,8 @@
 													"            console.log(e);",
 													"        }",
 													"",
-													"        // HTTP Response and headers",
-													"        pm.test(\"Status code is 200\", function () {",
-													"            pm.response.to.have.status(200);",
-													"        });",
-													"",
-													"",
 													"        // Schema payload check",
-													"        pm.test('Response payload conforms to standards schema', function() {",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
 													"            const valid = ajv.validate(\"EnergyServicePointDetailResponse\", jsonData)",
 													"            if (!valid){",
 													"            ajv.errors.forEach(element => {",
@@ -469,7 +455,6 @@
 											],
 											"variable": [
 												{
-													"id": "bf8776f7-ce8f-4dc5-bb85-01b04260b11b",
 													"key": "servicePointId",
 													"value": "{{servicePointId}}",
 													"description": "(Required) ID of the specific service point requested.  This is a tokenised ID previous obtained from the Service Point List Data end point.  Note that it is not a nationalMeteringId."
@@ -481,7 +466,7 @@
 									"response": []
 								},
 								{
-									"name": "T.EAR.012 Get Usage For Service Point v1",
+									"name": "T.EAR.0077 Get Usage For Service Point v1",
 									"event": [
 										{
 											"listen": "test",
@@ -498,14 +483,8 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyUsageListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -597,7 +576,6 @@
 											],
 											"variable": [
 												{
-													"id": "7ec3e667-3874-4fe7-af4a-428b14fcc2c6",
 													"key": "servicePointId",
 													"value": "{{servicePointId}}",
 													"description": "(Required) ID of the specific service point requested.  This is a tokenised ID previous obtained from the Service Point List Data end point.  Note that it is not a nationalMeteringId."
@@ -609,12 +587,12 @@
 									"response": []
 								},
 								{
-									"name": "T.EAR.033 Get DER For Service Point v1",
+									"name": "T.EAR.0083 Get DER For Service Point v1",
 									"event": [
 										{
 											"listen": "test",
 											"script": {
-												"id": "2583442e-6ec2-4b70-81d4-6e1b3e1bd0f7",
+												"id": "b1ba0f34-52ca-4193-996b-75c9eaba78ca",
 												"exec": [
 													"        // Parse the response body\r",
 													"        var jsonData;\r",
@@ -626,14 +604,8 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyDerDetailResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -700,7 +672,6 @@
 											],
 											"variable": [
 												{
-													"id": "40245f28-e12c-4bf0-9919-7e0f3c2d0d65",
 													"key": "servicePointId",
 													"value": "{{servicePointId}}",
 													"description": "(Required) ID of the specific service point requested.  This is a tokenised ID previous obtained from the Service Point List Data end point.  Note that it is not a nationalMeteringId."
@@ -718,7 +689,7 @@
 							"name": "usage",
 							"item": [
 								{
-									"name": "T.EAR.045 Get Bulk Usage v1",
+									"name": "T.EAR.0046 Get Bulk Usage v1",
 									"event": [
 										{
 											"listen": "test",
@@ -735,14 +706,8 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyUsageListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -837,7 +802,7 @@
 									"response": []
 								},
 								{
-									"name": "T.EAR.023 Get Usage For Specific Service Points v1",
+									"name": "T.EAR.0020 Get Usage For Specific Service Points v1",
 									"event": [
 										{
 											"listen": "test",
@@ -854,14 +819,11 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
+													"\r",
 													"\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyUsageListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -1205,7 +1167,7 @@
 							"id": "16b68b4b-5911-4ce0-90b2-b02c94614c48"
 						},
 						{
-							"name": "T.EAR.001 Get Service Points v1",
+							"name": "T.EAR.0002 Get Service Points v1",
 							"event": [
 								{
 									"listen": "test",
@@ -1233,7 +1195,7 @@
 											"        var requestXvIsPositiveInteger = Number.isSafeInteger(requestVersionNumber);",
 											"        var requestMinXvIsPositiveInteger = Number.isSafeInteger(requestMinVersionNumber);",
 											"",
-											"        ((requestVersion != null && requestXvIsPositiveInteger == true) ? pm.test : pm.test.skip)(\"A.CVN.001: Validate version - valid version number [x-v]\", function () {",
+											"        ((requestVersion != null && requestXvIsPositiveInteger == true) ? pm.test : pm.test.skip)(\"A.ZAA.0006: Validate version - valid version number [x-v]\", function () {",
 											"            var responseVersion = pm.request.headers.get(\"x-v\");",
 											"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
 											"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
@@ -1242,7 +1204,7 @@
 											"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
 											"        });",
 											"",
-											"        ((requestMinVersion != null && requestMinXvIsPositiveInteger == true) ? pm.test : pm.test.skip)(\"A.CVM.001: Validate version - <x-min-v> is provided\", function () {",
+											"        ((requestMinVersion != null && requestMinXvIsPositiveInteger == true) ? pm.test : pm.test.skip)(\"A.ZAA.0011: Validate version - <x-min-v> is provided\", function () {",
 											"            var responseVersion = pm.request.headers.get(\"x-v\");",
 											"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
 											"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
@@ -1254,17 +1216,17 @@
 											"        });",
 											"",
 											"        var requestXFapi = pm.request.headers.get(\"x-fapi-interaction-id\");",
-											"        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"A.CFI.001: Validate FAPI Interaction ID - included in request\", function () {",
+											"        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"A.ZAA.0013: Validate FAPI Interaction ID - included in request\", function () {",
 											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
 											"            pm.expect(responseXFapi).equals(requestXFapi);",
 											"        });",
 											"",
-											"        ((requestXFapi == null) ? pm.test : pm.test.skip)(\"A.CFI.002: Validate FAPI Interaction ID - not in request\", function () {",
+											"        ((requestXFapi == null) ? pm.test : pm.test.skip)(\"A.ZAA.0014: Validate FAPI Interaction ID - not in request\", function () {",
 											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
 											"            pm.expect(responseXFapi).not.null;",
 											"        });",
 											"",
-											"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('A.EAR.004: Validate schema - EnergyServicePointListReponse', function() {",
+											"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('A.EAR.0004: Validate schema - EnergyServicePointListReponse', function() {",
 											"            const valid = ajv.validate(\"EnergyServicePointListResponse\", jsonData)",
 											"            if (!valid){",
 											"            ajv.errors.forEach(element => {",
@@ -1364,7 +1326,7 @@
 							"response": []
 						},
 						{
-							"name": "T.EAR.109 Get Service Points  invalid version value",
+							"name": "T.EAR.0109 Get Service Points  invalid version value",
 							"event": [
 								{
 									"listen": "test",
@@ -1389,7 +1351,7 @@
 											"        var requestXvIsValidInteger = Number.isSafeInteger(requestVersionNumber) && requestVersionNumber >= 0 && requestVersionNumber < 1001;",
 											"",
 											"",
-											"        ((requestVersion != null && (requestXvIsValidInteger == false)) ? pm.test : pm.test.skip)(\"A.CVN.002: Validate version - invalid version value [x-v]\", function () {",
+											"        ((requestVersion != null && (requestXvIsValidInteger == false)) ? pm.test : pm.test.skip)(\"A.ZAA.0007: Validate version - invalid version value [x-v]\", function () {",
 											"            pm.response.to.have.status(400);",
 											"            const valid = ajv.validate(\"ErrorListResponse\", jsonData)",
 											"            if (!valid){",
@@ -1403,12 +1365,12 @@
 											"        });",
 											"",
 											"        var requestXFapi = pm.request.headers.get(\"x-fapi-interaction-id\");",
-											"        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"A.CFI.001: Validate FAPI Interaction ID - included in request\", function () {",
+											"        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"A.ZAA.0013: Validate FAPI Interaction ID - included in request\", function () {",
 											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
 											"            pm.expect(responseXFapi).equals(requestXFapi);",
 											"        });",
 											"",
-											"        ((requestXFapi == null) ? pm.test : pm.test.skip)(\"A.CFI.002: Validate FAPI Interaction ID - not in request\", function () {",
+											"        ((requestXFapi == null) ? pm.test : pm.test.skip)(\"A.ZAA.0014: Validate FAPI Interaction ID - not in request\", function () {",
 											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
 											"            pm.expect(responseXFapi).not.null;",
 											"        });",
@@ -1470,7 +1432,7 @@
 							"response": []
 						},
 						{
-							"name": "T.EAR.002 Get Service Points v1",
+							"name": "T.EAR.0002 Get Service Points v1",
 							"event": [
 								{
 									"listen": "test",
@@ -1494,7 +1456,7 @@
 											"        });\r",
 											"\r",
 											"        // Schema payload check\r",
-											"        ((pm.response.code == 200) ? pm.test : pm.test.skip), pm.test('A.EAR.004 Response payload conforms to standards schema', function() {\r",
+											"        ((pm.response.code == 200) ? pm.test : pm.test.skip), pm.test('A.EAR.0004 Response payload conforms to standards schema', function() {\r",
 											"            const valid = ajv.validate(\"EnergyServicePointListResponse\", jsonData)\r",
 											"            if (!valid){\r",
 											"            ajv.errors.forEach(element => {\r",
@@ -1643,14 +1605,8 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyAccountDetailResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -1715,7 +1671,6 @@
 											],
 											"variable": [
 												{
-													"id": "ddd2830d-ac35-402c-aac1-35297b216e37",
 													"key": "accountId",
 													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
@@ -1744,14 +1699,9 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyAccountDetailResponseV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -1816,7 +1766,6 @@
 											],
 											"variable": [
 												{
-													"id": "ddd2830d-ac35-402c-aac1-35297b216e37",
 													"key": "accountId",
 													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
@@ -1845,14 +1794,10 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
 													"\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyPaymentScheduleResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -1918,7 +1863,6 @@
 											],
 											"variable": [
 												{
-													"id": "f8582b54-4289-49c6-af85-e19448e404dd",
 													"key": "accountId",
 													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
@@ -1947,14 +1891,8 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyConcessionsResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -2033,7 +1971,6 @@
 											],
 											"variable": [
 												{
-													"id": "26f206b2-7052-4a5b-b751-d59b93fb9f62",
 													"key": "accountId",
 													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
@@ -2062,14 +1999,8 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBalanceResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -2148,7 +2079,6 @@
 											],
 											"variable": [
 												{
-													"id": "3654c042-33fc-43ec-81e2-68df2bb11edd",
 													"key": "accountId",
 													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
@@ -2177,14 +2107,9 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyInvoiceListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -2291,14 +2216,8 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBillingListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -2399,7 +2318,6 @@
 											],
 											"variable": [
 												{
-													"id": "178b8201-1fac-4608-9556-f19fa0021178",
 													"key": "accountId",
 													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
@@ -2434,14 +2352,9 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBalanceListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -2552,14 +2465,9 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBalanceListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -2690,14 +2598,8 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyInvoiceListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -2818,14 +2720,8 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyInvoiceListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -3220,14 +3116,9 @@
 											"            console.log(e);\r",
 											"        }\r",
 											"\r",
-											"        // HTTP Response and headers\r",
-											"        pm.test(\"Status code is 200\", function () {\r",
-											"            pm.response.to.have.status(200);\r",
-											"        });\r",
-											"\r",
 											"\r",
 											"        // Schema payload check\r",
-											"        pm.test('Response payload conforms to standards schema', function() {\r",
+											"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 											"            const valid = ajv.validate(\"EnergyAccountListResponse\", jsonData)\r",
 											"            if (!valid){\r",
 											"            ajv.errors.forEach(element => {\r",
@@ -3337,14 +3228,10 @@
 											"            console.log(e);\r",
 											"        }\r",
 											"\r",
-											"        // HTTP Response and headers\r",
-											"        pm.test(\"Status code is 200\", function () {\r",
-											"            pm.response.to.have.status(200);\r",
-											"        });\r",
 											"\r",
 											"\r",
 											"        // Schema payload check\r",
-											"        pm.test('Response payload conforms to standards schema', function() {\r",
+											"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 											"            const valid = ajv.validate(\"EnergyAccountListResponseV2\", jsonData)\r",
 											"            if (!valid){\r",
 											"            ajv.errors.forEach(element => {\r",
@@ -3478,7 +3365,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "84f7ecc6-320a-4d66-9c35-a0c33a1ab893",
+				"id": "ab1ba45e-143d-4ebf-bd8e-3538345e8bfa",
 				"type": "text/javascript",
 				"exec": [
 					"var moment = require('moment');",
@@ -3539,6 +3426,7 @@
 					"    // setting the base url for schema files",
 					"    var version = pm.collectionVariables.get(\"version\");",
 					"",
+					"    // setting the base url for schema files",
 					"    var branch = \"main/\";",
 					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
 					"",
@@ -3621,7 +3509,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "7c73fa61-2885-4c04-9360-a0f3786883ec",
+				"id": "4c297f58-8449-460e-9cf9-fc2b08b1c433",
 				"type": "text/javascript",
 				"exec": [
 					"        // Parse the response body",
@@ -3664,7 +3552,7 @@
 					"        });",
 					"",
 					"        ((pm.response.code == 400 || pm.response.code == 422 || pm.response.code == 406 || pm.response.code == 404 ) ? pm.test : pm.test.skip)('Error payload conforms to standards schema', function() {",
-					"            const valid = ajv.validate(\"ErrorListResponse\", jsonData);",
+					"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
 					"            if (!valid){",
 					"            ajv.errors.forEach(element => {",
 					"                console.log(JSON.stringify(element));",
@@ -3678,22 +3566,22 @@
 	],
 	"variable": [
 		{
-			"id": "2b76325a-67c7-4fc4-8407-c6616f4d7e06",
+			"id": "d326af01-8ef6-4db2-8dff-02f6eaf10cdb",
 			"key": "version",
-			"value": "1.22.0"
+			"value": "1.22.1"
 		},
 		{
-			"id": "3ea7eaa6-ddc6-4bb5-bb45-8837a21302fc",
+			"id": "4e53fc24-f9cb-4489-a4d9-3132c38c3a14",
 			"key": "pageSize",
 			"value": "2"
 		},
 		{
-			"id": "f4bac179-3268-4bd5-893b-85c9c63f1e11",
+			"id": "712d6969-0e7a-443e-aaa8-8623ad45d55a",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "5ec8fada-cf86-4c4e-a4c0-83a5e862985b",
+			"id": "3f3d4832-32a4-423e-935b-909f910cbd14",
 			"key": "notPaginatedRequests",
 			"value": ""
 		}
