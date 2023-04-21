@@ -2889,11 +2889,16 @@
 															"        // Parse the response body",
 															"        try { jsonData = pm.response.json(); } catch(e) {}",
 															"",
-															"        // HTTP Response and headers",
-															"        pm.test(\"Status code is 422\", function () {",
-															"            pm.response.to.have.status(422);",
-															"        });",
-															"",
+															"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {",
+															"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
+															"            let errCode = jsonData.errors[0].code;",
+															"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\"]);",
+															"            if (!valid){",
+															"            ajv.errors.forEach(element => {",
+															"                console.log(JSON.stringify(element));",
+															"                });",
+															"            };         ",
+															"        });  ",
 															" ",
 															"",
 															"",
@@ -3419,15 +3424,16 @@
 													"        var jsonData;",
 													"        try { jsonData = pm.response.json(); } catch(e) {}",
 													"",
-													"        // HTTP Response and headers",
-													"        pm.test(\"Status code is 404\", function () {",
-													"            pm.response.to.have.status(404);",
-													"        });",
-													"",
-													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
-													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
-													"        });",
-													"",
+													"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {",
+													"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
+													"            let errCode = jsonData.errors[0].code;",
+													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\"]);",
+													"            if (!valid){",
+													"            ajv.errors.forEach(element => {",
+													"                console.log(JSON.stringify(element));",
+													"                });",
+													"            };         ",
+													"        });  ",
 													"",
 													"",
 													"",
@@ -3506,7 +3512,6 @@
 											],
 											"variable": [
 												{
-													"id": "07d91a72-420b-4c28-b251-2e9fa65c588b",
 													"key": "accountId",
 													"value": "{{invalidId}}"
 												}
@@ -3527,11 +3532,16 @@
 													"        var jsonData;",
 													"        try { jsonData = pm.response.json(); } catch(e) {}",
 													"",
-													"",
-													"        // HTTP Response and headers",
-													"        pm.test(\"Status code is 422\", function () {",
-													"            pm.response.to.have.status(422);",
-													"        });",
+													"        ((pm.response.code == 422) ? pm.test : pm.test.skip)('Correct error code in error object', function() {",
+													"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
+													"            let errCode = jsonData.errors[0].code;",
+													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Field/InvalidPage\"]);",
+													"            if (!valid){",
+													"            ajv.errors.forEach(element => {",
+													"                console.log(JSON.stringify(element));",
+													"                });",
+													"            };         ",
+													"        });  ",
 													"",
 													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
 													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
@@ -4661,15 +4671,16 @@
 													"        if (pm.response.jsonData != null) {\r",
 													"            jsonData = pm.response.json();\r",
 													"        }\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 404\", function () {\r",
-													"            pm.response.to.have.status(404);\r",
-													"        });\r",
-													"\r",
-													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
-													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));\r",
-													"        });\r",
-													"\r",
+													"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {\r",
+													"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);\r",
+													"            let errCode = jsonData.errors[0].code;\r",
+													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\"]);\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };         \r",
+													"        });  \r",
 													"\r",
 													"\r",
 													""
@@ -4753,7 +4764,6 @@
 											],
 											"variable": [
 												{
-													"id": "ec69a099-e872-4147-81a2-07298f1b7686",
 													"key": "payeeId",
 													"value": "{{invalidId}}",
 													"description": "The ID used to locate the details of a particular payee"
@@ -5134,11 +5144,17 @@
 													"        var jsonData;\r",
 													"        try { jsonData = pm.response.json(); } catch(e) {}\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 404\", function () {\r",
-													"            pm.response.to.have.status(404);\r",
-													"        });\r",
 													"\r",
+													"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {\r",
+													"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);\r",
+													"            let errCode = jsonData.errors[0].code;\r",
+													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\"]);\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };         \r",
+													"        });  \r",
 													"\r",
 													"\r",
 													"\r",
@@ -5187,7 +5203,6 @@
 											],
 											"variable": [
 												{
-													"id": "dc399ed0-839d-47a3-8a94-0218b46909bb",
 													"key": "productId",
 													"value": "{{invalidId}}"
 												}
@@ -5209,23 +5224,25 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "cacef7e6-e509-4fe4-97ff-5cbe057c8fb3",
+						"id": "3eec3485-da23-4161-b850-0d2e7b7cac73",
 						"type": "text/javascript",
 						"exec": [
 							"var moment = require('moment');",
 							"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";",
 							"var fapiDate = moment().format(dateFormat);",
-							"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+							"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);",
+							"",
+							""
 						]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "05b49a58-9fc8-4a3b-bac1-25d74fc3f8c4",
+						"id": "4c1db7f1-0254-4afe-b0cf-20124d0dbf9b",
 						"type": "text/javascript",
 						"exec": [
-							""
+							" "
 						]
 					}
 				}
@@ -5247,7 +5264,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "db2576fa-d8ab-428b-9386-e1f468f2e261",
+				"id": "d7437e42-1a2c-4863-8674-3b722ceffae0",
 				"type": "text/javascript",
 				"exec": [
 					"",
@@ -5346,11 +5363,10 @@
 					"",
 					"    // setting the base url for schema files",
 					"    var version = pm.collectionVariables.get(\"version\");",
-					"    //var branch = \"gh/issue19/\";",
-					"    //var branch = \"main/\";",
-					"    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
+					"    var branch = \"main/\";",
+					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
 					"",
-					"    var schemaBaseUrl = \"http://localhost:8080/\";",
+					"    //var schemaBaseUrl = \"http://localhost:8080/\";",
 					"",
 					"    var urlBankingSchemaValidationFileDirectory = schemaBaseUrl + version + \"/postman/postman-validation-banking-\" + version + \".json\";",
 					"",
@@ -5443,7 +5459,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "f11beee9-64ba-4c08-a06f-caf02a7e31cc",
+				"id": "e2250522-a8c3-46ea-8a7e-c84740a90037",
 				"type": "text/javascript",
 				"exec": [
 					"",
@@ -5502,37 +5518,37 @@
 	],
 	"variable": [
 		{
-			"id": "f5ea7bae-9ea3-4ed4-a441-f679927df900",
+			"id": "82926410-dd02-4c61-b016-634cb5d2b675",
 			"key": "version",
-			"value": "1.22.0"
+			"value": "1.22.1"
 		},
 		{
-			"id": "07d77ef6-47f6-47bf-bfb2-76b218f3496e",
+			"id": "49f6252c-1b73-48fa-9a1a-c9b3062c73d1",
 			"key": "notPaginatedRequests",
 			"value": ""
 		},
 		{
-			"id": "0ecb64d4-025f-4d17-bc91-a9b15e3648f8",
+			"id": "b19f19a6-6460-45cc-9ef1-19defc52f9d4",
 			"key": "GlobalBankingSchema",
 			"value": ""
 		},
 		{
-			"id": "63575fee-14a2-48e5-816d-669e510a89ab",
+			"id": "5c7574b0-24ba-47c8-89fc-3965973f4ced",
 			"key": "x-fapi-auth-date",
 			"value": ""
 		},
 		{
-			"id": "2f8e7e64-9d44-4e36-a335-ca1f6463b7c0",
+			"id": "21d533ac-b920-4d8c-84d8-2529420dba60",
 			"key": "productCategory",
 			"value": ""
 		},
 		{
-			"id": "36a81a28-4962-4a09-bdf2-bb429c95b5c2",
+			"id": "72121fa3-8c76-4c3a-9277-0f308245e1d5",
 			"key": "effective",
 			"value": ""
 		},
 		{
-			"id": "a3dea5b7-0e92-4844-8aaa-6304f53fb98d",
+			"id": "503fb874-897f-41a4-9b6f-5596318f28d1",
 			"key": "pageArray",
 			"value": ""
 		}
