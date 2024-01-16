@@ -1147,153 +1147,6 @@
               ]
             },
             {
-              "name": "T.EAR.0002 Get Service Points v1",
-              "event": [
-                {
-                  "listen": "test",
-                  "script": {
-                    "exec": [
-                      "",
-                      "        // Parse the response body",
-                      "        var jsonData;",
-                      "        try {",
-                      "            jsonData = pm.response.json();",
-                      "",
-                      "            }",
-                      "        catch(e) {",
-                      "            console.log(e);",
-                      "        }",
-                      " ",
-                      "        ",
-                      "        var requestVersion = pm.request.headers.get(\"x-v\");",
-                      "        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
-                      "",
-                      "        var requestMinVersion = pm.request.headers.get(\"x-min-v\");",
-                      "        var requestMinVersionNumber = Number(pm.request.headers.get(\"x-min-v\"));",
-                      "",
-                      "        var requestXvIsPositiveInteger = Number.isSafeInteger(requestVersionNumber);",
-                      "        var requestMinXvIsPositiveInteger = Number.isSafeInteger(requestMinVersionNumber);",
-                      "",
-                      "        ((requestVersion != null && requestXvIsPositiveInteger == true) ? pm.test : pm.test.skip)(\"A.ZAA.0006: Validate version - valid version number [x-v]\", function () {",
-                      "            var responseVersion = pm.request.headers.get(\"x-v\");",
-                      "            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
-                      "            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
-                      "            pm.response.to.have.status(200);",
-                      "            pm.expect(responseVersion).not.null;",
-                      "            pm.expect(responseXvIsPositiveInteger).to.be.true;",
-                      "        });",
-                      "",
-                      "        ((requestMinVersion != null && requestMinXvIsPositiveInteger == true) ? pm.test : pm.test.skip)(\"A.ZAA.0011: Validate version - <x-min-v> is provided\", function () {",
-                      "            var responseVersion = pm.request.headers.get(\"x-v\");",
-                      "            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
-                      "            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
-                      "            pm.response.to.have.status(200);",
-                      "            pm.expect(responseVersion).not.null;",
-                      "            pm.expect(responseXvIsPositiveInteger).to.be.true;",
-                      "            pm.expect(responseVersionNumber).gte(requestMinVersionNumber);",
-                      "",
-                      "        });",
-                      "",
-                      "        var requestXFapi = pm.request.headers.get(\"x-fapi-interaction-id\");",
-                      "        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"A.ZAA.0013: Validate FAPI Interaction ID - included in request\", function () {",
-                      "            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
-                      "            pm.expect(responseXFapi).equals(requestXFapi);",
-                      "        });",
-                      "",
-                      "        ((requestXFapi == null) ? pm.test : pm.test.skip)(\"A.ZAA.0014: Validate FAPI Interaction ID - not in request\", function () {",
-                      "            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
-                      "            pm.expect(responseXFapi).not.null;",
-                      "        });",
-                      "",
-                      "        ((pm.response.code == 200) ? pm.test : pm.test.skip)('A.EAR.0004: Validate schema - EnergyServicePointListReponse', function() {",
-                      "            const valid = ajv.validate(\"EnergyServicePointListResponse\", jsonData)",
-                      "            if (!valid){",
-                      "            ajv.errors.forEach(element => {",
-                      "                console.log(JSON.stringify(element));",
-                      "                });",
-                      "            };",
-                      "            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
-                      "        });  ",
-                      "",
-                      "  ",
-                      ""
-                    ],
-                    "type": "text/javascript"
-                  }
-                },
-                {
-                  "listen": "prerequest",
-                  "script": {
-                    "exec": [
-                      "var moment = require('moment');\r",
-                      "var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
-                      "var fapiDate = moment().format(dateFormat);\r",
-                      "pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
-                    ],
-                    "type": "text/javascript"
-                  }
-                }
-              ],
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": {
-                    "token": "{{accessToken}}"
-                  }
-                },
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "x-min-v",
-                    "value": "1",
-                    "type": "text"
-                  },
-                  {
-                    "key": "x-fapi-auth-date",
-                    "value": "{{x-fapi-auth-date}}",
-                    "type": "text"
-                  },
-                  {
-                    "key": "x-fapi-customer-ip-address",
-                    "value": "{{x-fapi-customer-ip-address}}",
-                    "type": "text"
-                  },
-                  {
-                    "key": "x-fapi-interaction-id",
-                    "value": "{{x-fapi-interaction-id}}",
-                    "type": "text"
-                  },
-                  {
-                    "key": "x-cds-client-headers",
-                    "value": "{{cdsClientHeader}}",
-                    "type": "text"
-                  },
-                  {
-                    "key": "x-v",
-                    "value": "1",
-                    "type": "text"
-                  }
-                ],
-                "url": {
-                  "raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints?page=2&page-size=1",
-                  "host": ["{{secondaryDataHolderUrl}}"],
-                  "path": ["energy", "electricity", "servicepoints"],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "2"
-                    },
-                    {
-                      "key": "page-size",
-                      "value": "1"
-                    }
-                  ]
-                },
-                "description": "Obtain a list of service points owned by the customer that has authorised the current session\n\nRefer to [DSB documentation](https://consumerdatastandardsaustralia.github.io/standards-testing/latest/#testcase-t.ear.001)"
-              },
-              "response": []
-            },
-            {
               "name": "T.EAR.0109 Get Service Points  invalid version value",
               "event": [
                 {
@@ -1394,7 +1247,7 @@
               "response": []
             },
             {
-              "name": "T.EAR.0002 Get Service Points v1",
+              "name": "T.EAR.0002: ADR call to DH: Get Service Points - with pagination",
               "event": [
                 {
                   "listen": "test",
@@ -3280,7 +3133,7 @@
           "",
           "    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
           "    //var schemaBaseUrl = \"http://localhost:8080/\";",
-          "    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/1.24.0/\";",
+          "    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/1.28.0/\";",
           "",
           "",
           "    var urlEnergySchemaValidationFileDirectory = schemaBaseUrl + version + \"/postman/postman-validation-energy-\" + version + \".json\";",
@@ -3373,7 +3226,7 @@
           "            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
           "        });",
           "",
-          "        ((pm.response.code == 200 || pm.response.code == 400 || pm.response.code == 422 || pm.response.code == 406) ? pm.test : pm.test.skip)(\"x-v header is present and has correct value\", function () {",
+          "        ((pm.response.code == 200) ? pm.test : pm.test.skip)(\"x-v header is present and has correct value\", function () {",
           "            var responseVersion = pm.request.headers.get(\"x-v\");",
           "            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
           "            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
@@ -3419,7 +3272,7 @@
   "variable": [
     {
       "key": "version",
-      "value": "1.26.0"
+      "value": "1.28.0"
     },
     {
       "key": "pageSize",
