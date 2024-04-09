@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "de126a93-953d-4af0-b55b-1a08fe1959c6",
+		"_postman_id": "915f645a-e3df-4ce7-ba9d-4b3b37e8c33f",
 		"name": "CDR Energy Sector Conformance Tests",
 		"description": "# CDR Energy Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.24.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Energy APIs\n\n*   Get Generic Plans\n*   Get Generic Plan Detail\n*   Get Service Point Detail\n*   Get Usage For Service Point\n*   Get DER For Service Point\n*   Get Bulk Usage\n*   Get Usage For Specific Service Points\n*   Get Account Detail\n*   Get Agreed Payment Schedule\n*   Get Concessions\n*   Get Balance For Account\n*   Get Invoices For Account\n*   Get Billing For Account\n*   Get Bulk Balances\n*   Get Balances For Specific Accounts\n*   Get Bulk Invoices\n*   Get Invoices For Specific Account\n*   Get Accounts\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n*   CDR API end points not listed above\n*   Negative scenarios that are not specifically addressed in the standards for individual end points\n*   Non-functional requirements\n*   Information Security Profile and associated end points\n*   MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n|  |  |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [cdr-data61@csiro.au](mailto:cdr-data61@csiro.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
@@ -1441,96 +1441,6 @@
 							"name": "{account Id}",
 							"item": [
 								{
-									"name": "Get Account Detail v1",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"        // Parse the response body\r",
-													"        var jsonData;\r",
-													"        try {\r",
-													"            jsonData = pm.response.json();\r",
-													"\r",
-													"            }\r",
-													"        catch(e) {\r",
-													"            console.log(e);\r",
-													"        }\r",
-													"\r",
-													"        // Schema payload check\r",
-													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
-													"            const valid = ajv.validate(\"EnergyAccountDetailResponse\", jsonData)\r",
-													"            if (!valid){\r",
-													"            ajv.errors.forEach(element => {\r",
-													"                console.log(JSON.stringify(element));\r",
-													"                });\r",
-													"            };\r",
-													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
-													"        });    \r",
-													""
-												],
-												"type": "text/javascript",
-												"packages": {}
-											}
-										}
-									],
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "x-v",
-												"value": "1",
-												"type": "text"
-											},
-											{
-												"key": "x-min-v",
-												"value": "1",
-												"type": "text"
-											},
-											{
-												"key": "x-fapi-interaction-id",
-												"value": "{{x-fapi-interaction-id}}",
-												"type": "text"
-											},
-											{
-												"key": "x-fapi-auth-date",
-												"value": "{{x-fapi-auth-date}}",
-												"type": "text"
-											},
-											{
-												"key": "x-fapi-customer-ip-address",
-												"value": "{{x-fapi-customer-ip-address}}",
-												"type": "text"
-											},
-											{
-												"key": "x-cds-client-headers",
-												"value": "{{cdsClientHeader}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId",
-											"host": [
-												"{{primaryDataHolderUrl}}"
-											],
-											"path": [
-												"energy",
-												"accounts",
-												":accountId"
-											],
-											"variable": [
-												{
-													"key": "accountId",
-													"value": "{{energyAccountId}}",
-													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
-												}
-											]
-										},
-										"description": "Obtain detailed information for a specific energy account"
-									},
-									"response": []
-								},
-								{
 									"name": "Get Account Detail v2",
 									"event": [
 										{
@@ -1611,7 +1521,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{energyAccountId}}",
+													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -1701,7 +1611,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{energyAccountId}}",
+													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -1793,7 +1703,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{energyAccountId}}",
+													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -1895,7 +1805,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{energyAccountId}}",
+													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -2100,7 +2010,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{energyAccountId}}",
+													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -2224,258 +2134,8 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{energyAccountId}}",
+													"value": "{{accountId}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
-												}
-											]
-										},
-										"description": "Obtain the billing transactions for a specific account"
-									},
-									"response": []
-								},
-								{
-									"name": "Get Billing For Account v2",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"        // Parse the response body\r",
-													"        var jsonData;\r",
-													"        try {\r",
-													"            jsonData = pm.response.json();\r",
-													"\r",
-													"            }\r",
-													"        catch(e) {\r",
-													"            console.log(e);\r",
-													"        }\r",
-													"\r",
-													"        // Schema payload check\r",
-													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
-													"            const valid = ajv.validate(\"EnergyBillingListResponseV2\", jsonData)\r",
-													"            if (!valid){\r",
-													"            ajv.errors.forEach(element => {\r",
-													"                console.log(JSON.stringify(element));\r",
-													"                });\r",
-													"            };\r",
-													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
-													"        });    \r",
-													""
-												],
-												"type": "text/javascript",
-												"packages": {}
-											}
-										},
-										{
-											"listen": "prerequest",
-											"script": {
-												"exec": [
-													"var moment = require('moment');\r",
-													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
-													"var fapiDate = moment().format(dateFormat);\r",
-													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
-												],
-												"type": "text/javascript",
-												"packages": {}
-											}
-										}
-									],
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "x-v",
-												"value": "2",
-												"type": "text"
-											},
-											{
-												"key": "x-min-v",
-												"value": "1",
-												"type": "text"
-											},
-											{
-												"key": "x-fapi-interaction-id",
-												"value": "{{x-fapi-interaction-id}}",
-												"type": "text"
-											},
-											{
-												"key": "x-fapi-auth-date",
-												"value": "{{x-fapi-auth-date}}",
-												"type": "text"
-											},
-											{
-												"key": "x-fapi-customer-ip-address",
-												"value": "{{x-fapi-customer-ip-address}}",
-												"type": "text"
-											},
-											{
-												"key": "x-cds-client-headers",
-												"value": "{{cdsClientHeader}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
-											"host": [
-												"{{primaryDataHolderUrl}}"
-											],
-											"path": [
-												"energy",
-												"accounts",
-												":accountId",
-												"billing"
-											],
-											"query": [
-												{
-													"key": "newest-time",
-													"value": "{{timeCurrent}}",
-													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
-												},
-												{
-													"key": "oldest-time",
-													"value": "{{dateLastYear}}",
-													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
-												},
-												{
-													"key": "page",
-													"value": "1",
-													"description": "Page of results to request (standard pagination)"
-												},
-												{
-													"key": "page-size",
-													"value": "{{pageSize}}",
-													"description": "Page size to request.  Default is 25 (standard pagination)"
-												}
-											],
-											"variable": [
-												{
-													"key": "accountId",
-													"value": "{{energyAccountId}}"
-												}
-											]
-										},
-										"description": "Obtain the billing transactions for a specific account"
-									},
-									"response": []
-								},
-								{
-									"name": "Get Billing For Account v3",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"        // Parse the response body\r",
-													"        var jsonData;\r",
-													"        try {\r",
-													"            jsonData = pm.response.json();\r",
-													"\r",
-													"            }\r",
-													"        catch(e) {\r",
-													"            console.log(e);\r",
-													"        }\r",
-													"\r",
-													"        // Schema payload check\r",
-													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
-													"            const valid = ajv.validate(\"EnergyBillingListResponseV3\", jsonData)\r",
-													"            if (!valid){\r",
-													"            ajv.errors.forEach(element => {\r",
-													"                console.log(JSON.stringify(element));\r",
-													"                });\r",
-													"            };\r",
-													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
-													"        });    \r",
-													""
-												],
-												"type": "text/javascript",
-												"packages": {}
-											}
-										},
-										{
-											"listen": "prerequest",
-											"script": {
-												"exec": [
-													"var moment = require('moment');\r",
-													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
-													"var fapiDate = moment().format(dateFormat);\r",
-													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
-												],
-												"type": "text/javascript",
-												"packages": {}
-											}
-										}
-									],
-									"request": {
-										"method": "GET",
-										"header": [
-											{
-												"key": "x-v",
-												"value": "3",
-												"type": "text"
-											},
-											{
-												"key": "x-min-v",
-												"value": "1",
-												"type": "text"
-											},
-											{
-												"key": "x-fapi-interaction-id",
-												"value": "{{x-fapi-interaction-id}}",
-												"type": "text"
-											},
-											{
-												"key": "x-fapi-auth-date",
-												"value": "{{x-fapi-auth-date}}",
-												"type": "text"
-											},
-											{
-												"key": "x-fapi-customer-ip-address",
-												"value": "{{x-fapi-customer-ip-address}}",
-												"type": "text"
-											},
-											{
-												"key": "x-cds-client-headers",
-												"value": "{{cdsClientHeader}}",
-												"type": "text"
-											}
-										],
-										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
-											"host": [
-												"{{primaryDataHolderUrl}}"
-											],
-											"path": [
-												"energy",
-												"accounts",
-												":accountId",
-												"billing"
-											],
-											"query": [
-												{
-													"key": "newest-time",
-													"value": "{{timeCurrent}}",
-													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
-												},
-												{
-													"key": "oldest-time",
-													"value": "{{dateLastYear}}",
-													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
-												},
-												{
-													"key": "page",
-													"value": "1",
-													"description": "Page of results to request (standard pagination)"
-												},
-												{
-													"key": "page-size",
-													"value": "{{pageSize}}",
-													"description": "Page size to request.  Default is 25 (standard pagination)"
-												}
-											],
-											"variable": [
-												{
-													"key": "accountId",
-													"value": "{{energyAccountId}}"
 												}
 											]
 										},
@@ -2682,7 +2342,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{energyAccountId}}\",\n            \"{{energyAccountId1}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\",\n            \"{{accountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2923,7 +2583,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{energyAccountId}}\",\n            \"{{energyAccountId1}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3007,7 +2667,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -3118,7 +2779,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -3169,7 +2831,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{energyAccountId}}\",\n            \"{{energyAccountId1}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3420,18 +3082,11 @@
 					"    // setting the base url for schema files",
 					"    var version = pm.collectionVariables.get(\"version\");",
 					"",
-					"    pm.environment.set(\"timeCurrent\", timeCurrent.toISOString());",
-					"    pm.environment.set(\"dateLastYear\", dateLastYear.toISOString());",
-					"    pm.environment.set(\"timeTenMinutesAgo\", timeTenMinutesAgo.toISOString());",
-					"    pm.environment.set(\"dateToday\", dateToday.toISOString());",
-					"    pm.environment.set(\"dateYesterday\", dateYesterday.toISOString());",
-					"    pm.environment.set(\"dateTomorrow\", dateTomorrow.toISOString());",
-					"",
 					"    // setting the base url for schema files",
 					"    var branch = \"main/\"; ",
 					"",
-					"    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
-					"    var schemaBaseUrl = \"http://localhost:8083/\";",
+					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
+					"    //var schemaBaseUrl = \"http://localhost:8083/\";",
 					"    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/1.28.0/\";",
 					"",
 					"",
@@ -3477,7 +3132,6 @@
 					"    [",
 					"        \"Get Generic Plan Detail v1\",",
 					"        \"Get Generic Plan Detail v2\", ",
-					"        \"T.EAR.006 Get Service Point Detail v1\",",
 					"        \"T.EAR.0075 Get Service Point Detail v1\",",
 					"        \"T.EAR.033 Get DER For Service Point v1\",",
 					"        \"Get Account Detail v1\",",
@@ -3584,14 +3238,6 @@
 		},
 		{
 			"key": "notPaginatedRequests",
-			"value": ""
-		},
-		{
-			"key": "timeCurrent",
-			"value": ""
-		},
-		{
-			"key": "dateLastYear",
 			"value": ""
 		}
 	]
