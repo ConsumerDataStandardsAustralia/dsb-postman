@@ -2038,6 +2038,132 @@
 													"\r",
 													"        // Schema payload check\r",
 													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyBillingListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId",
+												"billing"
+											],
+											"query": [
+												{
+													"key": "newest-time",
+													"value": "{{timeCurrent}}",
+													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "oldest-time",
+													"value": "{{dateLastYear}}",
+													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											],
+											"variable": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
+												}
+											]
+										},
+										"description": "Obtain the billing transactions for a specific account"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Billing For Account v2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // Schema payload check\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBillingListResponseV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -2633,7 +2759,7 @@
 							"name": "billing",
 							"item": [
 								{
-									"name": "Get Bulk Billing",
+									"name": "Get Bulk Billing v1",
 									"event": [
 										{
 											"listen": "test",
@@ -2649,22 +2775,125 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyBillingListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });   \r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text",
+												"description": "(Required) Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												"billing"
+											],
+											"query": [
+												{
+													"key": "newest-time",
+													"value": "{{timeCurrent}}",
+													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "oldest-time",
+													"value": "{{dateLastYear}}",
+													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain billing transactions for all accounts"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Bulk Billing v2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"        // Schema payload check\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBillingListResponseV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
-													"        });    \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });  \r",
+													"\r",
+													"\r",
 													""
 												],
 												"type": "text/javascript",
@@ -2745,7 +2974,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Billing For Specific Accounts",
+									"name": "Get Billing For Specific Accounts v1",
 									"event": [
 										{
 											"listen": "test",
@@ -2761,23 +2990,142 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyBillingListResponse\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });  \r",
+													"   \r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text",
+												"description": "(Required) Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text",
+												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable."
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text",
+												"description": "An [RFC4122](https://tools.ietf.org/html/rfc4122) UUID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122] UUID value is required to be provided in the response header to track the interaction."
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text",
+												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text",
+												"description": "The customer's original IP address if the customer is currently logged in to the data recipient. The presence of this header indicates that the API is being called in a customer present context. Not to be included for unauthenticated calls."
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text",
+												"description": "The customer's original standard http headers [Base64](#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the data recipient. Mandatory for customer present calls.  Not required for unattended or unauthenticated calls."
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												"billing"
+											],
+											"query": [
+												{
+													"key": "newest-time",
+													"value": "{{timeCurrent}}",
+													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "oldest-time",
+													"value": "{{dateLastYear}}",
+													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
+												},
+												{
+													"key": "page",
+													"value": "1",
+													"description": "Page of results to request (standard pagination)"
+												},
+												{
+													"key": "page-size",
+													"value": "{{pageSize}}",
+													"description": "Page size to request.  Default is 25 (standard pagination)"
+												}
+											]
+										},
+										"description": "Obtain billing for a specified set of accounts"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Billing For Specific Accounts v2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"         // Schema payload check\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBillingListResponseV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
-													"        });    \r",
-													""
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });  "
 												],
 												"type": "text/javascript",
 												"packages": {}
