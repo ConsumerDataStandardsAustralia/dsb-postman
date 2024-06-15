@@ -7,11 +7,23 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "App.ts",
             "skipFiles": [
                 "<node_internals>/**"
             ],
             "program": "${workspaceFolder}/code/src/app.ts",
+            "outFiles": [
+                "${workspaceFolder}/**/*.js"
+            ]
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "runDataholderTests.ts",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/code/src/runDataholderTests.ts",
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
             ]

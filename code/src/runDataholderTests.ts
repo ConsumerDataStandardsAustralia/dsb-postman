@@ -8,6 +8,8 @@ import newman, { NewmanRunOptions, NewmanRunSummary } from 'newman'
 const outDir = path.join(__dirname, 'output');
 const collectionDir = path.join(__dirname, 'collections');
 const environmentDir = path.join(__dirname, 'environments');
+const iterationDataDir = path.join(__dirname, 'iteration-data');
+
 
 const sector = "Banking";
 
@@ -26,12 +28,15 @@ function writeNewmanSummaryData(summary: NewmanRunSummary){
 function RunNewman() {
   // call newman library to create report
   const upperSector = sector?.charAt(0).toUpperCase() + sector.slice(1);
-  let collectionFile = require(`${collectionDir}/CDR_${upperSector}_Sector_Conformance_Tests.json`);
+  let iterationData = require(`${iterationDataDir}/bankingAccountStates.json`);
+  let collectionFile = require(`${collectionDir}/CDR ${upperSector} Sector Conformance Tests.postman_collection.json`);
   let environmentFile = require(`${environmentDir}/DSB ${upperSector} Test Data Server - AWS.postman_environment.json`);
   let options : NewmanRunOptions = {
     collection: collectionFile,
     sslClientCert: `${environmentDir}/dsb-client.pem`,
     sslClientKey: `${environmentDir}/dsb-client.key`,
+    folder: ["Get Transactions For Account - First page", "Get Bulk Direct Debits - First Page"],
+    iterationData: iterationData,
     sslClientPassphrase: "password",
     sslExtraCaCerts: `${environmentDir}/ca.crt`,
     insecure: true,
@@ -51,7 +56,10 @@ function RunNewman() {
       throw err;
     }
     writeNewmanSummaryData(summary);
-    }).on('request', (err, data) => {
+    }).on("beforeRequest", (err, data) => {
+      console.log(data.request);
+    })
+    .on('request', (err, data) => {
       if (err) {
         console.log(err)
       }
