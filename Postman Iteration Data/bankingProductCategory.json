@@ -1,0 +1,13 @@
+[
+    {"openStatus": "ALL", "productCategory": "BUSINESS_LOANS"},
+    {"openStatus": "ALL", "productCategory": "CRED_AND_CHRG_CARDS"},
+    {"openStatus": "ALL", "productCategory": "LEASES"},
+    {"openStatus": "ALL", "productCategory": "MARGIN_LOANS"},
+    {"openStatus": "ALL", "productCategory": "PERS_LOANS"},
+    {"openStatus": "ALL", "productCategory": "REGULATED_TRUST_ACCOUNTS"},
+    {"openStatus": "ALL", "productCategory": "RESIDENTIAL_MORTGAGES"},
+    {"openStatus": "ALL", "productCategory": "TERM_DEPOSITS"},
+    {"openStatus": "ALL", "productCategory": "TRADE_FINANCE"},
+    {"openStatus": "ALL", "productCategory": "TRANS_AND_SAVINGS_ACCOUNTS"},
+    {"openStatus": "ALL", "productCategory": "TRAVEL_CARDS"}
+]

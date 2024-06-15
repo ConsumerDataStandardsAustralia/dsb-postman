@@ -14,18 +14,19 @@ const iterationDataDir = path.join(__dirname, 'iteration-data');
 const sector = "Banking";
 
 
+
 // Some public endpoints have a trainling slash at the end of the url.
 // Newman library will cause this to be be an error.
 function removeTrailingSlash(str: string) {
   return str.endsWith('/') ? str.slice(0, -1) : str;
 }
 
-function writeNewmanSummaryData(summary: NewmanRunSummary){
-    let path = `${outDir}/NewmanSummaryReport_${sector}.json`;
+function writeNewmanSummaryData(summary: NewmanRunSummary, reportName: string){
+    let path = `${outDir}/${reportName}.json`;
     fs.writeFileSync(path, JSON.stringify(summary, null, 2));
 }
 
-function RunNewman() {
+function RunNewmanForStates(iterationDataFile: string, folderData: string[], reportName: string) {
   // call newman library to create report
   const upperSector = sector?.charAt(0).toUpperCase() + sector.slice(1);
   let iterationData = require(`${iterationDataDir}/bankingAccountStates.json`);
@@ -35,8 +36,8 @@ function RunNewman() {
     collection: collectionFile,
     sslClientCert: `${environmentDir}/dsb-client.pem`,
     sslClientKey: `${environmentDir}/dsb-client.key`,
-    folder: ["Get Transactions For Account - First page", "Get Bulk Direct Debits - First Page"],
-    iterationData: iterationData,
+    folder: folderData,
+    iterationData: iterationDataFile,
     sslClientPassphrase: "password",
     sslExtraCaCerts: `${environmentDir}/ca.crt`,
     insecure: true,
@@ -46,7 +47,7 @@ function RunNewman() {
     reporters: ['cli','htmlextra'],
     reporter: {
       htmlextra: {
-         export: `${outDir}/NewmanReport DSB Node DH ${upperSector}.html`
+         export: `${outDir}/${reportName}.html`
       }
     }
   }
@@ -55,7 +56,7 @@ function RunNewman() {
     if (err) { 
       throw err;
     }
-    writeNewmanSummaryData(summary);
+    writeNewmanSummaryData(summary, reportName);
     }).on("beforeRequest", (err, data) => {
       console.log(data.request);
     })
@@ -69,7 +70,15 @@ function RunNewman() {
   });
 }
 
-RunNewman();
+var stateRunFolderData = ["Get Accounts - First page", "Get Bulk Direct Debits - First Page"];
+var stateRunIterationData = require(`${iterationDataDir}/bankingAccountStates.json`)
+const reportNameForStateRun = "NodeJS-DH-AccountStates"
+RunNewmanForStates(stateRunIterationData, stateRunFolderData, reportNameForStateRun);
+
+var stateRunFolderData = ["Get Accounts - First page", "Get Bulk Direct Debits - First Page"];
+var stateRunIterationData = require(`${iterationDataDir}/bankingProductCategory.json`)
+const reportNameForCategoryRun = "NodeJS-DH-AccountCategory"
+RunNewmanForStates(stateRunIterationData, stateRunFolderData, reportNameForCategoryRun);
 
 
 
