@@ -6,7 +6,7 @@
   "scripts": {
     "start:prd": "npm run build && node ./dist/app.js",
     "start:dh": "npm run build && node ./dist/runDataholderTests.js",
-    "build": "rm -rf ./dist && tsc && mkdir -p ./dist/collections && mkdir -p ./dist/environments  && mkdir -p ./dist/iteration-data  && cp ../Postman\\ Environments/* ./dist/environments/ && cp ../Postman\\ Collections/* ./dist/collections/ && cp ../Postman\\ Iteration\\ Data/* ./dist/iteration-data/ ",
+    "build": "rm -rf ./dist && tsc && mkdir -p ./dist/security && mkdir -p ./dist/collections && mkdir -p ./dist/environments  && mkdir -p ./dist/iteration-data && cp ./src/security/* ./dist/security  && cp ../Postman\\ Environments/* ./dist/environments/ && cp ../Postman\\ Collections/* ./dist/collections/ && cp ../Postman\\ Iteration\\ Data/* ./dist/iteration-data/ ",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon"
   },
