@@ -5,7 +5,7 @@
 		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.17.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n*   Get Accounts\n*   Get Bulk Balances\n*   Get Balances For Specific Accounts\n*   Get Account Balance\n*   Get Account Details\n*   Get Transactions For Account\n*   Get Transaction Detail\n*   Get Direct Debits For Accounts\n*   Get Bulk Direct Debits\n*   Get Direct Debits For Specific Accounts\n*   Get Scheduled Payments For Accounts\n*   Get Scheduled Payments Bulk\n*   Get Scheduled Payments For Specific Accounts\n*   Get Payees\n*   Get Payee Details\n*   Get Products\n*   Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n*   CDR API end points not listed above\n*   Negative scenarios that are not specifically addressed in the standards for individual end points\n*   Non-functional requirements\n*   Information Security Profile and associated end points\n*   MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [cdr-data61@csiro.au](mailto:cdr-data61@csiro.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
 		"_exporter_id": "8286723",
-		"_collection_link": "https://winter-shadow-541400.postman.co/workspace/Team-Workspace~e0002a4d-afd2-4ef8-88ba-aed01b17beab/collection/8286723-8c0dd9d5-8066-40cb-9d84-badedcbe3fde?action=share&source=collection_link&creator=8286723"
+		"_collection_link": "https://winter-shadow-541400.postman.co/workspace/e0002a4d-afd2-4ef8-88ba-aed01b17beab/collection/8286723-8c0dd9d5-8066-40cb-9d84-badedcbe3fde?action=share&source=collection_link&creator=8286723"
 	},
 	"item": [
 		{
@@ -115,7 +115,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?open-status={{openStatus}}&is-owned=true&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
 														"{{authenticatedResourceUrl}}"
 													],
@@ -132,7 +132,7 @@
 														},
 														{
 															"key": "is-owned",
-															"value": "true",
+															"value": "{{isOwned}}",
 															"description": "Filters accounts based on whether they are owned by the authorised customer.  True for owned accounts, false for unowned accounts and absent for all accounts"
 														},
 														{
@@ -289,7 +289,8 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -321,7 +322,8 @@
 															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -365,7 +367,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?product-category=BUSINESS_LOANS&open-status=ALL&is-owned=true&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
 														"{{authenticatedResourceUrl}}"
 													],
@@ -377,17 +379,17 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "BUSINESS_LOANS",
+															"value": "{{productCategory}}",
 															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
 															"key": "open-status",
-															"value": "ALL",
+															"value": "{{openStatus}}",
 															"description": "Used to filter results according to open/closed status. Values can be OPEN, CLOSED or ALL. If absent then ALL is assumed"
 														},
 														{
 															"key": "is-owned",
-															"value": "true",
+															"value": "{{isOwned}}",
 															"description": "Filters accounts based on whether they are owned by the authorised customer.  True for owned accounts, false for unowned accounts and absent for all accounts"
 														},
 														{
@@ -437,7 +439,8 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -455,7 +458,8 @@
 															"var fapiDate = moment().format(dateFormat);\r",
 															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -493,7 +497,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{testAccountId1}}\",\r\n            \"{{testAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
+													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{bankingAccountId1}}\",\r\n            \"{{bankingAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?page={{currentPage}}&page-size={{pageSize}}",
@@ -1036,7 +1040,8 @@
 															"",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -1054,7 +1059,8 @@
 															"var fapiDate = moment().format(dateFormat);\r",
 															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -1092,7 +1098,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{bankingAccountId1}}\",\n            \"{{bankingAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page={{currentPage}}&page-size={{pageSize}}",
@@ -1161,7 +1167,8 @@
 															"",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -1192,7 +1199,8 @@
 															"var fapiDate = moment().format(dateFormat);\r",
 															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -1230,7 +1238,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{bankingAccountId1}}\",\n            \"{{bankingAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page={{currentPage}}&page-size={{pageSize}}",
@@ -1271,7 +1279,8 @@
 															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -1308,7 +1317,8 @@
 															"",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -1365,7 +1375,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}"
+															"value": "{{bankingAccountId1}}"
 														}
 													]
 												}
@@ -1409,36 +1419,36 @@
 																"exec": [
 																	"",
 																	"",
-																	"        if (pm.variables.get(\"testAccountId1\") != \"\")",
-																	"        {",
-																	"                // Parse the response body",
-																	"                var jsonData;",
-																	"                try { jsonData = pm.response.json(); } catch(e) {}",
+																	"",
+																	"    // Parse the response body",
+																	"    var jsonData;",
+																	"    try { jsonData = pm.response.json(); } catch(e) {}",
 																	"",
 																	"",
-																	"                pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
-																	"                    pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
-																	"                });",
+																	"    pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+																	"        pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
+																	"    });",
 																	"",
-																	"                // Schema payload check",
-																	"                ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
-																	"                    const valid = ajv.validate(\"ResponseBankingTransactionList\", jsonData)",
-																	"                    if (!valid){",
-																	"                    ajv.errors.forEach(element => {",
-																	"                        console.log(JSON.stringify(element));",
-																	"                        });",
-																	"                    };",
-																	"                    pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
-																	"                }); ",
+																	"    // Schema payload check",
+																	"    ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+																	"        const valid = ajv.validate(\"ResponseBankingTransactionList\", jsonData)",
+																	"        if (!valid){",
+																	"        ajv.errors.forEach(element => {",
+																	"            console.log(JSON.stringify(element));",
+																	"            });",
+																	"        };",
+																	"        pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+																	"    }); ",
 																	"",
 																	"",
-																	"        }    ",
+																	"",
 																	"",
 																	"",
 																	"",
 																	""
 																],
-																"type": "text/javascript"
+																"type": "text/javascript",
+																"packages": {}
 															}
 														},
 														{
@@ -1452,7 +1462,8 @@
 																	"}\r",
 																	""
 																],
-																"type": "text/javascript"
+																"type": "text/javascript",
+																"packages": {}
 															}
 														}
 													],
@@ -1489,7 +1500,7 @@
 															}
 														],
 														"url": {
-															"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/transactions?page={{currentPage}}&page-size={{pageSize}}",
+															"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/transactions?page={{currentPage}}&page-size={{pageSize}}&newest-time={{newestTime}}",
 															"host": [
 																"{{authenticatedResourceUrl}}"
 															],
@@ -1509,12 +1520,16 @@
 																	"key": "page-size",
 																	"value": "{{pageSize}}",
 																	"description": "Page size to request. Default is 25 (standard pagination)"
+																},
+																{
+																	"key": "newest-time",
+																	"value": "{{newestTime}}"
 																}
 															],
 															"variable": [
 																{
 																	"key": "accountId",
-																	"value": "{{testAccountId1}}",
+																	"value": "{{bankingAccountId1}}",
 																	"description": "ID of the account to get transactions for.  Must have previously been returned by one of the account list end points."
 																}
 															]
@@ -1569,7 +1584,8 @@
 																	"",
 																	""
 																],
-																"type": "text/javascript"
+																"type": "text/javascript",
+																"packages": {}
 															}
 														},
 														{
@@ -1596,7 +1612,8 @@
 																	"}\r",
 																	"pm.variables.set(\"pageArray\", pageArray);"
 																],
-																"type": "text/javascript"
+																"type": "text/javascript",
+																"packages": {}
 															}
 														}
 													],
@@ -1656,7 +1673,7 @@
 															"variable": [
 																{
 																	"key": "accountId",
-																	"value": "{{testAccountId1}}",
+																	"value": "{{bankingAccountId1}}",
 																	"description": "ID of the account to get transactions for.  Must have previously been returned by one of the account list end points."
 																}
 															]
@@ -1753,11 +1770,11 @@
 															"variable": [
 																{
 																	"key": "accountId",
-																	"value": "{{testAccountId1}}"
+																	"value": "{{bankingAccountId1}}"
 																},
 																{
 																	"key": "transactionId",
-																	"value": "{{testTransactionId}}"
+																	"value": "{{bankingTransactionId1}}"
 																}
 															]
 														},
@@ -1914,7 +1931,8 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -1927,7 +1945,8 @@
 															"    pm.variables.set(\"pageSize\", pageSize);\r",
 															"}"
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -1989,7 +2008,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}",
+															"value": "{{bankingAccountId1}}",
 															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points."
 														}
 													]
@@ -2119,7 +2138,8 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -2147,7 +2167,8 @@
 															"};\r",
 															"pm.variables.set(\"pageArray\", pageArray);"
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -2209,7 +2230,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}",
+															"value": "{{bankingAccountId1}}",
 															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points."
 														}
 													]
@@ -2339,7 +2360,8 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -2352,7 +2374,8 @@
 															"    pm.variables.set(\"pageSize\", pageSize);\r",
 															"}"
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -2415,7 +2438,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}",
+															"value": "{{bankingAccountId1}}",
 															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment"
 														}
 													]
@@ -2546,7 +2569,8 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -2574,7 +2598,8 @@
 															"pm.variables.set(\"pageArray\", pageArray);\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -2637,7 +2662,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}",
+															"value": "{{bankingAccountId1}}",
 															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment"
 														}
 													]
@@ -2768,7 +2793,8 @@
 															"",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -2780,7 +2806,8 @@
 															"var fapiDate = moment().format(dateFormat);\r",
 															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -2818,7 +2845,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{invalidId}}\"\n        ]\n    },\n    \"meta\": {}\n}"
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{invalidID}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": "{{authenticatedResourceUrl}}/banking/accounts/balances",
 												"description": "Obtain balances for a specified list of accounts"
@@ -2834,62 +2861,73 @@
 											"listen": "test",
 											"script": {
 												"exec": [
+													"// Parse the response body",
+													"var jsonData;",
+													"try { jsonData = pm.response.json(); } catch(e) {}",
 													"",
-													"        // Parse the response body",
-													"        var jsonData;",
-													"        try { jsonData = pm.response.json(); } catch(e) {}",
+													"if (pm.response.code < 500) {",
+													"    pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+													"        pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
+													"    });",
+													"}",
 													"",
-													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
-													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
-													"        });",
-													"        // Schema payload check",
-													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
-													"            const valid = ajv.validate(\"ResponseBankingAccountListV2\", jsonData)",
-													"            if (!valid){",
+													"// Schema payload check",
+													"if (pm.response.code === 200) {",
+													"        pm.test('Response payload conforms to standards schema', function() {",
+													"        const valid = ajv.validate(\"ResponseBankingAccountListV2\", jsonData)",
+													"        if (!valid){",
 													"            ajv.errors.forEach(element => {",
 													"                console.log(JSON.stringify(element));",
-													"                });",
-													"            };",
-													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
-													"        });  ",
+													"            });",
+													"        };",
+													"        pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+													"    }); ",
+													"}",
+													" ",
+													"// only accounts with specified openStatus are included",
+													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) ",
+													"{",
+													"     pm.test('open status query parameter is considered', function() {",
+													"        var currentStatus = pm.variables.get(\"openStatus\")",
+													"        if (currentStatus !== \"ALL\"){",
+													"            jsonData?.data?.accounts.forEach(acc => {",
+													"                if (acc?.openStatus != null){",
+													"                    pm.expect(acc.openStatus).to.equal(currentStatus)",
+													"                } else {",
+													"                    pm.expect(acc.openStatus).to.be.oneOf([\"OPEN\", undefined])",
+													"                }               ",
+													"            })",
+													"        }",
+													"    });",
+													"}",
 													"",
+													"// only accounts with specified productCategory are included",
+													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
+													"    pm.test('product-category query parameter is considered', function() {",
+													"        var currentCategory = pm.variables.get(\"productCategory\")",
+													"        if (currentCategory !== \"ALL\"){",
+													"            jsonData?.data?.accounts.forEach(acc => {",
+													"                pm.expect(acc.productCategory).to.equal(currentCategory)",
+													"            })",
+													"        }",
+													"    });",
+													"}",
 													"",
-													"        // only accounts with specified openStatus are included",
-													"        ((jsonData?.data?.accounts?.length > 0) && (pm.request.url.query.get(\"open-status\") != null) && (pm.response.code == 200) ? pm.test : pm.test.skip)('open status query parameter is considered', function() {",
-													"            var currentStatus = pm.environment.get(\"openStatus\")",
-													"            if (currentStatus != \"ALL\"){",
-													"                jsonData?.data?.accounts.forEach(acc => {",
-													"                    if (acc?.openStatus != null){",
-													"                        pm.expect(acc.openStatus).to.equal(currentStatus)",
-													"                    } else {",
-													"                        pm.expect(currentStatus).to.equal(\"OPEN\")",
-													"                    }               ",
-													"                })",
-													"            }",
-													"        });",
-													"",
-													"       // only accounts with specified productCategory are included",
-													"        ((jsonData?.data?.accounts?.length > 0) && (pm.request.url.query.get(\"product-category\") != null) && (pm.response.code == 200) ? pm.test : pm.test.skip)('product-category query parameter is considered', function() {",
-													"            var currentCategory = pm.environment.get(\"productCategory\")",
-													"            if (currentCategory != \"ALL\"){",
-													"                jsonData?.data?.accounts.forEach(acc => {",
-													"                    pm.expect(acc.productCategory).to.equal(currentCategory)",
-													"                })",
-													"            }",
-													"        });",
-													"   ",
-													"",
-													"",
-													"       // only accounts with specified productCategory are included",
-													"        // ((pm.request.url.query.get(\"is-owned\") != null) && (pm.response.code == 200) ? pm.test : pm.test.skip)('is-owned query parameter is considered', function() {",
-													"        //     var currentOwned = pm.environment.get(\"is-owned\")",
-													"        //     if (currentCategory != \"ALL\"){",
-													"        //         jsonData?.data?.accounts.forEach(acc => {",
-													"        //             pm.expect(acc.productCategory).to.equal(currentCategory)",
-													"        //         })",
-													"        //     }",
-													"        // });        ",
-													"",
+													"// only accounts with specified isOwned are included",
+													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"is-owned\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
+													"    pm.test('is-owned query parameter is considered', function() {",
+													"        var currentOwned = pm.variables.get(\"isOwned\")",
+													"        if (currentOwned !== undefined){",
+													"            jsonData?.data?.accounts.forEach(acc => {",
+													"                if (acc?.isOwned != null){",
+													"                    pm.expect(acc.isOwned).to.equal(currentOwned)",
+													"                } else {",
+													"                    pm.expect(acc.isOwned).to.be.oneOf([true, undefined])",
+													"                }   ",
+													"            })",
+													"        }",
+													"    });",
+													"}",
 													""
 												],
 												"type": "text/javascript",
@@ -2911,7 +2949,8 @@
 													"var moment = require('moment');\r",
 													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
 													"var fapiDate = moment().format(dateFormat);\r",
-													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
+													"var productCategory = pm.variables.get(\"productCategory\")"
 												],
 												"type": "text/javascript",
 												"packages": {}
@@ -2997,20 +3036,69 @@
 													"        var jsonData;",
 													"        try { jsonData = pm.response.json(); } catch(e) {}",
 													"",
-													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
-													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
-													"        });",
-													"        // Schema payload check",
-													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
-													"            const valid = ajv.validate(\"ResponseBankingAccountListV2\", jsonData)",
-													"            if (!valid){",
+													"if (pm.response.code < 500) {",
+													"    pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+													"        pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
+													"    });",
+													"}",
+													"",
+													"// Schema payload check",
+													"if (pm.response.code === 200) {",
+													"        pm.test('Response payload conforms to standards schema', function() {",
+													"        const valid = ajv.validate(\"ResponseBankingAccountListV2\", jsonData)",
+													"        if (!valid){",
 													"            ajv.errors.forEach(element => {",
 													"                console.log(JSON.stringify(element));",
-													"                });",
-													"            };",
-													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
-													"        });           ",
+													"            });",
+													"        };",
+													"        pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+													"    }); ",
+													"}",
+													" ",
+													"// only accounts with specified openStatus are included",
+													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) ",
+													"{",
+													"     pm.test('open status query parameter is considered', function() {",
+													"        var currentStatus = pm.variables.get(\"openStatus\")",
+													"        if (currentStatus !== \"ALL\"){",
+													"            jsonData?.data?.accounts.forEach(acc => {",
+													"                if (acc?.openStatus != null){",
+													"                    pm.expect(acc.openStatus).to.equal(currentStatus)",
+													"                } else {",
+													"                    pm.expect(acc.openStatus).to.be.oneOf([\"OPEN\", undefined])",
+													"                }               ",
+													"            })",
+													"        }",
+													"    });",
+													"}",
 													"",
+													"// only accounts with specified productCategory are included",
+													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
+													"    pm.test('product-category query parameter is considered', function() {",
+													"        var currentCategory = pm.variables.get(\"productCategory\")",
+													"        if (currentCategory !== \"ALL\"){",
+													"            jsonData?.data?.accounts.forEach(acc => {",
+													"                pm.expect(acc.productCategory).to.equal(currentCategory)",
+													"            })",
+													"        }",
+													"    });",
+													"}",
+													"",
+													"// only accounts with specified isOwned are included",
+													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"is-owned\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
+													"    pm.test('is-owned query parameter is considered', function() {",
+													"        var currentOwned = pm.variables.get(\"isOwned\")",
+													"        if (currentOwned !== undefined){",
+													"            jsonData?.data?.accounts.forEach(acc => {",
+													"                if (acc?.isOwned != null){",
+													"                    pm.expect(acc.isOwned).to.equal(currentOwned)",
+													"                } else {",
+													"                    pm.expect(acc.isOwned).to.be.oneOf([true, undefined])",
+													"                }   ",
+													"            })",
+													"        }",
+													"    });",
+													"}",
 													""
 												],
 												"type": "text/javascript",
@@ -3097,21 +3185,69 @@
 													"        try { jsonData = pm.response.json(); } catch(e) {}",
 													"",
 													"",
+													"if (pm.response.code < 500) {",
+													"    pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+													"        pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
+													"    });",
+													"}",
 													"",
-													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
-													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
-													"        });",
-													"",
-													"        // Schema payload check",
-													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
-													"            const valid = ajv.validate(\"ResponseBankingAccountListV2\", jsonData)",
-													"            if (!valid){",
+													"// Schema payload check",
+													"if (pm.response.code === 200) {",
+													"        pm.test('Response payload conforms to standards schema', function() {",
+													"        const valid = ajv.validate(\"ResponseBankingAccountListV2\", jsonData)",
+													"        if (!valid){",
 													"            ajv.errors.forEach(element => {",
 													"                console.log(JSON.stringify(element));",
-													"                });",
-													"            };",
-													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
-													"        });",
+													"            });",
+													"        };",
+													"        pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+													"    }); ",
+													"}",
+													" ",
+													"// only accounts with specified openStatus are included",
+													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) ",
+													"{",
+													"     pm.test('open status query parameter is considered', function() {",
+													"        var currentStatus = pm.variables.get(\"openStatus\")",
+													"        if (currentStatus !== \"ALL\"){",
+													"            jsonData?.data?.accounts.forEach(acc => {",
+													"                if (acc?.openStatus != null){",
+													"                    pm.expect(acc.openStatus).to.equal(currentStatus)",
+													"                } else {",
+													"                    pm.expect(acc.openStatus).to.be.oneOf([\"OPEN\", undefined])",
+													"                }               ",
+													"            })",
+													"        }",
+													"    });",
+													"}",
+													"",
+													"// only accounts with specified productCategory are included",
+													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
+													"    pm.test('product-category query parameter is considered', function() {",
+													"        var currentCategory = pm.variables.get(\"productCategory\")",
+													"        if (currentCategory !== \"ALL\"){",
+													"            jsonData?.data?.accounts.forEach(acc => {",
+													"                pm.expect(acc.productCategory).to.equal(currentCategory)",
+													"            })",
+													"        }",
+													"    });",
+													"}",
+													"",
+													"// only accounts with specified isOwned are included",
+													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"is-owned\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
+													"    pm.test('is-owned query parameter is considered', function() {",
+													"        var currentOwned = pm.variables.get(\"isOwned\")",
+													"        if (currentOwned !== undefined){",
+													"            jsonData?.data?.accounts.forEach(acc => {",
+													"                if (acc?.isOwned != null){",
+													"                    pm.expect(acc.isOwned).to.equal(currentOwned)",
+													"                } else {",
+													"                    pm.expect(acc.isOwned).to.be.oneOf([true, undefined])",
+													"                }   ",
+													"            })",
+													"        }",
+													"    });",
+													"}",
 													"",
 													"",
 													"",
@@ -3235,7 +3371,8 @@
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -3244,7 +3381,7 @@
 												"exec": [
 													"",
 													"        // if not id is provided we skip these tests",
-													"        if (pm.variables.get(\"testAccountId1\") != \"\")",
+													"        if (pm.variables.get(\"bankingAccountId1\") != \"\")",
 													"        {",
 													"                // Parse the response body",
 													"                var jsonData;",
@@ -3274,7 +3411,8 @@
 													"",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -3337,7 +3475,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{testAccountId1}}"
+													"value": "{{bankingAccountId1}}"
 												}
 											]
 										}
@@ -3357,7 +3495,8 @@
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -3365,20 +3504,26 @@
 											"script": {
 												"exec": [
 													"",
-													"        // Parse the response body",
-													"        var jsonData;",
-													"        try { jsonData = pm.response.json(); } catch(e) {}",
+													"// Parse the response body",
+													"var jsonData;",
+													"try { jsonData = pm.response.json(); } catch(e) {}",
 													"",
-													"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {",
-													"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
-													"            let errCode = jsonData.errors[0].code;",
-													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-banking:Authorisation/InvalidBankingAccount\", \"urn:au-cds:error:cds-banking:Authorisation/UnavailableBankingAccount\"]);",
-													"            if (!valid){",
-													"            ajv.errors.forEach(element => {",
-													"                console.log(JSON.stringify(element));",
-													"                });",
-													"            };         ",
-													"        });  ",
+													"if (pm.response.code < 500) {",
+													"    pm.test(\"Expect response to be 404\", function() {",
+													"        pm.expect(pm.response.code).eq(404);",
+													"    })",
+													"",
+													"    pm.test('Correct error code in error object', function() {",
+													"        const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
+													"        let errCode = jsonData.errors[0].code;",
+													"        pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-banking:Authorisation/InvalidBankingAccount\", \"urn:au-cds:error:cds-banking:Authorisation/UnavailableBankingAccount\"]);",
+													"        if (!valid){",
+													"        ajv.errors.forEach(element => {",
+													"            console.log(JSON.stringify(element));",
+													"            });",
+													"        };         ",
+													"    });",
+													"}  ",
 													"",
 													"",
 													"",
@@ -3387,7 +3532,8 @@
 													"",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -3450,7 +3596,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{invalidId}}"
+													"value": "{{invalidID}}"
 												}
 											]
 										}
@@ -3465,23 +3611,32 @@
 											"script": {
 												"exec": [
 													"   // Parse the response body",
-													"        var jsonData;",
-													"        try { jsonData = pm.response.json(); } catch(e) {}",
+													"var jsonData;",
+													"try { jsonData = pm.response.json(); } catch(e) {}",
 													"",
-													"        ((pm.response.code == 422) ? pm.test : pm.test.skip)('Correct error code in error object', function() {",
-													"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
-													"            let errCode = jsonData.errors[0].code;",
-													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Field/InvalidPage\"]);",
-													"            if (!valid){",
-													"            ajv.errors.forEach(element => {",
-													"                console.log(JSON.stringify(element));",
-													"                });",
-													"            };         ",
-													"        });  ",
+													"if (pm.response.code < 500) {",
+													"    pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+													"        pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
+													"    });",
 													"",
-													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
-													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
-													"        });",
+													"    pm.test(\"Expect response to be 422\", function() {",
+													"        pm.expect(pm.response.code).eq(422);",
+													"    })",
+													"",
+													"    pm.test(\"Correct error code in error object\", function() {",
+													"        const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
+													"        let errCode = jsonData.errors[0].code;",
+													"        pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Field/InvalidPage\"]);",
+													"        if (!valid){",
+													"        ajv.errors.forEach(element => {",
+													"            console.log(JSON.stringify(element));",
+													"            });",
+													"        };         ",
+													"    });             ",
+													"}",
+													"",
+													"",
+													"",
 													"    ",
 													"",
 													"",
@@ -3550,7 +3705,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts?open-status={{openStatus}}&page={{currentPage}}&page-size={{pageSize}}",
+											"raw": "{{authenticatedResourceUrl}}/banking/accounts?open-status={{openStatus}}&page=99999&page-size={{pageSize}}",
 											"host": [
 												"{{authenticatedResourceUrl}}"
 											],
@@ -3566,7 +3721,7 @@
 												},
 												{
 													"key": "page",
-													"value": "{{currentPage}}",
+													"value": "99999",
 													"description": "Page of results to request (standard pagination)"
 												},
 												{
@@ -4590,7 +4745,7 @@
 											"variable": [
 												{
 													"key": "payeeId",
-													"value": "{{testPayeeId}}",
+													"value": "{{bankingPayeeId}}",
 													"description": "The ID used to locate the details of a particular payee"
 												}
 											]
@@ -4624,7 +4779,8 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -4636,7 +4792,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -4692,7 +4849,7 @@
 											"variable": [
 												{
 													"key": "payeeId",
-													"value": "{{invalidId}}",
+													"value": "{{invalidID}}",
 													"description": "The ID used to locate the details of a particular payee"
 												}
 											]
@@ -5063,7 +5220,8 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -5098,7 +5256,7 @@
 											"variable": [
 												{
 													"key": "productId",
-													"value": "{{testProductId}}"
+													"value": "{{bankingProductId1}}"
 												}
 											]
 										},
@@ -5136,7 +5294,8 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -5171,7 +5330,7 @@
 											"variable": [
 												{
 													"key": "productId",
-													"value": "{{invalidId}}"
+													"value": "{{invalidID}}"
 												}
 											]
 										},
@@ -5291,6 +5450,14 @@
 					"",
 					"if (pm.iterationData.get(\"pageSize\") != undefined)",
 					"    pm.collectionVariables.set(\"pageSize\", pm.iterationData.get(\"pageSize\"));           ",
+					"",
+					"",
+					"// Set some time relevant time stamps",
+					"var timeCurrent = new Date();",
+					"var moment = require(\"moment\")",
+					"",
+					"pm.collectionVariables.set(\"newestTime\", moment().format((\"YYYY-MM-DDTHH:mm:ss.sssss\")));",
+					"pm.collectionVariables.set(\"oldestTime\", moment().subtract(180, \"days\").format((\"YYYY-MM-DDTHH:mm:ss.sssss\")));",
 					"",
 					"// Initialise only once",
 					"if (pm.variables.get(\"intitalised\") == 0 || pm.variables.get(\"intitalised\") == null) {",
@@ -5426,51 +5593,57 @@
 					"        var jsonData;",
 					"        try { jsonData = pm.response.json(); } catch(e) {}",
 					"",
+					"        ",
 					"        // HTTP Response and headers",
 					"        ((pm.response.code == 200 || pm.response.code == 400 || pm.response.code == 422 || pm.response.code == 406) ? pm.test : pm.test.skip)(\"Content-Type header specifies json\", function () {",
 					"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
 					"        });",
 					"",
-					"        ((pm.response.code == 200) ? pm.test : pm.test.skip)(\"x-v header is present and has correct value\", function () {",
-					"            var responseVersion = pm.request.headers.get(\"x-v\");",
-					"            var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
-					"            var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
-					"            pm.expect(responseVersion).not.null;",
-					"            pm.expect(responseXvIsPositiveInteger).to.be.true;",
-					"        });",
+					"        if ((pm.response.code == 200)){",
+					"            ((pm.response.code == 200) ? pm.test : pm.test.skip)(\"x-v header is present and has correct value\", function () {",
+					"                var responseVersion = pm.request.headers.get(\"x-v\");",
+					"                var responseVersionNumber = Number(pm.response.headers.get(\"x-v\"));",
+					"                var responseXvIsPositiveInteger = Number.isSafeInteger(responseVersionNumber) && responseVersionNumber > 0;",
+					"                pm.expect(responseVersion).not.null;",
+					"                pm.expect(responseXvIsPositiveInteger).to.be.true;",
+					"            });",
 					"",
-					"        var paginatedRequests = pm.collectionVariables.get(\"notPaginatedRequests\");",
-					"        var isPaginated = paginatedRequests.find(x => x == pm.info.requestName) == undefined;",
-					"        // Pagination tests",
-					"        ((pm.response.code == 200  && isPaginated) ? pm.test : pm.test.skip)(\"Pagination fields in meta data are present\", function () {",
-					"            pm.expect(jsonData.meta.totalPages >= 0);",
-					"            pm.expect(jsonData.meta.totalRecords >= 0);",
-					"        });",
-					"        var currentPage = pm.variables.get(\"currentPage\");",
-					"        var currentPageSize = pm.variables.get(\"pageSize\");",
-					"        var currentTotalPages = jsonData?.meta?.totalPages;",
-					"        var currentTotalRecords = jsonData?.meta?.totalRecords;",
+					"            var paginatedRequests = pm.collectionVariables.get(\"notPaginatedRequests\");",
+					"            var isPaginated = paginatedRequests.find(x => x == pm.info.requestName) == undefined;",
+					"            // Pagination tests",
+					"            ((pm.response.code == 200  && isPaginated) ? pm.test : pm.test.skip)(\"Pagination fields in meta data are present\", function () {",
+					"                pm.expect(jsonData.meta.totalPages >= 0);",
+					"                pm.expect(jsonData.meta.totalRecords >= 0);",
+					"            });",
+					"            var currentPage = pm.variables.get(\"currentPage\");",
+					"            var currentPageSize = pm.variables.get(\"pageSize\");",
+					"            var currentTotalPages = jsonData?.meta?.totalPages;",
+					"            var currentTotalRecords = jsonData?.meta?.totalRecords;",
 					"",
-					"        var paginatedRequests = pm.collectionVariables.get(\"notPaginatedRequests\");",
-					"        var isPaginated = paginatedRequests.find(x => x == pm.info.requestName) == undefined;",
+					"            var paginatedRequests = pm.collectionVariables.get(\"notPaginatedRequests\");",
+					"            var isPaginated = paginatedRequests.find(x => x == pm.info.requestName) == undefined;",
 					"",
-					"        ((pm.response.code == 200 && isPaginated) ? pm.test : pm.test.skip)(\"Pagination fields have required properties\", function () {",
-					"            pm.expect(jsonData.links).to.have.property(\"self\");            ",
-					"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"prev\");",
-					"            if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"first\");",
-					"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"next\");}  ",
-					"            if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"last\");} ",
-					"        });",
+					"            ((pm.response.code == 200 && isPaginated) ? pm.test : pm.test.skip)(\"Pagination fields have required properties\", function () {",
+					"                pm.expect(jsonData.links).to.have.property(\"self\");            ",
+					"                if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"prev\");",
+					"                if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"first\");",
+					"                if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"next\");}  ",
+					"                if (currentPage < currentTotalPages) {pm.expect(jsonData.links).to.have.property(\"last\");} ",
+					"            });",
+					"        }",
 					"",
-					"        ((pm.response.code == 400 || pm.response.code == 422 || pm.response.code == 406 || pm.response.code == 404 ) ? pm.test : pm.test.skip)('Error payload conforms to standards schema', function() {",
-					"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
-					"            if (!valid){",
-					"            ajv.errors.forEach(element => {",
-					"                console.log(JSON.stringify(element));",
-					"                });",
-					"            };",
-					"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
-					"        });    "
+					"        if (pm.response.code == 400 || pm.response.code == 422 || pm.response.code == 406 || pm.response.code == 404 ) {",
+					"            pm.test('Error payload conforms to standards schema', function() {",
+					"                const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
+					"                if (!valid){",
+					"                ajv.errors.forEach(element => {",
+					"                    console.log(JSON.stringify(element));",
+					"                    });",
+					"                };",
+					"                pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+					"            });  ",
+					"        }",
+					"  "
 				]
 			}
 		}
@@ -5499,6 +5672,60 @@
 		{
 			"key": "effective",
 			"value": ""
+		},
+		{
+			"key": "page",
+			"value": "1"
+		},
+		{
+			"key": "pageSize",
+			"value": "25",
+			"type": "string"
+		},
+		{
+			"key": "isOwned",
+			"value": "true",
+			"type": "string"
+		},
+		{
+			"key": "oldestTime",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "newestTime",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "minAmount",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "maxAmount",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "payeeType",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "effectiveDate",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "updatedSince",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "productBrand",
+			"value": "",
+			"type": "string"
 		},
 		{
 			"key": "pageArray",
