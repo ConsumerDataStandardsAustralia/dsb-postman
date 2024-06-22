@@ -26,7 +26,7 @@ function writeNewmanSummaryData(summary: NewmanRunSummary, reportName: string){
     fs.writeFileSync(path, JSON.stringify(summary, null, 2));
 }
 
-function RunNewmanForStates(iterationDataFile: string,
+function RunNewman(iterationDataFile: string,
   collectionName: string,
   environment: string,
   folderData: string[], 
@@ -75,15 +75,22 @@ const upperSector = sector?.charAt(0).toUpperCase() + sector.slice(1);
 let collectionFile = require(`${collectionDir}/CDR ${upperSector} Sector Conformance Tests.postman_collection.json`);
 let environmentFile = require(`${environmentDir}/DSB ${upperSector}.postman_environment.json`);
 
-var stateRunFolderData = ["Get Accounts - First page", "Get Bulk Direct Debits - First Page"];
-var stateRunIterationData = `${iterationDataDir}/bankingAccountStates.json`
-const reportNameForStateRun = "NodeJS-DH-AccountStates"
-RunNewmanForStates(stateRunIterationData, collectionFile, environmentFile,  stateRunFolderData, reportNameForStateRun);
+// var stateRunFolderData = ["Get Accounts - First page", "Get Bulk Direct Debits - First Page"];
+// var stateRunIterationData = `${iterationDataDir}/bankingAccountStates.json`
+// const reportNameForStateRun = "NodeJS-DH-AccountStates"
+// RunNewman(stateRunIterationData, collectionFile, environmentFile,  stateRunFolderData, reportNameForStateRun);
 
-var categoryRunFolderData = ["Get Accounts - First page", "Get Bulk Direct Debits - First Page"];
-var categoryRunIterationData = require(`${iterationDataDir}/bankingProductCategory.json`)
-const reportNameForCategoryRun = "NodeJS-DH-AccountCategory"
-RunNewmanForStates(categoryRunIterationData, collectionFile, environmentFile, categoryRunFolderData, reportNameForCategoryRun);
+// var categoryRunFolderData = ["Get Accounts - First page", "Get Bulk Direct Debits - First Page"];
+// var categoryRunIterationData = require(`${iterationDataDir}/bankingProductCategory.json`)
+// const reportNameForCategoryRun = "NodeJS-DH-AccountCategory"
+// RunNewman(categoryRunIterationData, collectionFile, environmentFile, categoryRunFolderData, reportNameForCategoryRun);
+
+var transactionRunFolderData = ["Get Transactions For Account - First page", "Get Transactions For Account - Other pages"];
+var transactionRunIterationData = require(`${iterationDataDir}/bankingTransactionTests.json`)
+const reportNameForTransactionRun = "NodeJS-DH-TransactionTests"
+RunNewman(transactionRunIterationData, collectionFile, environmentFile, transactionRunFolderData, reportNameForTransactionRun);
+
+
 
 
 
