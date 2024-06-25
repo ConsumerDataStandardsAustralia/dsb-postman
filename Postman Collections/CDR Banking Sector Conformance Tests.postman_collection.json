@@ -1,11 +1,10 @@
 {
 	"info": {
-		"_postman_id": "8c0dd9d5-8066-40cb-9d84-badedcbe3fde",
+		"_postman_id": "5b453fec-4680-4e4e-b8d9-f545be098ad5",
 		"name": "CDR Banking Sector Conformance Tests",
 		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.17.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n*   Get Accounts\n*   Get Bulk Balances\n*   Get Balances For Specific Accounts\n*   Get Account Balance\n*   Get Account Details\n*   Get Transactions For Account\n*   Get Transaction Detail\n*   Get Direct Debits For Accounts\n*   Get Bulk Direct Debits\n*   Get Direct Debits For Specific Accounts\n*   Get Scheduled Payments For Accounts\n*   Get Scheduled Payments Bulk\n*   Get Scheduled Payments For Specific Accounts\n*   Get Payees\n*   Get Payee Details\n*   Get Products\n*   Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n*   CDR API end points not listed above\n*   Negative scenarios that are not specifically addressed in the standards for individual end points\n*   Non-functional requirements\n*   Information Security Profile and associated end points\n*   MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [cdr-data61@csiro.au](mailto:cdr-data61@csiro.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "8286723",
-		"_collection_link": "https://winter-shadow-541400.postman.co/workspace/e0002a4d-afd2-4ef8-88ba-aed01b17beab/collection/8286723-8c0dd9d5-8066-40cb-9d84-badedcbe3fde?action=share&source=collection_link&creator=8286723"
+		"_exporter_id": "8286723"
 	},
 	"item": [
 		{
@@ -37,7 +36,7 @@
 															"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));\r",
 															"        });\r",
 															"        // Schema payload check\r",
-															"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+															"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 															"            const valid = ajv.validate(\"ResponseBankingDirectDebitAuthorisationList\", jsonData)\r",
 															"            if (!valid){\r",
 															"            ajv.errors.forEach(element => {\r",
@@ -168,7 +167,7 @@
 															"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));\r",
 															"        });\r",
 															"        // Schema payload check\r",
-															"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+															"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 															"            const valid = ajv.validate(\"ResponseBankingDirectDebitAuthorisationList\", jsonData)\r",
 															"            if (!valid){\r",
 															"            ajv.errors.forEach(element => {\r",
@@ -275,7 +274,7 @@
 															"\r",
 															"  \r",
 															"        // Schema payload check\r",
-															"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+															"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 															"            const valid = ajv.validate(\"ResponseBankingDirectDebitAuthorisationList\", jsonData)\r",
 															"            if (!valid){\r",
 															"            ajv.errors.forEach(element => {\r",
@@ -425,7 +424,7 @@
 															"\r",
 															" \r",
 															"        // Schema payload check\r",
-															"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() { \r",
+															"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() { \r",
 															"            const valid = ajv.validate(\"ResponseBankingDirectDebitAuthorisationList\", jsonData)\r",
 															"            if (!valid){\r",
 															"            ajv.errors.forEach(element => {\r",
@@ -549,7 +548,7 @@
 															"\r",
 															"  \r",
 															"        // Schema payload check\r",
-															"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+															"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 															"            const valid = ajv.validate(\"ResponseBankingDirectDebitAuthorisationList\", jsonData)\r",
 															"            if (!valid){\r",
 															"            ajv.errors.forEach(element => {\r",
@@ -562,7 +561,8 @@
 															"\r",
 															""
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												},
 												{
@@ -594,7 +594,8 @@
 															"var fapiDate = moment().format(dateFormat);\r",
 															"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 														],
-														"type": "text/javascript"
+														"type": "text/javascript",
+														"packages": {}
 													}
 												}
 											],
@@ -681,7 +682,7 @@
 															"        });",
 															"",
 															"        // Schema payload check",
-															"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+															"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
 															"            const valid = ajv.validate(\"ResponseBankingAccountsBalanceList\", jsonData)",
 															"            if (!valid){",
 															"            ajv.errors.forEach(element => {",
@@ -796,7 +797,7 @@
 															"        });",
 															"",
 															"        // Schema payload check",
-															"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+															"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
 															"            const valid = ajv.validate(\"ResponseBankingAccountsBalanceList\", jsonData)",
 															"            if (!valid){",
 															"            ajv.errors.forEach(element => {",
@@ -925,7 +926,7 @@
 															"        });",
 															"",
 															"        // Schema payload check",
-															"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+															"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
 															"            const valid = ajv.validate(\"ResponseBankingAccountsBalanceList\", jsonData)",
 															"            if (!valid){",
 															"            ajv.errors.forEach(element => {",
@@ -1025,7 +1026,7 @@
 															" ",
 															"",
 															"            // Schema payload check",
-															"            ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+															"            ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
 															"                const valid = ajv.validate(\"ResponseBankingAccountsBalanceList\", jsonData)",
 															"                if (!valid){",
 															"                ajv.errors.forEach(element => {",
@@ -1151,7 +1152,7 @@
 															"                    pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
 															"                });",
 															"                // Schema payload check",
-															"                ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+															"                ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
 															"                    const valid = ajv.validate(\"ResponseBankingAccountsBalanceList\", jsonData)",
 															"                    if (!valid){",
 															"                    ajv.errors.forEach(element => {",
@@ -1298,7 +1299,7 @@
 															"                });",
 															"",
 															"                // Schema payload check",
-															"                ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+															"                ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
 															"                    const valid = ajv.validate(\"ResponseBankingAccountsBalanceById\", jsonData)",
 															"                    if (!valid){",
 															"                    ajv.errors.forEach(element => {",
@@ -1421,7 +1422,6 @@
 																	"var jsonData;",
 																	"try { jsonData = pm.response.json(); } catch(e) {}",
 																	"",
-																	"var trxData = jsonData.data.transactions;",
 																	"",
 																	"if (pm.response.code < 500) {",
 																	"    pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
@@ -1429,7 +1429,9 @@
 																	"    });",
 																	"}",
 																	"",
-																	"// Schema payload check",
+																	"",
+																	"",
+																	"//Schema payload check",
 																	"if (pm.response.code == 200) {",
 																	"    var cnt = 0;",
 																	"    // check for newest and oldest time",
@@ -1440,58 +1442,64 @@
 																	"    newestTime = new Date(pm.request.url.query.get(\"newest-time\")).getTime()",
 																	"    minAmount = pm.request.url.query.get(\"min-amount\")",
 																	"    maxAmount = pm.request.url.query.get(\"max-amount\")",
+																	"    isOwned = pm.request.url.query.get(\"is-owned\")",
+																	"",
+																	"",
 																	"    ",
 																	"    if ((pm.request.url.query.get(\"oldest-time\") != undefined && isNaN(oldestTime)) ",
 																	"     || (pm.request.url.query.get(\"newest-time\") != undefined && isNaN(newestTime))",
 																	"     || (pm.request.url.query.get(\"max-amount\") != undefined && isNaN(maxAmount))",
 																	"     || (pm.request.url.query.get(\"min-amount\") != undefined && isNaN(minAmount))",
+																	"     || (pm.request.url.query.get(\"is-owned\") != undefined && (isOwned != 'true' && isOwned != 'false'))",
 																	"     ) {",
 																	"        // no need to do other tests as this should return an error",
 																	"        console.log(\"No further test as this should return error\");",
 																	"    } else",
 																	"    {",
-																	"        jsonData.data.transactions.forEach(tr => {",
-																	"            var refDate = undefined;",
-																	"            if (tr.postingDateTime != null) {",
-																	"                refDate = new Date(tr.postingDateTime).getTime();",
-																	"            } else if (tr.executionDateTime != null){",
-																	"                refDate = new Date(tr.executionDateTime).getTime();",
-																	"            } else if (tr.valueDateTime != null){",
-																	"                refDate = new Date(tr.valueDateTime).getTime();",
-																	"            }",
+																	"        if (pm.response.code == 200) {",
+																	"            jsonData.data.transactions.forEach(tr => {",
+																	"                var refDate = undefined;",
+																	"                if (tr.postingDateTime != null) {",
+																	"                    refDate = new Date(tr.postingDateTime).getTime();",
+																	"                } else if (tr.executionDateTime != null){",
+																	"                    refDate = new Date(tr.executionDateTime).getTime();",
+																	"                } else if (tr.valueDateTime != null){",
+																	"                    refDate = new Date(tr.valueDateTime).getTime();",
+																	"                }",
 																	"",
 																	"",
-																	"            if (pm.request.url.query.get(\"newest-time\") != undefined)",
-																	"                newestTime = new Date(pm.request.url.query.get(\"newest-time\")).getTime()",
-																	"            if (pm.request.url.query.get(\"oldest-time\") != undefined)",
-																	"                oldestTime = new Date(pm.request.url.query.get(\"oldest-time\")).getTime()",
-																	"            // check against the newest-time query parameter",
-																	"            if (refDate != undefined) {",
-																	"                if (isNaN(oldestTime) == false) {",
-																	"                    var msg = \"transaction date: \" +  new Date(refDate) + \" is after oldest-time: \" + pm.request.url.query.get(\"oldest-time\");",
-																	"                    pm.test('Transaction date is at or after oldest-time: trx ' + cnt, function() {",
-																	"                        pm.expect(refDate, msg).to.be.above(oldestTime)",
-																	"                    })",
-																	"                }",
-																	"                if (isNaN(newestTime) == false) {",
-																	"                    var msg = \"transaction date: \" +  new Date(refDate) + \" is after newest-time: \" + pm.request.url.query.get(\"newest-time\");",
-																	"                    pm.test('Transaction date is at or before newest-time: trx ' + cnt, function() {",
-																	"                        pm.expect(refDate, msg).to.be.below(newestTime)",
-																	"                    })",
-																	"                }",
-																	"            }          ",
-																	"            cnt++;        ",
-																	"        })",
-																	"        // Schema payload check",
-																	"        pm.test('Response payload conforms to standards schema', function() {",
-																	"            const valid = ajv.validate(\"ResponseBankingTransactionList\", jsonData)",
-																	"            if (!valid){",
-																	"            ajv.errors.forEach(element => {",
-																	"                console.log(JSON.stringify(element));",
-																	"                });",
-																	"            };",
-																	"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
-																	"        }); ",
+																	"                if (pm.request.url.query.get(\"newest-time\") != undefined)",
+																	"                    newestTime = new Date(pm.request.url.query.get(\"newest-time\")).getTime()",
+																	"                if (pm.request.url.query.get(\"oldest-time\") != undefined)",
+																	"                    oldestTime = new Date(pm.request.url.query.get(\"oldest-time\")).getTime()",
+																	"                // check against the newest-time query parameter",
+																	"                if (refDate != undefined) {",
+																	"                    if (isNaN(oldestTime) == false) {",
+																	"                        var msg = \"transaction date: \" +  new Date(refDate) + \" is after oldest-time: \" + pm.request.url.query.get(\"oldest-time\");",
+																	"                        pm.test('Transaction date is at or after oldest-time: trx ' + cnt, function() {",
+																	"                            pm.expect(refDate, msg).to.be.above(oldestTime)",
+																	"                        })",
+																	"                    }",
+																	"                    if (isNaN(newestTime) == false) {",
+																	"                        var msg = \"transaction date: \" +  new Date(refDate) + \" is after newest-time: \" + pm.request.url.query.get(\"newest-time\");",
+																	"                        pm.test('Transaction date is at or before newest-time: trx ' + cnt, function() {",
+																	"                            pm.expect(refDate, msg).to.be.below(newestTime)",
+																	"                        })",
+																	"                    }",
+																	"                }          ",
+																	"                cnt++;        ",
+																	"            })",
+																	"            // Schema payload check",
+																	"            pm.test('Response payload conforms to standards schema', function() {",
+																	"                const valid = ajv.validate(\"ResponseBankingTransactionList\", jsonData)",
+																	"                if (!valid){",
+																	"                ajv.errors.forEach(element => {",
+																	"                    console.log(JSON.stringify(element));",
+																	"                    });",
+																	"                };",
+																	"                pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+																	"            });",
+																	"        } ",
 																	"    }",
 																	"}",
 																	"",
@@ -1561,7 +1569,7 @@
 															}
 														],
 														"url": {
-															"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/transactions?page={{currentPage}}&page-size={{pageSize}}&newest-time={{newestTime}}&oldest-time={{oldestTime}}&min-amount={{maxAmount}}",
+															"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/transactions?page={{currentPage}}&page-size={{pageSize}}&newest-time={{newestTime}}&oldest-time={{oldestTime}}&min-amount={{minAmount}}&max-amount={{maxAmount}}&is-owned={{isOwned}}",
 															"host": [
 																"{{authenticatedResourceUrl}}"
 															],
@@ -1592,24 +1600,21 @@
 																},
 																{
 																	"key": "min-amount",
-																	"value": "{{maxAmount}}"
+																	"value": "{{minAmount}}"
 																},
 																{
 																	"key": "max-amount",
-																	"value": "{{minAmount}}",
-																	"disabled": true
+																	"value": "{{maxAmount}}"
 																},
 																{
 																	"key": "is-owned",
-																	"value": "false",
-																	"disabled": true
+																	"value": "{{isOwned}}"
 																}
 															],
 															"variable": [
 																{
 																	"key": "accountId",
-																	"value": "{{bankingAccountId1}}",
-																	"description": "ID of the account to get transactions for.  Must have previously been returned by one of the account list end points."
+																	"value": ""
 																}
 															]
 														},
@@ -1843,7 +1848,7 @@
 																	"        });",
 																	"",
 																	"        // Schema payload check",
-																	"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function () {",
+																	"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function () {",
 																	"            const valid = ajv.validate(\"ResponseBankingTransactionById\", jsonData)",
 																	"            if (!valid) {",
 																	"                ajv.errors.forEach(element => {",
@@ -2062,7 +2067,7 @@
 															"                });\r",
 															"\r",
 															"                // Schema payload check\r",
-															"                ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+															"                ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 															"                    const valid = ajv.validate(\"ResponseBankingDirectDebitAuthorisationList\", jsonData)\r",
 															"                    if (!valid){\r",
 															"                    ajv.errors.forEach(element => {\r",
@@ -2263,7 +2268,7 @@
 															"                try { jsonData = pm.response.json(); } catch(e) {}\r",
 															"\r",
 															"                // Schema payload check\r",
-															"                ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+															"                ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 															"                    const valid = ajv.validate(\"ResponseBankingDirectDebitAuthorisationList\", jsonData)\r",
 															"                    if (!valid){\r",
 															"                    ajv.errors.forEach(element => {\r",
@@ -2490,7 +2495,7 @@
 															"                });\r",
 															"\r",
 															"                // Schema payload check\r",
-															"                ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+															"                ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 															"                    const valid = ajv.validate(\"ResponseBankingScheduledPaymentsListV2\", jsonData)\r",
 															"                    if (!valid){\r",
 															"                    ajv.errors.forEach(element => {\r",
@@ -2699,7 +2704,7 @@
 															"                });\r",
 															"\r",
 															"                // Schema payload check\r",
-															"                ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+															"                ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 															"                    const valid = ajv.validate(\"ResponseBankingScheduledPaymentsListV2\", jsonData)\r",
 															"                    if (!valid){\r",
 															"                    ajv.errors.forEach(element => {\r",
@@ -3029,7 +3034,7 @@
 													"}",
 													" ",
 													"// only accounts with specified openStatus are included",
-													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) ",
+													"if ((pm.response.code === 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) ",
 													"{",
 													"     pm.test('open status query parameter is considered', function() {",
 													"        var currentStatus = pm.variables.get(\"openStatus\")",
@@ -3200,7 +3205,7 @@
 													"}",
 													" ",
 													"// only accounts with specified openStatus are included",
-													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) ",
+													"if ((pm.response.code === 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) ",
 													"{",
 													"     pm.test('open status query parameter is considered', function() {",
 													"        var currentStatus = pm.variables.get(\"openStatus\")",
@@ -3349,7 +3354,7 @@
 													"}",
 													" ",
 													"// only accounts with specified openStatus are included",
-													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) ",
+													"if ((pm.response.code === 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) ",
 													"{",
 													"     pm.test('open status query parameter is considered', function() {",
 													"        var currentStatus = pm.variables.get(\"openStatus\")",
@@ -3537,7 +3542,7 @@
 													"",
 													"",
 													"        // Schema payload check",
-													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+													"         ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
 													"            const valid = ajv.validate(\"ResponseBankingAccountByIdV3\", jsonData)",
 													"            if (!valid){",
 													"            ajv.errors.forEach(element => {",
@@ -3972,7 +3977,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?product-category=CRED_AND_CHRG_CARDS&open-status=ALL&is-owned=true&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
 														"{{authenticatedResourceUrl}}"
 													],
@@ -3984,17 +3989,17 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "CRED_AND_CHRG_CARDS",
+															"value": "{{productCategory}}",
 															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
 															"key": "open-status",
-															"value": "ALL",
+															"value": "{{openStatus}}",
 															"description": "Used to filter results according to open/closed status. Values can be OPEN, CLOSED or ALL. If absent then ALL is assumed"
 														},
 														{
 															"key": "is-owned",
-															"value": "true",
+															"value": "{{isOwned}}",
 															"description": "Filters accounts based on whether they are owned by the authorised customer.  True for owned accounts, false for unowned accounts and absent for all accounts"
 														},
 														{
@@ -4434,12 +4439,14 @@
 													"        var jsonData;\r",
 													"        try { jsonData = pm.response.json(); } catch(e) {}\r",
 													"\r",
+													"        \r",
+													"\r",
 													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
 													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));\r",
 													"        });\r",
 													" \r",
 													"        // Schema payload check\r",
-													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"ResponseBankingPayeeListV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -4515,7 +4522,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees?type={{payeeType}}&page={{currentPage}}&page-size={{pageSize}}",
+											"raw": "{{authenticatedResourceUrl}}/banking/payees?type=asdfdasf&page={{currentPage}}&page-size={{pageSize}}",
 											"host": [
 												"{{authenticatedResourceUrl}}"
 											],
@@ -4526,7 +4533,7 @@
 											"query": [
 												{
 													"key": "type",
-													"value": "{{payeeType}}",
+													"value": "asdfdasf",
 													"description": "Filter on the payee type field.  In addition to normal type field values, ALL can be specified to retrieve all payees.  If absent the assumed value is ALL"
 												},
 												{
@@ -4562,7 +4569,7 @@
 													"        });\r",
 													" \r",
 													"        // Schema payload check\r",
-													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"ResponseBankingPayeeListV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -4667,7 +4674,7 @@
 													"        });\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"ResponseBankingPayeeListV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -4806,7 +4813,7 @@
 													"        });\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"ResponseBankingPayeeByIdV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -5028,7 +5035,20 @@
 													"                });\r",
 													"            };\r",
 													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
-													"        });    \r",
+													"        });   \r",
+													"\r",
+													"        // only products with specified productCategory are included\r",
+													"        if ((pm.response.code === 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.products?.length > 0)) {\r",
+													"            pm.test('product-category query parameter is considered', function() {\r",
+													"                var currentCategory = pm.variables.get(\"productCategory\")\r",
+													"                if (currentCategory !== \"ALL\"){\r",
+													"                    jsonData?.data?.products.forEach(prod => {\r",
+													"                        pm.expect(prod.productCategory).to.equal(currentCategory)\r",
+													"                    })\r",
+													"                }\r",
+													"            });\r",
+													"        }\r",
+													" \r",
 													"\r",
 													"\r",
 													"\r",
@@ -5036,7 +5056,8 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -5054,7 +5075,8 @@
 													"    pm.variables.set(\"pageSize\", pageSize);\r",
 													"}"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -5121,7 +5143,7 @@
 													"        try { jsonData = pm.response.json(); } catch(e) {}\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"ResponseBankingProductListV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -5205,7 +5227,7 @@
 													"        try { jsonData = pm.response.json(); } catch(e) {}\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"ResponseBankingProductListV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -5221,7 +5243,8 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -5280,7 +5303,8 @@
 													"\r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -5351,7 +5375,7 @@
 													"\r",
 													"\r",
 													"    // Schema payload check\r",
-													"    ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"    ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"        const valid = ajv.validate(\"ResponseBankingProductByIdV4\", jsonData)\r",
 													"        if (!valid){\r",
 													"        ajv.errors.forEach(element => {\r",
@@ -5400,7 +5424,7 @@
 											"variable": [
 												{
 													"key": "productId",
-													"value": "{{bankingProductId1}}"
+													"value": "{{bankingProductId}}"
 												}
 											]
 										},
@@ -5738,18 +5762,28 @@
 					"        var minAmount;",
 					"        var maxAmount;",
 					"        var isOwned;",
+					"        var productCategory;",
+					"        var payeeType;",
 					"",
 					"        oldestTime = new Date(pm.request.url.query.get(\"oldest-time\")).getTime()",
 					"        newestTime = new Date(pm.request.url.query.get(\"newest-time\")).getTime()",
 					"        minAmount = pm.request.url.query.get(\"min-amount\")",
 					"        maxAmount = pm.request.url.query.get(\"max-amount\")",
 					"        isOwned = pm.request.url.query.get(\"is-owned\")",
-					"        // test if this request should have returned an error base on query parameters",
+					"        productCategory = pm.request.url.query.get(\"product-category\") ",
+					"        payeeType = pm.request.url.query.get(\"type\") ",
+					"",
+					"",
+					"        var validProductCategories = [\"BUSINESS_LOANS\", \"BUSINESS_LOANS\", \"LEASES\", \"MARGIN_LOANS\", \"OVERDRAFTS\", \"PERS_LOANS\", \"REGULATED_TRUST_ACCOUNTS\", \"RESIDENTIAL_MORTGAGES\",\"TERM_DEPOSITS\",\"TRADE_FINANCE\", \"TRANS_AND_SAVINGS_ACCOUNTS\", \"TRAVEL_CARDS\"]",
+					"",
+					"        var validPayeeTypes = [\"ALL\", \"BILLER\", \"DIGITAL_WALLET\", \"DOMESTIC\", \"INTERNATIONAL\"]",
+					"",
+					"        // test if this request should have returned an error base on query parameters ",
 					"        if ((pm.request.url.query.get(\"oldest-time\") != undefined && isNaN(oldestTime))) {",
 					"            console.log(\"Request should return error based on qry parameters\")",
 					"            requestShouldReturnError = true;",
 					"            // check thatwe get a 400 error",
-					"            pm.test(\"Should get a 400 based on invalid oldest-time parameters\", function () {",
+					"            pm.test(\"Should get a 400 based on invalid oldest-time parameters: \" + pm.request.url.query.get(\"oldest-time\"), function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
 					"        }",
@@ -5757,7 +5791,7 @@
 					"            console.log(\"Request should return error based on qry parameters\")",
 					"            requestShouldReturnError = true;",
 					"            // check thatwe get a 400 error",
-					"            pm.test(\"Should get a 400 based on invalid newest-time parameters\", function () {",
+					"            pm.test(\"Should get a 400 based on invalid newest-time parameters: \" + pm.request.url.query.get(\"newest-time\"), function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
 					"        }",
@@ -5765,7 +5799,7 @@
 					"            console.log(\"Request should return error based on qry parameters\")",
 					"            requestShouldReturnError = true;",
 					"            // check thatwe get a 400 error",
-					"            pm.test(\"Should get a 400 based on invalid min-amount parameters\", function () {",
+					"            pm.test(\"Should get a 400 based on invalid min-amount parameters: \" + minAmount, function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
 					"        }",
@@ -5773,32 +5807,47 @@
 					"            console.log(\"Request should return error based on qry parameters\")",
 					"            requestShouldReturnError = true;",
 					"            // check thatwe get a 400 error",
-					"            pm.test(\"Should get a 400 based on invalid max-amount parameters\", function () {",
+					"            pm.test(\"Should get a 400 based on invalid max-amount parameters: \" + maxAmount, function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
 					"        }",
 					"        if (pm.request.url.query.get(\"is-owned\") != undefined && (isOwned != \"true\" && isOwned != \"false\"))  {",
-					"            console.log(\"Request should return error based on is-owned parameters\")",
+					"            console.log(\"Request should return error based on is-owned parameters \")",
 					"            requestShouldReturnError = true;",
 					"            // check thatwe get a 400 error",
-					"            pm.test(\"Should get a 400 based on invalid is-owned parameters\", function () {",
+					"            pm.test(\"Should get a 400 based on invalid is-owned parameters: \" + isOwned, function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
 					"        }",
-					"                ",
+					"",
+					"        if ((pm.request.url.query.get(\"product-category\") != undefined && validProductCategories.indexOf(productCategory)< 0)) {",
+					"            console.log(\"Request should return error based on invalid product-category parameter\")",
+					"            requestShouldReturnError = true;",
+					"            // check thatwe get a 400 error",
+					"            pm.test(\"Should get a 400 based on invalid product-category parameter: \" + productCategory, function () {",
+					"                pm.response.to.have.status(400);",
+					"            });",
+					"        }   ",
+					"",
+					"        if ((pm.request.url.query.get(\"type\") != undefined && validPayeeTypes.indexOf(payeeType)< 0)) {",
+					"            console.log(\"Request should return error based on invalid type parameter\")",
+					"            requestShouldReturnError = true;",
+					"            // check thatwe get a 400 error",
+					"            pm.test(\"Should get a 400 based on invalid type parameter: \" + payeeType, function () {",
+					"                pm.response.to.have.status(400);",
+					"            });",
+					"        }                       ",
 					"        ",
+					"        // make this collection variable for other unit tests",
+					"        pm.collectionVariables.set(\"requestShouldReturnError\", requestShouldReturnError);",
 					"        if (requestShouldReturnError == true) {",
 					"            // now test for error message",
-					"            pm.test(\"error.code is as defined in the published standard\", function () {",
+					"            pm.test(\"Error object has the right data in the published standard\", function () {",
 					"                // urn:au-cds:error:cds-all:Field/Invalid",
 					"                pm.expect(jsonData.error.code).to.eql(\"urn:au-cds:error:cds-all:Field/Invalid\", \"Incorrect error code returned\");",
-					"            });",
-					"",
-					"            // now test for error title",
-					"            pm.test(\"error.title is as defined in the published standard\", function () {",
-					"                // urn:au-cds:error:cds-all:Field/Invalid",
 					"                pm.expect(jsonData.error.title).to.eql(\"Invalid Field\", \"Incorrect title in error object\");",
 					"            });",
+					"",
 					"        }",
 					"        ",
 					"        // HTTP Response and headers",
@@ -5829,7 +5878,6 @@
 					"                var currentTotalPages = jsonData?.meta?.totalPages;",
 					"                var currentTotalRecords = jsonData?.meta?.totalRecords;",
 					"",
-					"",
 					"                pm.test(\"Pagination fields have required properties\", function () {",
 					"                    pm.expect(jsonData.links).to.have.property(\"self\");            ",
 					"                    if (currentPage > 1 && currentTotalPages > 1) pm.expect(jsonData.links).to.have.property(\"prev\");",
@@ -5853,7 +5901,7 @@
 					"                pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
 					"            });  ",
 					"        }",
-					"  "
+					""
 				]
 			}
 		}
@@ -5943,6 +5991,10 @@
 		},
 		{
 			"key": "bankingAccountId1",
+			"value": ""
+		},
+		{
+			"key": "requestShouldReturnError",
 			"value": ""
 		}
 	]
