@@ -29,7 +29,7 @@ function writeNewmanSummaryData(summary: NewmanRunSummary, reportName: string){
 function RunNewman(iterationDataFile: string,
   collectionName: string,
   environment: string,
-  folderData: string[], 
+  folderData: string[] | string | undefined, 
   reportName: string) {
   // call newman library to create report
   const upperSector = sector?.charAt(0).toUpperCase() + sector.slice(1);
@@ -85,10 +85,17 @@ let environmentFile = require(`${environmentDir}/DSB ${upperSector}.postman_envi
 // const reportNameForCategoryRun = "NodeJS-DH-AccountCategory"
 // RunNewman(categoryRunIterationData, collectionFile, environmentFile, categoryRunFolderData, reportNameForCategoryRun);
 
-var transactionRunFolderData = ["Get Transactions For Account - First page", "Get Transactions For Account - Other pages"];
+// var transactionRunFolderData = ["Get Transactions For Account - First page", "Get Transactions For Account - Other pages"];
+// var transactionRunIterationData = require(`${iterationDataDir}/bankingTransactionTests.json`)
+// const reportNameForTransactionRun = "NodeJS-DH-TransactionTests"
+// RunNewman(transactionRunIterationData, collectionFile, environmentFile, transactionRunFolderData, reportNameForTransactionRun);
+
+
+var runAllFolderData = "CDR Banking Sector Conformance Tests";
 var transactionRunIterationData = require(`${iterationDataDir}/bankingTransactionTests.json`)
-const reportNameForTransactionRun = "NodeJS-DH-TransactionTests"
-RunNewman(transactionRunIterationData, collectionFile, environmentFile, transactionRunFolderData, reportNameForTransactionRun);
+const reportNameForAllRun = "NodeJS-DH-Complete"
+RunNewman(transactionRunIterationData, collectionFile, environmentFile, undefined, reportNameForAllRun);
+
 
 
 
