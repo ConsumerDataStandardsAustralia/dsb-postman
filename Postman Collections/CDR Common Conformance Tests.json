@@ -1,0 +1,748 @@
+{
+	"info": {
+		"_postman_id": "5a15a977-a174-471d-bfde-677cd0e64a40",
+		"name": "CDR Common Conformance Tests",
+		"description": "# CDR Common Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.17.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Common APIs\n\n*   Get Customer\n*   Get Customer Detail\n*   Get Status\n*   Get Outages\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n*   CDR API end points not listed above\n*   Negative scenarios that are not specifically addressed in the standards for individual end points\n*   Non-functional requirements\n*   Information Security Profile and associated end points\n*   MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n|  |  |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [cdr-data61@csiro.au](mailto:cdr-data61@csiro.au)\n\n}",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Basic Schema Tests",
+			"item": [
+				{
+					"name": "common",
+					"item": [
+						{
+							"name": "customer",
+							"item": [
+								{
+									"name": "Get Customer v1",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "eb635861-172b-4400-8466-0d107413e605",
+												"exec": [
+													"",
+													"if (pm.response.status != 401) {",
+													"        // Parse the response body",
+													"        var jsonData;",
+													"        try { jsonData = pm.response.json(); } catch(e) {}",
+													"",
+													"",
+													"        // HTTP Response and headers",
+													"        pm.test(\"Status code is 200\", function () {",
+													"            pm.response.to.have.status(200);",
+													"        });",
+													"",
+													"        pm.test(\"Content-Type header specifies json\", function () {",
+													"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+													"        });",
+													"",
+													"        pm.test(\"x-v header is present and has correct value\", function () {",
+													"            var requestXv = parseInt(pm.request.headers.get(\"x-v\"));",
+													"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
+													"            pm.expect(responseXv).gte(requestXv);",
+													"        });",
+													"",
+													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));",
+													"        });",
+													"",
+													"",
+													"        // Schema payload check",
+													"        pm.test('Response payload conforms to standards schema', function() {",
+													"            const valid = ajv.validate(\"ResponseCommonCustomer\", jsonData)",
+													"            if (!valid){",
+													"            ajv.errors.forEach(element => {",
+													"                console.log(JSON.stringify(element));",
+													"                });",
+													"            };",
+													"            pm.expect(valid).to.be.true; ",
+													"        });",
+													"",
+													"}",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "15fb7436-0431-4fc4-a917-9780f7573533",
+												"exec": [
+													"var moment = require('moment');\r",
+													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
+													"var fapiDate = moment().format(dateFormat);\r",
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "1871e6e2-9078-466b-9787-c8da58f818cb",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "127.0.0.1",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": "{{authenticatedCommonUrl}}/common/customer",
+										"description": "Obtain basic information on the customer that has authorised the current session"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Customer Detail V2",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "d521560a-ea76-4b13-a5bb-3492c6a177de",
+												"exec": [
+													"if (pm.response.status > 400) {\r",
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+													"\r",
+													"\r",
+													"        // HTTP Response and headers\r",
+													"        pm.test(\"Status code is 200\", function () {\r",
+													"            pm.response.to.have.status(200);\r",
+													"        });\r",
+													"\r",
+													"        pm.test(\"Content-Type header specifies json\", function () {\r",
+													"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+													"        });\r",
+													"\r",
+													"        pm.test(\"x-v header is present and has correct value\", function () {\r",
+													"            var requestXv = parseInt(pm.request.headers.get(\"x-v\"));\r",
+													"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));\r",
+													"            pm.expect(responseXv).gte(requestXv);\r",
+													"        });\r",
+													"\r",
+													"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
+													"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"interactionId\"));\r",
+													"        });\r",
+													"\r",
+													"\r",
+													"        pm.test('Schema is valid', function() {\r",
+													"            const valid = ajv.validate(\"ResponseCommonCustomerDetailV2\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid).to.be.true; \r",
+													"        });\r",
+													"} else {\r",
+													"    console.log(\"Endpoint not found, or not authorized, or internal server error\")\r",
+													"}\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "9ba847ab-da54-4751-a274-4418a5b8823a",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "2",
+												"type": "text",
+												"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+											},
+											{
+												"key": "x-min-v",
+												"value": "1",
+												"type": "text",
+												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{interactionId}}",
+												"type": "text",
+												"description": "An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122] UUID value is required to be provided in the response header to track the interaction."
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{timeTenMinutesAgo}}",
+												"type": "text",
+												"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls."
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "127.0.0.1",
+												"type": "text",
+												"description": "The customer's original IP address if the customer is currently logged in to the data recipient. The presence of this header indicates that the API is being called in a customer present context. Not to be included for unauthenticated calls."
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text",
+												"description": "The customer's original standard http headers [Base64](#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the data recipient. Mandatory for customer present calls.  Not required for unattended or unauthenticated calls."
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text",
+												"description": "Subject identifier. Locally unique and never reassigned identifier within the Holder for the End-User. Mandatory for authenticated calls. Not required for unattended or unauthenticated calls."
+											}
+										],
+										"url": "{{authenticatedCommonUrl}}/common/customer/detail",
+										"description": "Obtain detailed information on the authorised customer within the current session."
+									},
+									"response": []
+								}
+							],
+							"id": "ee267d44-60f3-4d69-a0e9-a7a88870629d"
+						}
+					],
+					"id": "7dbc623b-09b6-4275-bdbe-17bd31d11705",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "53700211-3bb5-4f3e-aa1a-224228b04aa5",
+								"type": "text/javascript",
+								"exec": [
+									"var moment = require('moment');",
+									"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";",
+									"var fapiDate = moment().format(dateFormat);",
+									"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b46939df-8b6a-404d-b895-9d535475bcc2",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "discovery",
+					"item": [
+						{
+							"name": "Get Status v1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f732fc4-d8be-4952-bc76-97e81a3de613",
+										"exec": [
+											"",
+											"",
+											"",
+											"        // Parse the response body",
+											"        var jsonData;",
+											"        try { jsonData = pm.response.json(); } catch(e) {}",
+											"",
+											"",
+											"        // HTTP Response and headers",
+											"        pm.test(\"Status code is 200\", function () {",
+											"            pm.response.to.have.status(200);",
+											"        });",
+											"",
+											"        pm.test(\"Content-Type header specifies json\", function () {",
+											"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+											"        });",
+											"",
+											"        pm.test(\"x-v header is present and has correct value\", function () {",
+											"            var requestXv = parseInt(pm.request.headers.get(\"x-v\"));",
+											"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
+											"            pm.expect(responseXv).gte(requestXv);",
+											"        });",
+											"",
+											"                // Schema payload check",
+											"        pm.test('Response payload conforms to standards schema', function() {",
+											"            const valid = ajv.validate(\"ResponseCommonDiscoveryStatus\", jsonData)",
+											"            if (!valid){",
+											"            ajv.errors.forEach(element => {",
+											"                console.log(JSON.stringify(element));",
+											"                });",
+											"            };",
+											"            pm.expect(valid).to.be.true; ",
+											"        });   ",
+											"",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "15334900-9410-4d45-8fd6-400c3a8addea",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-v",
+										"value": "1",
+										"type": "text",
+										"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+									},
+									{
+										"key": "x-min-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{unauthenticatedCommonUrl}}/discovery/status",
+								"description": "Obtain a health check status for the implementation"
+							},
+							"response": []
+						},
+						{
+							"name": "Get Outages v1",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6e921d31-3c23-4099-ad55-4f2f1c2649cf",
+										"exec": [
+											"",
+											"",
+											"      // Parse the response body",
+											"        var jsonData;",
+											"        try { jsonData = pm.response.json(); } catch(e) {}",
+											"",
+											"",
+											"        // HTTP Response and headers",
+											"        pm.test(\"Status code is 200\", function () {",
+											"            pm.response.to.have.status(200);",
+											"        });",
+											"",
+											"        pm.test(\"Content-Type header specifies json\", function () {",
+											"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+											"        });",
+											"",
+											"        pm.test(\"x-v header is present and has correct value\", function () {",
+											"            var requestXv = parseInt(pm.request.headers.get(\"x-v\"));",
+											"            var responseXv = parseInt(pm.response.headers.get(\"x-v\"));",
+											"            pm.expect(responseXv).gte(requestXv);",
+											"        });",
+											"",
+											"            // Schema payload check",
+											"        pm.test('Response payload conforms to standards schema', function() {",
+											"            const valid = ajv.validate(\"ResponseDiscoveryOutagesList\", jsonData)",
+											"            if (!valid){",
+											"            ajv.errors.forEach(element => {",
+											"                console.log(JSON.stringify(element));",
+											"                });",
+											"            };",
+											"            pm.expect(valid).to.be.true; ",
+											"        });",
+											"",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "ae46e8c2-ae1e-4ad0-80a9-8ad039add19f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-min-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": "{{unauthenticatedCommonUrl}}/discovery/outages",
+								"description": "Obtain a list of scheduled outages for the implementation"
+							},
+							"response": []
+						}
+					],
+					"id": "0e4c2812-5e8a-4d02-bdf7-2e441365b7b0"
+				}
+			],
+			"id": "c8d13a2d-35a5-4fae-9bb5-c7e9b5672fcc"
+		},
+		{
+			"name": "Specialised Tests",
+			"item": [],
+			"id": "34ec4b84-fc06-4b18-8929-ae1229b11fdf"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {
+			"token": "{{accessToken}}"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8df086cf-cd58-4d17-87b4-283c87c96d78",
+				"type": "text/javascript",
+				"exec": [
+					"",
+					"",
+					"if (pm.iterationData.get(\"baseUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"baseUrl\", pm.iterationData.get(\"baseUrl\"));",
+					"",
+					"if (pm.iterationData.get(\"authenticatedResourceUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"authenticatedResourceUrl\", pm.iterationData.get(\"authenticatedResourceUrl\"));",
+					"",
+					"if (pm.iterationData.get(\"unauthenticatedResourceUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"unauthenticatedResourceUrl\", pm.iterationData.get(\"unauthenticatedResourceUrl\"));",
+					"",
+					"if (pm.iterationData.get(\"authenticatedCommonUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"authenticatedCommonUrl\", pm.iterationData.get(\"authenticatedCommonUrl\"));",
+					"",
+					"if (pm.iterationData.get(\"unauthenticatedCommonUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"unauthenticatedCommonUrl\", pm.iterationData.get(\"unauthenticatedCommonUrl\"));",
+					"",
+					"",
+					"if (pm.iterationData.get(\"version\") != undefined)",
+					"    pm.collectionVariables.set(\"version\", pm.iterationData.get(\"version\"));    ",
+					"",
+					"",
+					"",
+					"if (pm.iterationData.get(\"accessToken\") != undefined)",
+					"    pm.collectionVariables.set(\"accessToken\", pm.iterationData.get(\"accessToken\"));",
+					"",
+					"if (pm.iterationData.get(\"cdsClientHeader\") != undefined)",
+					"    pm.collectionVariables.set(\"cdsClientHeader\", pm.iterationData.get(\"cdsClientHeader\"));",
+					"",
+					"if (pm.iterationData.get(\"pageSize\") != undefined)",
+					"    pm.collectionVariables.set(\"pageSize\", pm.iterationData.get(\"pageSize\"));           ",
+					"",
+					"// Initialise only once",
+					"if (pm.variables.get(\"intitalised\") == 0 || pm.variables.get(\"intitalised\") == null) {",
+					"    let Ajv = require('ajv');",
+					"    ajv = new Ajv({logger: console});",
+					"    pm.variables.set(\"intitalised\",1);",
+					"",
+					"    // Set some time relevant time stamps",
+					"    console.log(\"Pre-request: Setting common variables\")",
+					"    var timeCurrent = new Date();",
+					"",
+					"    var timeTenMinutesAgo = new Date(timeCurrent.getFullYear(),",
+					"                                    timeCurrent.getMonth(),",
+					"                                    timeCurrent.getDate(),",
+					"                                    timeCurrent.getHours(),",
+					"                                    timeCurrent.getMinutes()-10,",
+					"                                    timeCurrent.getSeconds());",
+					"    var dateToday = new Date(timeCurrent.getFullYear(),",
+					"                            timeCurrent.getMonth(),",
+					"                            timeCurrent.getDate(), 0, 0, 0);",
+					"    var dateYesterday = new Date(timeCurrent.getFullYear(),",
+					"                                timeCurrent.getMonth(),",
+					"                                timeCurrent.getDate() - 1, 0, 0, 0);",
+					"    var dateTomorrow = new Date(timeCurrent.getFullYear(),",
+					"                                timeCurrent.getMonth(),",
+					"                                timeCurrent.getDate() + 1, 0, 0, 0);",
+					"    var dateLastYear = new Date(timeCurrent.getFullYear() - 1,",
+					"                                timeCurrent.getMonth(),",
+					"                                timeCurrent.getDate(), 0, 0, 0);",
+					"",
+					"    // postman.setEnvironmentVariable(\"timeCurrent\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"timeTenMinutesAgo\", timeCurrent.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateToday\", dateToday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateYesterday\", dateYesterday.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateTomorrow\", dateTomorrow.toISOString());",
+					"    // postman.setEnvironmentVariable(\"dateLastYear\", dateTomorrow.toISOString());",
+					"",
+					"",
+					"    // setting the base url for schema files",
+					"    // setting the base url for schema files",
+					"    var version = pm.collectionVariables.get(\"version\");",
+					"    //var branch = \"gh/issue19/\";",
+					"    //var branch = \"main/\";",
+					"    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
+					"",
+					"    var schemaBaseUrl = \"http://localhost:8080/\";",
+					"",
+					"    var urlCommonSchemaValidationFileDirectory = schemaBaseUrl + version + \"/postman/postman-validation-common-\" + version + \".json\";",
+					"",
+					"     ",
+					"    pm.sendRequest(urlCommonSchemaValidationFileDirectory, (error, responseCommon) => {",
+					"        console.log(\"Reading schema files for Common....\"); ",
+					"        if (error) {",
+					"            console.log('Getting schema returned: ' + error);",
+					"        } else {",
+					"            ",
+					"            try { ",
+					"                let commonSchemaCount = 0;",
+					"                let commonSchemaAdded = 0;",
+					"                schemaCommon = responseCommon.json();",
+					"                for (var key in schemaCommon) {",
+					"                    commonSchemaCount++;",
+					"                    if (schemaCommon.hasOwnProperty(key)) {",
+					"                        schemaCommon[key].$id = key;",
+					"                        try {",
+					"                            ajv.addSchema(schemaCommon[key]);",
+					"                            commonSchemaAdded++;",
+					"                        }",
+					"                        catch(ex){",
+					"                        console.log(\"Exception :\" + JSON.stringify(ex));",
+					"                        }",
+					"                        ",
+					"                    }",
+					"                }",
+					"                console.log(\"Common schema contains \" + commonSchemaCount + \" entries\") ;",
+					"                console.log(\"Added \" + commonSchemaAdded + \" schemas from Common\"); ",
+					"                pm.collectionVariables.set(\"GlobalCommonSchema\", schemaCommon);    ",
+					"            } catch(e) {",
+					"                console.log(\"Exception :\" + JSON.stringify(e));",
+					"            }",
+					"                ",
+					"        }",
+					"    }); ",
+					"",
+					"  }",
+					"",
+					"",
+					"// This is used for pagination to determine if this is the first page, last page, middle page or",
+					"// a single page response",
+					"utils = {",
+					"    whichPage: function (currPage, totalPages, totalRecords, pageSize ) {",
+					"        if (pageSize == null) {pageSize = 25};",
+					"        ",
+					"        if (currPage == null) {currPage = 1};",
+					"",
+					"        if (totalPages <= 1 ) return 0;",
+					"",
+					"        if (totalRecords <= pageSize || (totalRecords > pageSize &&  currPage == 1)) return 1;   ",
+					"",
+					"        if (currPage > 1 && currPage < totalPages ){ return 2}",
+					"",
+					"        if (currPage == totalPages ){ return 3}",
+					"    },",
+					"    minimumVariablesProvided: function ( ) {",
+					"        if (pm.variables.get(\"baseUrl\") != \"\" && pm.variables.get(\"x-v\") != \"\")",
+					"            return true;",
+					"        else",
+					"            return false;",
+					"    },",
+					"    clientHeaderProvided: function ( ) {",
+					"        if (pm.variables.get(\"cdsClientHeader\") != \"\" )",
+					"            return true;",
+					"        else",
+					"            return false;",
+					"    },",
+					"    accessTokenProvided: function ( ) {",
+					"        if (pm.variables.get(\"accessToken\") != \"\")",
+					"            return true;",
+					"        else",
+					"            return false;",
+					"    }",
+					"};",
+					"",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "171b8093-076e-44ec-9825-b0f2eb9cb8d9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "5ad5dee2-9e43-423f-a6d1-9a13bffbaa2a",
+			"key": "interactionId",
+			"value": "37e3194e-c1f3-4685-8b8d-6cea463f37f4"
+		},
+		{
+			"id": "ee1236cc-1315-4a39-b91c-a093d534b2fd",
+			"key": "cdsClientHeader",
+			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA=="
+		},
+		{
+			"id": "5f090f61-55a7-423e-bc3e-dd7d7e513d61",
+			"key": "invalidId",
+			"value": "xxxINVALIDxxx"
+		},
+		{
+			"id": "338976da-b482-4077-b3d6-0c6e870c8453",
+			"key": "effective",
+			"value": ""
+		},
+		{
+			"id": "6d23d2df-892e-4cdf-b30e-93fad197e9c0",
+			"key": "pageArray",
+			"value": ""
+		},
+		{
+			"id": "2687db66-3dc4-4af2-87ef-457015810f51",
+			"key": "baseUrl",
+			"value": ""
+		},
+		{
+			"id": "5cf87a95-2247-4fe2-8163-a6f064c57865",
+			"key": "version",
+			"value": "1.20.0"
+		},
+		{
+			"id": "30e66b58-2e68-4f15-9133-a5283d1538ec",
+			"key": "x-v",
+			"value": ""
+		},
+		{
+			"id": "8e773559-1cfc-4275-b1e8-a66979c4cadd",
+			"key": "x-min-v",
+			"value": ""
+		},
+		{
+			"id": "8652c1cf-9b76-46e0-8536-bd09dd9adf9e",
+			"key": "accessToken",
+			"value": ""
+		},
+		{
+			"id": "4b9fdd34-1986-4437-bb9d-5973eaf6d431",
+			"key": "testAccountId1",
+			"value": ""
+		},
+		{
+			"id": "55726fd8-e29b-4487-bbd7-64004e382955",
+			"key": "collectionVariables",
+			"value": ""
+		},
+		{
+			"id": "35c226f0-b7e8-425c-93d9-0c09d65a4472",
+			"key": "intitalised",
+			"value": ""
+		},
+		{
+			"id": "f33a43da-23a5-4aa4-a1c2-20e5efd3cf88",
+			"key": "pageSize",
+			"value": ""
+		},
+		{
+			"id": "e7af65cf-6cdb-46c2-b472-98efd0af07c5",
+			"key": "ResponseCommonCustomerDetailV2",
+			"value": ""
+		},
+		{
+			"id": "ac88cdc2-ef92-412f-a75a-7eab6725165b",
+			"key": "ResponseCommonCustomer",
+			"value": ""
+		},
+		{
+			"id": "7afc09e1-b1a5-45a6-ab0c-6758248f0f7f",
+			"key": "ResponseDiscoveryOutagesList",
+			"value": ""
+		},
+		{
+			"id": "412d648d-cd0a-45be-9a86-5317004463fe",
+			"key": "ResponseCommonDiscoveryStatus",
+			"value": ""
+		},
+		{
+			"id": "1ec6694b-0d3e-407c-9258-6a272d6cdab1",
+			"key": "ResponseErrorListV2",
+			"value": ""
+		},
+		{
+			"id": "a5b9d7f0-e2b6-4c02-bfac-80e192da0bc3",
+			"key": "ResponseBankingProductByIdV4",
+			"value": ""
+		},
+		{
+			"id": "747779f4-b936-430f-9cb8-5b4e79b21801",
+			"key": "GlobalCommonSchema",
+			"value": ""
+		},
+		{
+			"id": "f6a0eb7d-5b24-42d8-86df-1e05af85070b",
+			"key": "x-fapi-auth-date",
+			"value": ""
+		}
+	]
+}
