@@ -1,11 +1,11 @@
 {
 	"info": {
-		"_postman_id": "624f4e0e-034f-4a32-a604-7f21e4b648fe",
+		"_postman_id": "30cc327a-e62d-41ae-8c22-72f893bada7f",
 		"name": "CDR Energy Sector Conformance Tests",
-		"description": "# CDR Energy Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.24.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Energy APIs\n\n*   Get Generic Plans\n*   Get Generic Plan Detail\n*   Get Service Point Detail\n*   Get Usage For Service Point\n*   Get DER For Service Point\n*   Get Bulk Usage\n*   Get Usage For Specific Service Points\n*   Get Account Detail\n*   Get Agreed Payment Schedule\n*   Get Concessions\n*   Get Balance For Account\n*   Get Invoices For Account\n*   Get Billing For Account\n*   Get Bulk Balances\n*   Get Balances For Specific Accounts\n*   Get Bulk Invoices\n*   Get Invoices For Specific Account\n*   Get Accounts\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n*   CDR API end points not listed above\n*   Negative scenarios that are not specifically addressed in the standards for individual end points\n*   Non-functional requirements\n*   Information Security Profile and associated end points\n*   MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n|  |  |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [cdr-data61@csiro.au](mailto:cdr-data61@csiro.au)\n\n}",
+		"description": "# CDR Energy Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.31.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Energy APIs\n\n- Get Generic Plans\n    \n- Get Generic Plan Detail\n    \n- Get Service Point Detail\n    \n- Get Usage For Service Point\n    \n- Get DER For Service Point\n    \n- Get Bulk Usage\n    \n- Get Usage For Specific Service Points\n    \n- Get Account Detail\n    \n- Get Agreed Payment Schedule\n    \n- Get Concessions\n    \n- Get Balance For Account\n    \n- Get Invoices For Account\n    \n- Get Billing For Account\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Bulk Invoices\n    \n- Get Invoices For Specific Account\n    \n- Get Accounts\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n| 17-Aug-2024 | Update to v1.31.0 |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [dev@consumerdatastandards.gov.au](https://mailto:dev@consumerdatastandards.gov.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8286723",
-		"_collection_link": "https://www.postman.com/winter-shadow-541400/workspace/dsb-schema-tests/collection/8286723-624f4e0e-034f-4a32-a604-7f21e4b648fe?action=share&source=collection_link&creator=8286723"
+		"_collection_link": "https://winter-shadow-541400.postman.co/workspace/Team-Workspace~e0002a4d-afd2-4ef8-88ba-aed01b17beab/collection/8286723-30cc327a-e62d-41ae-8c22-72f893bada7f?action=share&source=collection_link&creator=8286723"
 	},
 	"item": [
 		{
@@ -382,19 +382,97 @@
 						"header": [
 							{
 								"key": "x-v",
-								"value": "2"
+								"value": "2",
+								"type": "text"
 							},
 							{
 								"key": "x-min-v",
-								"value": "2"
+								"value": "2",
+								"type": "text"
 							},
 							{
 								"key": "x-fapi-interaction-id",
-								"value": "{{x-fapi-interaction-id}}"
+								"value": "{{x-fapi-interaction-id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{primaryDataHolderUrl}}/energy/plans/:planId",
+							"host": [
+								"{{primaryDataHolderUrl}}"
+							],
+							"path": [
+								"energy",
+								"plans",
+								":planId"
+							],
+							"variable": [
+								{
+									"key": "planId",
+									"value": "{{planId}}"
+								}
+							]
+						},
+						"description": "Obtain detailed information on a single energy plan offered openly to the market"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Generic Plan Detail v3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"        // Parse the response body",
+									"        var jsonData;",
+									"        try {",
+									"            jsonData = pm.response.json();",
+									"",
+									"            }",
+									"        catch(e) {",
+									"            console.log(e);",
+									"        }",
+									"",
+									"",
+									"// Schema payload check",
+									" ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+									"            const valid = ajv.validate(\"EnergyPlanResponseV3\", jsonData)",
+									"            if (!valid){",
+									"            ajv.errors.forEach(element => {",
+									"                console.log(JSON.stringify(element));",
+									"                });",
+									"            };",
+									"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true; ",
+									"        });    ",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "3",
+								"type": "text"
 							},
 							{
-								"key": "Origin",
-								"value": "https://dodgy.com"
+								"key": "x-min-v",
+								"value": "3",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "{{x-fapi-interaction-id}}",
+								"type": "text"
 							}
 						],
 						"url": {
@@ -1572,8 +1650,7 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript",
-												"packages": {}
+												"type": "text/javascript"
 											}
 										}
 									],
@@ -1582,27 +1659,33 @@
 										"header": [
 											{
 												"key": "x-v",
-												"value": "3"
+												"value": "2",
+												"type": "text"
 											},
 											{
 												"key": "x-min-v",
-												"value": "2"
+												"value": "2",
+												"type": "text"
 											},
 											{
 												"key": "x-fapi-interaction-id",
-												"value": "{{x-fapi-interaction-id}}"
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
 											},
 											{
 												"key": "x-fapi-auth-date",
-												"value": "{{x-fapi-auth-date}}"
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
 											},
 											{
 												"key": "x-fapi-customer-ip-address",
-												"value": "{{x-fapi-customer-ip-address}}"
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
 											},
 											{
 												"key": "x-cds-client-headers",
-												"value": "{{cdsClientHeader}}"
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
 											}
 										],
 										"url": {
@@ -1667,6 +1750,97 @@
 											{
 												"key": "x-v",
 												"value": "3",
+												"type": "text"
+											},
+											{
+												"key": "x-min-v",
+												"value": "3",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-interaction-id",
+												"value": "{{x-fapi-interaction-id}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-auth-date",
+												"value": "{{x-fapi-auth-date}}",
+												"type": "text"
+											},
+											{
+												"key": "x-fapi-customer-ip-address",
+												"value": "{{x-fapi-customer-ip-address}}",
+												"type": "text"
+											},
+											{
+												"key": "x-cds-client-headers",
+												"value": "{{cdsClientHeader}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId",
+											"host": [
+												"{{primaryDataHolderUrl}}"
+											],
+											"path": [
+												"energy",
+												"accounts",
+												":accountId"
+											],
+											"variable": [
+												{
+													"key": "accountId",
+													"value": "{{accountId}}",
+													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
+												}
+											]
+										},
+										"description": "Obtain detailed information for a specific energy account"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Account Detail v4",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try {\r",
+													"            jsonData = pm.response.json();\r",
+													"\r",
+													"            }\r",
+													"        catch(e) {\r",
+													"            console.log(e);\r",
+													"        }\r",
+													"\r",
+													"\r",
+													"        // Schema payload check\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"            const valid = ajv.validate(\"EnergyAccountDetailResponseV4\", jsonData)\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };\r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"        });    \r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "4",
 												"type": "text"
 											},
 											{
@@ -2746,11 +2920,6 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
 													"\r",
 													"        // Schema payload check\r",
 													"        pm.test('Response payload conforms to standards schema', function() {\r",
@@ -2764,7 +2933,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2773,7 +2943,7 @@
 										"header": [
 											{
 												"key": "x-v",
-												"value": "1",
+												"value": "3",
 												"description": "(Required) Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)",
 												"type": "text"
 											},
@@ -2856,13 +3026,6 @@
 													"        catch(e) {\r",
 													"            console.log(e);\r",
 													"        }\r",
-													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
 													"        pm.test('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBillingListResponseV2\", jsonData)\r",
@@ -2875,7 +3038,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2884,7 +3048,7 @@
 										"header": [
 											{
 												"key": "x-v",
-												"value": "1",
+												"value": "3",
 												"description": "(Required) Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder must respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)",
 												"type": "text"
 											},
@@ -3291,7 +3455,7 @@
 					"    var branch = \"main/\"; ",
 					"",
 					"    var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/\" + branch;",
-					"    //var schemaBaseUrl = \"http://localhost:8080/\";",
+					"    //var schemaBaseUrl = \"http://localhost:8083/\";",
 					"    //var schemaBaseUrl = \"https://raw.githubusercontent.com/ConsumerDataStandardsAustralia/dsb-schema-tools/1.28.0/\";",
 					"",
 					"",
@@ -3337,11 +3501,13 @@
 					"    [",
 					"        \"Get Generic Plan Detail v1\",",
 					"        \"Get Generic Plan Detail v2\", ",
-					"        \"T.EAR.006 Get Service Point Detail v1\",",
+					"        \"Get Generic Plan Detail v3\",",
+					"        \"T.EAR.0075 Get Service Point Detail v1\",",
 					"        \"T.EAR.033 Get DER For Service Point v1\",",
 					"        \"Get Account Detail v1\",",
 					"        \"Get Account Detail v2\",",
 					"        \"Get Account Detail v3\",",
+					"        \"Get Account Detail v4\",",
 					"        \"Get Agreed Payment Schedule v1\",",
 					"        \"Get Concessions v1\",",
 					"        \"Get Billing For Account v1\",",
@@ -3431,7 +3597,7 @@
 	"variable": [
 		{
 			"key": "version",
-			"value": "1.28.0"
+			"value": "1.31.0"
 		},
 		{
 			"key": "pageSize",
