@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "1977e9ba-0118-4b44-9991-15e7379ad89f",
 		"name": "CDR Banking Sector Conformance Tests",
-		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.29.1 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n- Get Accounts\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Account Balance\n    \n- Get Account Details\n    \n- Get Transactions For Account\n    \n- Get Transaction Detail\n    \n- Get Direct Debits For Accounts\n    \n- Get Bulk Direct Debits\n    \n- Get Direct Debits For Specific Accounts\n    \n- Get Scheduled Payments For Accounts\n    \n- Get Scheduled Payments Bulk\n    \n- Get Scheduled Payments For Specific Accounts\n    \n- Get Payees\n    \n- Get Payee Details\n    \n- Get Products\n    \n- Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n| 3rd Jul 2024 | Enhanced test, validating query parameters |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [cdr-data61@csiro.au](https://mailto:cdr-data61@csiro.au)\n\n}",
+		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.31.0of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n- Get Accounts\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Account Balance\n    \n- Get Account Details\n    \n- Get Transactions For Account\n    \n- Get Transaction Detail\n    \n- Get Direct Debits For Accounts\n    \n- Get Bulk Direct Debits\n    \n- Get Direct Debits For Specific Accounts\n    \n- Get Scheduled Payments For Accounts\n    \n- Get Scheduled Payments Bulk\n    \n- Get Scheduled Payments For Specific Accounts\n    \n- Get Payees\n    \n- Get Payee Details\n    \n- Get Products\n    \n- Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n| 3rd Jul 2024 | Enhanced test, validating query parameters |\n| 13th August 2024 | Updated to v1.31.0 of standard |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : dev@consumerdatastandards.gov.au\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "8286723",
 		"_collection_link": "https://winter-shadow-541400.postman.co/workspace/Team-Workspace~e0002a4d-afd2-4ef8-88ba-aed01b17beab/collection/8286723-1977e9ba-0118-4b44-9991-15e7379ad89f?action=share&source=collection_link&creator=8286723"
@@ -36,8 +36,9 @@
 															"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {\r",
 															"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));\r",
 															"        });\r",
+															"        \r",
 															"        // Schema payload check\r",
-															"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+															"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 															"            const valid = ajv.validate(\"ResponseBankingDirectDebitAuthorisationList\", jsonData)\r",
 															"            if (!valid){\r",
 															"            ajv.errors.forEach(element => {\r",
@@ -513,7 +514,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{bankingAccountId1}}\",\r\n            \"{{bankingAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
+													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{testAccountId1}}\",\r\n            \"{{testAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?page=1&page-size={{pageSize}}",
@@ -650,7 +651,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{bankingAccountId1}}\",\r\n            \"{{bankingAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
+													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{testAccountId1}}\",\r\n            \"{{testAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?page={{currentPage}}&page-size=1",
@@ -1141,7 +1142,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{bankingAccountId1}}\",\n            \"{{bankingAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}",
@@ -1281,7 +1282,7 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{bankingAccountId1}}\",\n            \"{{bankingAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
 													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1",
@@ -1418,7 +1419,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{bankingAccountId1}}"
+															"value": "{{testAccountId1}}"
 														}
 													]
 												}
@@ -1655,6 +1656,183 @@
 																{
 																	"key": "accountId",
 																	"value": "{{bankingAccountId1}}"
+																}
+															]
+														},
+														"description": "Obtain transactions for a specific account.\n\nSome general notes that apply to all end points that retrieve transactions:\n\n- Where multiple transactions are returned, transactions should be ordered according to effective date in descending order\n- As the date and time for a transaction can alter depending on status and transaction type two separate date/times are included in the payload. There are still some scenarios where neither of these time stamps is available. For the purpose of filtering and ordering it is expected that the data holder will use the “effective” date/time which will be defined as:\n\t\t- Posted date/time if available, then\n\t\t- Execution date/time if available, then\n\t\t- A reasonable date/time nominated by the data holder using internal data structures\n- For transaction amounts it should be assumed that a negative value indicates a reduction of the available balance on the account while a positive value indicates an increase in the available balance on the account"
+													},
+													"response": []
+												},
+												{
+													"name": "Get Transactions For Account -  No Params",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"// Parse the response body",
+																	"var jsonData;",
+																	"try { jsonData = pm.response.json(); } catch(e) {}",
+																	"",
+																	"",
+																	"if (pm.response.code < 500) {",
+																	"    pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+																	"        pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
+																	"    });",
+																	"}",
+																	"",
+																	"",
+																	"console.log(\"BAd request state is: \" + pm.collectionVariables.get(\"badRequest\"))",
+																	"//Schema payload check",
+																	"if (pm.response.code === 200 && pm.collectionVariables.get(\"badRequest\") == false) {",
+																	"    var cnt = 0;",
+																	"    // check for newest and oldest time",
+																	"    var oldestTime;",
+																	"    var newestTime;",
+																	"",
+																	"    oldestTime = new Date(pm.request.url.query.get(\"oldest-time\")).getTime();",
+																	"    newestTime = new Date(pm.request.url.query.get(\"newest-time\")).getTime();",
+																	"    minAmount = pm.request.url.query.get(\"min-amount\");",
+																	"    maxAmount = pm.request.url.query.get(\"max-amount\");",
+																	"    isOwned = pm.request.url.query.get(\"is-owned\");",
+																	"",
+																	"",
+																	"    if ((pm.request.url.query.get(\"oldest-time\") !== undefined && isNaN(oldestTime)) ",
+																	"     || (pm.request.url.query.get(\"newest-time\") !== undefined && isNaN(newestTime))",
+																	"     || (pm.request.url.query.get(\"max-amount\") !== undefined && isNaN(maxAmount))",
+																	"     || (pm.request.url.query.get(\"min-amount\") !== undefined && isNaN(minAmount))",
+																	"     || (pm.request.url.query.get(\"is-owned\") !== undefined && (isOwned !== 'true' && isOwned !== 'false'))",
+																	"     ) {",
+																	"        // no need to do other tests as this should return an error",
+																	"        console.log(\"No further test as this should return error\");",
+																	"    } else {",
+																	"        if (pm.response.code === 200) {",
+																	"            jsonData.data.transactions.forEach(tr => {",
+																	"                var refDate = undefined;",
+																	"                if (tr.postingDateTime != null) {",
+																	"                    refDate = new Date(tr.postingDateTime).getTime();",
+																	"                } else if (tr.executionDateTime != null){",
+																	"                    refDate = new Date(tr.executionDateTime).getTime();",
+																	"                } else if (tr.valueDateTime != null){",
+																	"                    refDate = new Date(tr.valueDateTime).getTime();",
+																	"                }",
+																	"",
+																	"",
+																	"                if (pm.request.url.query.get(\"newest-time\") !== undefined)",
+																	"                    newestTime = new Date(pm.request.url.query.get(\"newest-time\")).getTime();",
+																	"                if (pm.request.url.query.get(\"oldest-time\") !== undefined)",
+																	"                    oldestTime = new Date(pm.request.url.query.get(\"oldest-time\")).getTime();",
+																	"                // check against the newest-time query parameter",
+																	"                if (refDate !== undefined) {",
+																	"                    if (isNaN(oldestTime) === false) {",
+																	"                        var msg = \"transaction date: \" +  new Date(refDate) + \" is after oldest-time: \" + pm.request.url.query.get(\"oldest-time\");",
+																	"                        pm.test('Transaction date is at or after oldest-time: trx ' + cnt, function() {",
+																	"                            pm.expect(refDate, msg).to.be.above(oldestTime);",
+																	"                        });",
+																	"                    }",
+																	"                    if (isNaN(newestTime) === false) {",
+																	"                        var msg = \"transaction date: \" +  new Date(refDate) + \" is after newest-time: \" + pm.request.url.query.get(\"newest-time\");",
+																	"                        pm.test('Transaction date is at or before newest-time: trx ' + cnt, function() {",
+																	"                            pm.expect(refDate, msg).to.be.below(newestTime);",
+																	"                        });",
+																	"                    }",
+																	"                }          ",
+																	"                cnt++;        ",
+																	"            });",
+																	"            // Schema payload check",
+																	"            pm.test('Response payload conforms to standards schema', function() {",
+																	"                const valid = ajv.validate(\"ResponseBankingTransactionList\", jsonData);",
+																	"                if (!valid){",
+																	"                    ajv.errors.forEach(element => {",
+																	"                        console.log(JSON.stringify(element));",
+																	"                    });",
+																	"                }",
+																	"                pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+																	"            });",
+																	"        } ",
+																	"    }",
+																	"}",
+																	""
+																],
+																"type": "text/javascript",
+																"packages": {}
+															}
+														},
+														{
+															"listen": "prerequest",
+															"script": {
+																"exec": [
+																	"pm.variables.set(\"currentPage\", 1);\r",
+																	"var pageSize = pm.variables.get(\"pageSizeAccountTransactions\");\r",
+																	"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
+																	"    pm.variables.set(\"pageSize\", pageSize);\r",
+																	"}\r",
+																	"\r",
+																	"var moment = require(\"moment\")\r",
+																	"\r",
+																	"// newest time defaults to today\r",
+																	"if (pm.collectionVariables.get(\"newestTime\") == null) {\r",
+																	"    pm.collectionVariables.set(\"newestTime\", moment().format((\"YYYY-MM-DDTHH:mm:ss.sssss\")));\r",
+																	"}\r",
+																	"\r",
+																	"// oldest time defaults to 90 days ago \r",
+																	"if (pm.collectionVariables.get(\"oldestTime\") == null)\r",
+																	"    pm.collectionVariables.set(\"oldestTime\", moment().subtract(90, \"days\").format((\"YYYY-MM-DDTHH:mm:ss.sssss\")));\r",
+																	""
+																],
+																"type": "text/javascript",
+																"packages": {}
+															}
+														}
+													],
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "x-min-v",
+																"value": "1"
+															},
+															{
+																"key": "x-fapi-interaction-id",
+																"value": "{{x-fapi-interaction-id}}"
+															},
+															{
+																"key": "x-fapi-auth-date",
+																"value": "{{x-fapi-auth-date}}"
+															},
+															{
+																"key": "x-fapi-customer-ip-address",
+																"value": "127.0.0.1"
+															},
+															{
+																"key": "x-cds-client-headers",
+																"value": "{{cdsClientHeader}}"
+															},
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															},
+															{
+																"key": "x-v",
+																"value": "10",
+																"type": "text"
+															}
+														],
+														"url": {
+															"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/transactions",
+															"host": [
+																"{{authenticatedResourceUrl}}"
+															],
+															"path": [
+																"banking",
+																"accounts",
+																":accountId",
+																"transactions"
+															],
+															"variable": [
+																{
+																	"key": "accountId",
+																	"value": "{{testAccountId1}}"
 																}
 															]
 														},
@@ -1957,11 +2135,11 @@
 															"variable": [
 																{
 																	"key": "accountId",
-																	"value": "{{bankingAccountId1}}"
+																	"value": "{{testAccountId1}}"
 																},
 																{
 																	"key": "transactionId",
-																	"value": "{{bankingTransactionId1}}"
+																	"value": "{{testTransactionId}}"
 																}
 															]
 														},
@@ -2194,7 +2372,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{bankingAccountId1}}",
+															"value": "{{testAccountId1}}",
 															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points."
 														}
 													]
@@ -2414,7 +2592,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{bankingAccountId1}}",
+															"value": "{{testAccountId1}}",
 															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points."
 														}
 													]
@@ -2620,7 +2798,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{bankingAccountId1}}",
+															"value": "{{testAccountId1}}",
 															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment"
 														}
 													]
@@ -2816,7 +2994,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/payments/scheduled?page={{currentPage}}&page-size=1",
+													"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/payments/scheduled?page=1&page-size=1",
 													"host": [
 														"{{authenticatedResourceUrl}}"
 													],
@@ -2830,7 +3008,7 @@
 													"query": [
 														{
 															"key": "page",
-															"value": "{{currentPage}}",
+															"value": "1",
 															"description": "Page of results to request (standard pagination)"
 														},
 														{
@@ -2842,7 +3020,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{bankingAccountId1}}",
+															"value": "{{testAccountId1}}",
 															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment"
 														}
 													]
@@ -3624,7 +3802,7 @@
 											},
 											{
 												"key": "x-min-v",
-												"value": "3",
+												"value": "2",
 												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
 											},
 											{
@@ -4579,18 +4757,15 @@
 											"query": [
 												{
 													"key": "type",
-													"value": "{{payeeType}}",
-													"description": "Filter on the payee type field.  In addition to normal type field values, ALL can be specified to retrieve all payees.  If absent the assumed value is ALL"
+													"value": "{{payeeType}}"
 												},
 												{
 													"key": "page",
-													"value": "1",
-													"description": "Page of results to request (standard pagination)"
+													"value": "1"
 												},
 												{
 													"key": "page-size",
-													"value": "{{pageSize}}",
-													"description": "Page size to request. Default is 25 (standard pagination)"
+													"value": "{{pageSize}}"
 												}
 											]
 										},
@@ -4944,7 +5119,7 @@
 											"variable": [
 												{
 													"key": "payeeId",
-													"value": "{{bankingPayeeId}}",
+													"value": "{{testPayeeId}}",
 													"description": "The ID used to locate the details of a particular payee"
 												}
 											]
@@ -4960,20 +5135,29 @@
 											"listen": "test",
 											"script": {
 												"exec": [
+													"      \r",
+													"// Parse the response body\r",
+													"var jsonData;\r",
+													"try { jsonData = pm.response.json(); } catch(e) {}\r",
 													"\r",
-													"        // Parse the response body\r",
-													"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+													"if (pm.response.code < 500) {\r",
+													"    pm.test(\"Expect response to be 404\", function() {\r",
+													"        pm.expect(pm.response.code).eq(404);\r",
+													"    })\r",
 													"\r",
-													"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {\r",
-													"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);\r",
-													"            let errCode = jsonData.errors[0].code;\r",
-													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\"]);\r",
-													"            if (!valid){\r",
-													"            ajv.errors.forEach(element => {\r",
-													"                console.log(JSON.stringify(element));\r",
-													"                });\r",
-													"            };         \r",
-													"        });  \r",
+													"    pm.test('Correct error code in error object', function() {\r",
+													"        const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);\r",
+													"        let errCode = jsonData.errors[0].code;\r",
+													"        pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\", \"urn:au-cds:error:cds-all:Resource/NotFound\"]);\r",
+													"        if (!valid){\r",
+													"        ajv.errors.forEach(element => {\r",
+													"            console.log(JSON.stringify(element));\r",
+													"            });\r",
+													"        };         \r",
+													"    });\r",
+													"}  \r",
+													"\r",
+													"  \r",
 													"\r",
 													"\r",
 													""
@@ -5474,7 +5658,7 @@
 											"variable": [
 												{
 													"key": "productId",
-													"value": "{{bankingProductId}}"
+													"value": "{{testProductId}}"
 												}
 											]
 										},
@@ -5498,7 +5682,7 @@
 													"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {\r",
 													"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);\r",
 													"            let errCode = jsonData.errors[0].code;\r",
-													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\"]);\r",
+													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\",\"urn:au-cds:error:cds-all:Resource/NotFound\"]);\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
 													"                console.log(JSON.stringify(element));\r",
@@ -6046,7 +6230,7 @@
 	"variable": [
 		{
 			"key": "version",
-			"value": "1.29.1"
+			"value": "1.31.0"
 		},
 		{
 			"key": "x-fapi-auth-date",
