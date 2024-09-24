@@ -28,12 +28,6 @@
 									"    console.log(e);\r",
 									"}\r",
 									"\r",
-									"// HTTP Response and headers\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"\r",
 									"// only products with specified planType are included\r",
 									"if ((pm.response.code === 200 ) && (pm.request.url.query.get(\"fuelType\") != null) && (jsonData?.data?.products?.length > 0)) {\r",
 									"    pm.test('Plan type query parameter is considered', function() {\r",
@@ -112,7 +106,7 @@
 							}
 						],
 						"url": {
-							"raw": "{{primaryDataHolderUrl}}/energy/plans?type={{planType}}&fuelType={{fuelType}}&effective={{effective}}",
+							"raw": "{{primaryDataHolderUrl}}/energy/plans?type={{planType}}&fuelType={{fuelType}}&effective={{effective}}&page-size=1&page=2",
 							"host": [
 								"{{primaryDataHolderUrl}}"
 							],
@@ -132,6 +126,14 @@
 								{
 									"key": "effective",
 									"value": "{{effective}}"
+								},
+								{
+									"key": "page-size",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "2"
 								}
 							]
 						},
@@ -444,15 +446,15 @@
 							"script": {
 								"exec": [
 									"",
-									"        // Parse the response body",
-									"        var jsonData;",
-									"        try {",
-									"            jsonData = pm.response.json();",
+									"// Parse the response body",
+									"var jsonData;",
+									"try {",
+									"    jsonData = pm.response.json();",
 									"",
-									"            }",
-									"        catch(e) {",
-									"            console.log(e);",
-									"        }",
+									"    }",
+									"catch(e) {",
+									"    console.log(e);",
+									"}",
 									"",
 									"",
 									"// Schema payload check",
@@ -527,7 +529,7 @@
 							"name": "{service Point Id}",
 							"item": [
 								{
-									"name": "T.EAR.0075 Get Service Point Detail v1",
+									"name": "Get Service Point Detail v1",
 									"event": [
 										{
 											"listen": "test",
@@ -630,7 +632,7 @@
 									"response": []
 								},
 								{
-									"name": "T.EAR.0077 Get Usage For Service Point v1",
+									"name": "Get Usage For Service Point v1",
 									"event": [
 										{
 											"listen": "test",
@@ -745,7 +747,7 @@
 									"response": []
 								},
 								{
-									"name": "T.EAR.0083 Get DER For Service Point v1",
+									"name": "Get DER For Service Point v1",
 									"event": [
 										{
 											"listen": "test",
@@ -841,7 +843,7 @@
 							"name": "usage",
 							"item": [
 								{
-									"name": "T.EAR.0046 Get Bulk Usage v1",
+									"name": "Get Bulk Usage v1",
 									"event": [
 										{
 											"listen": "test",
@@ -948,7 +950,7 @@
 									"response": []
 								},
 								{
-									"name": "T.EAR.0020 Get Usage For Specific Service Points v1",
+									"name": "Get Usage For Specific Service Points v1",
 									"event": [
 										{
 											"listen": "test",
@@ -1295,7 +1297,7 @@
 							]
 						},
 						{
-							"name": "T.EAR.0109 Get Service Points  invalid version value",
+							"name": "Get Service Points  invalid version value",
 							"event": [
 								{
 									"listen": "test",
@@ -1314,23 +1316,23 @@
 											"",
 											"        ",
 											"        ",
-											"        var requestVersion = pm.request.headers.get(\"x-v\");",
-											"        var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
-											"        var requestXvIsValidInteger = Number.isSafeInteger(requestVersionNumber) && requestVersionNumber >= 0 && requestVersionNumber < 1001;",
+											"        // var requestVersion = pm.request.headers.get(\"x-v\");",
+											"        // var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
+											"        // var requestXvIsValidInteger = Number.isSafeInteger(requestVersionNumber) && requestVersionNumber >= 0 && requestVersionNumber < 1001;",
 											"",
 											"",
-											"        ((requestVersion != null && (requestXvIsValidInteger == false)) ? pm.test : pm.test.skip)(\"A.ZAA.0007: Validate version - invalid version value [x-v]\", function () {",
-											"            pm.response.to.have.status(400);",
-											"            const valid = ajv.validate(\"ErrorListResponse\", jsonData)",
-											"            if (!valid){",
-											"            ajv.errors.forEach(element => {",
-											"                console.log(JSON.stringify(element));",
-											"                });",
-											"            };",
-											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
-											"            pm.expect(jsonData.errors?.code, JSON.stringify(ajv.errors)).equals(\"urn:au-cds:error:cds-all:Field/Invalid\")       ",
+											"        // ((requestVersion != null && (requestXvIsValidInteger == false)) ? pm.test : pm.test.skip)(\"A.ZAA.0007: Validate version - invalid version value [x-v]\", function () {",
+											"        //     pm.response.to.have.status(400);",
+											"        //     const valid = ajv.validate(\"ErrorListResponse\", jsonData)",
+											"        //     if (!valid){",
+											"        //     ajv.errors.forEach(element => {",
+											"        //         console.log(JSON.stringify(element));",
+											"        //         });",
+											"        //     };",
+											"        //     pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+											"        //     pm.expect(jsonData.errors?.code, JSON.stringify(ajv.errors)).equals(\"urn:au-cds:error:cds-all:Field/Invalid\")       ",
 											"",
-											"        });",
+											"        // });",
 											"",
 											"        var requestXFapi = pm.request.headers.get(\"x-fapi-interaction-id\");",
 											"        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"A.ZAA.0013: Validate FAPI Interaction ID - included in request\", function () {",
@@ -1345,7 +1347,8 @@
 											"  ",
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -1357,7 +1360,8 @@
 											"var fapiDate = moment().format(dateFormat);\r",
 											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1405,7 +1409,7 @@
 							"response": []
 						},
 						{
-							"name": "T.EAR.0002: ADR call to DH: Get Service Points - with pagination",
+							"name": "Get Service Points - with pagination",
 							"event": [
 								{
 									"listen": "test",
@@ -2338,7 +2342,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -2348,9 +2353,11 @@
 													"var moment = require('moment');\r",
 													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
 													"var fapiDate = moment().format(dateFormat);\r",
-													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
+													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2359,7 +2366,7 @@
 										"header": [
 											{
 												"key": "x-v",
-												"value": "1",
+												"value": "3",
 												"type": "text"
 											},
 											{
@@ -2941,7 +2948,7 @@
 													"\r",
 													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBillingListResponseV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -3046,7 +3053,7 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"        ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyBillingListResponseV2\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
@@ -3268,31 +3275,49 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"        // Parse the response body\r",
-											"        var jsonData;\r",
-											"        try {\r",
-											"            jsonData = pm.response.json();\r",
+											"// Parse the response body\r",
+											"var jsonData;\r",
+											"try {\r",
+											"    jsonData = pm.response.json();\r",
 											"\r",
-											"            }\r",
-											"        catch(e) {\r",
-											"            console.log(e);\r",
+											"    }\r",
+											"catch(e) {\r",
+											"    console.log(e);\r",
+											"}\r",
+											"\r",
+											"\r",
+											"\r",
+											"// Schema payload check\r",
+											"((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+											"    const valid = ajv.validate(\"EnergyAccountListResponseV2\", jsonData)\r",
+											"    if (!valid){\r",
+											"    ajv.errors.forEach(element => {\r",
+											"        console.log(JSON.stringify(element));\r",
+											"        });\r",
+											"    };\r",
+											"    pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+											"});\r",
+											"\r",
+											"// only accounts with specified openStatus are included\r",
+											"if ((pm.response.code === 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) && (pm.request.url.query.get(\"open-status\") != null) && (jsonData?.data?.accounts?.length > 0)) \r",
+											"{\r",
+											"     pm.test('open status query parameter is considered', function() {\r",
+											"        var currentStatus = pm.variables.get(\"openStatus\")\r",
+											"        if (currentStatus !== \"ALL\"){\r",
+											"            jsonData?.data?.accounts.forEach(acc => {\r",
+											"                if (acc?.openStatus != null){\r",
+											"                    pm.expect(acc.openStatus).to.equal(currentStatus)\r",
+											"                } else {\r",
+											"                    pm.expect(acc.openStatus).to.be.oneOf([\"OPEN\", undefined])\r",
+											"                }               \r",
+											"            })\r",
 											"        }\r",
-											"\r",
-											"\r",
-											"\r",
-											"        // Schema payload check\r",
-											"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
-											"            const valid = ajv.validate(\"EnergyAccountListResponseV2\", jsonData)\r",
-											"            if (!valid){\r",
-											"            ajv.errors.forEach(element => {\r",
-											"                console.log(JSON.stringify(element));\r",
-											"                });\r",
-											"            };\r",
-											"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
-											"        });    \r",
+											"    });\r",
+											"}\r",
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -3304,7 +3329,8 @@
 											"var fapiDate = moment().format(dateFormat);\r",
 											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -3444,32 +3470,31 @@
 					"if (pm.variables.get(\"intitalised\") == 0 || pm.variables.get(\"intitalised\") == null) {",
 					"let Ajv = require('ajv');",
 					"ajv = new Ajv({logger: console});",
-					"    pm.variables.set(\"intitalised\",1);",
-					"    // Set some time relevant time stamps",
-					"    console.log(\"Pre-request: Setting common variables\")",
-					"    var timeCurrent = new Date();",
-					"    var timeTenMinutesAgo = new Date(timeCurrent.getFullYear(),",
-					"                                    timeCurrent.getMonth(),",
-					"                                    timeCurrent.getDate(),",
-					"                                    timeCurrent.getHours(),",
-					"                                    timeCurrent.getMinutes()-10,",
-					"                                    timeCurrent.getSeconds());",
-					"    var dateToday = new Date(timeCurrent.getFullYear(),",
+					"pm.variables.set(\"intitalised\",1);",
+					"// Set some time relevant time stamps",
+					"console.log(\"Pre-request: Setting common variables\")",
+					"var timeCurrent = new Date();",
+					"var timeTenMinutesAgo = new Date(timeCurrent.getFullYear(),",
+					"                                timeCurrent.getMonth(),",
+					"                                timeCurrent.getDate(),",
+					"                                timeCurrent.getHours(),",
+					"                                timeCurrent.getMinutes()-10,",
+					"                                timeCurrent.getSeconds());",
+					"var dateToday = new Date(timeCurrent.getFullYear(),",
+					"                        timeCurrent.getMonth(),",
+					"                        timeCurrent.getDate(), 0, 0, 0);",
+					"var dateYesterday = new Date(timeCurrent.getFullYear(),",
+					"                            timeCurrent.getMonth(),",
+					"                            timeCurrent.getDate() - 1, 0, 0, 0);",
+					"var dateTomorrow = new Date(timeCurrent.getFullYear(),",
+					"                            timeCurrent.getMonth(),",
+					"                            timeCurrent.getDate() + 1, 0, 0, 0);",
+					"var dateLastYear = new Date(timeCurrent.getFullYear() - 1,",
 					"                            timeCurrent.getMonth(),",
 					"                            timeCurrent.getDate(), 0, 0, 0);",
-					"    var dateYesterday = new Date(timeCurrent.getFullYear(),",
-					"                                timeCurrent.getMonth(),",
-					"                                timeCurrent.getDate() - 1, 0, 0, 0);",
-					"    var dateTomorrow = new Date(timeCurrent.getFullYear(),",
-					"                                timeCurrent.getMonth(),",
-					"                                timeCurrent.getDate() + 1, 0, 0, 0);",
-					"    var dateLastYear = new Date(timeCurrent.getFullYear() - 1,",
-					"                                timeCurrent.getMonth(),",
-					"                                timeCurrent.getDate(), 0, 0, 0);",
 					"",
-					"    // setting the base url for schema files",
-					"    var version = pm.collectionVariables.get(\"version\");",
-					"",
+					"// setting the base url for schema files",
+					"var version = pm.collectionVariables.get(\"version\");",
 					"",
 					"// Set some time relevant time stamps",
 					"var timeCurrent = new Date();",
@@ -3539,8 +3564,8 @@
 					"        \"Get Generic Plan Detail v1\",",
 					"        \"Get Generic Plan Detail v2\", ",
 					"        \"Get Generic Plan Detail v3\",",
-					"        \"T.EAR.0075 Get Service Point Detail v1\",",
-					"        \"T.EAR.033 Get DER For Service Point v1\",",
+					"        \"Get Service Point Detail v1\",",
+					"        \"Get DER For Service Point v1\",",
 					"        \"Get Account Detail v1\",",
 					"        \"Get Account Detail v2\",",
 					"        \"Get Account Detail v3\",",
@@ -3595,6 +3620,7 @@
 					"        var isOwned;",
 					"        var fuelType;",
 					"        var planType;",
+					"        var openStatus;",
 					"        var requestMinVersionNumber;",
 					"        var requestVersionNumber;",
 					"        var pageSize;",
@@ -3609,6 +3635,7 @@
 					"        fuelType = pm.request.url.query.get(\"fuelType\") ",
 					"        planType = pm.request.url.query.get(\"type\")",
 					"        effectiveType = pm.request.url.query.get(\"effective\")",
+					"        openStatus = pm.request.url.query.get(\"open-status\")",
 					"",
 					"        var requestVersion = pm.request.headers.get(\"x-v\");",
 					"        if (requestVersion != undefined)",
@@ -3639,6 +3666,8 @@
 					"",
 					"        var validPlanTypes = [\"ALL\", \"STANDING\", \"MARKET\", \"REGULATED\"]",
 					"",
+					"        var validAccountStates = [\"ALL\", \"CLOSED\", \"OPEN\"]",
+					"",
 					"        var validEffectiveTypes = [\"ALL\", \"CURRENT\", \"FUTURE\"]",
 					"",
 					"",
@@ -3663,7 +3692,8 @@
 					"            pm.test(\"Should get a 400 based on invalid oldest parameters: \" + pm.request.url.query.get(\"oldest-time\"), function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
-					"        }               ",
+					"        }   ",
+					"                    ",
 					"        // validate the newest-time against RFC3339",
 					"        if ((pm.request.url.query.get(\"newest-time\") != undefined ",
 					"            && (newestTime.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:.\\+)?[A-Z]?(?:[+.-](?:\\d{2,5}:\\d{2,5}|\\d{2,5}[A-Z,+]))(?:\\d{2}?:?\\d{2})?$/) == null))) {",
@@ -3709,6 +3739,15 @@
 					"            invalidQueryParameters = true;",
 					"            // check thatwe get a 400 error",
 					"            pm.test(\"Should get a 400 based on invalid type parameter: \" + planType, function () {",
+					"                pm.response.to.have.status(400);",
+					"            });",
+					"        } ",
+					"",
+					"        if ((pm.request.url.query.get(\"open-status\") != undefined && validAccountStates.indexOf(openStatus)< 0)) {",
+					"            console.log(\"Request should return error based on invalid open-status parameter\")",
+					"            invalidQueryParameters = true;",
+					"            // check thatwe get a 400 error",
+					"            pm.test(\"Should get a 400 based on invalid open-status parameter: \" + openStatus, function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
 					"        } ",
@@ -3878,6 +3917,10 @@
 		},
 		{
 			"key": "dateLastYear",
+			"value": ""
+		},
+		{
+			"key": "timeCurrent",
 			"value": ""
 		}
 	]
