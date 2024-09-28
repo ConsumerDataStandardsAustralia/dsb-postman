@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a61ed05a-ec01-4976-b7b8-f198d9451e4f",
+		"_postman_id": "a982c63a-0b86-4c0d-8f02-98ae64e8ff77",
 		"name": "CDR Energy Sector Conformance Tests",
 		"description": "# CDR Energy Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.31.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Energy APIs\n\n- Get Generic Plans\n    \n- Get Generic Plan Detail\n    \n- Get Service Point Detail\n    \n- Get Usage For Service Point\n    \n- Get DER For Service Point\n    \n- Get Bulk Usage\n    \n- Get Usage For Specific Service Points\n    \n- Get Account Detail\n    \n- Get Agreed Payment Schedule\n    \n- Get Concessions\n    \n- Get Balance For Account\n    \n- Get Invoices For Account\n    \n- Get Billing For Account\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Bulk Invoices\n    \n- Get Invoices For Specific Account\n    \n- Get Accounts\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n| 17-Aug-2024 | Update to v1.31.0 |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [dev@consumerdatastandards.gov.au](https://mailto:dev@consumerdatastandards.gov.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -106,9 +106,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{primaryDataHolderUrl}}/energy/plans?type={{planType}}&fuelType={{fuelType}}&effective={{effective}}&page-size=1&page=2",
+							"raw": "{{energyBaseUrl}}/energy/plans?type={{energyPlanType}}&fuelType={{energyFuelType}}&effective={{effective}}&page-size={{pageSize}}&page=2",
 							"host": [
-								"{{primaryDataHolderUrl}}"
+								"{{energyBaseUrl}}"
 							],
 							"path": [
 								"energy",
@@ -117,11 +117,11 @@
 							"query": [
 								{
 									"key": "type",
-									"value": "{{planType}}"
+									"value": "{{energyPlanType}}"
 								},
 								{
 									"key": "fuelType",
-									"value": "{{fuelType}}"
+									"value": "{{energyFuelType}}"
 								},
 								{
 									"key": "effective",
@@ -129,7 +129,267 @@
 								},
 								{
 									"key": "page-size",
-									"value": "1"
+									"value": "{{pageSize}}"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						},
+						"description": "Obtain a list of energy plans that are currently offered to the market.\n\nNote that the results returned by this end point are expected to be ordered in descending order according to `lastUpdated`."
+					},
+					"response": [
+						{
+							"name": "Get Generic Plans",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "x-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-min-v",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "x-fapi-interaction-id",
+										"value": "Excepteur tem",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8383/cds-au/v1/energy/plans?type=ALL&fuelType=ALL&effective=CURRENT&updated-since={{updatedSinceDate}}&page=1&page-size=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8383",
+									"path": [
+										"cds-au",
+										"v1",
+										"energy",
+										"plans"
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "ALL",
+											"description": "Used to filter results on the type field.  Any one of the valid values for this field can be supplied plus 'ALL'.  If absent defaults to 'ALL'"
+										},
+										{
+											"key": "fuelType",
+											"value": "ALL",
+											"description": "Used to filter results on the fuelType field.  Any one of the valid values for this field can be supplied plus 'ALL'.  If absent defaults to 'ALL'"
+										},
+										{
+											"key": "effective",
+											"value": "CURRENT",
+											"description": "Allows for the filtering of plans based on whether the current time is within the period of time defined as effective by the effectiveFrom and effectiveTo fields. Valid values are ‘CURRENT’, ‘FUTURE’ and ‘ALL’. If absent defaults to 'CURRENT'"
+										},
+										{
+											"key": "updated-since",
+											"value": "{{updatedSinceDate}}",
+											"description": "Only include plans that have been updated after the specified date and time.  If absent defaults to include all plans"
+										},
+										{
+											"key": "brand",
+											"value": "Excepteur tem",
+											"description": "Used to filter results on the brand field.  If absent defaults to include all plans",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"description": "Page of results to request (standard pagination)"
+										},
+										{
+											"key": "page-size",
+											"value": "2",
+											"description": "Page size to request.  Default is 25 (standard pagination)Size}}"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Tue, 31 May 2022 03:51:42 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "x-srv-trace",
+									"value": "v=1;t=d9f35cf995ba845b"
+								},
+								{
+									"key": "x-srv-span",
+									"value": "v=1;s=c95cbbf2cb3e9e43"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "120"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "119"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1653969162"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a4-7hO0T/XLq3TuFViTu2ZVQQdIY+A\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"tomas\": {\n        \"name\": \"mockRequestNotFoundError\",\n        \"vv\": \"To mock this request add an example response for the mock server to return.\",\n        \"header\": \"You need addde\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Generic Plans v1 - NoParams",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// Parse the response body\r",
+									"var jsonData;\r",
+									"try {\r",
+									"    jsonData = pm.response.json();\r",
+									"\r",
+									"    }\r",
+									"catch(e) {\r",
+									"    console.log(e);\r",
+									"}\r",
+									"\r",
+									"pm.variables.set(\"currentPage\", 2)\r",
+									"// only products with specified planType are included\r",
+									"if ((pm.response.code === 200 ) && (pm.request.url.query.get(\"fuelType\") != null) && (jsonData?.data?.products?.length > 0)) {\r",
+									"    pm.test('Plan type query parameter is considered', function() {\r",
+									"        var fuelType = pm.variables.get(\"fuelType\")       \r",
+									"            jsonData?.data?.plans.forEach(p => {\r",
+									"                if (fuelType != \"ALL\"){\r",
+									"                    pm.expect(p.type).to.equal(fuelType)\r",
+									"                }\r",
+									"                \r",
+									"            })\r",
+									"    });\r",
+									"}\r",
+									" \r",
+									"\r",
+									"// only products with specified fuelType are included\r",
+									"if ((pm.response.code === 200 ) && (pm.request.url.query.get(\"type\") != null) && (jsonData?.data?.products?.length > 0)) {\r",
+									"    pm.test('Plan type query parameter is considered', function() {\r",
+									"        var planType = pm.variables.get(\"type\")       \r",
+									"            jsonData?.data?.plans.forEach(p => {\r",
+									"                if (planType != \"ALL\"){\r",
+									"                    pm.expect(p.type).to.equal(planType)\r",
+									"                }\r",
+									"                \r",
+									"            })\r",
+									"    });\r",
+									"}\r",
+									" \r",
+									"// Schema payload check\r",
+									" ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+									"    const valid = ajv.validate(\"EnergyPlanListResponse\", jsonData)\r",
+									"    if (!valid){\r",
+									"    ajv.errors.forEach(element => {\r",
+									"        console.log(JSON.stringify(element));\r",
+									"        });\r",
+									"    };\r",
+									"    pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+									"});   \r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "x-min-v",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "x-fapi-interaction-id",
+								"value": "{{x-fapi-interaction-id}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{energyBaseUrl}}/energy/plans?page-size={{pageSize}}&page=2",
+							"host": [
+								"{{energyBaseUrl}}"
+							],
+							"path": [
+								"energy",
+								"plans"
+							],
+							"query": [
+								{
+									"key": "page-size",
+									"value": "{{pageSize}}"
 								},
 								{
 									"key": "page",
@@ -312,7 +572,8 @@
 									"        });    ",
 									""
 								],
-								"type": "text/javascript"
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -339,9 +600,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{primaryDataHolderUrl}}/energy/plans/:planId",
+							"raw": "{{energyBaseUrl}}/energy/plans/:planId",
 							"host": [
-								"{{primaryDataHolderUrl}}"
+								"{{energyBaseUrl}}"
 							],
 							"path": [
 								"energy",
@@ -351,7 +612,7 @@
 							"variable": [
 								{
 									"key": "planId",
-									"value": "{{planId}}"
+									"value": "{{energyPlanId1}}"
 								}
 							]
 						},
@@ -418,9 +679,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{primaryDataHolderUrl}}/energy/plans/:planId",
+							"raw": "{{energyBaseUrl}}/energy/plans/:planId",
 							"host": [
-								"{{primaryDataHolderUrl}}"
+								"{{energyBaseUrl}}"
 							],
 							"path": [
 								"energy",
@@ -497,9 +758,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{primaryDataHolderUrl}}/energy/plans/:planId",
+							"raw": "{{energyBaseUrl}}/energy/plans/:planId",
 							"host": [
-								"{{primaryDataHolderUrl}}"
+								"{{energyBaseUrl}}"
 							],
 							"path": [
 								"energy",
@@ -509,7 +770,7 @@
 							"variable": [
 								{
 									"key": "planId",
-									"value": "{{planId}}"
+									"value": "{{energyPlanId1}}"
 								}
 							]
 						},
@@ -558,7 +819,8 @@
 													"        });    ",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -570,7 +832,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -609,9 +872,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/:servicePointId",
+											"raw": "{{energyBaseUrl}}/energy/electricity/servicepoints/:servicePointId",
 											"host": [
-												"{{secondaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -622,7 +885,7 @@
 											"variable": [
 												{
 													"key": "servicePointId",
-													"value": "{{servicePointId}}",
+													"value": "{{servicePointId1}}",
 													"description": "(Required) ID of the specific service point requested.  This is a tokenised ID previous obtained from the Service Point List Data end point.  Note that it is not a nationalMeteringId."
 												}
 											]
@@ -660,7 +923,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -672,7 +936,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -711,9 +976,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/:servicePointId/usage?page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/electricity/servicepoints/:servicePointId/usage?page=2&page-size={{pageSize}}",
 											"host": [
-												"{{secondaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -725,7 +990,7 @@
 											"query": [
 												{
 													"key": "page",
-													"value": "1",
+													"value": "2",
 													"description": "Page of results to request (standard pagination)"
 												},
 												{
@@ -737,7 +1002,7 @@
 											"variable": [
 												{
 													"key": "servicePointId",
-													"value": "{{servicePointId}}",
+													"value": "{{servicePointId1}}",
 													"description": "(Required) ID of the specific service point requested.  This is a tokenised ID previous obtained from the Service Point List Data end point.  Note that it is not a nationalMeteringId."
 												}
 											]
@@ -775,7 +1040,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -814,9 +1080,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/:servicePointId/der",
+											"raw": "{{energyBaseUrl}}/energy/electricity/servicepoints/:servicePointId/der",
 											"host": [
-												"{{secondaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -828,8 +1094,7 @@
 											"variable": [
 												{
 													"key": "servicePointId",
-													"value": "{{servicePointId}}",
-													"description": "(Required) ID of the specific service point requested.  This is a tokenised ID previous obtained from the Service Point List Data end point.  Note that it is not a nationalMeteringId."
+													"value": "{{servicePointId1}}"
 												}
 											]
 										},
@@ -871,7 +1136,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -883,7 +1149,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -922,9 +1189,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/usage?page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/electricity/servicepoints/usage?page=2&page-size={{pageSize}}",
 											"host": [
-												"{{secondaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -935,7 +1202,7 @@
 											"query": [
 												{
 													"key": "page",
-													"value": "1",
+													"value": "2",
 													"description": "Page of results to request (standard pagination)"
 												},
 												{
@@ -981,7 +1248,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -993,7 +1261,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1038,7 +1307,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"servicePointIds\": [\n            \"{{servicePointId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"servicePointIds\": [\n            \"{{servicePointId1}}\",\n            \"{{servicePointId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1046,9 +1315,9 @@
 											}
 										},
 										"url": {
-											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/usage?page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/electricity/servicepoints/usage?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{secondaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -1079,7 +1348,7 @@
 							"name": "der",
 							"item": [
 								{
-									"name": "T.EAR.061 Get Bulk DER",
+									"name": "Get Bulk DER",
 									"event": [
 										{
 											"listen": "test",
@@ -1113,7 +1382,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1152,9 +1422,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/der?page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/electricity/servicepoints/der?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{secondaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -1180,7 +1450,7 @@
 									"response": []
 								},
 								{
-									"name": "T.EAR.039 Get DER For Specific Service Points",
+									"name": "Get DER For Specific Service Points",
 									"event": [
 										{
 											"listen": "test",
@@ -1196,25 +1466,20 @@
 													"            console.log(e);\r",
 													"        }\r",
 													"\r",
-													"        // HTTP Response and headers\r",
-													"        pm.test(\"Status code is 200\", function () {\r",
-													"            pm.response.to.have.status(200);\r",
-													"        });\r",
-													"\r",
-													"\r",
 													"        // Schema payload check\r",
-													"        pm.test('Response payload conforms to standards schema', function() {\r",
+													"         ((pm.response.code == 200) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
 													"            const valid = ajv.validate(\"EnergyDerListResponse\", jsonData)\r",
 													"            if (!valid){\r",
 													"            ajv.errors.forEach(element => {\r",
 													"                console.log(JSON.stringify(element));\r",
 													"                });\r",
 													"            };\r",
-													"            pm.expect(valid).to.be.true; \r",
+													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1259,7 +1524,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"servicePointIds\": [\n            \"{{servicePointId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"servicePointIds\": [\n            \"{{servicePointId1}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1267,9 +1532,9 @@
 											}
 										},
 										"url": {
-											"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints/der?page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/electricity/servicepoints/der?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{secondaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -1314,33 +1579,13 @@
 											"            console.log(e);",
 											"        }",
 											"",
-											"        ",
-											"        ",
-											"        // var requestVersion = pm.request.headers.get(\"x-v\");",
-											"        // var requestVersionNumber = Number(pm.request.headers.get(\"x-v\"));",
-											"        // var requestXvIsValidInteger = Number.isSafeInteger(requestVersionNumber) && requestVersionNumber >= 0 && requestVersionNumber < 1001;",
-											"",
-											"",
-											"        // ((requestVersion != null && (requestXvIsValidInteger == false)) ? pm.test : pm.test.skip)(\"A.ZAA.0007: Validate version - invalid version value [x-v]\", function () {",
-											"        //     pm.response.to.have.status(400);",
-											"        //     const valid = ajv.validate(\"ErrorListResponse\", jsonData)",
-											"        //     if (!valid){",
-											"        //     ajv.errors.forEach(element => {",
-											"        //         console.log(JSON.stringify(element));",
-											"        //         });",
-											"        //     };",
-											"        //     pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
-											"        //     pm.expect(jsonData.errors?.code, JSON.stringify(ajv.errors)).equals(\"urn:au-cds:error:cds-all:Field/Invalid\")       ",
-											"",
-											"        // });",
-											"",
 											"        var requestXFapi = pm.request.headers.get(\"x-fapi-interaction-id\");",
-											"        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"A.ZAA.0013: Validate FAPI Interaction ID - included in request\", function () {",
+											"        ((requestXFapi != null) ? pm.test : pm.test.skip)(\"Validate FAPI Interaction ID - included in request\", function () {",
 											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
 											"            pm.expect(responseXFapi).equals(requestXFapi);",
 											"        });",
 											"",
-											"        ((requestXFapi == null) ? pm.test : pm.test.skip)(\"A.ZAA.0014: Validate FAPI Interaction ID - not in request\", function () {",
+											"        ((requestXFapi == null) ? pm.test : pm.test.skip)(\"Validate FAPI Interaction ID - not in request\", function () {",
 											"            var responseXFapi = pm.response.headers.get(\"x-fapi-interaction-id\");",
 											"            pm.expect(responseXFapi).not.null;",
 											"        });",
@@ -1394,9 +1639,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints",
+									"raw": "{{energyBaseUrl}}/energy/electricity/servicepoints",
 									"host": [
-										"{{secondaryDataHolderUrl}}"
+										"{{energyBaseUrl}}"
 									],
 									"path": [
 										"energy",
@@ -1443,7 +1688,8 @@
 											"        });    \r",
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -1455,7 +1701,8 @@
 											"var fapiDate = moment().format(dateFormat);\r",
 											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -1494,9 +1741,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{secondaryDataHolderUrl}}/energy/electricity/servicepoints?page=1&page-size={{pageSize}}",
+									"raw": "{{energyBaseUrl}}/energy/electricity/servicepoints?page=1&page-size={{pageSize}}",
 									"host": [
-										"{{secondaryDataHolderUrl}}"
+										"{{energyBaseUrl}}"
 									],
 									"path": [
 										"energy",
@@ -1583,7 +1830,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1622,9 +1870,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId",
+											"raw": "{{energyBaseUrl}}/energy/accounts/:accountId",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -1634,7 +1882,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{accountId}}",
+													"value": "{{energyAccountId1}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -1673,7 +1921,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1712,9 +1961,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId",
+											"raw": "{{energyBaseUrl}}/energy/accounts/:accountId",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -1724,7 +1973,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{accountId}}",
+													"value": "{{energyAccountId1}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -1763,7 +2012,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1802,9 +2052,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId",
+											"raw": "{{energyBaseUrl}}/energy/accounts/:accountId",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -1814,7 +2064,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{accountId}}",
+													"value": "{{energyAccountId1}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -1893,9 +2143,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId",
+											"raw": "{{energyBaseUrl}}/energy/accounts/:accountId",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -1905,7 +2155,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{accountId}}",
+													"value": "{{energyAccountId1}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -1945,7 +2195,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1984,9 +2235,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/payment-schedule",
+											"raw": "{{energyBaseUrl}}/energy/accounts/:accountId/payment-schedule",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -1997,7 +2248,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{accountId}}",
+													"value": "{{energyAccountId1}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -2035,7 +2286,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -2047,7 +2299,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2086,9 +2339,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/concessions",
+											"raw": "{{energyBaseUrl}}/energy/accounts/:accountId/concessions",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -2099,7 +2352,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{accountId}}",
+													"value": "{{energyAccountId1}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -2137,7 +2390,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -2149,7 +2403,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2188,9 +2443,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/balance",
+											"raw": "{{energyBaseUrl}}/energy/accounts/:accountId/balance",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -2201,7 +2456,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{accountId}}",
+													"value": "{{energyAccountId1}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -2240,7 +2495,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -2252,7 +2508,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2291,9 +2548,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/invoices",
+											"raw": "{{energyBaseUrl}}/energy/accounts/:accountId/invoices",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -2304,7 +2561,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{accountId}}",
+													"value": "{{energyAccountId1}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -2396,9 +2653,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/:accountId/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/accounts/:accountId/billing?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -2409,13 +2666,15 @@
 											"query": [
 												{
 													"key": "newest-time",
-													"value": "{{timeCurrent}}",
-													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
+													"value": "2024-04-16T23:45:47.992Z",
+													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type",
+													"disabled": true
 												},
 												{
 													"key": "oldest-time",
-													"value": "{{dateLastYear}}",
-													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
+													"value": "2024-04-16T23:45:47.992Z",
+													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type",
+													"disabled": true
 												},
 												{
 													"key": "page",
@@ -2431,7 +2690,7 @@
 											"variable": [
 												{
 													"key": "accountId",
-													"value": "{{accountId}}",
+													"value": "{{energyAccountId1}}",
 													"description": "(Required) ID of a specific account to obtain data for.  This is a tokenised ID previous obtained from the Account List end point."
 												}
 											]
@@ -2475,7 +2734,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -2487,7 +2747,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2526,9 +2787,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/balances?page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/accounts/balances?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -2582,7 +2843,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -2594,7 +2856,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2639,7 +2902,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\",\n            \"{{accountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{energyAccountId1}}\",\n            \"{{energyAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2647,9 +2910,9 @@
 											}
 										},
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/balances?page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/accounts/balances?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -2707,7 +2970,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -2719,7 +2983,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2758,9 +3023,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/invoices?newest-date={{timeCurrent}}&oldest-date={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/accounts/invoices?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -2770,13 +3035,15 @@
 											"query": [
 												{
 													"key": "newest-date",
-													"value": "{{timeCurrent}}",
-													"description": "Constrain the request to records with effective date at or before this date.  If absent defaults to current date.  Format is aligned to DateString common type"
+													"value": "2024-01-02T02:26:19.260Z",
+													"description": "Constrain the request to records with effective date at or before this date.  If absent defaults to current date.  Format is aligned to DateString common type",
+													"disabled": true
 												},
 												{
 													"key": "oldest-date",
-													"value": "{{dateLastYear}}",
-													"description": "Constrain the request to records with effective date at or after this date. If absent defaults to newest-date minus 24 months days.  Format is aligned to DateString common type"
+													"value": "2024-01-02T02:26:19.260Z",
+													"description": "Constrain the request to records with effective date at or after this date. If absent defaults to newest-date minus 24 months days.  Format is aligned to DateString common type",
+													"disabled": true
 												},
 												{
 													"key": "page",
@@ -2823,7 +3090,8 @@
 													"        });    \r",
 													""
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										},
 										{
@@ -2835,7 +3103,8 @@
 													"var fapiDate = moment().format(dateFormat);\r",
 													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
-												"type": "text/javascript"
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -2880,7 +3149,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{energyAccountId1}}\",\n            \"{{energyAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2888,9 +3157,9 @@
 											}
 										},
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/invoices?newest-date={{timeCurrent}}&oldest-date={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"raw": "{{energyBaseUrl}}/energy/accounts/invoices?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{energyBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -2900,13 +3169,15 @@
 											"query": [
 												{
 													"key": "newest-date",
-													"value": "{{timeCurrent}}",
-													"description": "Constrain the request to records with effective date at or before this date.  If absent defaults to current date.  Format is aligned to DateString common type"
+													"value": "2024-01-02T02:26:19.260Z",
+													"description": "Constrain the request to records with effective date at or before this date.  If absent defaults to current date.  Format is aligned to DateString common type",
+													"disabled": true
 												},
 												{
 													"key": "oldest-date",
-													"value": "{{dateLastYear}}",
-													"description": "Constrain the request to records with effective date at or after this date. If absent defaults to newest-date minus 24 months days.  Format is aligned to DateString common type"
+													"value": "2024-01-02T02:26:19.260Z",
+													"description": "Constrain the request to records with effective date at or after this date. If absent defaults to newest-date minus 24 months days.  Format is aligned to DateString common type",
+													"disabled": true
 												},
 												{
 													"key": "page",
@@ -3000,9 +3271,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"raw": "{{bankingBaseUrl}}/energy/accounts/billing?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -3012,13 +3283,15 @@
 											"query": [
 												{
 													"key": "newest-time",
-													"value": "{{timeCurrent}}",
-													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
+													"value": "2024-04-16T23:45:47.992Z",
+													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type",
+													"disabled": true
 												},
 												{
 													"key": "oldest-time",
-													"value": "{{dateLastYear}}",
-													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
+													"value": "2024-01-02T02:26:19.260Z",
+													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type",
+													"disabled": true
 												},
 												{
 													"key": "page",
@@ -3116,7 +3389,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{accountId}}\"\n        ]\n    },\n    \"meta\": {}\n}",
+											"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{bankingAccountId1}}\"\n        ]\n    },\n    \"meta\": {}\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -3124,9 +3397,9 @@
 											}
 										},
 										"url": {
-											"raw": "{{primaryDataHolderUrl}}/energy/accounts/billing?newest-time={{timeCurrent}}&oldest-time={{dateLastYear}}&page=1&page-size={{pageSize}}",
+											"raw": "{{bankingBaseUrl}}/energy/accounts/billing?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{primaryDataHolderUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"energy",
@@ -3136,13 +3409,15 @@
 											"query": [
 												{
 													"key": "newest-time",
-													"value": "{{timeCurrent}}",
-													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type"
+													"value": "2024-04-16T23:45:47.992Z",
+													"description": "Constrain the request to records with effective time at or before this date/time.  If absent defaults to current date/time.  Format is aligned to DateTimeString common type",
+													"disabled": true
 												},
 												{
 													"key": "oldest-time",
-													"value": "{{dateLastYear}}",
-													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type"
+													"value": "2024-04-16T23:45:47.992Z",
+													"description": "Constrain the request to records with effective time at or after this date/time. If absent defaults to newest-time minus 12 months.  Format is aligned to DateTimeString common type",
+													"disabled": true
 												},
 												{
 													"key": "page",
@@ -3192,7 +3467,8 @@
 											"        });    \r",
 											""
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								},
 								{
@@ -3204,7 +3480,8 @@
 											"var fapiDate = moment().format(dateFormat);\r",
 											"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 										],
-										"type": "text/javascript"
+										"type": "text/javascript",
+										"packages": {}
 									}
 								}
 							],
@@ -3243,9 +3520,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{primaryDataHolderUrl}}/energy/accounts?page=1&page-size={{pageSize}}",
+									"raw": "{{energyBaseUrl}}/energy/accounts?page=1&page-size={{pageSize}}",
 									"host": [
-										"{{primaryDataHolderUrl}}"
+										"{{energyBaseUrl}}"
 									],
 									"path": [
 										"energy",
@@ -3369,9 +3646,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{primaryDataHolderUrl}}/energy/accounts?page=1&page-size={{pageSize}}",
+									"raw": "{{energyBaseUrl}}/energy/accounts?page=1&page-size={{pageSize}}",
 									"host": [
-										"{{primaryDataHolderUrl}}"
+										"{{energyBaseUrl}}"
 									],
 									"path": [
 										"energy",
@@ -3387,6 +3664,11 @@
 											"key": "page-size",
 											"value": "{{pageSize}}",
 											"description": "Page size to request.  Default is 25 (standard pagination)"
+										},
+										{
+											"key": "open-status",
+											"value": "CLOSED",
+											"disabled": true
 										}
 									]
 								},

@@ -1,11 +1,10 @@
 {
 	"info": {
-		"_postman_id": "cc707df8-fc94-4480-b4c2-fe77f9930c37",
+		"_postman_id": "ccd89ae2-95cd-4b30-b7a8-2823231b249b",
 		"name": "CDR Common Conformance Tests",
-		"description": "# CDR Common Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.31.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Common APIs\n\n- Get Customer\n    \n- Get Customer Detail\n    \n- Get Status\n    \n- Get Outages\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n| 17-Autg 2024 | Update to v1.31.0 standdard |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : dev@consumerdatastandards.gov.au\n\n}",
+		"description": "# CDR Common Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.31.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Common APIs\n\n- Get Customer\n    \n- Get Customer Detail\n    \n- Get Status\n    \n- Get Outages\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n| 17-Aug 2024 | Update to v1.31.0 standdard |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [dev@consumerdatastandards.gov.au](https://mailto:dev@consumerdatastandards.gov.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8286723",
-		"_collection_link": "https://winter-shadow-541400.postman.co/workspace/Team-Workspace~e0002a4d-afd2-4ef8-88ba-aed01b17beab/collection/8286723-cc707df8-fc94-4480-b4c2-fe77f9930c37?action=share&source=collection_link&creator=8286723"
+		"_exporter_id": "8286723"
 	},
 	"item": [
 		{
@@ -121,9 +120,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedCommonUrl}}/common/customer",
+											"raw": "{{commonBaseUrl}}/common/customer",
 											"host": [
-												"{{authenticatedCommonUrl}}"
+												"{{commonBaseUrl}}"
 											],
 											"path": [
 												"common",
@@ -186,8 +185,11 @@
 										{
 											"listen": "prerequest",
 											"script": {
-												"packages": {},
-												"type": "text/javascript"
+												"exec": [
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -238,9 +240,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedCommonUrl}}/common/customer/detail",
+											"raw": "{{commonBaseUrl}}/common/customer/detail",
 											"host": [
-												"{{authenticatedCommonUrl}}"
+												"{{commonBaseUrl}}"
 											],
 											"path": [
 												"common",
@@ -350,9 +352,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{unauthenticatedCommonUrl}}/discovery/status",
+									"raw": "{{commonBaseUrl}}/discovery/status",
 									"host": [
-										"{{unauthenticatedCommonUrl}}"
+										"{{commonBaseUrl}}"
 									],
 									"path": [
 										"discovery",
@@ -427,9 +429,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{unauthenticatedCommonUrl}}/discovery/outages",
+									"raw": "{{commonBaseUrl}}/discovery/outages",
 									"host": [
-										"{{unauthenticatedCommonUrl}}"
+										"{{commonBaseUrl}}"
 									],
 									"path": [
 										"discovery",
@@ -443,10 +445,6 @@
 					]
 				}
 			]
-		},
-		{
-			"name": "Specialised Tests",
-			"item": []
 		}
 	],
 	"auth": {
