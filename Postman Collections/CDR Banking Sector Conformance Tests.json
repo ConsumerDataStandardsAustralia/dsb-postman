@@ -1,11 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1977e9ba-0118-4b44-9991-15e7379ad89f",
+		"_postman_id": "5e43cda9-201a-4000-8c96-00b76f0a4946",
 		"name": "CDR Banking Sector Conformance Tests",
 		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.31.0of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n- Get Accounts\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Account Balance\n    \n- Get Account Details\n    \n- Get Transactions For Account\n    \n- Get Transaction Detail\n    \n- Get Direct Debits For Accounts\n    \n- Get Bulk Direct Debits\n    \n- Get Direct Debits For Specific Accounts\n    \n- Get Scheduled Payments For Accounts\n    \n- Get Scheduled Payments Bulk\n    \n- Get Scheduled Payments For Specific Accounts\n    \n- Get Payees\n    \n- Get Payee Details\n    \n- Get Products\n    \n- Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n| 3rd Jul 2024 | Enhanced test, validating query parameters |\n| 13th August 2024 | Updated to v1.31.0 of standard |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : dev@consumerdatastandards.gov.au\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8286723",
-		"_collection_link": "https://winter-shadow-541400.postman.co/workspace/Team-Workspace~e0002a4d-afd2-4ef8-88ba-aed01b17beab/collection/8286723-1977e9ba-0118-4b44-9991-15e7379ad89f?action=share&source=collection_link&creator=8286723"
+		"_exporter_id": "8286723"
 	},
 	"item": [
 		{
@@ -116,9 +115,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?open-status={{openStatus}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?open-status={{openStatus}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -252,9 +251,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -274,13 +273,6 @@
 													"script": {
 														"exec": [
 															"\r",
-															"        // This will set the next request depending on if there are any pages left to be processed\r",
-															"        const pageArray = pm.variables.get(\"pageArray\");\r",
-															"        if (pageArray && pageArray.length > 0){\r",
-															"            postman.setNextRequest(\"Get Bulk Direct Debits - Other pages\");\r",
-															"            } else {\r",
-															"                postman.setNextRequest(\"Get Direct Debits For Specific Accounts - First Page\");       \r",
-															"            }\r",
 															"        // Parse the response body\r",
 															"        var jsonData;\r",
 															"        try { jsonData = pm.response.json(); } catch(e) {}\r",
@@ -384,9 +376,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -514,12 +506,12 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{testAccountId1}}\",\r\n            \"{{testAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
+													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{bankingAccountId1}}\",\r\n            \"{{bankingAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?page=1&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?page=1&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -547,14 +539,6 @@
 													"listen": "test",
 													"script": {
 														"exec": [
-															"\r",
-															"        // This will set the next request depending on if there are any pages left to be processed\r",
-															"        const pageArray = pm.variables.get(\"pageArray\");\r",
-															"        if (pageArray && pageArray.length > 0){\r",
-															"            postman.setNextRequest(\"Get Direct Debits For Specific Accounts - Other Pages\");\r",
-															"            } else {\r",
-															"                postman.setNextRequest(\"Get Bulk Balances - First page\");       \r",
-															"        }\r",
 															"\r",
 															"        // Parse the response body\r",
 															"        var jsonData;\r",
@@ -651,12 +635,12 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{testAccountId1}}\",\r\n            \"{{testAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
+													"raw": "{\r\n    \"data\": {\r\n        \"accountIds\": [\r\n            \"{{bankingAccountId1}}\",\r\n            \"{{bankingAccountId2}}\"\r\n        ]\r\n    },\r\n    \"meta\": {}\r\n}"
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/direct-debits?page={{currentPage}}&page-size=1",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?page=2&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -666,11 +650,11 @@
 													"query": [
 														{
 															"key": "page",
-															"value": "{{currentPage}}"
+															"value": "2"
 														},
 														{
 															"key": "page-size",
-															"value": "1"
+															"value": "{{pageSize}}"
 														}
 													]
 												}
@@ -773,9 +757,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}&open-status={{openStatus}}&product-category={{productCategory}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}&open-status={{openStatus}}&product-category={{productCategory}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -896,9 +880,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -1017,9 +1001,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1&open-status={{openStatus}}&product-category={{productCategory}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1&open-status={{openStatus}}&product-category={{productCategory}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -1142,12 +1126,12 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{bankingAccountId1}}\",\n            \"{{bankingAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -1178,15 +1162,6 @@
 													"script": {
 														"exec": [
 															"",
-															"",
-															"                // This will set the next request depending on if there are any pages left to be processed",
-															"                const pageArray = pm.variables.get(\"pageArray\");",
-															"                if (pageArray && pageArray.length > 0){",
-															"                    postman.setNextRequest(\"Get Balances For Specific Accounts - Other pages\");",
-															"                    }",
-															"                    // else {",
-															"                    //     postman.setNextRequest(\"Get Balances For Specific Accounts - Invalid account ID\");       ",
-															"                    // }",
 															"                // Parse the response body",
 															"                var jsonData;",
 															"                try { jsonData = pm.response.json(); } catch(e) {}",
@@ -1282,12 +1257,12 @@
 												],
 												"body": {
 													"mode": "raw",
-													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
+													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{bankingAccountId1}}\",\n            \"{{bankingAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page=2&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -1297,12 +1272,12 @@
 													"query": [
 														{
 															"key": "page",
-															"value": "{{currentPage}}",
+															"value": "2",
 															"description": "Page of results to request (standard pagination)"
 														},
 														{
 															"key": "page-size",
-															"value": "1",
+															"value": "{{pageSize}}",
 															"description": "Page size to request. Default is 25 (standard pagination)"
 														}
 													]
@@ -1332,27 +1307,25 @@
 													"script": {
 														"exec": [
 															"",
-															"        if (pm.variables.get(\"testAccountId1\") != \"\")",
-															"        {",
-															"                // Parse the response body",
-															"                try { jsonData = pm.response.json(); } catch(e) {}",
 															"",
-															"                pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
-															"                    pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
-															"                });",
+															"    // Parse the response body",
+															"    try { jsonData = pm.response.json(); } catch(e) {}",
 															"",
-															"                // Schema payload check",
-															"                ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
-															"                    const valid = ajv.validate(\"ResponseBankingAccountsBalanceById\", jsonData)",
-															"                    if (!valid){",
-															"                    ajv.errors.forEach(element => {",
-															"                        console.log(JSON.stringify(element));",
-															"                        });",
-															"                    };",
-															"                    pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true; ",
-															"                });  ",
-															"             ",
-															"        }",
+															"    pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+															"        pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
+															"    });",
+															"",
+															"    // Schema payload check",
+															"    ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {",
+															"        const valid = ajv.validate(\"ResponseBankingAccountsBalanceById\", jsonData)",
+															"        if (!valid){",
+															"        ajv.errors.forEach(element => {",
+															"            console.log(JSON.stringify(element));",
+															"            });",
+															"        };",
+															"        pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true; ",
+															"    });  ",
+															"    ",
 															"",
 															"",
 															"",
@@ -1406,9 +1379,9 @@
 													"raw": ""
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/balance",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId/balance",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -1419,7 +1392,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}"
+															"value": "{{bankingAccountId1}}"
 														}
 													]
 												}
@@ -1610,14 +1583,14 @@
 															}
 														],
 														"url": {
-															"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/transactions?page=1&page-size={{pageSize}}&newest-time={{newestTime}}&oldest-time={{oldestTime}}&min-amount={{minAmount}}&max-amount={{maxAmount}}&is-owned={{isOwned}}",
+															"raw": "{{bankingBaseUrl}}/banking/accounts/{{bankingAccountId1}}/transactions?page=1&page-size={{pageSize}}&newest-time={{newestTime}}&oldest-time={{oldestTime}}&min-amount=0&max-amount=100&is-owned={{isOwned}}",
 															"host": [
-																"{{authenticatedResourceUrl}}"
+																"{{bankingBaseUrl}}"
 															],
 															"path": [
 																"banking",
 																"accounts",
-																":accountId",
+																"{{bankingAccountId1}}",
 																"transactions"
 															],
 															"query": [
@@ -1641,21 +1614,15 @@
 																},
 																{
 																	"key": "min-amount",
-																	"value": "{{minAmount}}"
+																	"value": "0"
 																},
 																{
 																	"key": "max-amount",
-																	"value": "{{maxAmount}}"
+																	"value": "100"
 																},
 																{
 																	"key": "is-owned",
 																	"value": "{{isOwned}}"
-																}
-															],
-															"variable": [
-																{
-																	"key": "accountId",
-																	"value": "{{bankingAccountId1}}"
 																}
 															]
 														},
@@ -1819,9 +1786,9 @@
 															}
 														],
 														"url": {
-															"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/transactions",
+															"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId/transactions",
 															"host": [
-																"{{authenticatedResourceUrl}}"
+																"{{bankingBaseUrl}}"
 															],
 															"path": [
 																"banking",
@@ -1832,7 +1799,7 @@
 															"variable": [
 																{
 																	"key": "accountId",
-																	"value": "{{testAccountId1}}"
+																	"value": "{{bankingAccountId1}}"
 																}
 															]
 														},
@@ -1992,9 +1959,9 @@
 															}
 														],
 														"url": {
-															"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/transactions?page={{currentPage}}&page-size=1&oldest-time={{oldestTime}}&newest-time={{newestTime}}&min-amount=100&max-amount=-25.25",
+															"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId/transactions?page={{currentPage}}&page-size=1&oldest-time={{oldestTime}}&newest-time={{newestTime}}&min-amount=100&max-amount=-25.25",
 															"host": [
-																"{{authenticatedResourceUrl}}"
+																"{{bankingBaseUrl}}"
 															],
 															"path": [
 																"banking",
@@ -2121,9 +2088,9 @@
 															}
 														],
 														"url": {
-															"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/transactions/:transactionId",
+															"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId/transactions/:transactionId",
 															"host": [
-																"{{authenticatedResourceUrl}}"
+																"{{bankingBaseUrl}}"
 															],
 															"path": [
 																"banking",
@@ -2135,112 +2102,17 @@
 															"variable": [
 																{
 																	"key": "accountId",
-																	"value": "{{testAccountId1}}"
+																	"value": "{{bankingAccountId1}}"
 																},
 																{
 																	"key": "transactionId",
-																	"value": "{{testTransactionId}}"
+																	"value": "{{bankingTransactionId}}"
 																}
 															]
 														},
 														"description": "Obtain detailed information on a transaction for a specific account"
 													},
-													"response": [
-														{
-															"name": "Success",
-															"originalRequest": {
-																"method": "GET",
-																"header": [
-																	{
-																		"key": "x-v",
-																		"value": "1",
-																		"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)",
-																		"type": "text"
-																	},
-																	{
-																		"key": "x-fapi-interaction-id",
-																		"value": "{{transactionId}}",
-																		"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable.",
-																		"type": "text"
-																	},
-																	{
-																		"key": "x-fapi-auth-date",
-																		"value": "{{timeTenMinutesAgo}}",
-																		"description": "An [RFC4122](https://tools.ietf.org/html/rfc4122) UID used as a correlation id. If provided, the data holder must play back this value in the x-fapi-interaction-id response header. If not provided a [RFC4122] UUID value is required to be provided in the response header to track the interaction.",
-																		"type": "text"
-																	},
-																	{
-																		"key": "x-fapi-customer-ip-address",
-																		"value": "127.0.0.1",
-																		"description": "The time when the customer last logged in to the data recipient. Required for all resource calls (customer present and unattended). Not to be included for unauthenticated calls.",
-																		"type": "text"
-																	},
-																	{
-																		"key": "x-cds-User-Agent",
-																		"value": "aGVhZGVyOiB0ZXN0",
-																		"description": "The customer's original IP address if the customer is currently logged in to the data recipient. The presence of this header indicates that the API is being called in a customer present context. Not to be included for unauthenticated calls.",
-																		"type": "text"
-																	},
-																	{
-																		"key": "x-cds-subject",
-																		"value": "{{cdsSubject}}",
-																		"description": "The customer's original standard http headers [Base64](#common-field-types) encoded, including the original User Agent header, if the customer is currently logged in to the data recipient. Mandatory for customer present calls.  Not required for unattended or unauthenticated calls.",
-																		"type": "text"
-																	},
-																	{
-																		"key": "Content-Type",
-																		"value": "application/json",
-																		"description": "Subject identifier. Locally unique and never reassigned identifier within the Holder for the End-User. Mandatory for authenticated calls. Not required for unattended or unauthenticated calls.",
-																		"type": "text"
-																	}
-																],
-																"url": {
-																	"raw": "{{baseUrl}}/banking/accounts/:accountId/transactions/:transactionId",
-																	"host": [
-																		"{{baseUrl}}"
-																	],
-																	"path": [
-																		"banking",
-																		"accounts",
-																		":accountId",
-																		"transactions",
-																		":transactionId"
-																	],
-																	"variable": [
-																		{
-																			"key": "accountId",
-																			"value": "{{testAccountId}}"
-																		},
-																		{
-																			"key": "transactionId",
-																			"value": "{{testTransactionId}}"
-																		}
-																	]
-																}
-															},
-															"status": "OK",
-															"code": 200,
-															"_postman_previewlanguage": "json",
-															"header": [
-																{
-																	"key": "x-v",
-																	"value": "1",
-																	"description": "The [version](#response-headers) of the API end point that the data holder has responded with."
-																},
-																{
-																	"key": "x-fapi-interaction-id",
-																	"value": "{{x-fapi-interaction-id}}",
-																	"description": "An RFC4122 UID used as a correlation id. The data holder must set the response header x-fapi-interaction-id to the value received from the corresponding fapi client request header or to a new RFC4122 UUID value if the request header was not provided to track the interaction."
-																},
-																{
-																	"key": "Content-Type",
-																	"value": "application/json"
-																}
-															],
-															"cookie": [],
-															"body": "{\n\t\"data\": {\n        \"accountId\": \"{{testAccountId}}\",\n        \"transactionId\": \"{{testTransactionId}}\",\n        \"isDetailAvailable\": true,\n        \"type\": \"OTHER\",\n        \"status\": \"POSTED\",\n        \"description\": \"string\",\n        \"postingDateTime\": \"2019-11-01T14:52:00.000Z\",\n        \"executionDateTime\": \"2019-10-29T12:51:00.000Z\",\n        \"amount\": \"-46.86\",\n        \"currency\": \"AUD\",\n        \"reference\": \"lorem ipsum\",\n        \"billerCode\": \"123456\",\n        \"billerName\": \"Fake Biller Co\",\n        \"crn\": \"17237769\",\n        \"apcaNumber\": \"123456\",\n\t\t\"extendedData\": {\n\t\t\t\"service\": \"X2P1.01\",\n\t\t\t\"payee\": \"payee@payee.com\",\n\t\t\t\"extensionUType\": \"x2p101Payload\",\n\t\t\t\"x2p101Payload\": {\n\t\t\t\t\"extendedDescription\": \"Description of payment\",\n\t\t\t\t\"endToEndId\": \"1234567890\"\n\t\t\t}\n\t\t}\n\t},\n\t\"links\": {\n\t    \"self\": \"https://data.holder.com.au/cds-au/v1/banking/accounts/{{testAccountId}}/transactions/{{testTransactionId}}\"\n\t},\n\t\"meta\": {}\n}"
-														}
-													]
+													"response": []
 												}
 											],
 											"event": [
@@ -2347,9 +2219,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/direct-debits?page=1&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId/direct-debits?page=1&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -2372,7 +2244,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}",
+															"value": "{{bankingAccountId1}}",
 															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points."
 														}
 													]
@@ -2567,9 +2439,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/direct-debits?page={{currentPage}}&page-size=1",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId/direct-debits?page={{currentPage}}&page-size=1",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -2592,7 +2464,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}",
+															"value": "{{bankingAccountId1}}",
 															"description": "ID of the account to get direct debit authorisations for.  Must have previously been returned by one of the account list end points."
 														}
 													]
@@ -2772,9 +2644,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/payments/scheduled?page=1&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId/payments/scheduled?page=1&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -2798,7 +2670,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}",
+															"value": "{{bankingAccountId1}}",
 															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment"
 														}
 													]
@@ -2994,9 +2866,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId/payments/scheduled?page=1&page-size=1",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId/payments/scheduled?page=1&page-size=1",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -3020,7 +2892,7 @@
 													"variable": [
 														{
 															"key": "accountId",
-															"value": "{{testAccountId1}}",
+															"value": "{{bankingAccountId1}}",
 															"description": "ID of the account to get scheduled payments for. Must have previously been returned by one of the account list end points. The account specified is the source account for the payment"
 														}
 													]
@@ -3206,9 +3078,9 @@
 													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{invalidID}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/accounts/balances",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -3306,19 +3178,11 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"// First page is always 1\r",
-													"pm.variables.set(\"currentPage\", 1);\r",
-													"// if a page size is specified use it, otherwise default\r",
-													"var pageSize = pm.variables.get(\"pageSizeAccounts\");\r",
-													"if (pageSize == null) {pm.variables.set(\"pageSize\", 25);} else {\r",
-													"    pm.variables.set(\"pageSize\", pageSize);\r",
-													"}\r",
 													"\r",
 													"var moment = require('moment');\r",
 													"var dateFormat = \"ddd, DD MMM yyyy hh:mm:ss [GMT]\";\r",
 													"var fapiDate = moment().format(dateFormat);\r",
-													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);\r",
-													"var productCategory = pm.variables.get(\"productCategory\")"
+													"pm.collectionVariables.set(\"x-fapi-auth-date\", fapiDate);"
 												],
 												"type": "text/javascript",
 												"packages": {}
@@ -3358,9 +3222,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts?open-status={{openStatus}}&page=1&page-size={{pageSize}}&product-category={{productCategory}}",
+											"raw": "{{bankingBaseUrl}}/banking/accounts?open-status={{openStatus}}&page=1&page-size={{pageSize}}&product-category={{bankingProductCategory}}",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -3369,8 +3233,7 @@
 											"query": [
 												{
 													"key": "open-status",
-													"value": "{{openStatus}}",
-													"description": "Used to filter results according to open/closed status. Values can be OPEN, CLOSED or ALL. If absent then ALL is assumed"
+													"value": "{{openStatus}}"
 												},
 												{
 													"key": "page",
@@ -3384,7 +3247,7 @@
 												},
 												{
 													"key": "product-category",
-													"value": "{{productCategory}}"
+													"value": "{{bankingProductCategory}}"
 												}
 											]
 										},
@@ -3528,9 +3391,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts",
+											"raw": "{{bankingBaseUrl}}/banking/accounts",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -3698,9 +3561,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts?open-status={{openStatus}}&page={{currentPage}}&page-size=1&product-category={{productCategory}}",
+											"raw": "{{bankingBaseUrl}}/banking/accounts?page=1&page-size={{pageSize}}",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -3708,23 +3571,12 @@
 											],
 											"query": [
 												{
-													"key": "open-status",
-													"value": "{{openStatus}}",
-													"description": "Used to filter results according to open/closed status. Values can be OPEN, CLOSED or ALL. If absent then ALL is assumed"
-												},
-												{
 													"key": "page",
-													"value": "{{currentPage}}",
-													"description": "Page of results to request (standard pagination)"
+													"value": "1"
 												},
 												{
 													"key": "page-size",
-													"value": "1",
-													"description": "Page size to request. Default is 25 (standard pagination)"
-												},
-												{
-													"key": "product-category",
-													"value": "{{productCategory}}"
+													"value": "{{pageSize}}"
 												}
 											]
 										}
@@ -5991,11 +5843,13 @@
 					"        var requestMinVersionNumber;",
 					"        var requestVersionNumber;",
 					"        var pageSize;",
+					"        var openStatus;",
 					"",
 					"        pm.collectionVariables.set(\"badRequest\", false);",
 					"",
 					"        oldestTime = pm.request.url.query.get(\"oldest-time\")",
 					"        newestTime = pm.request.url.query.get(\"newest-time\")",
+					"        openStatus = pm.request.url.query.get(\"open-status\")",
 					"",
 					"        var requestVersion = pm.request.headers.get(\"x-v\");",
 					"        if (requestVersion != undefined)",
@@ -6032,6 +5886,9 @@
 					"",
 					"        var validPayeeTypes = [\"ALL\", \"BILLER\", \"DIGITAL_WALLET\", \"DOMESTIC\", \"INTERNATIONAL\"]",
 					"",
+					"        var validPayeeTypes = [\"ALL\", \"BILLER\", \"DIGITAL_WALLET\", \"DOMESTIC\", \"INTERNATIONAL\"]",
+					"",
+					"        var validAccountStates = [\"ALL\", \"CLOSED\", \"OPEN\"]",
 					"",
 					"        // test if this request should have returned an error base on query parameters ",
 					"        // validate the oldest-time against RFC3339",
@@ -6085,7 +5942,16 @@
 					"            pm.test(\"Should get a 400 based on invalid product-category parameter: \" + productCategory, function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
-					"        }   ",
+					"        }  ",
+					"        if ((pm.request.url.query.get(\"open-status\") != undefined && validAccountStates.indexOf(openStatus)< 0)) {",
+					"            console.log(\"Request should return error based on invalid open-status parameter\")",
+					"            invalidQueryParameters = true;",
+					"            // check thatwe get a 400 error",
+					"            pm.test(\"Should get a 400 based on invalid open-status parameter: \" + openStatus, function () {",
+					"                pm.response.to.have.status(400);",
+					"            });",
+					"        } ",
+					"",
 					"        if ((pm.request.url.query.get(\"type\") != undefined && validPayeeTypes.indexOf(payeeType)< 0)) {",
 					"            console.log(\"Request should return error based on invalid type parameter\")",
 					"            invalidQueryParameters = true;",
@@ -6093,7 +5959,9 @@
 					"            pm.test(\"Should get a 400 based on invalid type parameter: \" + payeeType, function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
-					"        }                       ",
+					"        }  ",
+					"",
+					"",
 					"        if (pm.request.url.query.get(\"page-size\") != undefined)  {",
 					"            pageSizeNumber = Number(pm.request.url.query.get(\"page-size\"));",
 					"            if (!(Number.isSafeInteger(pageSizeNumber) && pageSizeNumber > 0)) {",

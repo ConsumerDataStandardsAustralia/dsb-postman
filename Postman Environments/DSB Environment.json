@@ -1,30 +1,22 @@
 {
-	"id": "770fd853-fc98-4c84-a575-66b0de056b97",
-	"name": "DSB Banking Test Data Server - 1.31.0",
+	"id": "abe0ca70-a690-4232-b641-c6162b5b3d9a",
+	"name": "DSB Environment",
 	"values": [
 		{
-			"key": "baseUrl",
+			"key": "energyBaseUrl",
 			"value": "https://localhost:3005/cds-au/v1",
 			"enabled": true
 		},
 		{
-			"key": "authenticatedResourceUrl",
+			"key": "bankingBaseUrl",
 			"value": "https://localhost:3005/cds-au/v1",
+			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "unauthenticatedResourceUrl",
+			"key": "commonBaseUrl",
 			"value": "https://localhost:3005/cds-au/v1",
-			"enabled": true
-		},
-		{
-			"key": "authenticatedCommonUrl",
-			"value": "https://localhost:3005/cds-au/v1",
-			"enabled": true
-		},
-		{
-			"key": "unauthenticatedCommonUrl",
-			"value": "https://localhost:3005/cds-au/v1",
+			"type": "default",
 			"enabled": true
 		},
 		{
@@ -43,17 +35,17 @@
 			"enabled": true
 		},
 		{
-			"key": "testAccountId1",
-			"value": "d339f6db-cd8d-413f-95e4-ec9e8e9d806f",
+			"key": "bankingAccountId1",
+			"value": "30b7b7c4-b9e7-4e9d-8963-09f5193ec396",
 			"enabled": true
 		},
 		{
-			"key": "testAccountId2",
-			"value": "d2790b7a-1455-413e-ade7-4be1017eeb20",
+			"key": "bankingAccountId2",
+			"value": "972a5163-583e-4c2d-a8af-2056ad568a5d",
 			"enabled": true
 		},
 		{
-			"key": "testPayeeId",
+			"key": "bankingPayeeId",
 			"value": "9fb1125a-b54a-4758-b7a2-5ffac6d0792d",
 			"enabled": true
 		},
@@ -63,83 +55,18 @@
 			"enabled": true
 		},
 		{
-			"key": "testProductId",
+			"key": "bankingProductId",
 			"value": "e54043f1-1bff-454b-9eb9-800e610377f6",
 			"enabled": true
 		},
 		{
-			"key": "testTransactionId",
-			"value": "f4ba8e34-5bdb-4096-8913-b460aca9640e",
-			"enabled": true
-		},
-		{
-			"key": "pageSizeBulkDirectDebits",
-			"value": "2",
-			"enabled": true
-		},
-		{
-			"key": "pageSizeBulkBalances",
-			"value": "2",
-			"enabled": true
-		},
-		{
-			"key": "pageSizeTransactions",
-			"value": "2",
-			"enabled": true
-		},
-		{
-			"key": "pageSizeAccounts",
-			"value": "2",
-			"enabled": true
-		},
-		{
-			"key": "pageSizePayees",
-			"value": "2",
-			"enabled": true
-		},
-		{
-			"key": "pageSizeScheduledPayments",
-			"value": "2",
-			"enabled": true
-		},
-		{
-			"key": "pageSizeProducts",
-			"value": "2",
+			"key": "bankingTransactionId",
+			"value": "0d897f6d-3ca8-4d8e-8475-1a487baf5831",
 			"enabled": true
 		},
 		{
 			"key": "pageSize",
 			"value": "2",
-			"enabled": true
-		},
-		{
-			"key": "timeCurrent",
-			"value": "",
-			"enabled": true
-		},
-		{
-			"key": "timeTenMinutesAgo",
-			"value": "",
-			"enabled": true
-		},
-		{
-			"key": "dateToday",
-			"value": "",
-			"enabled": true
-		},
-		{
-			"key": "dateYesterday",
-			"value": "",
-			"enabled": true
-		},
-		{
-			"key": "dateTomorrow",
-			"value": "",
-			"enabled": true
-		},
-		{
-			"key": "dateLastYear",
-			"value": "",
 			"enabled": true
 		},
 		{
@@ -153,9 +80,84 @@
 			"value": "ALL",
 			"type": "default",
 			"enabled": true
+		},
+		{
+			"key": "energyAccountId1",
+			"value": "30b7b7c4-b9e7-4e9d-8963-09f5193ec396",
+			"enabled": true
+		},
+		{
+			"key": "energyAccountId2",
+			"value": "500054ca-9d7b-409e-ba89-8b1e7b1eee80",
+			"enabled": true
+		},
+		{
+			"key": "energyPlanId1",
+			"value": "7d6e5f75-de9b-4e38-98f9-63282e78b0e6",
+			"enabled": true
+		},
+		{
+			"key": "energyPlanId2",
+			"value": "a2dba4c3-a448-4f2a-965e-d85be205cd97",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "energyPlanId3",
+			"value": "387ac551-e73c-40dc-a117-87bf007c35db",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "x-fapi-customer-ip-address",
+			"value": "127.0.0.1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "x-cds-client-headers",
+			"value": "Q29uc3VtZXIgRGF0YSBSaWdodA==",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "servicePointId1",
+			"value": "e72a869d-e1b1-4ba5-ad9b-bcccc8e91bc1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "servicePointId2",
+			"value": "45ce61da-eb0c-424e-9798-d693e64388a",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "energyPlanType",
+			"value": "MARKET",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "energyFuelType",
+			"value": "ELECTRICITY",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "effective",
+			"value": "CURRENT",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "bankingProductCategory",
+			"value": "PERS_LOANS",
+			"type": "default",
+			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2024-08-18T09:12:07.251Z",
-	"_postman_exported_using": "Postman/11.8.0"
+	"_postman_exported_at": "2024-09-28T11:08:45.471Z",
+	"_postman_exported_using": "Postman/11.14.1"
 }
