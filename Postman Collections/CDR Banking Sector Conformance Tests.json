@@ -148,7 +148,7 @@
 														},
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
+															"value": "{{bankingProductCategory}}",
 															"disabled": true
 														}
 													]
@@ -376,7 +376,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?product-category={{bankingProductCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -388,8 +388,8 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
-															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
+															"value": "{{bankingProductCategory}}",
+															"description": "Used to filter results on the bankingProductCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
 															"key": "open-status",
@@ -757,7 +757,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}&open-status={{openStatus}}&product-category={{productCategory}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}&open-status={{openStatus}}&product-category={{bankingProductCategory}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -781,7 +781,7 @@
 														},
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}"
+															"value": "{{bankingProductCategory}}"
 														}
 													]
 												},
@@ -1001,7 +1001,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1&open-status={{openStatus}}&product-category={{productCategory}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1&open-status={{openStatus}}&product-category={{bankingProductCategory}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -1025,7 +1025,7 @@
 														},
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}"
+															"value": "{{bankingProductCategory}}"
 														}
 													]
 												}
@@ -3008,7 +3008,7 @@
 															"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {",
 															"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
 															"            let errCode = jsonData.errors[0].code;",
-															"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\"]);",
+															"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\", \"urn:au-cds:error:cds-banking:Authorisation/InvalidBankingAccount\"]);",
 															"            if (!valid){",
 															"            ajv.errors.forEach(element => {",
 															"                console.log(JSON.stringify(element));",
@@ -3141,13 +3141,13 @@
 													"    });",
 													"}",
 													"",
-													"// only accounts with specified productCategory are included",
+													"// only accounts with specified bankingProductCategory are included",
 													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
 													"    pm.test('product-category query parameter is considered', function() {",
-													"        var currentCategory = pm.variables.get(\"productCategory\")",
+													"        var currentCategory = pm.variables.get(\"bankingProductCategory\")",
 													"        if (currentCategory !== \"ALL\"){",
 													"            jsonData?.data?.accounts.forEach(acc => {",
-													"                pm.expect(acc.productCategory).to.equal(currentCategory)",
+													"                pm.expect(acc.bankingProductCategory).to.equal(currentCategory)",
 													"            })",
 													"        }",
 													"    });",
@@ -3303,13 +3303,13 @@
 													"    });",
 													"}",
 													"",
-													"// only accounts with specified productCategory are included",
+													"// only accounts with specified bankingProductCategory are included",
 													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
 													"    pm.test('product-category query parameter is considered', function() {",
-													"        var currentCategory = pm.variables.get(\"productCategory\")",
+													"        var currentCategory = pm.variables.get(\"bankingProductCategory\")",
 													"        if (currentCategory !== \"ALL\"){",
 													"            jsonData?.data?.accounts.forEach(acc => {",
-													"                pm.expect(acc.productCategory).to.equal(currentCategory)",
+													"                pm.expect(acc.bankingProductCategory).to.equal(currentCategory)",
 													"            })",
 													"        }",
 													"    });",
@@ -3453,13 +3453,13 @@
 													"    });",
 													"}",
 													"",
-													"// only accounts with specified productCategory are included",
+													"// only accounts with specified bankingProductCategory are included",
 													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
 													"    pm.test('product-category query parameter is considered', function() {",
-													"        var currentCategory = pm.variables.get(\"productCategory\")",
+													"        var currentCategory = pm.variables.get(\"bankingProductCategory\")",
 													"        if (currentCategory !== \"ALL\"){",
 													"            jsonData?.data?.accounts.forEach(acc => {",
-													"                pm.expect(acc.productCategory).to.equal(currentCategory)",
+													"                pm.expect(acc.bankingProductCategory).to.equal(currentCategory)",
 													"            })",
 													"        }",
 													"    });",
@@ -3688,9 +3688,9 @@
 											"raw": ""
 										},
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId",
+											"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -3809,9 +3809,9 @@
 											"raw": ""
 										},
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId",
+											"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -3930,9 +3930,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts?open-status={{openStatus}}&page=99999&page-size={{pageSize}}",
+											"raw": "{{bankingBaseUrl}}/banking/accounts?open-status={{openStatus}}&page=99999&page-size={{pageSize}}",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -4053,9 +4053,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?product-category={{bankingProductCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -4065,8 +4065,8 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
-															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
+															"value": "{{bankingProductCategory}}",
+															"description": "Used to filter results on the bankingProductCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
 															"key": "open-status",
@@ -4201,9 +4201,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?product-category={{bankingProductCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -4213,8 +4213,8 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
-															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
+															"value": "{{bankingProductCategory}}",
+															"description": "Used to filter results on the bankingProductCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
 															"key": "open-status",
@@ -4332,9 +4332,9 @@
 													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -4470,9 +4470,9 @@
 													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -4598,9 +4598,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees?type={{payeeType}}&page=1&page-size={{pageSize}}",
+											"raw": "{{bankingBaseUrl}}/banking/payees?type={{payeeType}}&page=1&page-size={{pageSize}}",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -4718,9 +4718,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees",
+											"raw": "{{bankingBaseUrl}}/banking/payees",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -4838,9 +4838,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees?type=ALL&page={{currentPage}}&page-size=1",
+											"raw": "{{bankingBaseUrl}}/banking/payees?type=ALL&page={{currentPage}}&page-size=1",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -4959,9 +4959,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees/:payeeId",
+											"raw": "{{bankingBaseUrl}}/banking/payees/:payeeId",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5072,9 +5072,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees/:payeeId",
+											"raw": "{{bankingBaseUrl}}/banking/payees/:payeeId",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5121,13 +5121,13 @@
 													"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
 													"        });   \r",
 													"\r",
-													"        // only products with specified productCategory are included\r",
+													"        // only products with specified bankingProductCategory are included\r",
 													"        if ((pm.response.code === 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.products?.length > 0)) {\r",
 													"            pm.test('product-category query parameter is considered', function() {\r",
-													"                var currentCategory = pm.variables.get(\"productCategory\")\r",
+													"                var currentCategory = pm.variables.get(\"bankingProductCategory\")\r",
 													"                if (currentCategory !== \"ALL\"){\r",
 													"                    jsonData?.data?.products.forEach(prod => {\r",
-													"                        pm.expect(prod.productCategory).to.equal(currentCategory)\r",
+													"                        pm.expect(prod.bankingProductCategory).to.equal(currentCategory)\r",
 													"                    })\r",
 													"                }\r",
 													"            });\r",
@@ -5148,7 +5148,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.collectionVariables.set(\"productCategory\", \"BUSINESS_LOANS\");\r",
+													"pm.collectionVariables.set(\"bankingProductCategory\", \"BUSINESS_LOANS\");\r",
 													"pm.collectionVariables.set(\"effective\", \"CURRENT\");\r",
 													"\r",
 													"// First page is always 1\r",
@@ -5183,9 +5183,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products?effective={{effective}}&product-category={{productCategory}}&page=1&page-size={{pageSize}}",
+											"raw": "{{bankingBaseUrl}}/banking/products?effective={{effective}}&product-category={{bankingProductCategory}}&page=1&page-size={{pageSize}}",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5198,7 +5198,7 @@
 												},
 												{
 													"key": "product-category",
-													"value": "{{productCategory}}"
+													"value": "{{bankingProductCategory}}"
 												},
 												{
 													"key": "page",
@@ -5210,7 +5210,7 @@
 												}
 											]
 										},
-										"description": "Obtain a list of products that are currently openly offered to the market\n\nNote that the results returned by this end point are expected to be ordered according to updated-since\n\n### Conventions\nIn the product reference payloads there are a number of recurring conventions that are explained here, in one place.\n\n#### Arrays Of Features\n\nIn the product detail payload there are a number of arrays articulating generic features, constraints, prices, etc. The intent of these arrays is as follows:\n\n- Each element in an array has the same structure so that clients can reliably interpret the payloads\n- Each element as a type element that is an enumeration of the specific aspect of a product being described, such as types of fees.\n- Each element has a field name [additionalValue](#productfeaturetypedoc).  This is a generic field with contents that will vary based on the type of object being described. The contents of this field for the ADDITIONAL_CARDS feature is the number of cards allowed while the contents of this field for the MAX_LIMIT constraint would be the maximum credit limit allowed for the product.\n- An element in these arrays of the same type may appear more than once. For instance, a product may offer two separate loyalty programs that the customer can select from. A fixed term mortgage may have different rates for different term lengths.\n- An element in these arrays may contain an additionalInfo and additionalInfoUri field. The additionalInfo field is used to provide displayable text clarifying the purpose of the element in some way when the product is presented to a customer. The additionalInfoUri provides a link to externally hosted information specifically relevant to that feature of the product.\n- Depending on the type of data being represented there may be additional specific fields.\n\n#### URIs To More Information\n\nAs the complexities and nuances of a financial product can not easily be fully expressed in a data structure without a high degree of complexity it is necessary to provide additional reference information that a potential customer can access so that they are fully informed of the features and implications of the product. The payloads for product reference therefore contain numerous fields that are provided to allow the product holder to describe the product more fully using a web page hosted on their online channels.\n\nThese URIs do not need to all link to different pages. If desired, they can all link to a single hosted page and use difference HTML anchors to focus on a specific topic such as eligibility or fees.\n\n#### Linkage To Accounts\nFrom the moment that a customer applies for a product and an account is created the account and the product that spawned it will diverge.  Rates and features of the product may change and a discount may be negotiated for the account.\n\nFor this reason, while productCategory is a common field between accounts and products, there is no specific ID that can be used to link an account to a product within the regime.\n\nSimilarly, many of the fields and objects in the product payload will appear in the account detail payload but the structures and semantics are not identical as one refers to a product that can potentially be originated and one refers to an account that actual has been instantiated and created along with the associated decisions inherent in that process.\n\n#### Dates\nIt is expected that data consumers needing this data will call relatively frequently to ensure the data they have is representative of the current offering from a bank.  To minimise the volume and frequency of these calls the ability to set a lastUpdated field with the date and time of the last update to this product is included.  A call for a list of products can then be filtered to only return products that have been updated since the last time that data was obtained using the updated-since query parameter.\n\nIn addition, the concept of effective date and time has also been included.  This allows for a product to be marked for obsolescence, or introduction, from a certain time without the need for an update to show that a product has been changed.  The inclusion of these dates also removes the need to represent deleted products in the payload.  Products that are no long offered can be marked not effective for a few weeks before they are then removed from the product set as an option entirely."
+										"description": "Obtain a list of products that are currently openly offered to the market\n\nNote that the results returned by this end point are expected to be ordered according to updated-since\n\n### Conventions\nIn the product reference payloads there are a number of recurring conventions that are explained here, in one place.\n\n#### Arrays Of Features\n\nIn the product detail payload there are a number of arrays articulating generic features, constraints, prices, etc. The intent of these arrays is as follows:\n\n- Each element in an array has the same structure so that clients can reliably interpret the payloads\n- Each element as a type element that is an enumeration of the specific aspect of a product being described, such as types of fees.\n- Each element has a field name [additionalValue](#productfeaturetypedoc).  This is a generic field with contents that will vary based on the type of object being described. The contents of this field for the ADDITIONAL_CARDS feature is the number of cards allowed while the contents of this field for the MAX_LIMIT constraint would be the maximum credit limit allowed for the product.\n- An element in these arrays of the same type may appear more than once. For instance, a product may offer two separate loyalty programs that the customer can select from. A fixed term mortgage may have different rates for different term lengths.\n- An element in these arrays may contain an additionalInfo and additionalInfoUri field. The additionalInfo field is used to provide displayable text clarifying the purpose of the element in some way when the product is presented to a customer. The additionalInfoUri provides a link to externally hosted information specifically relevant to that feature of the product.\n- Depending on the type of data being represented there may be additional specific fields.\n\n#### URIs To More Information\n\nAs the complexities and nuances of a financial product can not easily be fully expressed in a data structure without a high degree of complexity it is necessary to provide additional reference information that a potential customer can access so that they are fully informed of the features and implications of the product. The payloads for product reference therefore contain numerous fields that are provided to allow the product holder to describe the product more fully using a web page hosted on their online channels.\n\nThese URIs do not need to all link to different pages. If desired, they can all link to a single hosted page and use difference HTML anchors to focus on a specific topic such as eligibility or fees.\n\n#### Linkage To Accounts\nFrom the moment that a customer applies for a product and an account is created the account and the product that spawned it will diverge.  Rates and features of the product may change and a discount may be negotiated for the account.\n\nFor this reason, while bankingProductCategory is a common field between accounts and products, there is no specific ID that can be used to link an account to a product within the regime.\n\nSimilarly, many of the fields and objects in the product payload will appear in the account detail payload but the structures and semantics are not identical as one refers to a product that can potentially be originated and one refers to an account that actual has been instantiated and created along with the associated decisions inherent in that process.\n\n#### Dates\nIt is expected that data consumers needing this data will call relatively frequently to ensure the data they have is representative of the current offering from a bank.  To minimise the volume and frequency of these calls the ability to set a lastUpdated field with the date and time of the last update to this product is included.  A call for a list of products can then be filtered to only return products that have been updated since the last time that data was obtained using the updated-since query parameter.\n\nIn addition, the concept of effective date and time has also been included.  This allows for a product to be marked for obsolescence, or introduction, from a certain time without the need for an update to show that a product has been changed.  The inclusion of these dates also removes the need to represent deleted products in the payload.  Products that are no long offered can be marked not effective for a few weeks before they are then removed from the product set as an option entirely."
 									},
 									"response": []
 								},
@@ -5251,7 +5251,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.collectionVariables.set(\"productCategory\", \"BUSINESS_LOANS\");\r",
+													"pm.collectionVariables.set(\"bankingProductCategory\", \"BUSINESS_LOANS\");\r",
 													"pm.collectionVariables.set(\"effective\", \"CURRENT\");\r",
 													"\r",
 													"// First page is always 1\r",
@@ -5286,16 +5286,16 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products",
+											"raw": "{{bankingBaseUrl}}/banking/products",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
 												"products"
 											]
 										},
-										"description": "Obtain a list of products that are currently openly offered to the market\n\nNote that the results returned by this end point are expected to be ordered according to updated-since\n\n### Conventions\nIn the product reference payloads there are a number of recurring conventions that are explained here, in one place.\n\n#### Arrays Of Features\n\nIn the product detail payload there are a number of arrays articulating generic features, constraints, prices, etc. The intent of these arrays is as follows:\n\n- Each element in an array has the same structure so that clients can reliably interpret the payloads\n- Each element as a type element that is an enumeration of the specific aspect of a product being described, such as types of fees.\n- Each element has a field name [additionalValue](#productfeaturetypedoc).  This is a generic field with contents that will vary based on the type of object being described. The contents of this field for the ADDITIONAL_CARDS feature is the number of cards allowed while the contents of this field for the MAX_LIMIT constraint would be the maximum credit limit allowed for the product.\n- An element in these arrays of the same type may appear more than once. For instance, a product may offer two separate loyalty programs that the customer can select from. A fixed term mortgage may have different rates for different term lengths.\n- An element in these arrays may contain an additionalInfo and additionalInfoUri field. The additionalInfo field is used to provide displayable text clarifying the purpose of the element in some way when the product is presented to a customer. The additionalInfoUri provides a link to externally hosted information specifically relevant to that feature of the product.\n- Depending on the type of data being represented there may be additional specific fields.\n\n#### URIs To More Information\n\nAs the complexities and nuances of a financial product can not easily be fully expressed in a data structure without a high degree of complexity it is necessary to provide additional reference information that a potential customer can access so that they are fully informed of the features and implications of the product. The payloads for product reference therefore contain numerous fields that are provided to allow the product holder to describe the product more fully using a web page hosted on their online channels.\n\nThese URIs do not need to all link to different pages. If desired, they can all link to a single hosted page and use difference HTML anchors to focus on a specific topic such as eligibility or fees.\n\n#### Linkage To Accounts\nFrom the moment that a customer applies for a product and an account is created the account and the product that spawned it will diverge.  Rates and features of the product may change and a discount may be negotiated for the account.\n\nFor this reason, while productCategory is a common field between accounts and products, there is no specific ID that can be used to link an account to a product within the regime.\n\nSimilarly, many of the fields and objects in the product payload will appear in the account detail payload but the structures and semantics are not identical as one refers to a product that can potentially be originated and one refers to an account that actual has been instantiated and created along with the associated decisions inherent in that process.\n\n#### Dates\nIt is expected that data consumers needing this data will call relatively frequently to ensure the data they have is representative of the current offering from a bank.  To minimise the volume and frequency of these calls the ability to set a lastUpdated field with the date and time of the last update to this product is included.  A call for a list of products can then be filtered to only return products that have been updated since the last time that data was obtained using the updated-since query parameter.\n\nIn addition, the concept of effective date and time has also been included.  This allows for a product to be marked for obsolescence, or introduction, from a certain time without the need for an update to show that a product has been changed.  The inclusion of these dates also removes the need to represent deleted products in the payload.  Products that are no long offered can be marked not effective for a few weeks before they are then removed from the product set as an option entirely."
+										"description": "Obtain a list of products that are currently openly offered to the market\n\nNote that the results returned by this end point are expected to be ordered according to updated-since\n\n### Conventions\nIn the product reference payloads there are a number of recurring conventions that are explained here, in one place.\n\n#### Arrays Of Features\n\nIn the product detail payload there are a number of arrays articulating generic features, constraints, prices, etc. The intent of these arrays is as follows:\n\n- Each element in an array has the same structure so that clients can reliably interpret the payloads\n- Each element as a type element that is an enumeration of the specific aspect of a product being described, such as types of fees.\n- Each element has a field name [additionalValue](#productfeaturetypedoc).  This is a generic field with contents that will vary based on the type of object being described. The contents of this field for the ADDITIONAL_CARDS feature is the number of cards allowed while the contents of this field for the MAX_LIMIT constraint would be the maximum credit limit allowed for the product.\n- An element in these arrays of the same type may appear more than once. For instance, a product may offer two separate loyalty programs that the customer can select from. A fixed term mortgage may have different rates for different term lengths.\n- An element in these arrays may contain an additionalInfo and additionalInfoUri field. The additionalInfo field is used to provide displayable text clarifying the purpose of the element in some way when the product is presented to a customer. The additionalInfoUri provides a link to externally hosted information specifically relevant to that feature of the product.\n- Depending on the type of data being represented there may be additional specific fields.\n\n#### URIs To More Information\n\nAs the complexities and nuances of a financial product can not easily be fully expressed in a data structure without a high degree of complexity it is necessary to provide additional reference information that a potential customer can access so that they are fully informed of the features and implications of the product. The payloads for product reference therefore contain numerous fields that are provided to allow the product holder to describe the product more fully using a web page hosted on their online channels.\n\nThese URIs do not need to all link to different pages. If desired, they can all link to a single hosted page and use difference HTML anchors to focus on a specific topic such as eligibility or fees.\n\n#### Linkage To Accounts\nFrom the moment that a customer applies for a product and an account is created the account and the product that spawned it will diverge.  Rates and features of the product may change and a discount may be negotiated for the account.\n\nFor this reason, while bankingProductCategory is a common field between accounts and products, there is no specific ID that can be used to link an account to a product within the regime.\n\nSimilarly, many of the fields and objects in the product payload will appear in the account detail payload but the structures and semantics are not identical as one refers to a product that can potentially be originated and one refers to an account that actual has been instantiated and created along with the associated decisions inherent in that process.\n\n#### Dates\nIt is expected that data consumers needing this data will call relatively frequently to ensure the data they have is representative of the current offering from a bank.  To minimise the volume and frequency of these calls the ability to set a lastUpdated field with the date and time of the last update to this product is included.  A call for a list of products can then be filtered to only return products that have been updated since the last time that data was obtained using the updated-since query parameter.\n\nIn addition, the concept of effective date and time has also been included.  This allows for a product to be marked for obsolescence, or introduction, from a certain time without the need for an update to show that a product has been changed.  The inclusion of these dates also removes the need to represent deleted products in the payload.  Products that are no long offered can be marked not effective for a few weeks before they are then removed from the product set as an option entirely."
 									},
 									"response": []
 								},
@@ -5413,9 +5413,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products?effective={{effective}}&product-category={{productCategory}}&page={{currentPage}}&page-size=1",
+											"raw": "{{bankingBaseUrl}}/banking/products?effective={{effective}}&product-category={{bankingProductCategory}}&page={{currentPage}}&page-size=1",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5428,7 +5428,7 @@
 												},
 												{
 													"key": "product-category",
-													"value": "{{productCategory}}"
+													"value": "{{bankingProductCategory}}"
 												},
 												{
 													"key": "page",
@@ -5440,7 +5440,7 @@
 												}
 											]
 										},
-										"description": "Obtain a list of products that are currently openly offered to the market\n\nNote that the results returned by this end point are expected to be ordered according to updated-since\n\n### Conventions\nIn the product reference payloads there are a number of recurring conventions that are explained here, in one place.\n\n#### Arrays Of Features\n\nIn the product detail payload there are a number of arrays articulating generic features, constraints, prices, etc. The intent of these arrays is as follows:\n\n- Each element in an array has the same structure so that clients can reliably interpret the payloads\n- Each element as a type element that is an enumeration of the specific aspect of a product being described, such as types of fees.\n- Each element has a field name [additionalValue](#productfeaturetypedoc).  This is a generic field with contents that will vary based on the type of object being described. The contents of this field for the ADDITIONAL_CARDS feature is the number of cards allowed while the contents of this field for the MAX_LIMIT constraint would be the maximum credit limit allowed for the product.\n- An element in these arrays of the same type may appear more than once. For instance, a product may offer two separate loyalty programs that the customer can select from. A fixed term mortgage may have different rates for different term lengths.\n- An element in these arrays may contain an additionalInfo and additionalInfoUri field. The additionalInfo field is used to provide displayable text clarifying the purpose of the element in some way when the product is presented to a customer. The additionalInfoUri provides a link to externally hosted information specifically relevant to that feature of the product.\n- Depending on the type of data being represented there may be additional specific fields.\n\n#### URIs To More Information\n\nAs the complexities and nuances of a financial product can not easily be fully expressed in a data structure without a high degree of complexity it is necessary to provide additional reference information that a potential customer can access so that they are fully informed of the features and implications of the product. The payloads for product reference therefore contain numerous fields that are provided to allow the product holder to describe the product more fully using a web page hosted on their online channels.\n\nThese URIs do not need to all link to different pages. If desired, they can all link to a single hosted page and use difference HTML anchors to focus on a specific topic such as eligibility or fees.\n\n#### Linkage To Accounts\nFrom the moment that a customer applies for a product and an account is created the account and the product that spawned it will diverge.  Rates and features of the product may change and a discount may be negotiated for the account.\n\nFor this reason, while productCategory is a common field between accounts and products, there is no specific ID that can be used to link an account to a product within the regime.\n\nSimilarly, many of the fields and objects in the product payload will appear in the account detail payload but the structures and semantics are not identical as one refers to a product that can potentially be originated and one refers to an account that actual has been instantiated and created along with the associated decisions inherent in that process.\n\n#### Dates\nIt is expected that data consumers needing this data will call relatively frequently to ensure the data they have is representative of the current offering from a bank.  To minimise the volume and frequency of these calls the ability to set a lastUpdated field with the date and time of the last update to this product is included.  A call for a list of products can then be filtered to only return products that have been updated since the last time that data was obtained using the updated-since query parameter.\n\nIn addition, the concept of effective date and time has also been included.  This allows for a product to be marked for obsolescence, or introduction, from a certain time without the need for an update to show that a product has been changed.  The inclusion of these dates also removes the need to represent deleted products in the payload.  Products that are no long offered can be marked not effective for a few weeks before they are then removed from the product set as an option entirely."
+										"description": "Obtain a list of products that are currently openly offered to the market\n\nNote that the results returned by this end point are expected to be ordered according to updated-since\n\n### Conventions\nIn the product reference payloads there are a number of recurring conventions that are explained here, in one place.\n\n#### Arrays Of Features\n\nIn the product detail payload there are a number of arrays articulating generic features, constraints, prices, etc. The intent of these arrays is as follows:\n\n- Each element in an array has the same structure so that clients can reliably interpret the payloads\n- Each element as a type element that is an enumeration of the specific aspect of a product being described, such as types of fees.\n- Each element has a field name [additionalValue](#productfeaturetypedoc).  This is a generic field with contents that will vary based on the type of object being described. The contents of this field for the ADDITIONAL_CARDS feature is the number of cards allowed while the contents of this field for the MAX_LIMIT constraint would be the maximum credit limit allowed for the product.\n- An element in these arrays of the same type may appear more than once. For instance, a product may offer two separate loyalty programs that the customer can select from. A fixed term mortgage may have different rates for different term lengths.\n- An element in these arrays may contain an additionalInfo and additionalInfoUri field. The additionalInfo field is used to provide displayable text clarifying the purpose of the element in some way when the product is presented to a customer. The additionalInfoUri provides a link to externally hosted information specifically relevant to that feature of the product.\n- Depending on the type of data being represented there may be additional specific fields.\n\n#### URIs To More Information\n\nAs the complexities and nuances of a financial product can not easily be fully expressed in a data structure without a high degree of complexity it is necessary to provide additional reference information that a potential customer can access so that they are fully informed of the features and implications of the product. The payloads for product reference therefore contain numerous fields that are provided to allow the product holder to describe the product more fully using a web page hosted on their online channels.\n\nThese URIs do not need to all link to different pages. If desired, they can all link to a single hosted page and use difference HTML anchors to focus on a specific topic such as eligibility or fees.\n\n#### Linkage To Accounts\nFrom the moment that a customer applies for a product and an account is created the account and the product that spawned it will diverge.  Rates and features of the product may change and a discount may be negotiated for the account.\n\nFor this reason, while bankingProductCategory is a common field between accounts and products, there is no specific ID that can be used to link an account to a product within the regime.\n\nSimilarly, many of the fields and objects in the product payload will appear in the account detail payload but the structures and semantics are not identical as one refers to a product that can potentially be originated and one refers to an account that actual has been instantiated and created along with the associated decisions inherent in that process.\n\n#### Dates\nIt is expected that data consumers needing this data will call relatively frequently to ensure the data they have is representative of the current offering from a bank.  To minimise the volume and frequency of these calls the ability to set a lastUpdated field with the date and time of the last update to this product is included.  A call for a list of products can then be filtered to only return products that have been updated since the last time that data was obtained using the updated-since query parameter.\n\nIn addition, the concept of effective date and time has also been included.  This allows for a product to be marked for obsolescence, or introduction, from a certain time without the need for an update to show that a product has been changed.  The inclusion of these dates also removes the need to represent deleted products in the payload.  Products that are no long offered can be marked not effective for a few weeks before they are then removed from the product set as an option entirely."
 									},
 									"response": []
 								},
@@ -5498,9 +5498,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products/:productId",
+											"raw": "{{bankingBaseUrl}}/banking/products/:productId",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5572,9 +5572,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products/:productId",
+											"raw": "{{bankingBaseUrl}}/banking/products/:productId",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5653,11 +5653,11 @@
 					"if (pm.iterationData.get(\"baseUrl\") != undefined)",
 					"    pm.collectionVariables.set(\"baseUrl\", pm.iterationData.get(\"baseUrl\"));",
 					"",
-					"if (pm.iterationData.get(\"authenticatedResourceUrl\") != undefined)",
-					"    pm.collectionVariables.set(\"authenticatedResourceUrl\", pm.iterationData.get(\"authenticatedResourceUrl\"));",
+					"if (pm.iterationData.get(\"bankingBaseUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"bankingBaseUrl\", pm.iterationData.get(\"bankingBaseUrl\"));",
 					"",
-					"if (pm.iterationData.get(\"unauthenticatedResourceUrl\") != undefined)",
-					"    pm.collectionVariables.set(\"unauthenticatedResourceUrl\", pm.iterationData.get(\"unauthenticatedResourceUrl\"));",
+					"if (pm.iterationData.get(\"bankingBaseUrl\") != undefined)",
+					"    pm.collectionVariables.set(\"bankingBaseUrl\", pm.iterationData.get(\"bankingBaseUrl\"));",
 					"",
 					"if (pm.iterationData.get(\"authenticatedCommonUrl\") != undefined)",
 					"    pm.collectionVariables.set(\"authenticatedCommonUrl\", pm.iterationData.get(\"authenticatedCommonUrl\"));",
@@ -5838,7 +5838,7 @@
 					"        var minAmount;",
 					"        var maxAmount;",
 					"        var isOwned;",
-					"        var productCategory;",
+					"        var bankingProductCategory;",
 					"        var payeeType;",
 					"        var requestMinVersionNumber;",
 					"        var requestVersionNumber;",
@@ -5875,7 +5875,7 @@
 					"        minAmount = pm.request.url.query.get(\"min-amount\")",
 					"        maxAmount = pm.request.url.query.get(\"max-amount\")",
 					"        isOwned = pm.request.url.query.get(\"is-owned\")",
-					"        productCategory = pm.request.url.query.get(\"product-category\") ",
+					"        bankingProductCategory = pm.request.url.query.get(\"product-category\") ",
 					"        payeeType = pm.request.url.query.get(\"type\")",
 					"        xv = pm.request.headers.get(\"x-v\"); ",
 					"        xvmin = pm.request.headers.get(\"x-v\"); ",
@@ -5883,8 +5883,6 @@
 					"",
 					"        var validProductCategories = [\"BUSINESS_LOANS\", \"BUSINESS_LOANS\", \"LEASES\", \"MARGIN_LOANS\", \"OVERDRAFTS\", \"PERS_LOANS\", \"REGULATED_TRUST_ACCOUNTS\", ",
 					"            \"RESIDENTIAL_MORTGAGES\",\"TERM_DEPOSITS\",\"TRADE_FINANCE\", \"TRANS_AND_SAVINGS_ACCOUNTS\", \"TRAVEL_CARDS\", \"CRED_AND_CHRG_CARDS\", \"OVERDRAFTS\"]",
-					"",
-					"        var validPayeeTypes = [\"ALL\", \"BILLER\", \"DIGITAL_WALLET\", \"DOMESTIC\", \"INTERNATIONAL\"]",
 					"",
 					"        var validPayeeTypes = [\"ALL\", \"BILLER\", \"DIGITAL_WALLET\", \"DOMESTIC\", \"INTERNATIONAL\"]",
 					"",
@@ -5935,11 +5933,11 @@
 					"                pm.response.to.have.status(400);",
 					"            });",
 					"        }",
-					"        if ((pm.request.url.query.get(\"product-category\") != undefined && validProductCategories.indexOf(productCategory)< 0)) {",
+					"        if ((pm.request.url.query.get(\"product-category\") != undefined && validProductCategories.indexOf(bankingProductCategory)< 0)) {",
 					"            console.log(\"Request should return error based on invalid product-category parameter\")",
 					"            invalidQueryParameters = true;",
 					"            // check thatwe get a 400 error",
-					"            pm.test(\"Should get a 400 based on invalid product-category parameter: \" + productCategory, function () {",
+					"            pm.test(\"Should get a 400 based on invalid product-category parameter: \" + bankingProductCategory, function () {",
 					"                pm.response.to.have.status(400);",
 					"            });",
 					"        }  ",
@@ -6105,7 +6103,7 @@
 			"value": ""
 		},
 		{
-			"key": "productCategory",
+			"key": "bankingProductCategory",
 			"value": ""
 		},
 		{
