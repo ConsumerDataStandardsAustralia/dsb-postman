@@ -1,5 +1,5 @@
 {
-	"id": "abe0ca70-a690-4232-b641-c6162b5b3d9a",
+	"id": "4a6d08b9-25f1-4ee9-8aaa-3bd3c18c75fa",
 	"name": "DSB Environment",
 	"values": [
 		{
@@ -21,7 +21,7 @@
 		},
 		{
 			"key": "version",
-			"value": "1.31.0",
+			"value": "1.33.0",
 			"enabled": true
 		},
 		{
@@ -155,9 +155,15 @@
 			"value": "PERS_LOANS",
 			"type": "default",
 			"enabled": true
+		},
+		{
+			"key": "testProductId",
+			"value": "e54043f1-1bff-454b-9eb9-800e610377f6",
+			"type": "default",
+			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2024-09-28T11:08:45.471Z",
-	"_postman_exported_using": "Postman/11.14.1"
+	"_postman_exported_at": "2025-01-27T21:09:24.003Z",
+	"_postman_exported_using": "Postman/11.29.0"
 }
