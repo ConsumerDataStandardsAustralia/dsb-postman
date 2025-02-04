@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "dbd26e8d-6f50-4973-a759-02e4c8bcc5f8",
 		"name": "CDR Banking Sector Conformance Tests",
-		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.31.0of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n- Get Accounts\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Account Balance\n    \n- Get Account Details\n    \n- Get Transactions For Account\n    \n- Get Transaction Detail\n    \n- Get Direct Debits For Accounts\n    \n- Get Bulk Direct Debits\n    \n- Get Direct Debits For Specific Accounts\n    \n- Get Scheduled Payments For Accounts\n    \n- Get Scheduled Payments Bulk\n    \n- Get Scheduled Payments For Specific Accounts\n    \n- Get Payees\n    \n- Get Payee Details\n    \n- Get Products\n    \n- Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n| 3rd Jul 2024 | Enhanced test, validating query parameters |\n| 13th August 2024 | Updated to v1.31.0 of standard |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : dev@consumerdatastandards.gov.au\n\n}",
+		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.33.0of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n- Get Accounts\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Account Balance\n    \n- Get Account Details\n    \n- Get Transactions For Account\n    \n- Get Transaction Detail\n    \n- Get Direct Debits For Accounts\n    \n- Get Bulk Direct Debits\n    \n- Get Direct Debits For Specific Accounts\n    \n- Get Scheduled Payments For Accounts\n    \n- Get Scheduled Payments Bulk\n    \n- Get Scheduled Payments For Specific Accounts\n    \n- Get Payees\n    \n- Get Payee Details\n    \n- Get Products\n    \n- Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n| 3rd Jul 2024 | Enhanced test, validating query parameters |\n| 13th August 2024 | Updated to v1.31.0 of standards |\n| 4th February 2025 | Updated to v1.33.0 of standards |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [dev@consumerdatastandards.gov.au](https://mailto:dev@consumerdatastandards.gov.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23360681"
 	},
@@ -148,7 +148,7 @@
 														},
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
+															"value": "{{bankingProductCategory}}",
 															"disabled": true
 														}
 													]
@@ -376,7 +376,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?product-category={{bankingProductCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -388,7 +388,7 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
+															"value": "{{bankingProductCategory}}",
 															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
@@ -757,7 +757,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}&open-status={{openStatus}}&product-category={{productCategory}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}&open-status={{openStatus}}&product-category={{bankingProductCategory}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -781,7 +781,7 @@
 														},
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}"
+															"value": "{{bankingProductCategory}}"
 														}
 													]
 												},
@@ -1001,7 +1001,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1&open-status={{openStatus}}&product-category={{productCategory}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1&open-status={{openStatus}}&product-category={{bankingProductCategory}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -1025,7 +1025,7 @@
 														},
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}"
+															"value": "{{bankingProductCategory}}"
 														}
 													]
 												}
@@ -1583,7 +1583,7 @@
 															}
 														],
 														"url": {
-															"raw": "{{bankingBaseUrl}}/banking/accounts/{{bankingAccountId1}}/transactions?page=1&page-size={{pageSize}}&newest-time={{newestTime}}&oldest-time={{oldestTime}}&min-amount=0&max-amount=100&is-owned={{isOwned}}",
+															"raw": "{{bankingBaseUrl}}/banking/accounts/{{bankingAccountId1}}/transactions?page=1&page-size={{pageSize}}&newest-time={{newestTime}}&oldest-time={{oldestTime}}&min-amount=0&max-amount=100",
 															"host": [
 																"{{bankingBaseUrl}}"
 															],
@@ -1619,10 +1619,6 @@
 																{
 																	"key": "max-amount",
 																	"value": "100"
-																},
-																{
-																	"key": "is-owned",
-																	"value": "{{isOwned}}"
 																}
 															]
 														},
@@ -3115,7 +3111,7 @@
 															"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {",
 															"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
 															"            let errCode = jsonData.errors[0].code;",
-															"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\"]);",
+															"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-banking:Authorisation/InvalidBankingAccount\"]);",
 															"            if (!valid){",
 															"            ajv.errors.forEach(element => {",
 															"                console.log(JSON.stringify(element));",
@@ -3251,7 +3247,7 @@
 													"// only accounts with specified productCategory are included",
 													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
 													"    pm.test('product-category query parameter is considered', function() {",
-													"        var currentCategory = pm.variables.get(\"productCategory\")",
+													"        var currentCategory = pm.variables.get(\"bankingProductCategory\")",
 													"        if (currentCategory !== \"ALL\"){",
 													"            jsonData?.data?.accounts.forEach(acc => {",
 													"                pm.expect(acc.productCategory).to.equal(currentCategory)",
@@ -4160,7 +4156,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?product-category={{bankingProductCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -4172,7 +4168,7 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
+															"value": "{{bankingProductCategory}}",
 															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
@@ -4308,7 +4304,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?product-category={{bankingProductCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -4320,7 +4316,7 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
+															"value": "{{bankingProductCategory}}",
 															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
@@ -4705,7 +4701,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{bankingBaseUrl}}/banking/payees?type={{payeeType}}&page=1&page-size={{pageSize}}",
+											"raw": "{{bankingBaseUrl}}/banking/payees?type={{bankingPayeeType}}&page=1&page-size={{pageSize}}",
 											"host": [
 												"{{bankingBaseUrl}}"
 											],
@@ -4716,7 +4712,7 @@
 											"query": [
 												{
 													"key": "type",
-													"value": "{{payeeType}}"
+													"value": "{{bankingPayeeType}}"
 												},
 												{
 													"key": "page",
@@ -5078,7 +5074,7 @@
 											"variable": [
 												{
 													"key": "payeeId",
-													"value": "{{testPayeeId}}",
+													"value": "{{bankingPayeeId}}",
 													"description": "The ID used to locate the details of a particular payee"
 												}
 											]
@@ -5520,7 +5516,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{bankingBaseUrl}}/banking/products?effective={{effective}}&product-category={{productCategory}}&page={{currentPage}}&page-size=1",
+											"raw": "{{bankingBaseUrl}}/banking/products?effective={{effective}}&product-category={{bankingProductCategory}}&page={{currentPage}}&page-size=1",
 											"host": [
 												"{{bankingBaseUrl}}"
 											],
@@ -5535,7 +5531,7 @@
 												},
 												{
 													"key": "product-category",
-													"value": "{{productCategory}}"
+													"value": "{{bankingProductCategory}}"
 												},
 												{
 													"key": "page",
@@ -5617,7 +5613,7 @@
 											"variable": [
 												{
 													"key": "productId",
-													"value": "{{testProductId}}"
+													"value": "{{bankingProductId}}"
 												}
 											]
 										},
@@ -5691,7 +5687,7 @@
 											"variable": [
 												{
 													"key": "productId",
-													"value": "{{testProductId}}"
+													"value": "{{bankingProductId}}"
 												}
 											]
 										},
@@ -5903,8 +5899,6 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"",
-					"",
 					"if (pm.iterationData.get(\"baseUrl\") != undefined)",
 					"    pm.collectionVariables.set(\"baseUrl\", pm.iterationData.get(\"baseUrl\"));",
 					"",
@@ -5921,7 +5915,6 @@
 					"",
 					"if (pm.iterationData.get(\"version\") != undefined)",
 					"    pm.collectionVariables.set(\"version\", pm.iterationData.get(\"version\"));    ",
-					"",
 					"",
 					"if (pm.iterationData.get(\"accessToken\") != undefined)",
 					"    pm.collectionVariables.set(\"accessToken\", pm.iterationData.get(\"accessToken\"));",
@@ -5968,7 +5961,6 @@
 					"if (pm.iterationData.get(\"pageSize\") != undefined)",
 					"    pm.collectionVariables.set(\"pageSize\", pm.iterationData.get(\"pageSize\"));           ",
 					"",
-					"",
 					"// Set some time relevant time stamps",
 					"var timeCurrent = new Date();",
 					"var moment = require(\"moment\")",
@@ -5977,13 +5969,15 @@
 					"if (pm.iterationData.get(\"newestTime\") != undefined)",
 					"    pm.collectionVariables.set(\"newestTime\", pm.iterationData.get(\"newestTime\"));",
 					"else",
-					"    pm.collectionVariables.set(\"newestTime\", moment().format((\"YYYY-MM-DDTHH:mm:ss.sssZ\")));",
+					"    pm.collectionVariables.set(\"newestTime\", moment().utc().toISOString())",
 					"",
+					"console.log(moment().utc().toISOString())",
+					"console.log(moment().format(\"YYYY-MM-DDTHH:mm:ss.sssZ\"))",
 					"// oldest time defaults to 90 days ago ",
 					"if (pm.iterationData.get(\"oldestTime\") != undefined)",
 					"    pm.collectionVariables.set(\"oldestTime\", pm.iterationData.get(\"oldestTime\"));",
 					"else",
-					"    pm.collectionVariables.set(\"oldestTime\", moment().subtract(90, \"days\").format((\"YYYY-MM-DDTHH:mm:ss.sssZ\")));",
+					"    pm.collectionVariables.set(\"oldestTime\", moment().subtract(90, \"days\").utc().toISOString());",
 					"",
 					"// Initialise only once",
 					"if (pm.variables.get(\"intitalised\") == 0 || pm.variables.get(\"intitalised\") == null) {",
@@ -5994,7 +5988,6 @@
 					"    // Set some time relevant time stamps",
 					"    console.log(\"Pre-request: Setting common variables\")",
 					"    var timeCurrent = new Date();",
-					"",
 					"",
 					"    // setting the base url for schema files",
 					"    var version = pm.collectionVariables.get(\"version\");",
@@ -6044,11 +6037,13 @@
 					"",
 					"",
 					"pm.collectionVariables.set(\"notPaginatedRequests\", ",
-					"[\"Get Account Balance\", ",
-					"\"Get Transaction Detail\",",
-					"\"Get Account Detail\",",
-					"\"Get Payee Detail\",",
-					"\"Get Product Detail\"",
+					"[\"Get Account Balance v1\", ",
+					"\"Get Transaction Detail v1\",",
+					"\"Get Transaction Detail v2\",",
+					"\"Get Account Detail v3\",",
+					"\"Get Payee Detail v2\",",
+					"\"Get Product Detail v4\",",
+					"\"Get Product Detail v5\"",
 					"]);",
 					"",
 					"// This is used for pagination to determine if this is the first page, last page, middle page or",
@@ -6353,14 +6348,10 @@
 	"variable": [
 		{
 			"key": "version",
-			"value": "1.31.0"
+			"value": "1.33.0"
 		},
 		{
 			"key": "x-fapi-auth-date",
-			"value": ""
-		},
-		{
-			"key": "productCategory",
 			"value": ""
 		},
 		{
@@ -6392,11 +6383,6 @@
 			"type": "string"
 		},
 		{
-			"key": "payeeType",
-			"value": "",
-			"type": "string"
-		},
-		{
 			"key": "effectiveDate",
 			"value": "",
 			"type": "string"
@@ -6413,10 +6399,6 @@
 		},
 		{
 			"key": "pageArray",
-			"value": ""
-		},
-		{
-			"key": "bankingAccountId1",
 			"value": ""
 		},
 		{
