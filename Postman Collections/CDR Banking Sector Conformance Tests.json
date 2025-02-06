@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "5e43cda9-201a-4000-8c96-00b76f0a4946",
+		"_postman_id": "dbd26e8d-6f50-4973-a759-02e4c8bcc5f8",
 		"name": "CDR Banking Sector Conformance Tests",
-		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.31.0of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n- Get Accounts\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Account Balance\n    \n- Get Account Details\n    \n- Get Transactions For Account\n    \n- Get Transaction Detail\n    \n- Get Direct Debits For Accounts\n    \n- Get Bulk Direct Debits\n    \n- Get Direct Debits For Specific Accounts\n    \n- Get Scheduled Payments For Accounts\n    \n- Get Scheduled Payments Bulk\n    \n- Get Scheduled Payments For Specific Accounts\n    \n- Get Payees\n    \n- Get Payee Details\n    \n- Get Products\n    \n- Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n| 3rd Jul 2024 | Enhanced test, validating query parameters |\n| 13th August 2024 | Updated to v1.31.0 of standard |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : dev@consumerdatastandards.gov.au\n\n}",
+		"description": "# CDR Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.33.0of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Banking APIs\n\n- Get Accounts\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Account Balance\n    \n- Get Account Details\n    \n- Get Transactions For Account\n    \n- Get Transaction Detail\n    \n- Get Direct Debits For Accounts\n    \n- Get Bulk Direct Debits\n    \n- Get Direct Debits For Specific Accounts\n    \n- Get Scheduled Payments For Accounts\n    \n- Get Scheduled Payments Bulk\n    \n- Get Scheduled Payments For Specific Accounts\n    \n- Get Payees\n    \n- Get Payee Details\n    \n- Get Products\n    \n- Get Product Detail\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st November 2019 | Initial creation of the collection |\n| 1st August 2021 | Updated documentation |\n| 1st Jun 2022 | Extracted Common API and created separate collection |\n| 3rd Jul 2024 | Enhanced test, validating query parameters |\n| 13th August 2024 | Updated to v1.31.0 of standards |\n| 4th February 2025 | Updated to v1.33.0 of standards |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [dev@consumerdatastandards.gov.au](https://mailto:dev@consumerdatastandards.gov.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8286723"
+		"_exporter_id": "23360681"
 	},
 	"item": [
 		{
@@ -20,7 +20,7 @@
 									"name": "direct-debits",
 									"item": [
 										{
-											"name": "Get Bulk Direct Debits - First Page",
+											"name": "Get Bulk Direct Debits v1 - First Page",
 											"event": [
 												{
 													"listen": "test",
@@ -148,7 +148,7 @@
 														},
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
+															"value": "{{bankingProductCategory}}",
 															"disabled": true
 														}
 													]
@@ -158,7 +158,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Bulk Direct Debits - No params",
+											"name": "Get Bulk Direct Debits v1 - No params",
 											"event": [
 												{
 													"listen": "test",
@@ -266,7 +266,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Bulk Direct Debits - Other Pages",
+											"name": "Get Bulk Direct Debits v1 - Other Pages",
 											"event": [
 												{
 													"listen": "test",
@@ -376,7 +376,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/direct-debits?product-category={{bankingProductCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -388,7 +388,7 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
+															"value": "{{bankingProductCategory}}",
 															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
@@ -417,7 +417,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Direct Debits For Specific Accounts - First Page",
+											"name": "Get Direct Debits For Specific Accounts v1 - First Page",
 											"event": [
 												{
 													"listen": "test",
@@ -533,7 +533,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Direct Debits For Specific Accounts - Other Pages",
+											"name": "Get Direct Debits For Specific Accounts v1 - Other Pages",
 											"event": [
 												{
 													"listen": "test",
@@ -667,7 +667,7 @@
 									"name": "balances",
 									"item": [
 										{
-											"name": "Get Bulk Balances - First page",
+											"name": "Get Bulk Balances v3 - First page",
 											"event": [
 												{
 													"listen": "test",
@@ -757,7 +757,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}&open-status={{openStatus}}&product-category={{productCategory}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page=1&page-size={{pageSize}}&open-status={{openStatus}}&product-category={{bankingProductCategory}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -781,7 +781,7 @@
 														},
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}"
+															"value": "{{bankingProductCategory}}"
 														}
 													]
 												},
@@ -790,7 +790,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Bulk Balances - No params",
+											"name": "Get Bulk Balances v3 - No params",
 											"event": [
 												{
 													"listen": "test",
@@ -895,7 +895,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Bulk Balances - Other pages",
+											"name": "Get Bulk Balances v3 - Other pages",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -1001,7 +1001,7 @@
 													}
 												],
 												"url": {
-													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1&open-status={{openStatus}}&product-category={{productCategory}}",
+													"raw": "{{bankingBaseUrl}}/banking/accounts/balances?page={{currentPage}}&page-size=1&open-status={{openStatus}}&product-category={{bankingProductCategory}}",
 													"host": [
 														"{{bankingBaseUrl}}"
 													],
@@ -1025,7 +1025,7 @@
 														},
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}"
+															"value": "{{bankingProductCategory}}"
 														}
 													]
 												}
@@ -1033,7 +1033,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Balances For Specific Accounts - First page",
+											"name": "Get Balances For Specific Accounts v1 - First page",
 											"event": [
 												{
 													"listen": "test",
@@ -1155,7 +1155,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Balances For Specific Accounts - Other pages",
+											"name": "Get Balances For Specific Accounts v1 - Other pages",
 											"event": [
 												{
 													"listen": "test",
@@ -1286,7 +1286,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Account Balance",
+											"name": "Get Account Balance v1",
 											"event": [
 												{
 													"listen": "prerequest",
@@ -1428,7 +1428,7 @@
 											"name": "transactions",
 											"item": [
 												{
-													"name": "Get Transactions For Account - First page",
+													"name": "Get Transactions For Account v1 - First page",
 													"event": [
 														{
 															"listen": "test",
@@ -1578,12 +1578,12 @@
 															},
 															{
 																"key": "x-v",
-																"value": "10",
+																"value": "1",
 																"type": "text"
 															}
 														],
 														"url": {
-															"raw": "{{bankingBaseUrl}}/banking/accounts/{{bankingAccountId1}}/transactions?page=1&page-size={{pageSize}}&newest-time={{newestTime}}&oldest-time={{oldestTime}}&min-amount=0&max-amount=100&is-owned={{isOwned}}",
+															"raw": "{{bankingBaseUrl}}/banking/accounts/{{bankingAccountId1}}/transactions?page=1&page-size={{pageSize}}&newest-time={{newestTime}}&oldest-time={{oldestTime}}&min-amount=0&max-amount=100",
 															"host": [
 																"{{bankingBaseUrl}}"
 															],
@@ -1619,10 +1619,6 @@
 																{
 																	"key": "max-amount",
 																	"value": "100"
-																},
-																{
-																	"key": "is-owned",
-																	"value": "{{isOwned}}"
 																}
 															]
 														},
@@ -1631,7 +1627,7 @@
 													"response": []
 												},
 												{
-													"name": "Get Transactions For Account -  No Params",
+													"name": "Get Transactions For Account v1 -  No Params",
 													"event": [
 														{
 															"listen": "test",
@@ -1781,7 +1777,7 @@
 															},
 															{
 																"key": "x-v",
-																"value": "10",
+																"value": "1",
 																"type": "text"
 															}
 														],
@@ -1808,7 +1804,7 @@
 													"response": []
 												},
 												{
-													"name": "Get Transactions For Account - Other pages",
+													"name": "Get Transactions For Account v1 - Other pages",
 													"event": [
 														{
 															"listen": "test",
@@ -2008,7 +2004,7 @@
 													"response": []
 												},
 												{
-													"name": "Get Transaction Detail",
+													"name": "Get Transaction Detail v1",
 													"event": [
 														{
 															"listen": "test",
@@ -2113,6 +2109,113 @@
 														"description": "Obtain detailed information on a transaction for a specific account"
 													},
 													"response": []
+												},
+												{
+													"name": "Get Transaction Detail v2",
+													"event": [
+														{
+															"listen": "test",
+															"script": {
+																"exec": [
+																	"if (pm.response.code < 500) {",
+																	"    pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+																	"        pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
+																	"    });",
+																	"}",
+																	"",
+																	"// Schema payload check",
+																	"if (pm.response.code === 200) {",
+																	"    if (pm.variables.get(\"bankingTransactionId1\") != \"\" || pm.variables.get(\"bankingAccountId2\") != \"\") {",
+																	"        // Parse the response body",
+																	"        try { jsonData = pm.response.json(); } catch (e) { }",
+																	"",
+																	"        pm.test(\"x-fapi-interaction-id header is present and has correct value\", function () {",
+																	"            pm.response.to.have.header(\"x-fapi-interaction-id\", pm.variables.get(\"x-fapi-interaction-id\"));",
+																	"        });",
+																	"",
+																	"        // Schema payload check",
+																	"        ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function () {",
+																	"            const valid = ajv.validate(\"ResponseBankingTransactionById\", jsonData)",
+																	"            if (!valid) {",
+																	"                ajv.errors.forEach(element => {",
+																	"                    console.log(JSON.stringify(element));",
+																	"                });",
+																	"            };",
+																	"            pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;",
+																	"        });",
+																	"    }",
+																	"}",
+																	"",
+																	"",
+																	"",
+																	"",
+																	"",
+																	"",
+																	""
+																],
+																"type": "text/javascript",
+																"packages": {}
+															}
+														}
+													],
+													"request": {
+														"method": "GET",
+														"header": [
+															{
+																"key": "x-v",
+																"value": "2"
+															},
+															{
+																"key": "x-min-v",
+																"value": "2"
+															},
+															{
+																"key": "x-fapi-interaction-id",
+																"value": "{{x-fapi-interaction-id}}"
+															},
+															{
+																"key": "x-fapi-auth-date",
+																"value": "{{x-fapi-auth-date}}"
+															},
+															{
+																"key": "x-fapi-customer-ip-address",
+																"value": "127.0.0.1"
+															},
+															{
+																"key": "x-cds-client-headers",
+																"value": "{{cdsClientHeader}}"
+															},
+															{
+																"key": "Content-Type",
+																"value": "application/json"
+															}
+														],
+														"url": {
+															"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId/transactions/:transactionId",
+															"host": [
+																"{{bankingBaseUrl}}"
+															],
+															"path": [
+																"banking",
+																"accounts",
+																":accountId",
+																"transactions",
+																":transactionId"
+															],
+															"variable": [
+																{
+																	"key": "accountId",
+																	"value": "{{bankingAccountId1}}"
+																},
+																{
+																	"key": "transactionId",
+																	"value": "{{bankingTransactionId}}"
+																}
+															]
+														},
+														"description": "Obtain detailed information on a transaction for a specific account"
+													},
+													"response": []
 												}
 											],
 											"event": [
@@ -2137,7 +2240,7 @@
 											]
 										},
 										{
-											"name": "Get Direct Debits For Account - First page",
+											"name": "Get Direct Debits For Account v1 - First page",
 											"event": [
 												{
 													"listen": "test",
@@ -2341,7 +2444,7 @@
 											]
 										},
 										{
-											"name": "Get Direct Debits For Account - Other pages",
+											"name": "Get Direct Debits For Account v1 - Other pages",
 											"event": [
 												{
 													"listen": "test",
@@ -2561,7 +2664,7 @@
 											]
 										},
 										{
-											"name": "Get Scheduled Payments for Account - First page",
+											"name": "Get Scheduled Payments for Account v2 - First page",
 											"event": [
 												{
 													"listen": "test",
@@ -2620,7 +2723,7 @@
 													},
 													{
 														"key": "x-min-v",
-														"value": "1"
+														"value": "2"
 													},
 													{
 														"key": "x-fapi-interaction-id",
@@ -2768,7 +2871,7 @@
 											]
 										},
 										{
-											"name": "Get Scheduled Payments for Account - Other pages",
+											"name": "Get Scheduled Payments for Account v2 - Other pages",
 											"event": [
 												{
 													"listen": "test",
@@ -2842,7 +2945,7 @@
 													},
 													{
 														"key": "x-min-v",
-														"value": "1"
+														"value": "2"
 													},
 													{
 														"key": "x-fapi-interaction-id",
@@ -2995,7 +3098,7 @@
 									"name": "balances-negative-tests",
 									"item": [
 										{
-											"name": "Get Balances For Specific Accounts - Invalid account ID",
+											"name": "Get Balances For Specific Accounts v1 - Invalid account ID",
 											"event": [
 												{
 													"listen": "test",
@@ -3008,7 +3111,7 @@
 															"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {",
 															"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);",
 															"            let errCode = jsonData.errors[0].code;",
-															"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\"]);",
+															"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-banking:Authorisation/InvalidBankingAccount\"]);",
 															"            if (!valid){",
 															"            ajv.errors.forEach(element => {",
 															"                console.log(JSON.stringify(element));",
@@ -3095,7 +3198,7 @@
 									]
 								},
 								{
-									"name": "Get Accounts - First page",
+									"name": "Get Accounts v2 - First page",
 									"event": [
 										{
 											"listen": "test",
@@ -3144,7 +3247,7 @@
 													"// only accounts with specified productCategory are included",
 													"if ((pm.response.code === 200) && (pm.request.url.query.get(\"product-category\") != null) && (jsonData?.data?.accounts?.length > 0)) {",
 													"    pm.test('product-category query parameter is considered', function() {",
-													"        var currentCategory = pm.variables.get(\"productCategory\")",
+													"        var currentCategory = pm.variables.get(\"bankingProductCategory\")",
 													"        if (currentCategory !== \"ALL\"){",
 													"            jsonData?.data?.accounts.forEach(acc => {",
 													"                pm.expect(acc.productCategory).to.equal(currentCategory)",
@@ -3198,7 +3301,7 @@
 											},
 											{
 												"key": "x-min-v",
-												"value": "1"
+												"value": "2"
 											},
 											{
 												"key": "x-fapi-interaction-id",
@@ -3256,7 +3359,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Accounts - No params",
+									"name": "Get Accounts v2 - No params",
 									"event": [
 										{
 											"listen": "test",
@@ -3367,7 +3470,7 @@
 											},
 											{
 												"key": "x-min-v",
-												"value": "1"
+												"value": "2"
 											},
 											{
 												"key": "x-fapi-interaction-id",
@@ -3405,7 +3508,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Accounts - Other pages",
+									"name": "Get Accounts v2 - Other pages",
 									"event": [
 										{
 											"listen": "test",
@@ -3537,7 +3640,7 @@
 											},
 											{
 												"key": "x-min-v",
-												"value": "1"
+												"value": "2"
 											},
 											{
 												"key": "x-fapi-interaction-id",
@@ -3584,7 +3687,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Account Detail",
+									"name": "Get Account Detail v3",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -3654,7 +3757,7 @@
 											},
 											{
 												"key": "x-min-v",
-												"value": "2",
+												"value": "3",
 												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
 											},
 											{
@@ -3688,9 +3791,9 @@
 											"raw": ""
 										},
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId",
+											"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -3708,7 +3811,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Account Detail - Invalid Account",
+									"name": "Get Account Detail - Invalid Account v3",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -3809,9 +3912,9 @@
 											"raw": ""
 										},
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts/:accountId",
+											"raw": "{{bankingBaseUrl}}/banking/accounts/:accountId",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -3829,7 +3932,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Accounts - Out of range page",
+									"name": "Get Accounts v2 - Out of range page",
 									"event": [
 										{
 											"listen": "test",
@@ -3906,7 +4009,7 @@
 											},
 											{
 												"key": "x-min-v",
-												"value": "1"
+												"value": "2"
 											},
 											{
 												"key": "x-fapi-interaction-id",
@@ -3930,9 +4033,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/accounts?open-status={{openStatus}}&page=99999&page-size={{pageSize}}",
+											"raw": "{{bankingBaseUrl}}/banking/accounts?open-status={{openStatus}}&page=99999&page-size={{pageSize}}",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -3968,7 +4071,7 @@
 									"name": "scheduled",
 									"item": [
 										{
-											"name": "Get Scheduled Payments Bulk - First page",
+											"name": "Get Scheduled Payments Bulk v2 - First page",
 											"event": [
 												{
 													"listen": "test",
@@ -4029,7 +4132,7 @@
 													},
 													{
 														"key": "x-min-v",
-														"value": "1"
+														"value": "2"
 													},
 													{
 														"key": "x-fapi-interaction-id",
@@ -4053,9 +4156,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?product-category={{bankingProductCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -4065,7 +4168,7 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
+															"value": "{{bankingProductCategory}}",
 															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
@@ -4095,7 +4198,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Scheduled Payments Bulk - Other pages",
+											"name": "Get Scheduled Payments Bulk v2 - Other pages",
 											"event": [
 												{
 													"listen": "test",
@@ -4177,7 +4280,7 @@
 													},
 													{
 														"key": "x-min-v",
-														"value": "1"
+														"value": "2"
 													},
 													{
 														"key": "x-fapi-interaction-id",
@@ -4201,9 +4304,9 @@
 													}
 												],
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?product-category={{productCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?product-category={{bankingProductCategory}}&open-status={{openStatus}}&is-owned={{isOwned}}&page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -4213,7 +4316,7 @@
 													"query": [
 														{
 															"key": "product-category",
-															"value": "{{productCategory}}",
+															"value": "{{bankingProductCategory}}",
 															"description": "Used to filter results on the productCategory field applicable to accounts. Any one of the valid values for this field can be supplied. If absent then all accounts returned."
 														},
 														{
@@ -4243,7 +4346,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Scheduled Payments For Specific Accounts - First page",
+											"name": "Get Scheduled Payments For Specific Accounts v2 - First page",
 											"event": [
 												{
 													"listen": "test",
@@ -4304,7 +4407,7 @@
 													},
 													{
 														"key": "x-min-v",
-														"value": "1"
+														"value": "2"
 													},
 													{
 														"key": "x-fapi-interaction-id",
@@ -4332,9 +4435,9 @@
 													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -4359,7 +4462,7 @@
 											"response": []
 										},
 										{
-											"name": "Get Scheduled Payments For Specific Accounts - Other pages",
+											"name": "Get Scheduled Payments For Specific Accounts v2 - Other pages",
 											"event": [
 												{
 													"listen": "test",
@@ -4442,7 +4545,7 @@
 													},
 													{
 														"key": "x-min-v",
-														"value": "1"
+														"value": "2"
 													},
 													{
 														"key": "x-fapi-interaction-id",
@@ -4470,9 +4573,9 @@
 													"raw": "{\n    \"data\": {\n        \"accountIds\": [\n            \"{{testAccountId1}}\",\n            \"{{testAccountId2}}\"\n        ]\n    },\n    \"meta\": {}\n}"
 												},
 												"url": {
-													"raw": "{{authenticatedResourceUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
+													"raw": "{{bankingBaseUrl}}/banking/payments/scheduled?page={{currentPage}}&page-size={{pageSize}}",
 													"host": [
-														"{{authenticatedResourceUrl}}"
+														"{{bankingBaseUrl}}"
 													],
 													"path": [
 														"banking",
@@ -4504,7 +4607,7 @@
 							"name": "payees",
 							"item": [
 								{
-									"name": "Get Payees - First page",
+									"name": "Get Payees v2 - First page",
 									"event": [
 										{
 											"listen": "test",
@@ -4568,7 +4671,7 @@
 											},
 											{
 												"key": "x-min-v",
-												"value": "1",
+												"value": "2",
 												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
 											},
 											{
@@ -4598,9 +4701,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees?type={{payeeType}}&page=1&page-size={{pageSize}}",
+											"raw": "{{bankingBaseUrl}}/banking/payees?type={{bankingPayeeType}}&page=1&page-size={{pageSize}}",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -4609,7 +4712,7 @@
 											"query": [
 												{
 													"key": "type",
-													"value": "{{payeeType}}"
+													"value": "{{bankingPayeeType}}"
 												},
 												{
 													"key": "page",
@@ -4626,7 +4729,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Payees - No params",
+									"name": "Get Payees v2 - No params",
 									"event": [
 										{
 											"listen": "test",
@@ -4688,7 +4791,7 @@
 											},
 											{
 												"key": "x-min-v",
-												"value": "1",
+												"value": "2",
 												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
 											},
 											{
@@ -4718,9 +4821,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees",
+											"raw": "{{bankingBaseUrl}}/banking/payees",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -4732,7 +4835,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Payees - Other pages",
+									"name": "Get Payees v2 - Other pages",
 									"event": [
 										{
 											"listen": "test",
@@ -4808,7 +4911,7 @@
 											},
 											{
 												"key": "x-min-v",
-												"value": "1",
+												"value": "2",
 												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
 											},
 											{
@@ -4838,9 +4941,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees?type=ALL&page={{currentPage}}&page-size=1",
+											"raw": "{{bankingBaseUrl}}/banking/payees?type=ALL&page={{currentPage}}&page-size=1",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -4869,7 +4972,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Payee Detail",
+									"name": "Get Payee Detail v2",
 									"event": [
 										{
 											"listen": "test",
@@ -4959,9 +5062,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees/:payeeId",
+											"raw": "{{bankingBaseUrl}}/banking/payees/:payeeId",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -4971,7 +5074,7 @@
 											"variable": [
 												{
 													"key": "payeeId",
-													"value": "{{testPayeeId}}",
+													"value": "{{bankingPayeeId}}",
 													"description": "The ID used to locate the details of a particular payee"
 												}
 											]
@@ -4981,7 +5084,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Payee Detail - Invalid Payee",
+									"name": "Get Payee Detail v2 - Invalid Payee",
 									"event": [
 										{
 											"listen": "test",
@@ -5072,9 +5175,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{authenticatedResourceUrl}}/banking/payees/:payeeId",
+											"raw": "{{bankingBaseUrl}}/banking/payees/:payeeId",
 											"host": [
-												"{{authenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5099,7 +5202,7 @@
 							"name": "products",
 							"item": [
 								{
-									"name": "Get Products - First page",
+									"name": "Get Products v3 - First page",
 									"event": [
 										{
 											"listen": "test",
@@ -5183,9 +5286,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products?effective={{effective}}&product-category={{productCategory}}&page=1&page-size={{pageSize}}",
+											"raw": "{{bankingBaseUrl}}/banking/products?effective={{effective}}&product-category={{productCategory}}&page=1&page-size={{pageSize}}",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5215,7 +5318,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Products - No params",
+									"name": "Get Products v3 - No params",
 									"event": [
 										{
 											"listen": "test",
@@ -5286,9 +5389,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products",
+											"raw": "{{bankingBaseUrl}}/banking/products",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5300,7 +5403,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Products - Other pages",
+									"name": "Get Products v3 - Other pages",
 									"event": [
 										{
 											"listen": "test",
@@ -5413,9 +5516,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products?effective={{effective}}&product-category={{productCategory}}&page={{currentPage}}&page-size=1",
+											"raw": "{{bankingBaseUrl}}/banking/products?effective={{effective}}&product-category={{bankingProductCategory}}&page={{currentPage}}&page-size=1",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5428,7 +5531,7 @@
 												},
 												{
 													"key": "product-category",
-													"value": "{{productCategory}}"
+													"value": "{{bankingProductCategory}}"
 												},
 												{
 													"key": "page",
@@ -5445,7 +5548,7 @@
 									"response": []
 								},
 								{
-									"name": "Get Product Detail",
+									"name": "Get Product Detail v4",
 									"event": [
 										{
 											"listen": "test",
@@ -5498,9 +5601,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products/:productId",
+											"raw": "{{bankingBaseUrl}}/banking/products/:productId",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5510,7 +5613,7 @@
 											"variable": [
 												{
 													"key": "productId",
-													"value": "{{testProductId}}"
+													"value": "{{bankingProductId}}"
 												}
 											]
 										},
@@ -5519,7 +5622,81 @@
 									"response": []
 								},
 								{
-									"name": "Get Product Detail - Invalid Product",
+									"name": "Get Product Detail v5",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"\r",
+													"// if not id is provided we skip these tests\r",
+													"if (pm.iterationData.get(\"testProductId1\") != \"\")\r",
+													"{\r",
+													"    // Parse the response body\r",
+													"    var jsonData;\r",
+													"    try { jsonData = pm.response.json(); } catch(e) {}\r",
+													"\r",
+													"\r",
+													"    // Schema payload check\r",
+													"    ((pm.response.code == 200 && pm.collectionVariables.get(\"requestShouldReturnError\") == false) ? pm.test : pm.test.skip)('Response payload conforms to standards schema', function() {\r",
+													"        const valid = ajv.validate(\"ResponseBankingProductByIdV4\", jsonData)\r",
+													"        if (!valid){\r",
+													"        ajv.errors.forEach(element => {\r",
+													"            console.log(JSON.stringify(element));\r",
+													"            });\r",
+													"        };\r",
+													"        pm.expect(valid, JSON.stringify(ajv.errors)).to.be.true;\r",
+													"    }); \r",
+													"}\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "5",
+												"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+											},
+											{
+												"key": "x-min-v",
+												"value": "5",
+												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{bankingBaseUrl}}/banking/products/:productId",
+											"host": [
+												"{{bankingBaseUrl}}"
+											],
+											"path": [
+												"banking",
+												"products",
+												":productId"
+											],
+											"variable": [
+												{
+													"key": "productId",
+													"value": "{{bankingProductId}}"
+												}
+											]
+										},
+										"description": "Obtain detailed information on a single product offered openly to the market"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Product Detail v4 - Invalid Product",
 									"event": [
 										{
 											"listen": "test",
@@ -5572,9 +5749,83 @@
 											}
 										],
 										"url": {
-											"raw": "{{unauthenticatedResourceUrl}}/banking/products/:productId",
+											"raw": "{{bankingBaseUrl}}/banking/products/:productId",
 											"host": [
-												"{{unauthenticatedResourceUrl}}"
+												"{{bankingBaseUrl}}"
+											],
+											"path": [
+												"banking",
+												"products",
+												":productId"
+											],
+											"variable": [
+												{
+													"key": "productId",
+													"value": "{{invalidID}}"
+												}
+											]
+										},
+										"description": "Obtain detailed information on a single product offered openly to the market"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Product Detail v5 - Invalid Product",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"\r",
+													"        // Parse the response body\r",
+													"        var jsonData;\r",
+													"        try { jsonData = pm.response.json(); } catch(e) {}\r",
+													"\r",
+													"\r",
+													"        ((pm.response.code == 404) ? pm.test : pm.test.skip)('Correct error code in error object', function() {\r",
+													"            const valid = ajv.validate(\"ResponseErrorListV2\", jsonData);\r",
+													"            let errCode = jsonData.errors[0].code;\r",
+													"            pm.expect(errCode).to.oneOf( [\"urn:au-cds:error:cds-all:Resource/Invalid\", \"urn:au-cds:error:cds-all:Resource/Unavailable\",\"urn:au-cds:error:cds-all:Resource/NotFound\"]);\r",
+													"            if (!valid){\r",
+													"            ajv.errors.forEach(element => {\r",
+													"                console.log(JSON.stringify(element));\r",
+													"                });\r",
+													"            };         \r",
+													"        });  \r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "x-v",
+												"value": "5",
+												"description": "Version of the API end point requested by the client. Must be set to a positive integer. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If the value of [x-min-v](#request-headers) is equal to or higher than the value of [x-v](#request-headers) then the [x-min-v](#request-headers) header should be treated as absent. If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable. See [HTTP Headers](#request-headers)"
+											},
+											{
+												"key": "x-min-v",
+												"value": "5",
+												"description": "Minimum version of the API end point requested by the client. Must be set to a positive integer if provided. The data holder should respond with the highest supported version between [x-min-v](#request-headers) and [x-v](#request-headers). If all versions requested are not supported then the data holder should respond with a 406 Not Acceptable."
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{bankingBaseUrl}}/banking/products/:productId",
+											"host": [
+												"{{bankingBaseUrl}}"
 											],
 											"path": [
 												"banking",
@@ -5648,8 +5899,6 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"",
-					"",
 					"if (pm.iterationData.get(\"baseUrl\") != undefined)",
 					"    pm.collectionVariables.set(\"baseUrl\", pm.iterationData.get(\"baseUrl\"));",
 					"",
@@ -5666,7 +5915,6 @@
 					"",
 					"if (pm.iterationData.get(\"version\") != undefined)",
 					"    pm.collectionVariables.set(\"version\", pm.iterationData.get(\"version\"));    ",
-					"",
 					"",
 					"if (pm.iterationData.get(\"accessToken\") != undefined)",
 					"    pm.collectionVariables.set(\"accessToken\", pm.iterationData.get(\"accessToken\"));",
@@ -5713,7 +5961,6 @@
 					"if (pm.iterationData.get(\"pageSize\") != undefined)",
 					"    pm.collectionVariables.set(\"pageSize\", pm.iterationData.get(\"pageSize\"));           ",
 					"",
-					"",
 					"// Set some time relevant time stamps",
 					"var timeCurrent = new Date();",
 					"var moment = require(\"moment\")",
@@ -5722,13 +5969,15 @@
 					"if (pm.iterationData.get(\"newestTime\") != undefined)",
 					"    pm.collectionVariables.set(\"newestTime\", pm.iterationData.get(\"newestTime\"));",
 					"else",
-					"    pm.collectionVariables.set(\"newestTime\", moment().format((\"YYYY-MM-DDTHH:mm:ss.sssZ\")));",
+					"    pm.collectionVariables.set(\"newestTime\", moment().utc().toISOString())",
 					"",
+					"console.log(moment().utc().toISOString())",
+					"console.log(moment().format(\"YYYY-MM-DDTHH:mm:ss.sssZ\"))",
 					"// oldest time defaults to 90 days ago ",
 					"if (pm.iterationData.get(\"oldestTime\") != undefined)",
 					"    pm.collectionVariables.set(\"oldestTime\", pm.iterationData.get(\"oldestTime\"));",
 					"else",
-					"    pm.collectionVariables.set(\"oldestTime\", moment().subtract(90, \"days\").format((\"YYYY-MM-DDTHH:mm:ss.sssZ\")));",
+					"    pm.collectionVariables.set(\"oldestTime\", moment().subtract(90, \"days\").utc().toISOString());",
 					"",
 					"// Initialise only once",
 					"if (pm.variables.get(\"intitalised\") == 0 || pm.variables.get(\"intitalised\") == null) {",
@@ -5739,7 +5988,6 @@
 					"    // Set some time relevant time stamps",
 					"    console.log(\"Pre-request: Setting common variables\")",
 					"    var timeCurrent = new Date();",
-					"",
 					"",
 					"    // setting the base url for schema files",
 					"    var version = pm.collectionVariables.get(\"version\");",
@@ -5789,11 +6037,13 @@
 					"",
 					"",
 					"pm.collectionVariables.set(\"notPaginatedRequests\", ",
-					"[\"Get Account Balance\", ",
-					"\"Get Transaction Detail\",",
-					"\"Get Account Detail\",",
-					"\"Get Payee Detail\",",
-					"\"Get Product Detail\"",
+					"[\"Get Account Balance v1\", ",
+					"\"Get Transaction Detail v1\",",
+					"\"Get Transaction Detail v2\",",
+					"\"Get Account Detail v3\",",
+					"\"Get Payee Detail v2\",",
+					"\"Get Product Detail v4\",",
+					"\"Get Product Detail v5\"",
 					"]);",
 					"",
 					"// This is used for pagination to determine if this is the first page, last page, middle page or",
@@ -6098,14 +6348,10 @@
 	"variable": [
 		{
 			"key": "version",
-			"value": "1.31.0"
+			"value": "1.33.0"
 		},
 		{
 			"key": "x-fapi-auth-date",
-			"value": ""
-		},
-		{
-			"key": "productCategory",
 			"value": ""
 		},
 		{
@@ -6137,11 +6383,6 @@
 			"type": "string"
 		},
 		{
-			"key": "payeeType",
-			"value": "",
-			"type": "string"
-		},
-		{
 			"key": "effectiveDate",
 			"value": "",
 			"type": "string"
@@ -6158,10 +6399,6 @@
 		},
 		{
 			"key": "pageArray",
-			"value": ""
-		},
-		{
-			"key": "bankingAccountId1",
 			"value": ""
 		},
 		{

@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "a982c63a-0b86-4c0d-8f02-98ae64e8ff77",
+		"_postman_id": "8d6fda46-7fad-4b15-8e81-a204a74a1715",
 		"name": "CDR Energy Sector Conformance Tests",
-		"description": "# CDR Energy Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.31.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Energy APIs\n\n- Get Generic Plans\n    \n- Get Generic Plan Detail\n    \n- Get Service Point Detail\n    \n- Get Usage For Service Point\n    \n- Get DER For Service Point\n    \n- Get Bulk Usage\n    \n- Get Usage For Specific Service Points\n    \n- Get Account Detail\n    \n- Get Agreed Payment Schedule\n    \n- Get Concessions\n    \n- Get Balance For Account\n    \n- Get Invoices For Account\n    \n- Get Billing For Account\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Bulk Invoices\n    \n- Get Invoices For Specific Account\n    \n- Get Accounts\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n| 17-Aug-2024 | Update to v1.31.0 |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [dev@consumerdatastandards.gov.au](https://mailto:dev@consumerdatastandards.gov.au)\n\n}",
+		"description": "# CDR Energy Conformance Tests\n\nThis collection contains a series of conformance tests for the Consumer Data Right standards applicable to the designation for the Banking sector in Australia.\n\nThese tests do not constitute a full functional test of an implementation compliant with CDR standards. It is the obligation of data holders and data recipients to functionally test their implementations fully using whatever mechanism they choose.\n\nThese tests do contain comprehensive coverage of the requirements of the standards. A data holder implementation that is able to pass all of the tests in this collection could be reasonably described as conformant to the CDR standards for the Banking sector.\n\n# Conformance Scope\n\nThis collection complies with v1.33.0 of the CDR standards.\n\nIt includes support for the following API end points:\n\n### Energy APIs\n\n- Get Generic Plans\n    \n- Get Generic Plan Detail\n    \n- Get Service Point Detail\n    \n- Get Usage For Service Point\n    \n- Get DER For Service Point\n    \n- Get Bulk Usage\n    \n- Get Usage For Specific Service Points\n    \n- Get Account Detail\n    \n- Get Agreed Payment Schedule\n    \n- Get Concessions\n    \n- Get Balance For Account\n    \n- Get Invoices For Account\n    \n- Get Billing For Account\n    \n- Get Bulk Balances\n    \n- Get Balances For Specific Accounts\n    \n- Get Bulk Invoices\n    \n- Get Invoices For Specific Account\n    \n- Get Accounts\n    \n\n# Scope Exclusions\n\nThis collections does not cover:\n\n- CDR API end points not listed above\n    \n- Negative scenarios that are not specifically addressed in the standards for individual end points\n    \n- Non-functional requirements\n    \n- Information Security Profile and associated end points\n    \n- MA-SSL configuration\n    \n\n# Change Log\n\n| Change Date | Change Description |\n| --- | --- |\n| 1st June 2022 | Initial creation of the collection |\n| 17th August 2024 | Updated to v1.31.0 of standards |\n| 4th February 2025 | Updated to v1.33.0 of standards |\n\n# Contact Support:\n\n{\n\nName : Consumer Data Standards\n\nEmail : [dev@consumerdatastandards.gov.au](https://mailto:dev@consumerdatastandards.gov.au)\n\n}",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "8286723"
+		"_exporter_id": "23360681"
 	},
 	"item": [
 		{
@@ -299,7 +299,6 @@
 									"    console.log(e);\r",
 									"}\r",
 									"\r",
-									"pm.variables.set(\"currentPage\", 2)\r",
 									"// only products with specified planType are included\r",
 									"if ((pm.response.code === 200 ) && (pm.request.url.query.get(\"fuelType\") != null) && (jsonData?.data?.products?.length > 0)) {\r",
 									"    pm.test('Plan type query parameter is considered', function() {\r",
@@ -3952,7 +3951,6 @@
 					"",
 					"        var validEffectiveTypes = [\"ALL\", \"CURRENT\", \"FUTURE\"]",
 					"",
-					"",
 					"        // test if this request should have returned an error base on query parameters ",
 					"        // validate the updated-since against RFC3339",
 					"        if ((pm.request.url.query.get(\"updated-since\") != undefined ",
@@ -4150,6 +4148,7 @@
 					"                    pm.expect(jsonData.meta.totalPages >= 0);",
 					"                    pm.expect(jsonData.meta.totalRecords >= 0);",
 					"                });",
+					"             ",
 					"                var currentPage = pm.variables.get(\"currentPage\");",
 					"                var currentPageSize = pm.variables.get(\"pageSize\");",
 					"                var currentTotalPages = jsonData?.meta?.totalPages;",
@@ -4179,7 +4178,7 @@
 	"variable": [
 		{
 			"key": "version",
-			"value": "1.31.0"
+			"value": "1.33.0"
 		},
 		{
 			"key": "pageSize",
